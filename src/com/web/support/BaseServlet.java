@@ -12,11 +12,45 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.system.tools.Tools;
+
+
 @WebServlet("*.html")
 public class BaseServlet extends HttpServlet
 {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		 String toPath=null;   //跳转的目标页面
+         try
+         {
+        	 
+        	/************************************************************
+        	 *      解析访问路径,获取目标类的名称
+        	 ************************************************************/
+     		//拦截请求的访问路径
+     		String  uri=request.getRequestURI();
+     		//获取请求资源的主文件名
+     		String baseName=uri.substring(uri.lastIndexOf("/")+1).replace(".html", "");
+     		
+     		//定义变量,描述所有业务控制器的基础包名称
+     		String basePackageName="com.web.impl.";
+     		//获取控制器的前缀名
+     		String controllerFirstName=baseName.substring(0,1).toUpperCase()+baseName.substring(1);
+     		
+     		
+     		/***********************************************************
+     		 *                        实例化目标类---业务控制器
+     		 ***********************************************************/
+     		//实例化业务控制器
+     		BaseController controller=(BaseController)Class.forName(basePackageName+controllerFirstName+"Servlet").newInstance();
+     		
+     		
+     		/***********************************************************
+     		 *                        向业务控制器,填充页面数据     i
+     		 ***********************************************************/
+     		//为业务控制器织入DTO切片
+     		controller.setMapDto(this.createDto(request));
+
 	 
 		String toPath = null; // 跳转的目标页面
 		try
@@ -34,6 +68,7 @@ public class BaseServlet extends HttpServlet
 			String basePackageName = "com.web.impl.";
 			// 获取控制器的前缀名
 			String controllerFirstName = baseName.substring(0, 1).toUpperCase() + baseName.substring(1);
+
 
 			/***********************************************************
 			 * 实例化目标类---业务控制器
@@ -120,8 +155,27 @@ public class BaseServlet extends HttpServlet
 				dto.put(entry.getKey(), value);
 			}
 		}
+
 		//System.out.println(dto);
-		return dto;
+		String imgPath = null;
+		try 
+		{
+			imgPath = Tools.uploadImg(request);
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		if(imgPath == null)
+		{
+			return dto;
+		}
+		else
+		{
+			dto.put("imgPath", imgPath);
+			System.out.println(dto.get("imgPath"));
+			return dto;
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

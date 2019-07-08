@@ -45,7 +45,13 @@ public abstract class ControllerSupport implements BaseController
 		if (rows.size() > 0)
 		{
 			this.saveAttribute("rows", rows);
+<<<<<<< HEAD
+			this.saveAttribute("aab101", this.dto.get("aab101"));
+		}
+		else
+=======
 		} else
+>>>>>>> 1ebd64df54eb58524fa2bf5e96076f6af8366ea5
 		{
 			this.saveAttribute("msg", "没有符合条件的数据!");
 		}

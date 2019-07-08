@@ -1,15 +1,24 @@
 package com.system.tools;
 
+import java.io.File;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FilenameUtils;
 
 import com.system.db.DBUtils;
 
@@ -207,6 +216,115 @@ public class Tools
 		// System.out.println(dto);
 		return dto;
 	}
+<<<<<<< HEAD
+	
+	 /**
+	  * 获取主键值 
+	  * @param pkname
+	  * @return
+	  * @throws Exception
+	  */
+    public static int getSequence(String pkname)throws Exception
+    {
+   	 PreparedStatement pstm1=null;    //查询序列的当前值
+   	 PreparedStatement pstm2=null;    //修改序列的当前值
+   	 ResultSet rs=null;
+   	 try
+   	 {
+   		 //定义SQL语句,查询序列的当前值
+   		 String sql1="select a.pkvalue from sequence a where a.pkname=?";
+   		 //编译SQL1
+   		 pstm1=DBUtils.prepareStatement(sql1);
+   		 //参数赋值
+   		 pstm1.setObject(1, pkname);
+   		 //执行查询
+   		 rs=pstm1.executeQuery();
+   		 
+   		 //定义序列当前值
+   		 int currentVal=0;
+   		 //判断数据库中,是否存在当前列的值
+   		 if(rs.next())
+   		 {
+   			 //读取数据库当前值,为序列赋值
+   			 currentVal=rs.getInt(1);
+   			 
+   			 //修改数据中的值,在原来基础上+1
+   			 String sql2="update sequence set pkvalue=? where pkname=?";
+   			 pstm2=DBUtils.prepareStatement(sql2);
+   			 pstm2.setObject(1, ++currentVal);
+   			 pstm2.setObject(2, pkname);
+   			 pstm2.executeUpdate();
+   			 
+   		 }
+   		 else
+   		 {
+   			 //向数据库录入当前主键的数据,pkvalue值为1
+   			 String sql2="insert into sequence(pkname,pkvalue) values(?,?)";
+   			 pstm2=DBUtils.prepareStatement(sql2);
+   			 pstm2.setObject(1, pkname);
+   			 pstm2.setObject(2, ++currentVal);
+   			 pstm2.executeUpdate();
+   		 }	 
+   		 
+   		 return currentVal;
+   		 
+   	 }
+   	 finally
+   	 {
+   		 DBUtils.close(rs);
+   		 DBUtils.close(pstm1);
+   		 DBUtils.close(pstm2);
+   	 }
+    }
+    
+	/**
+	 * 该方法用来上传图片文件并且存储到本地服务器
+	 * @param req
+	 * @return
+	 * @throws Exception
+	 */
+	public static String uploadImg(HttpServletRequest req) throws Exception
+	{
+		req.setCharacterEncoding("utf-8"); 
+        //解析和检查请求，是否是post方式，是否是二进制流格式
+        Boolean isMultipart=ServletFileUpload.isMultipartContent(req);
+        if (!isMultipart) {
+            return null; //如果不是就不用上传了
+        }
+        String path = null;
+        try {
+ 
+            //创建FileItemFactory对象
+            FileItemFactory factory=new DiskFileItemFactory();
+            //创建文件上传的处理器
+            ServletFileUpload upload=new ServletFileUpload(factory);
+            //解析请求
+            List<FileItem> items=upload.parseRequest(req);
+            //迭代出每一个FileItem
+            for (FileItem item : items) {
+                String fileName = item.getFieldName();
+                if (item.isFormField()) {
+                    //普通的表单控件
+                    String value = item.getString("utf-8");
+                    System.out.println(fileName + "->" + value);
+                } else {
+                    //上传文件的控件
+                    String RandomName = UUID.randomUUID().toString()+"."+FilenameUtils.getExtension(item.getName());
+                    System.out.println(fileName + "->" + FilenameUtils.getName(item.getName())); //一个的标签的name，一个是文件的name
+                    path=req.getServletContext().getRealPath("/upload/");
+                    System.out.println(path);
+                    item.write(new File(path, RandomName)); //把上传的文件保存到某个文件中
+                    path = "upload/" + RandomName;
+                }
+            }   
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return path;
+	}
+=======
 
 	/**
 	 * 获取主键值
@@ -266,4 +384,5 @@ public class Tools
 		}
 	}
 
+>>>>>>> 1ebd64df54eb58524fa2bf5e96076f6af8366ea5
 }

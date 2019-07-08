@@ -12,17 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import com.system.tools.Tools;
-
-
 
 @WebServlet("*.html")
 public class BaseServlet extends HttpServlet
 {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-
 		 String toPath=null;   //跳转的目标页面
          try
          {
@@ -53,14 +49,13 @@ public class BaseServlet extends HttpServlet
      		 ***********************************************************/
      		//为业务控制器织入DTO切片
      		controller.setMapDto(this.createDto(request));
-     		
+
      		/***********************************************************
      		 *                        调用业务控制器的流程控制方法
      		 ***********************************************************/
      		//调用流程控制方法
      		toPath=controller.execute();
-
-     		
+	
 			/***********************************************************
 			 * 处理控制器向页面输出的数据 o
 			 ***********************************************************/

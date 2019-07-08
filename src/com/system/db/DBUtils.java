@@ -79,7 +79,7 @@ public class DBUtils
 	{
 		return DBUtils.getConnection().prepareStatement(sql);
 	}
-	
+		
 
 	//=======================以下为事务相关方法================================
 	/**

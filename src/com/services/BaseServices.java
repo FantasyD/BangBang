@@ -3,19 +3,17 @@ package com.services;
 import java.util.List;
 import java.util.Map;
 
-public interface BaseServices 
+public interface BaseServices
 {
-     void setMapDto(Map<String,Object> dto);
-     
-    
-     default Map<String,String> findById()throws Exception
-     {
-    	 return null;
-     }
+	void setMapDto(Map<String, Object> dto);
 
-     
-     default List<Map<String,String>> query()throws Exception
-     {
-    	 return null;
-     }
+	default Map<String, String> findById() throws Exception
+	{
+		return null;
+	}
+
+	default List<Map<String, String>> query() throws Exception
+	{
+		return null;
+	}
 }

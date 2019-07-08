@@ -11,11 +11,12 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServlet;
 
 @WebFilter("/*")
-public class CodeFilter extends HttpServlet implements Filter 
+public class CodeFilter extends HttpServlet implements Filter
 {
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException 
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException
 	{
-		
+	        
 		request.setCharacterEncoding("GBK");
 		chain.doFilter(request, response);
 	}
@@ -23,7 +24,8 @@ public class CodeFilter extends HttpServlet implements Filter
 	/**
 	 * @see Filter#init(FilterConfig)
 	 */
-	public void init(FilterConfig fConfig) throws ServletException {
+	public void init(FilterConfig fConfig) throws ServletException
+	{
 		// TODO Auto-generated method stub
 	}
 

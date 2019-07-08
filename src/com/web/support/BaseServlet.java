@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.system.tools.Tools;
+
 
 @WebServlet("*.html")
 public class BaseServlet extends HttpServlet 
@@ -31,7 +33,7 @@ public class BaseServlet extends HttpServlet
      		String baseName=uri.substring(uri.lastIndexOf("/")+1).replace(".html", "");
      		
      		//定义变量,描述所有业务控制器的基础包名称
-     		String basePackageName="com.neusoft.web.impl.";
+     		String basePackageName="com.web.impl.";
      		//获取控制器的前缀名
      		String controllerFirstName=baseName.substring(0,1).toUpperCase()+baseName.substring(1);
      		
@@ -125,7 +127,25 @@ public class BaseServlet extends HttpServlet
 			}	
 		}
 		//System.out.println(dto);
-		return dto;
+		String imgPath = null;
+		try 
+		{
+			imgPath = Tools.uploadImg(request);
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		if(imgPath == null)
+		{
+			return dto;
+		}
+		else
+		{
+			dto.put("imgPath", imgPath);
+			System.out.println(dto.get("imgPath"));
+			return dto;
+		}
 	}
 
 

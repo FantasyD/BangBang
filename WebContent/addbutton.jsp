@@ -73,7 +73,7 @@ function CloseDiv(show_div,bg_div)
 <div id="fade" class="black_overlay">
 </div>
  <div id="MyDiv" class="white_content">
-  <div style="text-align: right; cursor: default; height: 40px;">
+  <div style="text-align: left; cursor: default; height: 40px;">
   <form action="<%=path %>/newGroup.html" method="post" >
 		<table border="1" align="center" width="50%">
 				<caption>

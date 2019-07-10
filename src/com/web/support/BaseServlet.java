@@ -17,45 +17,43 @@ import com.system.tools.Tools;
 @WebServlet("*.html")
 public class BaseServlet extends HttpServlet
 {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException
 	{
-		 String toPath=null;   //跳转的目标页面
-         try
-         {
-        	 
-        	/************************************************************
-        	 *      解析访问路径,获取目标类的名称
-        	 ************************************************************/
-     		//拦截请求的访问路径
-     		String  uri=request.getRequestURI();
-     		//获取请求资源的主文件名
-     		String baseName=uri.substring(uri.lastIndexOf("/")+1).replace(".html", "");
-     		
-     		//定义变量,描述所有业务控制器的基础包名称
-     		String basePackageName="com.web.impl.";
-     		//获取控制器的前缀名
-     		String controllerFirstName=baseName.substring(0,1).toUpperCase()+baseName.substring(1);
-     		
-     		
-     		/***********************************************************
-     		 *                        实例化目标类---业务控制器
-     		 ***********************************************************/
-     		//实例化业务控制器
-     		BaseController controller=(BaseController)Class.forName(basePackageName+controllerFirstName+"Servlet").newInstance();
-     		
-     		
-     		/***********************************************************
-     		 *                        向业务控制器,填充页面数据     i
-     		 ***********************************************************/
-     		//为业务控制器织入DTO切片
-     		controller.setMapDto(this.createDto(request));
+		String toPath = null; // 跳转的目标页面
+		try
+		{
 
-     		/***********************************************************
-     		 *                        调用业务控制器的流程控制方法
-     		 ***********************************************************/
-     		//调用流程控制方法
-     		toPath=controller.execute();
-	
+			/************************************************************
+			 * 解析访问路径,获取目标类的名称
+			 ************************************************************/
+			// 拦截请求的访问路径
+			String uri = request.getRequestURI();
+			// 获取请求资源的主文件名
+			String baseName = uri.substring(uri.lastIndexOf("/") + 1).replace(".html", "");
+
+			// 定义变量,描述所有业务控制器的基础包名称
+			String basePackageName = "com.web.impl.";
+			// 获取控制器的前缀名
+			String controllerFirstName = baseName.substring(0, 1).toUpperCase() + baseName.substring(1);
+
+			/***********************************************************
+			 * 实例化目标类---业务控制器
+			 ***********************************************************/
+			// 实例化业务控制器
+			BaseController controller = (BaseController) Class
+					.forName(basePackageName + controllerFirstName + "Servlet").newInstance();
+
+			/***********************************************************
+			 * 向业务控制器,填充页面数据 i
+			 ***********************************************************/
+			// 为业务控制器织入DTO切片
+			controller.setMapDto(this.createDto(request));
+			/***********************************************************
+			 * 调用业务控制器的流程控制方法
+			 ***********************************************************/
+			// 调用流程控制方法
+			toPath = controller.execute();
 			/***********************************************************
 			 * 处理控制器向页面输出的数据 o
 			 ***********************************************************/
@@ -63,7 +61,8 @@ public class BaseServlet extends HttpServlet
 			Map<String, Object> rueqestAttribute = controller.getAttribute();
 			// 织入属性处理切片
 			this.parseRueqestAttribute(request, rueqestAttribute);
-		} catch (Exception ex)
+		} 
+		catch (Exception ex)
 		{
 			request.setAttribute("msg", "提示:网络故障!");
 			toPath = "Error";
@@ -99,6 +98,7 @@ public class BaseServlet extends HttpServlet
 		int initSize = ((int) (tem.size() / 0.75)) + 1;
 		// 2.导出所有键值对,形成键值对集合
 		Set<Entry<String, String[]>> entrySet = tem.entrySet();
+		System.out.println(entrySet.size());
 		// 3.定义数组,表示Enetry的value部分
 		String value[] = null;
 
@@ -122,29 +122,29 @@ public class BaseServlet extends HttpServlet
 				dto.put(entry.getKey(), value);
 			}
 		}
-		//System.out.println(dto);
+		System.out.println(dto);
 		String imgPath = null;
-		try 
+		try
 		{
 			imgPath = Tools.uploadImg(request);
 		} 
-		catch (Exception e) 
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
-		if(imgPath == null)
+		if (imgPath == null)
 		{
 			return dto;
 		}
 		else
 		{
 			dto.put("imgPath", imgPath);
-			System.out.println(dto.get("imgPath"));
 			return dto;
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException
 	{
 		this.doGet(request, response);
 	}

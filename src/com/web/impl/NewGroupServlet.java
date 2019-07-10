@@ -1,18 +1,14 @@
 package com.web.impl;
 
-import com.services.impl.Ae01Service;
+import com.services.impl.Ae01ServiceImpl;
 import com.web.support.ControllerSupport;
 
 /**
  * @Description: 新建群组
  * @author: 宁志豪
  */
-public class NewGroupServlet extends ControllerSupport
+public class NewGroupServlet extends GroupServlet
 {
-	public NewGroupServlet()
-	{
-		this.setServices(new Ae01Service());
-	}
 	@Override
 	public String execute() throws Exception
 	{

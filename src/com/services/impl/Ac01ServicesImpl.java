@@ -9,30 +9,8 @@ import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 import com.services.JdbcServicesSupport;
 import com.system.tools.Tools;
 
-public class Ac01ServicesImpl extends JdbcServicesSupport{
-	
-	public boolean update(String utype) throws Exception
-	{
-		if(utype.equalsIgnoreCase("addTiezi"))
-		{
-			return this.addTiezi();
-		}
-		if(utype.equalsIgnoreCase("delByIdTiezi")) 
-		{
-			return this.delByIdTiezi();
-		}	
-		if (utype.equalsIgnoreCase("insertImg")) 
-		{
-			return this.insertImg();
-		}
-		else 
-		{
-			throw new Exception("在类[Ac01ServicesImpl]中进行了未定义的动作调用,动作名称是" + utype);
-		}
-	}
-	
-	
-	
+public class Ac01ServicesImpl extends JdbcServicesSupport
+{
 	
 	/**
 	 * 该方法用来执行多条件查询
@@ -44,7 +22,7 @@ public class Ac01ServicesImpl extends JdbcServicesSupport{
 		//还原页面查询条件
 		Object aac102 = this.get("qaac102");		//帖子标题 模糊查询
 		Object aac103 = this.get("qaac103");		//帖子类型
-		Object aab101 = this.get("aab101");			//用户流水号
+		Object aab101 = this.get("aab101");		//用户流水号
 
 		
 		//定义SQL主体

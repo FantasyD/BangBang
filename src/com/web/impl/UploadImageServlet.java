@@ -1,6 +1,7 @@
 package com.web.impl;
 
-public class UploadImageServlet extends TieziControlletSupport  {
+public class UploadImageServlet extends TieziControlletSupport  
+{
 
 	@Override
 	public String execute() throws Exception {

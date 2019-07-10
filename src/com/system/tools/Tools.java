@@ -87,8 +87,7 @@ public class Tools
 		try
 		{
 			// 1.定义SQL语句查询当前值
-			StringBuilder sql1 = new StringBuilder().append("select a.pkid ")
-					.append("  from sequence a ")
+			StringBuilder sql1 = new StringBuilder().append("select a.pkid ").append("  from sequence a ")
 					.append("  where date_format(a.sdate,'%Y')=date_format(current_date,'%Y')")
 					.append("    and a.pkname=?");
 			pstm1 = DBUtils.prepareStatement(sql1.toString());
@@ -219,52 +218,56 @@ public class Tools
 
 	/**
 	 * 该方法用来上传图片文件并且存储到本地服务器
+	 * 
 	 * @param req
 	 * @return
 	 * @throws Exception
 	 */
 	public static String uploadImg(HttpServletRequest req) throws Exception
 	{
-		req.setCharacterEncoding("utf-8"); 
-        //解析和检查请求，是否是post方式，是否是二进制流格式
-        Boolean isMultipart=ServletFileUpload.isMultipartContent(req);
-        if (!isMultipart) {
-            return null; //如果不是就不用上传了
-        }
-        String path = null;
-        try {
- 
-            //创建FileItemFactory对象
-            FileItemFactory factory=new DiskFileItemFactory();
-            //创建文件上传的处理器
-            ServletFileUpload upload=new ServletFileUpload(factory);
-            //解析请求
-            List<FileItem> items=upload.parseRequest(req);
-            //迭代出每一个FileItem
-            for (FileItem item : items) {
-                String fileName = item.getFieldName();
-                if (item.isFormField()) {
-                    //普通的表单控件
-                    String value = item.getString("utf-8");
-                    System.out.println(fileName + "->" + value);
-                } else {
-                    //上传文件的控件
-                    String RandomName = UUID.randomUUID().toString()+"."+FilenameUtils.getExtension(item.getName());
-                    System.out.println(fileName + "->" + FilenameUtils.getName(item.getName())); //一个的标签的name，一个是文件的name
-                    path=req.getServletContext().getRealPath("/upload/");
-                    System.out.println(path);
-                    item.write(new File(path, RandomName)); //把上传的文件保存到某个文件中
-                    path = "upload/" + RandomName;
-                }
-            }   
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        return path;
-	}
+		req.setCharacterEncoding("utf-8");
+		// 解析和检查请求，是否是post方式，是否是二进制流格式
+		Boolean isMultipart = ServletFileUpload.isMultipartContent(req);
+		if (!isMultipart)
+		{
+			return null; // 如果不是就不用上传了
+		}
+		String path = null;
+		try
+		{
 
+			// 创建FileItemFactory对象
+			FileItemFactory factory = new DiskFileItemFactory();
+			// 创建文件上传的处理器
+			ServletFileUpload upload = new ServletFileUpload(factory);
+			// 解析请求
+			List<FileItem> items = upload.parseRequest(req);
+			// 迭代出每一个FileItem
+			for (FileItem item : items)
+			{
+				String fileName = item.getFieldName();
+				if (item.isFormField())
+				{
+					// 普通的表单控件
+					String value = item.getString("gbk");
+				} 
+				else
+				{
+					// 上传文件的控件
+					String RandomName = UUID.randomUUID().toString() + "."
+							+ FilenameUtils.getExtension(item.getName());
+					path = req.getServletContext().getRealPath("/upload/");
+					item.write(new File(path, RandomName)); // 把上传的文件保存到某个文件中
+					path = "upload/" + RandomName;
+				}
+			}
+		} 
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return path;
+	}
 
 	/**
 	 * 获取主键值

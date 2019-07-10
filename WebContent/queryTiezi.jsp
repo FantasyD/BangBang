@@ -8,7 +8,7 @@
 <title>帖子数据查询及分页测试</title>
 	<script>
 		var count = 0;
-		
+
 		function onEdit(vaac101)
 		{
 			var vform = document.getElementById("myform");

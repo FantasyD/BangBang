@@ -1,14 +1,10 @@
 package com.web.impl;
 
-import com.services.impl.Ae01Service;
+import com.services.impl.Ae01ServiceImpl;
 import com.web.support.ControllerSupport;
 
-public class UpdateGroupServlet extends ControllerSupport
+public class UpdateGroupServlet extends GroupServlet
 {
-	public UpdateGroupServlet()
-	{
-		this.setServices(new Ae01Service());
-	}
 	@Override
 	public String execute() throws Exception
 	{

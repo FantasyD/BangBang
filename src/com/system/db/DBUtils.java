@@ -180,7 +180,6 @@ public class DBUtils
 			//2.判断连接是否需要销毁
 			if(conn!=null && !conn.isClosed())
 			{
-				System.out.println("---------Close Connection---------------------");
 				//3.解除连接与线程的绑定
 				threadLocal.remove();
 				//4.连接销毁

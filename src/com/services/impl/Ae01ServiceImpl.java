@@ -8,12 +8,8 @@ import com.services.JdbcServicesSupport;
 import com.system.tools.Tools;
 
 /**
- * 
- * @ClassName: Ae01Service.java
- * @Description: 该类的功能描述
- *
+ * @Description: 对于群组模块所需的数据库操作支持
  * @author: 宁志豪
- * @date: 2019年7月5日 下午2:23:29
  */
 public class Ae01ServiceImpl extends JdbcServicesSupport
 {

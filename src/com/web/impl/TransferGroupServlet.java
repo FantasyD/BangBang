@@ -1,5 +1,9 @@
 package com.web.impl;
 
+/**
+ * @Description: 转让群组创建者身份
+ * @author: 宁志豪
+ */
 public class TransferGroupServlet extends GroupServlet
 {
 	@Override

@@ -35,7 +35,7 @@ public abstract class JdbcServicesSupport implements BaseServices
 	{
 		this.dto = dto;
 	}
-
+	
 	/**************************************************************
 	 * ¸¨Öú·½·¨
 	 **************************************************************/

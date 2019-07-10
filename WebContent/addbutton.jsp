@@ -2,6 +2,7 @@
 <%@taglib uri="http://org.wangxg/jsp/extl" prefix="e"%>
 <%String path=request.getContextPath(); 
 		session.setAttribute("aab101", "1");
+		session.setAttribute("aab102","ÃÉ¶à");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -69,10 +70,11 @@ function CloseDiv(show_div,bg_div)
 </script>
 </head>
 <body>
+${aab101 }
 	<input id="Button1" type="button" value="µã»÷µ¯³ö²ã"
 		onclick="ShowDiv('MyDiv','fade')" />
 	<form action="<%=path %>/findGroup.html" method="post">
-		<input type="submit" name="aae101" value="4">
+		<input type="submit" name="aae101" value="6">
 	</form>
 	<!--µ¯³ö²ãÊ±±³¾°²ãDIV-->
 	<div id="fade" class="black_overlay"></div>

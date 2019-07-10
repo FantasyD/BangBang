@@ -15,7 +15,6 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Bootstrap CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/signin.css" rel="stylesheet">
 <title>${ins.aae102 }的主页</title>
 <style type="text/css">
 #updateInfo {
@@ -74,15 +73,31 @@
 					delBtn.submit();
     			}
     	}
-		//显示隐藏的修改DIV
-		function inviteIsClicked() {
+		//显示隐藏的邀请DIV
+		function inviteIsClicked()
+		{
 			var infoForm = document.getElementById("numberForm");
 			infoForm.style.display = "block";
 		}
-		//隐藏修改DIV
-		function closeInviteDiv() {
+		//隐藏邀请DIV
+		function closeInviteDiv()
+		{
 			var infoForm = document.getElementById("numberForm");
 			infoForm.style.display = "none";
+		}
+		//确认邀请
+		function inviteConfirm()
+		{
+			//if(tag)
+			//{
+				var infoForm=document.getElementById("numberForm");
+				infoForm.action="<%=path%>/inviteToGroup.html";
+				infoForm.submit();
+		//	}
+			//else
+		//	{
+				//alert("该用户已在群组中")
+		//	}
 		}
 </script>
 </head>
@@ -109,13 +124,13 @@
 							<td>${ins.aae107!=null&& ins.aae107!=''?ins.aae107:'该群组暂时没有描述'}</td>
 						</tr>
 						<tr>
-							<td><input type="button" id="update" value="修改"
-								onclick="updateIsClick()" /> <input type="button" value="邀请"
-								onclick="inviteIsClicked()" />
+							<td>
 								<form id="quit" method="post">
 									<e:hidden name="aae101" value="${ins.aae101 }" />
 								</form> <c:forEach items="${rows }" var="row" varStatus="vs">
 									<c:if test="${row.ab101==ins.aab101 }">
+										<input type="button" value="修改"  onclick="updateIsClick()" /> 
+										<input type="button" value="邀请"  onclick="inviteIsClicked()" />
 										<c:choose>
 											<c:when test="<%=isCreater %>">
 												<button onclick="delGroupIsClick()">解散群组</button>
@@ -176,8 +191,6 @@
 		</div>
 	</div>
 
-
-
 	<div id="updateInfo">
 		<form action="<%=path%>/updateGroup.html" method="post">
 			<table border="1" align="center" width="50%">
@@ -211,11 +224,13 @@
 	</div>
 
 	<div id="invite">
-		<form action="<%=path%>/inviteToGroup.html" id="numberForm">
+		<form  id="numberForm"  method="post">
 			请输入你想邀请的用户名: <input type="text" id="invitedNumber" name="aab101">
-			<e:hidden name="aae101" value="${ins.aae101 }" />
-			<input type="submit" value="确定">
-			<button onclick="closeInviteDiv()">取消</button>
+			<e:hidden name="aah106"  value="${ins.aae101 }" />
+			<e:hidden  name="aah102"  value="群聊邀请"/>
+			<e:hidden name="aah103"  value="用户${aab102 }邀请您加入群聊${ins.aae102 }"/>
+			<input type="button" onclick="inviteConfirm()" value="确定">
+			<input type="button" onclick="closeInviteDiv()" value="取消">
 		</form>
 	</div>
 

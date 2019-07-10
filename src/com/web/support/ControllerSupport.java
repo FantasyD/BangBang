@@ -61,6 +61,7 @@ public abstract class ControllerSupport implements BaseController
 	protected final void savePageInstance() throws Exception
 	{
 		Map<String, String> ins = this.services.findById();
+		System.out.println(ins);
 		if (ins != null)
 		{
 			this.saveAttribute("ins", ins);
@@ -98,7 +99,7 @@ public abstract class ControllerSupport implements BaseController
 		String msg = this.executeUpdateMethod(methodName) ? "成功!" : "失败!";
 		this.saveAttribute("msg", msgText + msg);
 	}
-
+	
 	/**
 	 * 带有编号的消息提示的更新行为
 	 * 
@@ -145,7 +146,6 @@ public abstract class ControllerSupport implements BaseController
 		this.dto = dto;
 		// 同步为Services传递DTO
 		this.services.setMapDto(dto);
-
 	}
 
 	protected final void showDto()

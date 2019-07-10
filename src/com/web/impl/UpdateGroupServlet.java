@@ -3,6 +3,10 @@ package com.web.impl;
 import com.services.impl.Ae01ServiceImpl;
 import com.web.support.ControllerSupport;
 
+/**
+ * @Description: 修改群组信息
+ * @author: 宁志豪
+ */
 public class UpdateGroupServlet extends GroupServlet
 {
 	@Override

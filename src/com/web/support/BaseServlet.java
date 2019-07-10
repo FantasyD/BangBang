@@ -31,7 +31,7 @@ public class BaseServlet extends HttpServlet
 			String uri = request.getRequestURI();
 			// 获取请求资源的主文件名
 			String baseName = uri.substring(uri.lastIndexOf("/") + 1).replace(".html", "");
-
+			
 			// 定义变量,描述所有业务控制器的基础包名称
 			String basePackageName = "com.web.impl.";
 			// 获取控制器的前缀名
@@ -98,7 +98,6 @@ public class BaseServlet extends HttpServlet
 		int initSize = ((int) (tem.size() / 0.75)) + 1;
 		// 2.导出所有键值对,形成键值对集合
 		Set<Entry<String, String[]>> entrySet = tem.entrySet();
-		System.out.println(entrySet.size());
 		// 3.定义数组,表示Enetry的value部分
 		String value[] = null;
 

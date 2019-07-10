@@ -3,11 +3,14 @@ package com.web.impl;
 import com.services.impl.Ae02ServiceImpl;
 import com.web.support.ControllerSupport;
 
+/**
+ * @Description: 
+ * @author: ÄþÖ¾ºÀ
+ */
 public abstract class GroupMemberServlet extends ControllerSupport
 {
 	public GroupMemberServlet()
 	{
-		System.out.println("into");
 		this.setServices(new Ae02ServiceImpl());
 	}
 }

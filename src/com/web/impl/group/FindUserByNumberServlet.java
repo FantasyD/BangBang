@@ -1,4 +1,4 @@
-package com.web.impl;
+package com.web.impl.group;
 
 public class FindUserByNumberServlet extends GroupMemberServlet
 {

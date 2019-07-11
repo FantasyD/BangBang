@@ -42,24 +42,30 @@
     	//转让创建者身份
     	function transfered(aab101)
     	{
-    			var trans=document.getElementById("empty");
-    			trans.action="<%=path%>/transferGroup.html?aab101="+aab101;
-    			trans.submit();
+	    		if(confirm("确定要将创建者身份转让给该组员吗？"))
+    			{
+    					var trans=document.getElementById("empty");
+    					trans.action="<%=path%>/group_transferGroup.html?aab101="+aab101;
+    					trans.submit();
+    			}
     	}
     	//删除组员
     	function delMember(aab101)
     	{
-    			var dels=document.getElementById("empty");
-    			dels.action="<%=path%>/delGroupMember.html?aab101="+aab101;
-    			dels.submit();
+	    		if(confirm("确定要删除该组员吗？"))
+    			{
+    					var dels=document.getElementById("empty");
+    					dels.action="<%=path%>/group_delGroupMember.html?aab101="+aab101;
+    					dels.submit();
+    			}
     	}
     	//退出该群组
-    	function quitIsClick(aae101)
+    	function quitIsClick()
     	{
     			if(confirm("您确定要退出该群组吗？"))
     			{
     					var quitBtn=document.getElementById("quit");
-	    				quitBtn.action="<%=path%>/quitGroup.html";
+	    				quitBtn.action="<%=path%>/group_quitGroup.html";
 						quitBtn.submit();
 				}
 		}
@@ -68,9 +74,9 @@
     	{
     			if(confirm("您确定要解散该群组"))
     			{
-    				var delBtn=document.getElementById("quit");
-    				delBtn.action="<%=path%>/delGroup.html";
-					delBtn.submit();
+    					var delBtn=document.getElementById("quit");
+    					delBtn.action="<%=path%>/group_delGroup.html";
+						delBtn.submit();
     			}
     	}
 		//显示隐藏的邀请DIV
@@ -91,7 +97,7 @@
 			//if(tag)
 			//{
 				var infoForm=document.getElementById("numberForm");
-				infoForm.action="<%=path%>/inviteToGroup.html";
+				infoForm.action="<%=path%>/group_inviteToGroup.html";
 				infoForm.submit();
 		//	}
 			//else
@@ -127,8 +133,10 @@
 							<td>
 								<form id="quit" method="post">
 									<e:hidden name="aae101" value="${ins.aae101 }" />
-								</form> <c:forEach items="${rows }" var="row" varStatus="vs">
-									<c:if test="${row.ab101==ins.aab101 }">
+									<e:hidden name="aab101" value="${aab101 }"/>
+								</form>
+								 <c:forEach items="${rows }" var="row" varStatus="vs">
+									<c:if test="${row.ab101==aab101 }">
 										<input type="button" value="修改"  onclick="updateIsClick()" class="btn btn-default"/> 
 										<input type="button" value="邀请"  onclick="inviteIsClicked()" class="btn btn-default"/>
 										<c:choose>
@@ -136,7 +144,7 @@
 												<button onclick="delGroupIsClick()" class="btn btn-default">解散群组</button>
 											</c:when>
 											<c:otherwise>
-												<button onclick="quitIsClick('${ins.aae101}')" class="btn btn-default">退出群组</button>
+												<button onclick="quitIsClick()" class="btn btn-default">退出群组</button>
 											</c:otherwise>
 										</c:choose>
 									</c:if>
@@ -147,6 +155,7 @@
 			</div>
 		</div>
 	</div>
+	
 
 	<div class="col-md-4">
 		<div class="panel panel-default">
@@ -212,24 +221,24 @@
 					<td>群组详细描述:</td>
 					<td><e:textarea rows="10" cols="25" name="aae107"
 							defval="${ins.aae107 }" /></td>
+					<e:hidden name="aae101" value="${ins.aae101 }" />
 				</tr>
-				<e:hidden name="aae101" value="${aae101 }" />
 				<tr>
 					<td colspan="2" align="center"><input type="submit"
-						name="next" value="修改" class="btn btn-default" formaction="<%=path%>/updateGroup.html">
+						name="next" value="修改" class="btn btn-default"  formaction="<%=path%>/group_updateGroup.html">
 						<button onclick="closeDiv()" class="btn btn-default">取消</button></td>
 				</tr>
 			</table>
 		</form>
 	</div>
-
+	
 	<div id="invite">
 		<form  id="numberForm"  method="post">
 			请输入你想邀请的用户名: <input type="text" id="invitedNumber" name="aab101">
 			<e:hidden name="aah107"  value="${ins.aae101 }" />
 			<e:hidden name="aah102" value="2"/>
-			<e:hidden  name="aah103"  value="群聊邀请"/>
-			<e:hidden name="aah104"  value="用户${aab102 }邀请您加入群聊${ins.aae102 }"/>
+			<e:hidden  name="aah103"  value="群组邀请"/>
+			<e:hidden name="aah104"  value="用户${aab102 }邀请您加入群组：${ins.aae102 }"/>
 			<input type="button" onclick="inviteConfirm()" value="确定" class="btn btn-default">
 			<input type="button" onclick="closeInviteDiv()" value="取消" class="btn btn-default">
 		</form>

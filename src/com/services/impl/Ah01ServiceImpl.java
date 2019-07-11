@@ -104,6 +104,18 @@ public class Ah01ServiceImpl extends JdbcServicesSupport
 	
 	/**
 	 * @Description: 向邮件表中插入邮件记录
+	 * 	插入邮件所需的dto:
+	 * 		aab101: 邮件接收人
+	 * 		aah102: 邮件类型(0表示通知类，1表示链接类，2表示询问类)
+	 * 		aah103: 邮件标题
+	 * 		aah104: 邮件内容
+	 * 		aah105: 邮件创建时间
+	 * 		aah106: 邮件状态(0表示未读，1表示已读)
+	 * 		aah107: 备注(存放链接类和询问类邮件所需的必要信息)
+	 * 		
+	 * 	通知类邮件主要是给用户展示通知，不需要用户进行任何操作
+	 * 	链接类邮件在向用户展示通知的同时会给予一个链接供用户操作
+	 * 	询问类邮件主要是询问用户的意向，会有接受和拒绝两种选择
 	 * @throws：sql语句执行出错
 	 */
 	public boolean sendEmail()throws Exception
@@ -123,5 +135,16 @@ public class Ah01ServiceImpl extends JdbcServicesSupport
 		return this.executeUpdate(sb.toString(), id)>0;
 	}
 
-
+	/**
+	 * @Description: 修改邮件状态
+	 * @throws: sql语句执行出错
+	 */
+	public boolean updateEmail()throws Exception
+	{
+		String sql="update ah01 set aah106 =? where aah101=?";
+		Object idlist[]= {this.get("aah106"),this.get("aah101")};
+		
+		return this.executeUpdate(sql, idlist)>0;
+	}
+	
 }

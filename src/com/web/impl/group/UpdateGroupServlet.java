@@ -1,20 +1,21 @@
-package com.web.impl;
+package com.web.impl.group;
 
 import com.services.impl.Ae01ServiceImpl;
 import com.web.support.ControllerSupport;
 
 /**
- * @Description: 新建群组
+ * @Description: 修改群组信息
  * @author: 宁志豪
  */
-public class NewGroupServlet extends GroupServlet
+public class UpdateGroupServlet extends GroupServlet
 {
 	@Override
 	public String execute() throws Exception
 	{
-		this.update("addGroup", "创建");
+		this.update("updateGroup", "修改");
 		this.savePageInstance();
 		this.savePageData();
 		return "group";
 	}
+
 }

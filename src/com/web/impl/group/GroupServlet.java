@@ -1,4 +1,4 @@
-package com.web.impl;
+package com.web.impl.group;
 
 import com.services.impl.Ae01ServiceImpl;
 import com.web.support.ControllerSupport;

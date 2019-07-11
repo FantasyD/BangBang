@@ -1,4 +1,4 @@
-package com.web.impl;
+package com.web.impl.group;
 
 /**
  * @Description: 转让群组创建者身份

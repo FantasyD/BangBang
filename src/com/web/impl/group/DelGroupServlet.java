@@ -1,4 +1,4 @@
-package com.web.impl;
+package com.web.impl.group;
 
 /**
  * @Description: 群组创建者解散群组

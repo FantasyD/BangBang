@@ -1,8 +1,8 @@
 <%@ page language="java" pageEncoding="GBK"%>
 <%@taglib uri="http://org.wangxg/jsp/extl" prefix="e"%>
 <%String path=request.getContextPath(); 
-		session.setAttribute("aab101", "1");
-		session.setAttribute("aab102","蒙多");
+		session.setAttribute("aab101", "3");
+		session.setAttribute("aab102","sad");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -74,13 +74,16 @@ function CloseDiv(show_div,bg_div)
 	<input id="Button1" type="button" value="点击弹出层"
 		onclick="ShowDiv('MyDiv','fade')" class="btn btn-default" />
 	<form action="<%=path %>/group_findGroup.html" method="post">
-		<input type="submit" name="aae101" value="6" class="btn btn-default">
+		<input type="submit" name="aae101" value="4" class="btn btn-default" />
+	</form>
+	<form action="<%=path %>/email_getEmail.html" method="post">
+		<input type="submit" name="aab101" value="${aab101 }" class="btn btn-default" />
 	</form>
 	<!--弹出层时背景层DIV-->
 	<div id="fade" class="black_overlay"></div>
 	<div id="MyDiv" class="white_content">
 		<div style="text-align: left; cursor: default; height: 40px;">
-			<form action="<%=path %>/newGroup.html" method="post">
+			<form method="post">
 				<table border="1" align="center" width="50%">
 					<caption>
 						群组信息
@@ -101,7 +104,7 @@ function CloseDiv(show_div,bg_div)
 					</tr>
 					<tr>
 						<td colspan="2" align="center"><input type="submit"
-							name="next" value="新建" />
+							name="next" value="新建"  class="btn btn-default"  formaction="<%=path %>/group_newGroup.html"/>
 							<button onclick="CloseDiv('MyDiv','fade')" class="btn btn-default">取消</button></td>
 					</tr>
 				</table>

@@ -1,4 +1,4 @@
-package com.web.impl;
+package com.web.impl.group;
 
 /**
  * @Description: 群组创建者删除某一组员

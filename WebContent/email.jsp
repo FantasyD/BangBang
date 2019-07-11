@@ -1,35 +1,66 @@
-<%@ page language="java"  pageEncoding="GBK"%>
-<% String path=request.getContextPath(); %>
+<%@ page language="java" pageEncoding="GBK"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+	String path = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>站内邮箱</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
 <script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	/**
+	*			点击邮件标题后改变邮件的颜色
+	*			点击邮件标题后改变邮件状态为已读
+	*/
+	function updateEmail(aah101)
+	{
+			var aLink=document.getElementById(aah101+"a");
+			aLink.style="color:#777";
+				$.ajax({
+				    type: "POST",
+				    url: "<%=path%>/email_updateEmail.html",
+					data : {'aah101' : aah101},
+					/* dataType: "json", */
+					/* contentType: "application/x-www-form-urlencoded; charset=utf-8", */
+					success : function(data) {
+						${msg}
+					},
+					error : function(data) {
+					},
+				});
+	}
+</script>
 </head>
 <body>
-<div class="tabbable tabs-left">
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="#tab1" data-toggle="tab">Section 1</a></li>
-    <li><a href="#tab2"  data-toggle="tab">Section 2</a></li>
-  </ul>
-  <div class="tab-content">
-    <div class="tab-pane active" id="tab1">
-      <p>I'm in Section 1.</p>
-    </div>
-    <div class="tab-pane" id="tab2">
-      <p>Howdy, I'm in Section 2.</p>
-    </div>
-  </div>
-</div>
-	
-	<div class="col-md-4">
-		<button type="button" class="btn btn-default">同意</button>
-		<button type="button" class="btn btn-default">拒绝</button>
+	<div class="col-md-offset-5">
+		<c:forEach items="${rows }" var="row" varStatus="vs">
+			<div class="accordion-heading">
+				<h4>
+					<a class="accordion-toggle" href="#" data-toggle="collapse"
+						data-target="#${row.aah101 }"
+						style="color:${row.aah106==0?'#ff0000':'#777' }"
+						onclick="updateEmail('${row.aah101}')" id="${row.aah101 }a">
+						${row.aah103 } </a>
+				</h4>
+			</div>
+			<div id="${row.aah101 }" class="collapse navbar-collapse">
+				<p>${row.aah104 }</p>
+				<c:choose>
+					<c:when test="${row.aah102==1 }">
+						<a herf="#"></a>
+					</c:when>
+					<c:when test="${row.aah102==2 }">
+						<button type="button" class="btn btn-default">同意</button>
+						<button type="button" class="btn btn-default">拒绝</button>
+					</c:when>
+				</c:choose>
+			</div>
+		</c:forEach>
 	</div>
-	
-	<script src="http://code.jquery.com/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+
 </body>
 </html>

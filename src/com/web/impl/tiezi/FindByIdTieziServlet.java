@@ -1,4 +1,4 @@
-package com.web.impl;
+package com.web.impl.tiezi;
 
 public class FindByIdTieziServlet extends TieziControlletSupport
 {

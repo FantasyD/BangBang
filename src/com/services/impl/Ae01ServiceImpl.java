@@ -44,6 +44,7 @@ public class Ae01ServiceImpl extends JdbcServicesSupport
 	{
 		String  sql="select aae101,aab101,aae102,aae103,aae104,aae105,aae107 from ae01 where aae101=?";
 		Object id=this.get("aae101");
+		System.out.println(id.toString());
 		return this.queryForMap(sql, id);
 	}
 	

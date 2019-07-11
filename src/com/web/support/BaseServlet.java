@@ -71,7 +71,8 @@ public class BaseServlet extends HttpServlet
 			toPath = "Error";
 			ex.printStackTrace();
 		}
-		request.getRequestDispatcher("/" + toPath + ".jsp").forward(request, response);
+		if(toPath!=null)
+			request.getRequestDispatcher("/" + toPath + ".jsp").forward(request, response);
 	}
 
 	private void parseRueqestAttribute(HttpServletRequest request, Map<String, Object> rueqestAttribute)

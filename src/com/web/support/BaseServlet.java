@@ -29,8 +29,11 @@ public class BaseServlet extends HttpServlet
 			 ************************************************************/
 			// 拦截请求的访问路径
 			String uri = request.getRequestURI();
+			//获取资源文件所在的包名
+			String firstPackageName=uri.substring(uri.lastIndexOf("/")+1);
+			String packageName=firstPackageName.substring(0,firstPackageName.indexOf("_"));
 			// 获取请求资源的主文件名
-			String baseName = uri.substring(uri.lastIndexOf("/") + 1).replace(".html", "");
+			String baseName = uri.substring(uri.lastIndexOf("_") + 1).replace(".html", "");
 			
 			// 定义变量,描述所有业务控制器的基础包名称
 			String basePackageName = "com.web.impl.";
@@ -42,7 +45,7 @@ public class BaseServlet extends HttpServlet
 			 ***********************************************************/
 			// 实例化业务控制器
 			BaseController controller = (BaseController) Class
-					.forName(basePackageName + controllerFirstName + "Servlet").newInstance();
+					.forName(basePackageName +packageName+"."+ controllerFirstName + "Servlet").newInstance();
 
 			/***********************************************************
 			 * 向业务控制器,填充页面数据 i

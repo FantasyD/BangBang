@@ -129,14 +129,14 @@
 									<e:hidden name="aae101" value="${ins.aae101 }" />
 								</form> <c:forEach items="${rows }" var="row" varStatus="vs">
 									<c:if test="${row.ab101==ins.aab101 }">
-										<input type="button" value="修改"  onclick="updateIsClick()" /> 
-										<input type="button" value="邀请"  onclick="inviteIsClicked()" />
+										<input type="button" value="修改"  onclick="updateIsClick()" class="btn btn-default"/> 
+										<input type="button" value="邀请"  onclick="inviteIsClicked()" class="btn btn-default"/>
 										<c:choose>
 											<c:when test="<%=isCreater %>">
-												<button onclick="delGroupIsClick()">解散群组</button>
+												<button onclick="delGroupIsClick()" class="btn btn-default">解散群组</button>
 											</c:when>
 											<c:otherwise>
-												<button onclick="quitIsClick('${ins.aae101}')">退出群组</button>
+												<button onclick="quitIsClick('${ins.aae101}')" class="btn btn-default">退出群组</button>
 											</c:otherwise>
 										</c:choose>
 									</c:if>
@@ -192,7 +192,7 @@
 	</div>
 
 	<div id="updateInfo">
-		<form action="<%=path%>/updateGroup.html" method="post">
+		<form method="post">
 			<table border="1" align="center" width="50%">
 				<caption>
 					群组信息
@@ -216,8 +216,8 @@
 				<e:hidden name="aae101" value="${aae101 }" />
 				<tr>
 					<td colspan="2" align="center"><input type="submit"
-						name="next" value="修改">
-						<button onclick="closeDiv()">取消</button></td>
+						name="next" value="修改" class="btn btn-default" formaction="<%=path%>/updateGroup.html">
+						<button onclick="closeDiv()" class="btn btn-default">取消</button></td>
 				</tr>
 			</table>
 		</form>
@@ -226,11 +226,12 @@
 	<div id="invite">
 		<form  id="numberForm"  method="post">
 			请输入你想邀请的用户名: <input type="text" id="invitedNumber" name="aab101">
-			<e:hidden name="aah106"  value="${ins.aae101 }" />
-			<e:hidden  name="aah102"  value="群聊邀请"/>
-			<e:hidden name="aah103"  value="用户${aab102 }邀请您加入群聊${ins.aae102 }"/>
-			<input type="button" onclick="inviteConfirm()" value="确定">
-			<input type="button" onclick="closeInviteDiv()" value="取消">
+			<e:hidden name="aah107"  value="${ins.aae101 }" />
+			<e:hidden name="aah102" value="2"/>
+			<e:hidden  name="aah103"  value="群聊邀请"/>
+			<e:hidden name="aah104"  value="用户${aab102 }邀请您加入群聊${ins.aae102 }"/>
+			<input type="button" onclick="inviteConfirm()" value="确定" class="btn btn-default">
+			<input type="button" onclick="closeInviteDiv()" value="取消" class="btn btn-default">
 		</form>
 	</div>
 

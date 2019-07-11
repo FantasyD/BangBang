@@ -9,6 +9,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>弹出层</title>
+<link href="css/bootstrap.min.css" rel="stylesheet"></link>
 <script src="<%=path %>/js/jquery.min.js" type="text/javascript"></script>
 <style>
 .black_overlay {
@@ -70,11 +71,10 @@ function CloseDiv(show_div,bg_div)
 </script>
 </head>
 <body>
-${aab101 }
 	<input id="Button1" type="button" value="点击弹出层"
-		onclick="ShowDiv('MyDiv','fade')" />
-	<form action="<%=path %>/findGroup.html" method="post">
-		<input type="submit" name="aae101" value="6">
+		onclick="ShowDiv('MyDiv','fade')" class="btn btn-default" />
+	<form action="<%=path %>/group_findGroup.html" method="post">
+		<input type="submit" name="aae101" value="6" class="btn btn-default">
 	</form>
 	<!--弹出层时背景层DIV-->
 	<div id="fade" class="black_overlay"></div>
@@ -102,7 +102,7 @@ ${aab101 }
 					<tr>
 						<td colspan="2" align="center"><input type="submit"
 							name="next" value="新建" />
-							<button onclick="CloseDiv('MyDiv','fade')">取消</button></td>
+							<button onclick="CloseDiv('MyDiv','fade')" class="btn btn-default">取消</button></td>
 					</tr>
 				</table>
 			</form>

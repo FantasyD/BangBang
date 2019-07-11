@@ -12,7 +12,7 @@ public class InviteToGroupServlet extends ControllerSupport
 {
 	public InviteToGroupServlet()
 	{
-		 this.setServices(new Ah01ServiceImpl(new Ae01ServiceImpl(),"aah106","aae101"));
+		 this.setServices(new Ah01ServiceImpl(new Ae01ServiceImpl(),"aah107","aae101"));
 	}
 	@Override
 	public String execute() throws Exception

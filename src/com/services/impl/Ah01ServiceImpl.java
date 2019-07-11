@@ -59,7 +59,6 @@ public class Ah01ServiceImpl extends JdbcServicesSupport
 		if(this.isExited())
 		{
 			Map<String,String> result=this.baseServices.findById();
-			System.out.println(result);
 			return result;
 		}
 		else
@@ -111,14 +110,15 @@ public class Ah01ServiceImpl extends JdbcServicesSupport
 	{
 		StringBuilder sb=new StringBuilder()
 				.append("insert into ah01(aab101,aah102,aah103,aah104,aah105,")
-				.append("                                    aah106)")
-				.append("                    values(?,?,?,CURRENT_TIMESTAMP,0,?)")
+				.append("                                    aah106,aah107)")
+				.append("                    values(?,?,?,?,CURRENT_TIMESTAMP,0,?)")
 				;
 		Object id[]= {
 				this.get("aab101"),
 				this.get("aah102"),
 				this.get("aah103"),
-				this.get("aah106")
+				this.get("aah104"),
+				this.get("aah107")
 				};
 		return this.executeUpdate(sb.toString(), id)>0;
 	}

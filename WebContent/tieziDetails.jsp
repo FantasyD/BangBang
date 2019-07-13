@@ -4,9 +4,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Ìû×ÓÏêÇé</title>
 </head>
-${ins }
 <body>
 	Ìû×Ó±àºÅ:${ins.aac101 }
 	<br>
@@ -25,7 +24,7 @@ ${ins }
 	Ìû×ÓÍ¼Æ¬:
 	<img src = "${ins.imgpath }">
 	
-	<form action = "<%=path%>/queryTiezi.html" method = "post">
+	<form action = "<%=path%>/index.jsp" method = "post">
 		<input type = "submit" name = "next" value = "·µ»Ø">
 	</form>	
 </body>

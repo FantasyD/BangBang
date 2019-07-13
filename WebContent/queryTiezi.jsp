@@ -5,14 +5,14 @@
 <%String path=request.getContextPath(); %>
 <html>
 <head>
-<title>帖子数据查询及分页测试</title>
+<title>帖子数据查询</title>
 	<script>
 		var count = 0;
 
 		function onEdit(vaac101)
 		{
 			var vform = document.getElementById("myform");
-			vform.action = "<%=path%>/findByIdTiezi.html?aac101=" + vaac101;
+			vform.action = "<%=path%>/tiezi_findByIdTiezi.html?aac101=" + vaac101;
 			vform.submit();
 		}
 	</script>
@@ -20,7 +20,7 @@
 <body>
 <br>
 <br>
-<form id = "myform" action="<%=path%>/queryTiezi.html" method="post">
+<form id = "myform" action="<%=path%>/tiezi_queryTiezi.html" method="post">
 	<!-- 查询条件区 -->
 	<table border="1" width="95%" align="center">
 	  <caption>

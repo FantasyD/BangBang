@@ -1,9 +1,12 @@
 package com.web.support;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.Map.Entry;
 
 import javax.servlet.ServletException;
@@ -11,6 +14,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FilenameUtils;
 
 import com.system.tools.Tools;
 
@@ -97,54 +106,80 @@ public class BaseServlet extends HttpServlet
 	 */
 	private Map<String, Object> createDto(HttpServletRequest request)
 	{
-		// 1.获取页面数据
-		Map<String, String[]> tem = request.getParameterMap();
-		int initSize = ((int) (tem.size() / 0.75)) + 1;
-		// 2.导出所有键值对,形成键值对集合
-		Set<Entry<String, String[]>> entrySet = tem.entrySet();
-		// 3.定义数组,表示Enetry的value部分
-		String value[] = null;
+		Boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+		if (!isMultipart)
+		{
+			// 1.获取页面数据
+			Map<String, String[]> tem = request.getParameterMap();
+			int initSize = ((int) (tem.size() / 0.75)) + 1;
+			// 2.导出所有键值对,形成键值对集合
+			Set<Entry<String, String[]>> entrySet = tem.entrySet();
+			// 3.定义数组,表示Enetry的value部分
+			String value[] = null;
 
-		// 4.定义DTO容器
-		Map<String, Object> dto = new HashMap<>(initSize);
-		// 5.循环读取entrySet,获取每个键值对
-		for (Entry<String, String[]> entry : entrySet)
-		{
-			// 获取value部分的数组
-			value = entry.getValue();
-			// 依据长度判断页面控件的类别
-			if (value.length == 1) // 非checkbox类控件
+			// 4.定义DTO容器
+			Map<String, Object> dto = new HashMap<>(initSize);
+			// 5.循环读取entrySet,获取每个键值对
+			for (Entry<String, String[]> entry : entrySet)
 			{
-				// 过滤掉页面未填充项目
-				if (value[0] != null && !value[0].equals(""))
+				// 获取value部分的数组
+				value = entry.getValue();
+				// 依据长度判断页面控件的类别
+				if (value.length == 1) // 非checkbox类控件
 				{
-					dto.put(entry.getKey(), value[0]);
+					// 过滤掉页面未填充项目
+					if (value[0] != null && !value[0].equals(""))
+					{
+						dto.put(entry.getKey(), value[0]);
+					}
+				} else // checkbox类控件
+				{
+					dto.put(entry.getKey(), value);
 				}
-			} else // checkbox类控件
-			{
-				dto.put(entry.getKey(), value);
 			}
-		}
-		System.out.println(dto);
-		String imgPath = null;
-		try
-		{
-			imgPath = Tools.uploadImg(request);
-		} 
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		if (imgPath == null)
-		{
 			return dto;
-		}
-		else
-		{
-			dto.put("imgPath", imgPath);
+		}else {
+			Map<String, Object> dto = new HashMap<>();
+			String path = null;
+			try
+			{	
+				// 创建FileItemFactory对象
+				FileItemFactory factory = new DiskFileItemFactory();
+				// 创建文件上传的处理器
+				ServletFileUpload upload = new ServletFileUpload(factory);
+				// 解析请求
+				List<FileItem> items = upload.parseRequest(request);
+				// 迭代出每一个FileItem
+				for (FileItem item : items)
+				{
+					String fileName = item.getFieldName();
+					if (item.isFormField())
+					{
+						// 普通的表单控件
+						String value = item.getString("gbk");
+						dto.put(fileName, value);
+					} 
+					else
+					{
+						// 上传文件的控件
+						String RandomName = UUID.randomUUID().toString() + "."
+								+ FilenameUtils.getExtension(item.getName());
+						path = request.getServletContext().getRealPath("/upload/");
+						item.write(new File(path, RandomName)); // 把上传的文件保存到某个文件中
+						path = "upload/" + RandomName;
+						dto.put("imgpath",path);
+					}
+				}
+			} 
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
 			return dto;
 		}
 	}
+	
+	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException

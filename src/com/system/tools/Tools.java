@@ -181,8 +181,9 @@ public class Tools
 	 * 
 	 * @param request
 	 * @return
+	 * @throws Exception 
 	 */
-	public static Map<String, Object> createDto(HttpServletRequest request)
+	public static Map<String, Object> createDto(HttpServletRequest request) throws Exception
 	{
 		// 1.获取页面数据
 		Map<String, String[]> tem = request.getParameterMap();
@@ -213,6 +214,7 @@ public class Tools
 			}
 		}
 		// System.out.println(dto);
+		dto.put("imgpath", uploadImg(request));
 		return dto;
 	}
 
@@ -225,7 +227,7 @@ public class Tools
 	 */
 	public static String uploadImg(HttpServletRequest req) throws Exception
 	{
-		req.setCharacterEncoding("utf-8");
+		req.setCharacterEncoding("gbk");
 		// 解析和检查请求，是否是post方式，是否是二进制流格式
 		Boolean isMultipart = ServletFileUpload.isMultipartContent(req);
 		if (!isMultipart)
@@ -235,7 +237,6 @@ public class Tools
 		String path = null;
 		try
 		{
-
 			// 创建FileItemFactory对象
 			FileItemFactory factory = new DiskFileItemFactory();
 			// 创建文件上传的处理器
@@ -250,6 +251,7 @@ public class Tools
 				{
 					// 普通的表单控件
 					String value = item.getString("gbk");
+					
 				} 
 				else
 				{

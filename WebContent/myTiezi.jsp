@@ -5,21 +5,28 @@
 <%String path=request.getContextPath(); %>
 <html>
 <head>
-<title>帖子数据查询及分页测试</title>
+<title>我的帖子</title>
 	<script>
 		var count = 0;
 		
 		function onEdit(vaac101)
 		{
 			var vform = document.getElementById("myform");
-			vform.action = "<%=path%>/findByIdTiezi.html?aac101=" + vaac101;
+			vform.action = "<%=path%>/tiezi_findByIdTiezi.html?aac101=" + vaac101;
 			vform.submit();
 		}
 		
-		function onDel(vaab101)
+		function onDel(vaac101)
 		{
 			var vform = document.getElementById("myform");
-			vform.action="<%=path%>/delByIdTiezi.html?aac101="+vaab101;
+			vform.action="<%=path%>/tiezi_delByIdTiezi.html?aac101="+vaac101;
+			vform.submit();
+		} 
+		
+		function onModify(vaac101)
+		{
+			var vform = document.getElementById("myform");
+			vform.action="<%=path%>/tiezi_findByIdToModifyTiezi.html?aac101="+vaac101;
 			vform.submit();
 		} 
 	</script>
@@ -28,7 +35,7 @@
 ${msg }
 <br>
 <br>
-<form id = "myform" action="<%=path%>/queryTiezi.html" method="post">	
+<form id = "myform" action="<%=path%>/tiezi_queryTiezi.html" method="post">	
 	<!-- 数据迭代区 -->
 	<table border="1" width="95%" align="center">
 		<tr>
@@ -37,6 +44,7 @@ ${msg }
 		    <td>发帖人</td>
 		    <td>帖子类型</td>
 		    <td>价格</td>
+		    <td></td>
 		    <td></td>
 	  	</tr>
 	  	
@@ -57,9 +65,13 @@ ${msg }
 					<c:if test="${ins.aac105==null }">
 						<td>无</td>
 					</c:if>
+			      	<td>
+				      <a href="#" onclick="onModify('${ins.aac101}')">修改</a>
+				    </td>
 					 <td>
 				      <a href="#" onclick="onDel('${ins.aac101}')">删除</a>
 				    </td>
+
 				  </tr>
 		      </c:forEach>
 	     </c:when>
@@ -72,6 +84,9 @@ ${msg }
 	    <td align="center">
 	       <input type="submit" name="next" value="发布帖子" 
 	              formaction="<%=path%>/addTiezi.jsp">
+	         <input type = "submit" name = "next" value = "返回"
+       			formaction="<%=path%>/index.jsp"
+       			formnovalidate="formnovalidate">
 	    </td>
 	  </tr>
 	</table>

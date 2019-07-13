@@ -69,12 +69,10 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 
 		StringBuilder sql = new StringBuilder()
 				.append("insert into ac01(aab101,aac102,aac103,aac104,aac105,")
-    			.append("                 aac106,aac107,aac108,is_deleted)  ")
+    			.append("                 aac106,aac107,aac108,aac109,is_deleted)  ")
     			.append("          values(?,?,?,?,?,")
-    			.append("                 ?,current_timestamp,current_timestamp,0)")
+    			.append("                 ?,current_timestamp,current_timestamp,?,0)")
 				;
-		
-
 		
 		Object[] argsObjects = {
 				this.get("aab101"),
@@ -82,7 +80,8 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 				this.get("aac103"),
 				this.get("aac104"),
 				this.get("aac105"),
-				this.get("aac106")
+				this.get("aac106"),
+				this.get("imgpath")
 		};
 		
 		System.out.println(argsObjects.toString());
@@ -102,6 +101,7 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 	
 	public Map<String, String> findById() throws Exception
 	{
+		//帖子功能优化(一次上传多张图片采取这种办法)目前没办法做到
 		StringBuilder str = new StringBuilder()
 				.append("select x.aac101,b.aab102 cnaab102,x.aac102,a.fvalue cnaac103,x.aac106, ")
 				.append("       x.aac105,x.aac104,c.aac402 imgPath  ")
@@ -116,6 +116,29 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 		this.executeUpdate(sql, idlist);
 		
 		return this.queryForMap(str.toString(), this.get("aac101"));
+		
 	}
 	
+	
+	public boolean modifyTiezi()throws Exception
+	{
+		StringBuilder sql=new StringBuilder()
+				.append("update ac01 a ")
+				.append("   set a.aac102=?,a.aac103=?,a.aac104=?,a.aac105=?,a.aac106=?, ")
+				.append("       a.aac109=?,a.aac108=current_timestamp ")
+				.append(" where a.aac101=? ")
+				;
+		Object args[]={
+				this.get("aac102"),
+				this.get("aac103"),
+				this.get("aac104"),
+				this.get("aac105"),
+				this.get("aac106"),
+				this.get("imgpath"),
+				this.get("aac101")
+		};
+		System.out.println(sql.toString());
+		return this.executeUpdate(sql.toString(), args)>0;
+		    	
+	}
 }

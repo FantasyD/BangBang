@@ -101,6 +101,15 @@ public abstract class ControllerSupport implements BaseController
 	}
 	
 	/**
+	 * @Description: 返回结果集的大小
+	 * @throws: sql语句执行出错
+	 */
+	protected final int checkInfo()throws Exception
+	{
+		return this.services.query().size();
+	}
+	
+	/**
 	 * 带有编号的消息提示的更新行为
 	 * 
 	 * @param utype

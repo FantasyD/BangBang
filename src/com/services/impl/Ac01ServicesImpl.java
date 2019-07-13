@@ -107,9 +107,14 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 				.append("       x.aac105,x.aac104,c.aac402 imgPath  ")
 				.append("  from syscode a,ac01 x,ab01 b,ac04 c ")
 				.append(" where x.aac103 = a.fcode  ")
-			    .append("   and x.aab101 = b.aab101 and c.aac101 = x.aac101 " )
+			    .append("   and x.aab101 = b.a101 and c.aac101 = x.aac101 " )
 			    .append("   and a.fname = 'aac103' and x.aac101 = ? ") 
 				;
+		
+		String sql="insert into ag01(aab101,aac101,aag102) values(?,?,CURRENT_TIMESTAMP)";
+		Object idlist[]= {this.get("aab101"),this.get("aac101")};
+		this.executeUpdate(sql, idlist);
+		
 		return this.queryForMap(str.toString(), this.get("aac101"));
 	}
 	

@@ -66,7 +66,6 @@ ${msg }
 	   </c:choose>
 	</table>
 	
-	
 	<!-- 功能按钮区 -->
 	<table border="1" width="95%" align="center">
 	  <tr>

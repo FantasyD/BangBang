@@ -14,7 +14,9 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Bootstrap CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>${ins.aae102 }的主页</title>
 <style type="text/css">
 #updateInfo {
@@ -25,7 +27,6 @@
 	display: none;
 }
 </style>
-<script type="text/javascript" src="<%=path%>/js/jquery.min.js"></script>
 <script type="text/javascript">
     	//显示隐藏的修改DIV
     	function updateIsClick()
@@ -156,7 +157,6 @@
 		</div>
 	</div>
 	
-
 	<div class="col-md-4">
 		<div class="panel panel-default">
 			<div class="panel-body">

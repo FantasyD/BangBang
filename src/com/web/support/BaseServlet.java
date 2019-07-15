@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
@@ -73,6 +74,13 @@ public class BaseServlet extends HttpServlet
 			Map<String, Object> rueqestAttribute = controller.getAttribute();
 			// 织入属性处理切片
 			this.parseRueqestAttribute(request, rueqestAttribute);
+     		
+     		//获取到session
+     		HttpSession session = request.getSession();
+     		//解析session属性
+     		Map<String,Object> sessionAttribute=controller.getSession_attribute();
+     		//织入session属性处理切片
+     		this.parseSessionAttribute(session, sessionAttribute);
 		} 
 		catch (Exception ex)
 		{
@@ -96,6 +104,20 @@ public class BaseServlet extends HttpServlet
 		}
 		// 清除所有的request级属性数据
 		rueqestAttribute.clear();
+	}
+	
+	private void parseSessionAttribute(HttpSession session,Map<String,Object> sessionAttribute)
+	{
+		//1.还原所有的键值对,形成集合
+		Set<Map.Entry<String, Object>> entrySet=sessionAttribute.entrySet();
+		//2.循环集合
+		for(Map.Entry<String, Object> entry:entrySet)
+		{
+			//3.将map的每个键值对,转换成request的属性
+			session.setAttribute(entry.getKey(), entry.getValue());
+		}
+		//清除所有的request级属性数据
+		sessionAttribute.clear();
 	}
 
 	/**

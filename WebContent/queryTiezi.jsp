@@ -5,6 +5,7 @@
 <%String path=request.getContextPath(); %>
 <html>
 <head>
+<link href="css/bootstrap.min.css" rel="stylesheet">
 <title>帖子数据查询</title>
 	<script>
 		var count = 0;
@@ -22,7 +23,7 @@
 <br>
 <form id = "myform" action="<%=path%>/tiezi_queryTiezi.html" method="post">
 	<!-- 查询条件区 -->
-	<table border="1" width="95%" align="center">
+	<table border="1" width="95%" align="center" class="table">
 	  <caption>
 	               帖子
 	    <hr width="160">
@@ -45,7 +46,7 @@
 	</table>
 	
 	<!-- 数据迭代区 -->
-	<table border="1" width="95%" align="center">
+	<table border="1" width="95%" align="center" class="table table-striped">
 		<tr>
 		    <td>序号</td>
 		    <td>帖子标题</td>
@@ -71,6 +72,17 @@
 		      </c:forEach>
 	     </c:when>
 	   </c:choose>
+	</table>
+	
+	<!-- 功能按钮区 -->
+	<table border="1" width="95%" align="center" >
+	  <tr>
+	    <td align="center">
+	         <input type = "submit" name = "next" value = "返回"    class="btn btn-default"
+       			formaction="<%=path%>/index.jsp"
+       			formnovalidate="formnovalidate">
+	    </td>
+	  </tr>
 	</table>
 </form>
 </body>

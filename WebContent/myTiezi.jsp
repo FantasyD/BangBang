@@ -5,6 +5,7 @@
 <%String path=request.getContextPath(); %>
 <html>
 <head>
+<link href="css/bootstrap.min.css" rel="stylesheet">
 <title>我的帖子</title>
 	<script>
 		var count = 0;
@@ -36,8 +37,18 @@ ${msg }
 <br>
 <br>
 <form id = "myform" action="<%=path%>/tiezi_queryTiezi.html" method="post">	
+	
+	<table border="1" width="95%" align="center" class="table">
+	  <caption>
+	               我的帖子
+	    <hr width="160">
+	  </caption>
+	</table>
+	
+
+
 	<!-- 数据迭代区 -->
-	<table border="1" width="95%" align="center">
+	<table border="1" width="95%" align="center" class="table table-striped">
 		<tr>
 		    <td>序号</td>
 		    <td>帖子标题</td>
@@ -80,12 +91,12 @@ ${msg }
 	
 	
 	<!-- 功能按钮区 -->
-	<table border="1" width="95%" align="center">
+	<table border="1" width="95%" align="center" class="table table-striped">
 	  <tr>
 	    <td align="center">
-	       <input type="submit" name="next" value="发布帖子" 
+	       <input type="submit" name="next" value="发布帖子"   class="btn btn-default"
 	              formaction="<%=path%>/addTiezi.jsp">
-	         <input type = "submit" name = "next" value = "返回"
+	         <input type = "submit" name = "next" value = "返回"    class="btn btn-default"
        			formaction="<%=path%>/index.jsp"
        			formnovalidate="formnovalidate">
 	    </td>

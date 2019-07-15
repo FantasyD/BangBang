@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.services.BaseServices;
+import com.services.impl.Ac01ServicesImpl;
 
 public abstract class ControllerSupport implements BaseController
 {
@@ -61,13 +62,38 @@ public abstract class ControllerSupport implements BaseController
 	protected final void savePageInstance() throws Exception
 	{
 		Map<String, String> ins = this.services.findById();
-		System.out.println(ins);
 		if (ins != null)
 		{
 			this.saveAttribute("ins", ins);
 		} else
 		{
 			this.saveAttribute("msg", "提示:该数据已删除或禁止访问!");
+		}
+	}
+	
+	/**
+	 * 帖子级联查询
+	 * @throws Exception
+	 */
+	protected final void savePageInstance2() throws Exception
+	{
+		Map<String, String> ins = this.services.findById();
+		if (ins != null)
+		{
+			this.saveAttribute("ins", ins);
+		} 
+		else
+		{
+			this.saveAttribute("msg", "提示:该数据已删除或禁止访问!");
+		}
+		List<Map<String, String>> rows = this.services.queryComment();
+		if (rows.size() > 0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
 		}
 	}
 

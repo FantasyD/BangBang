@@ -1,12 +1,27 @@
 <%@ page language="java" pageEncoding="GBK"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%String path = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<link href="css/bootstrap.min.css" rel="stylesheet">
 <title>Ìû×ÓÏêÇé</title>
+	<script>
+		function onDel(vaac101)
+		{
+			var vform = document.getElementById("aform");
+			vform.action="<%=path%>/comment_delByIdComment.html?aac201="+vaac101;
+			vform.submit();
+		} 
+		
+		function goback()
+		{
+			javascript:history.go(-1);
+		}
+	</script>
 </head>
 <body>
+<div style="text-align:center">
 	Ìû×Ó±àºÅ:${ins.aac101 }
 	<br>
 	Ìû×Ó±êÌâ:${ins.aac102 }
@@ -22,10 +37,67 @@
 	Ìû×Ó±êÇ©:${ins.aac106 }
 	<br>
 	Ìû×ÓÍ¼Æ¬:
-	<img src = "${ins.imgpath }">
+	<c:if test="${ins.imgpath != null }">
+		<img src = "${ins.imgpath }" style = "width:300px;height:150px">
+	</c:if>
+	<c:if test="${ins.imgpath == null }">
+		±¾ÌûÔÝÎÞÍ¼Æ¬
+	</c:if>
+
+	<br><br><br>
 	
-	<form action = "<%=path%>/index.jsp" method = "post">
-		<input type = "submit" name = "next" value = "·µ»Ø">
-	</form>	
+	<form id = "aform" method="post">
+		<c:if test="${rows!=null }">
+			<!-- ÒÔÏÂÎªÁôÑÔÇøÓò,Õ¹Ê¾ËùÓÐÓÃ»§¶Ô¸ÃÌû×Ó·¢±íµÄÁôÑÔ -->
+			<table border="1" width="95%" align="center" class="table table-striped">
+				<tr>
+				    <td>ÐòºÅ</td>
+				    <td>ÁôÑÔÓÃ»§</td>
+				    <td>ÁôÑÔÄÚÈÝ</td>
+				    <td>ÁôÑÔÈÕÆÚ</td>
+				    <c:if test="${ins.aab101 == aab101 }">
+						<td></td>
+					</c:if>
+			  	</tr>
+			  	
+			   	<c:choose>
+			     <c:when test="${rows!=null }">
+			         <!-- ÏÔÊ¾Êµ¼Ê²éÑ¯µ½µÄÊý¾Ý -->
+				     <c:forEach items="${rows }" var="comment" varStatus="vs" >
+			    	   	  <tr>
+						    <td>${vs.count }</td>
+							<td>${comment.cnaab102 }</td>
+							<td>${comment.aac203 }</td>
+							<td>${comment.aac202 }</td>
+							<c:if test="${ins.aab101 == aab101 }">
+								<td>
+	
+									<a href="#" onclick="onDel('${comment.aac201}')">É¾³ý</a>
+								
+								</td>
+							</c:if>
+						  </tr>
+				      </c:forEach>
+			     </c:when>
+			   </c:choose>
+			</table>
+		</c:if>
+	</form>
+	<c:if test="${rows == null }"> ±¾ÌûÔÝÎÞÁôÑÔ</c:if>
+	
+	<br>
+	<form action="<%=path %>/addComment.jsp" method = "post">
+		<input type = "submit" name = "next" class="btn btn-default" value = "ÁôÑÔ">
+	</form>
+	<br>
+	<form action="<%=path %>/index.jsp" method = "post">
+		<input type = "submit" name = "next" class="btn btn-default" value = "·µ»Ø">
+	</form>
+	
+	<!-- ÒÔÏÂ·½·¨²ÉÓÃä¯ÀÀÆ÷×Ô´øµÄ»ØÍË·½·¨,µ«ÊÇºÍÁôÑÔÄ£¿éÓÐ³åÍ» -->
+	<!--  input type = "submit" name = "next" onclick="goback()" class="btn btn-default" value = "·µ»Ø"-->
+
+</div>
+<c:set var="aac101" scope="session" value="${ins.aac101 }"></c:set>
 </body>
 </html>

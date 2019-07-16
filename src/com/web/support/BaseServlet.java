@@ -90,7 +90,6 @@ public class BaseServlet extends HttpServlet
 			toPath = "Error";
 			ex.printStackTrace();
 		}
-		System.out.println(request.getSession().getAttribute("emailNum"));
 		if (toPath != null)
 			request.getRequestDispatcher("/" + toPath + ".jsp").forward(request, response);
 	}

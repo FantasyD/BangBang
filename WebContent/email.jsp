@@ -52,11 +52,11 @@ ${userId }
 				<p>${row.aah104 }</p>
 				<c:choose>
 					<c:when test="${row.aah102==1 }">
-						<a href="${row.aah107 }">点此查看</a>
+						<a href="${row.aah202 }">点此查看</a>
 					</c:when>
 					<c:when test="${row.aah102==2 }">
-						<button type="button" href="${1aah202 }" class="btn btn-default">同意</button>
-						<button type="button" class="btn btn-default">拒绝</button>
+						<a href="${row.aah202 }" class="btn btn-default">同意</a>
+						<a href="${row.aah203 }" class="btn btn-default">拒绝</a>
 					</c:when>
 				</c:choose>
 			</div>

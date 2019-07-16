@@ -114,9 +114,14 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 			    .append("   and a.fname = 'aac103' and x.aac101 = ? ") 
 				;
 		*/
-		String sql="insert into ag01(aab101,aac101,aag102) values(?,?,CURRENT_TIMESTAMP)";
+		StringBuilder sb=new StringBuilder()
+				.append("insert into ag01(aab101,aac101,aag102)") 
+				.append("SELECT ?,?,CURRENT_TIMESTAMP ")
+				.append(" from DUAL WHERE not EXISTS")
+				.append("(SELECT ?,? from ag01)")
+				;
 		Object idlist[]= {this.get("aab101"),this.get("aac101")};
-		this.executeUpdate(sql, idlist);
+		this.executeUpdate(sb.toString(), idlist);
 
 		StringBuilder str = new StringBuilder()
 				.append("select x.aac101,b.aab102 cnaab102,x.aac102,a.fvalue cnaac103,x.aac106, ")

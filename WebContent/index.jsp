@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="GBK"%>
+<%@ taglib uri="http://org.wangxg/jsp/extl" prefix="e" %>
 <%String path=request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
@@ -12,7 +13,9 @@ ${msg }
 <br>
 <br>
 <div style="text-align:center">
-	<form action = "<%=path%>/tiezi_queryTiezi.html" method = "post">
+	<form action = "<%=path%>/tiezi_recommendTiezi.html" method = "post">
+		<e:hidden name="aab101" value="2"/>
+		<e:hidden name="pageNum" value="1"/>
 		<input type = "submit" name = "next"  value = "²é¿´Ìû×Ó"  class="btn btn-default" >
 	</form>	
 <br>

@@ -129,7 +129,6 @@ public abstract class ControllerSupport implements BaseController
 		}
 	}
 	
-	
 	/**
 	 * 通过反射执行查询方法
 	 * @param methodName
@@ -268,14 +267,17 @@ public abstract class ControllerSupport implements BaseController
 	 * 数据输出流
 	 *****************************************/
 	private Map<String, Object> attribute = new HashMap<>();
-
+	
+	//向jsp页面打印输出
 	private Map<String, Object> responseAttribute=new HashMap<>();
 	
+	//设置输出
 	protected void setResponseAttribute(String name,String value)
 	{
 		this.responseAttribute.put(name, value);
 	}
 	
+	//获取输出
 	@Override
 	public Map<String, Object> getResponseAttribute()
 	{

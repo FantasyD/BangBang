@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="GBK"%>
 <%@taglib uri="http://org.wangxg/jsp/extl" prefix="e"%>
 <%String path=request.getContextPath(); 
-		session.setAttribute("userId", "1");
+		session.setAttribute("userId", "14");
 		session.setAttribute("userName","ÃÉ¶à");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -79,6 +79,8 @@ function CloseDiv(show_div,bg_div)
 	<form action="<%=path %>/email_getEmail.html" method="post">
 		<input type="submit" name="aab101" value="${userId }" class="btn btn-default" />
 	</form>
+	
+	
 	<!--µ¯³ö²ãÊ±±³¾°²ãDIV-->
 	<div id="fade" class="black_overlay"></div>
 	<div id="MyDiv" class="white_content">

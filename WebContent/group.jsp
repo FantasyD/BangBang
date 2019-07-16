@@ -247,12 +247,12 @@
 	<div id="invite">
 		<form  id="numberForm"  method="post">
 			请输入你想邀请的用户编号: <input type="text" id="invitedNumber" name="aab101">
-			<e:hidden name="aah202"  value="/group_acceptInviteServlt.html?aae101=${ins.aae101 }" />
-			<e:hidden name="aah203"  value="/group_refuseInviteServlet.html"/>
+			<e:hidden name="aah202"  value="${pageContext.request.contextPath}/group_acceptInviteServlt.html?aae101=${ins.aae101 }" />
+			<e:hidden name="aah203"  value="${pageContext.request.contextPath}/group_refuseInviteServlet.html"/>
 			<e:hidden name="aah107"  value="${ins.aae101 }"/>
 			<e:hidden name="aah102" value="2"/> 
 			<e:hidden  name="aah103"  value="群组邀请"/>
-			<e:hidden name="aah104"  value="用户${userId }邀请您加入群组：${ins.aae102 }"/>
+			<e:hidden name="aah104"  value="用户${userName }邀请您加入群组：${ins.aae102 }"/>
 			<input type="button" onclick="inviteConfirm()" value="确定" class="btn btn-default">
 			<input type="button" onclick="closeInviteDiv()" value="取消" class="btn btn-default">
 		</form>

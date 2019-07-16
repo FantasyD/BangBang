@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.services.BaseServices;
 import com.services.JdbcServicesSupport;
+import com.system.tools.Tools;
 
 /**
  * @Description: 实现邮件模块所需的数据库操作支持
@@ -111,7 +112,10 @@ public class Ah01ServiceImpl extends JdbcServicesSupport
 	 * 		aah104: 邮件内容
 	 * 		aah105: 邮件创建时间
 	 * 		aah106: 邮件状态(0表示未读，1表示已读)
-	 * 		aah107: 备注(存放链接类和询问类邮件所需的必要信息)
+	 * 		aah202: 第一个链接(存放链接类和询问类邮件所需的必要链接)
+	 * 				  通知类邮件不填
+	 * 		aah203: 第二个链接(存放询问类邮件所需的链接)
+	 * 				   通知类与链接类不填
 	 * 		
 	 * 	通知类邮件主要是给用户展示通知，不需要用户进行任何操作
 	 * 	链接类邮件在向用户展示通知的同时会给予一个链接供用户操作
@@ -121,18 +125,35 @@ public class Ah01ServiceImpl extends JdbcServicesSupport
 	public boolean sendEmail()throws Exception
 	{
 		StringBuilder sb=new StringBuilder()
-				.append("insert into ah01(aab101,aah102,aah103,aah104,aah105,")
-				.append("                                    aah106,aah107)")
-				.append("                    values(?,?,?,?,CURRENT_TIMESTAMP,0,?)")
+				.append("insert into ah01(aah101,aab101,aah102,aah103,aah104,aah105,")
+				.append("                                    aah106)")
+				.append("                    values(?,?,?,?,?,CURRENT_TIMESTAMP,0)")
 				;
-		Object id[]= {
+		Object state= Tools.getSequence("aah101");
+		Object idlist[]= {
+				state,
 				this.get("aab101"),
 				this.get("aah102"),
 				this.get("aah103"),
-				this.get("aah104"),
-				this.get("aah107")
+				this.get("aah104")
 				};
-		return this.executeUpdate(sb.toString(), id)>0;
+		this.apppendSql(sb.toString(), idlist);;
+		
+		int type=Integer.valueOf(this.get("aah102").toString());
+		if(type==1) 
+		{
+			String sql="insert into ah02(aah101,aah202) values(?,?)";		
+			Object ids[]= {state,this.get("aah202")};
+			this.apppendSql(sql, ids);
+		}
+		else if(type==2)
+		{
+			String sql="insert into ah02(aah101,aah202,aah203) values(?,?,?)";		
+			Object ids[]= {state,this.get("aah202"),this.get("aah203")};
+			this.apppendSql(sql, ids);
+		}
+		return this.executeTransaction();
+		
 	}
 
 	/**

@@ -14,10 +14,15 @@ public class GetAh01ServiceImpl extends JdbcServicesSupport
 	 */
 	public List<Map<String,String>> query()throws Exception
 	{
-		String sql="select aah101,aah102,aah103,aah104,aah106,aah107 from ah01 where aab101=? ";
+		StringBuilder sb=new StringBuilder()
+				.append("SELECT x.aah101,x.aah102,x.aah103,x.aah104,x.aah106,")
+				.append("			 y.aah202,y.aah203")
+				.append("  from ah01 x,ah02 y")
+				.append(" where x.aah101=y.aah101 and x.aab101=?")
+				;
 		Object id=this.get("aab101");
 		
-		return this.queryForList(sql, id);
+		return this.queryForList(sb.toString(), id);
 	}
 	
 	/**

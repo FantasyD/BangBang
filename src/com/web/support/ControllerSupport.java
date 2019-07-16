@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
+
 import com.services.BaseServices;
 import com.services.impl.Ac01ServicesImpl;
 import com.services.impl.Ac03ServicesImpl;
@@ -75,7 +78,6 @@ public abstract class ControllerSupport implements BaseController
 	}
 	
 
-	
 	
 	/**
 	 * 通过反射执行查询方法
@@ -219,7 +221,23 @@ public abstract class ControllerSupport implements BaseController
 	 * 数据输出流
 	 *****************************************/
 	private Map<String, Object> attribute = new HashMap<>();
-
+	
+	//向jsp页面打印输出
+	private Map<String, Object> responseAttribute=new HashMap<>();
+	
+	//设置输出
+	protected void setResponseAttribute(String name,String value)
+	{
+		this.responseAttribute.put(name, value);
+	}
+	
+	//获取输出
+	@Override
+	public Map<String, Object> getResponseAttribute()
+	{
+		return this.responseAttribute;
+	}
+	
 	protected final void saveAttribute(String key, Object value)
 	{
 		this.attribute.put(key, value);

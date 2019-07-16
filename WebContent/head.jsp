@@ -1,6 +1,7 @@
+<%@page import="java.nio.channels.SeekableByteChannel"%>
 <%@ page language="java" pageEncoding="GBK"%>
 <% String path=request.getContextPath(); 
-		session.setAttribute("aab101", "3");
+		session.setAttribute("userId", "3");
 %>
 <!DOCTYPE html>
 <html>
@@ -27,33 +28,42 @@
     </li>
   </ul>
 </nav>
-  <span id="msgRemind"  style="display:none">您有<strong id="msgNum"></strong>提示消息!</span>
-  
+<div id="msgRemind" style="display:none">
+  <span >您有<strong id="msgNum"></strong>条未读提示!</span>
+  </div>
   <script type="text/javascript">
-  function askEmail(){
-		$.ajax({
+  function askEmail(newNum)
+  {
+		$.ajax
+		({
 			type:"POST",
 			url:'<%=path%>/email_CheckEmail.html',
-			data:{'aab101':'${aab101}'},
+			data:{'aab101':'${userId}','emailNum':newNum},
 			timeout:10*60*1000,  //设置10分钟超时
-			success:function(data){
-				$("#msgNum").html(${emailNum});
-				console.log(${emailNum});
-				setTimeout(function () {
-			        $("#msgRemind").show();
-			    }, 6000);
-
-				askEmail();
+			success:function(data)
+			{
+				newNum=data;
+				$("#msgNum").text(data)
+				show();
+				askEmail(newNum);
 			},
-			error:function(){
+			error:function()
+			{
 				alert("运算超时");	
-				askEmail();
+				askEmail(newNum);
 			}
 		});
 	};
+	function show()
+	{
+			document.getElementById("msgRemind").style.display="block";
+			setTimeout(function(){document.getElementById("msgRemind").style.display="none";},2000);
+	}
+	
 $(document).ready(function()
 		{
-			askEmail();
+			var newNum=0;
+			askEmail(newNum);
 		})
 		
 </script>

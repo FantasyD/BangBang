@@ -33,18 +33,17 @@ public class BaseServlet extends HttpServlet
 		String toPath = null; // 跳转的目标页面
 		try
 		{
-
 			/************************************************************
 			 * 解析访问路径,获取目标类的名称
 			 ************************************************************/
 			// 拦截请求的访问路径
 			String uri = request.getRequestURI();
-			//获取资源文件所在的包名
-			String firstPackageName=uri.substring(uri.lastIndexOf("/")+1);
-			String packageName=firstPackageName.substring(0,firstPackageName.indexOf("_"));
+			// 获取资源文件所在的包名
+			String firstPackageName = uri.substring(uri.lastIndexOf("/") + 1);
+			String packageName = firstPackageName.substring(0, firstPackageName.indexOf("_"));
 			// 获取请求资源的主文件名
 			String baseName = uri.substring(uri.lastIndexOf("_") + 1).replace(".html", "");
-			
+
 			// 定义变量,描述所有业务控制器的基础包名称
 			String basePackageName = "com.web.impl.";
 			// 获取控制器的前缀名
@@ -55,7 +54,8 @@ public class BaseServlet extends HttpServlet
 			 ***********************************************************/
 			// 实例化业务控制器
 			BaseController controller = (BaseController) Class
-					.forName(basePackageName +packageName+"."+ controllerFirstName + "Servlet").newInstance();
+					.forName(basePackageName + packageName + "." + controllerFirstName + "Servlet")
+					.newInstance();
 
 			/***********************************************************
 			 * 向业务控制器,填充页面数据 i
@@ -72,23 +72,25 @@ public class BaseServlet extends HttpServlet
 			 ***********************************************************/
 			// 解析属性
 			Map<String, Object> rueqestAttribute = controller.getAttribute();
+			Map<String, Object> responseAttribute = controller.getResponseAttribute();
 			// 织入属性处理切片
 			this.parseRueqestAttribute(request, rueqestAttribute);
-     		
-     		//获取到session
-     		HttpSession session = request.getSession();
-     		//解析session属性
-     		Map<String,Object> sessionAttribute=controller.getSession_attribute();
-     		//织入session属性处理切片
-     		this.parseSessionAttribute(session, sessionAttribute);
-		} 
-		catch (Exception ex)
+			this.parseResponseAttribute(response, responseAttribute);
+			// 解析session属性
+
+			// 获取到session
+			HttpSession session = request.getSession();
+			// 解析session属性
+			Map<String, Object> sessionAttribute = controller.getSession_attribute();
+			// 织入session属性处理切片
+			this.parseSessionAttribute(session, sessionAttribute);
+		} catch (Exception ex)
 		{
 			request.setAttribute("msg", "提示:网络故障!");
 			toPath = "Error";
 			ex.printStackTrace();
 		}
-		if(toPath!=null)
+		if (toPath != null)
 			request.getRequestDispatcher("/" + toPath + ".jsp").forward(request, response);
 	}
 
@@ -105,7 +107,21 @@ public class BaseServlet extends HttpServlet
 		// 清除所有的request级属性数据
 		rueqestAttribute.clear();
 	}
-	
+
+
+	private void parseResponseAttribute(HttpServletResponse response, Map<String, Object> responseAttribute)throws Exception
+	{
+		// 1.还原所有的键值对,形成集合
+		Set<Map.Entry<String, Object>> entrySet = responseAttribute.entrySet();
+		// 2.循环集合
+		for (Map.Entry<String, Object> entry : entrySet)
+		{
+			response.getWriter().write(entry.getValue().toString());
+		}
+		// 清除所有的request级属性数据
+		responseAttribute.clear();
+	}
+		
 	private void parseSessionAttribute(HttpSession session,Map<String,Object> sessionAttribute)
 	{
 		//1.还原所有的键值对,形成集合
@@ -159,12 +175,14 @@ public class BaseServlet extends HttpServlet
 					dto.put(entry.getKey(), value);
 				}
 			}
+			System.out.println(dto);
 			return dto;
-		}else {
+		} else
+		{
 			Map<String, Object> dto = new HashMap<>();
 			String path = null;
 			try
-			{	
+			{
 				// 创建FileItemFactory对象
 				FileItemFactory factory = new DiskFileItemFactory();
 				// 创建文件上传的处理器
@@ -180,34 +198,32 @@ public class BaseServlet extends HttpServlet
 						// 普通的表单控件
 						String value = item.getString("gbk");
 						dto.put(fileName, value);
-					} 
-					else
+					} else
 					{
 						// 上传文件的控件
 						String RandomName = UUID.randomUUID().toString() + "."
 								+ FilenameUtils.getExtension(item.getName());
-						if(FilenameUtils.getExtension(item.getName())==""||FilenameUtils.getExtension(item.getName())==null)
+						if (FilenameUtils.getExtension(item.getName()) == ""
+								|| FilenameUtils.getExtension(item.getName()) == null)
 						{
 							dto.put("imgpath", null);
-						}
-						else
+						} else
 						{
 							path = request.getServletContext().getRealPath("/upload/");
 							item.write(new File(path, RandomName)); // 把上传的文件保存到某个文件中
 							path = "upload/" + RandomName;
-							dto.put("imgpath",path);
+							dto.put("imgpath", path);
 						}
 					}
 				}
-			} 
-			catch (Exception e)
+			} catch (Exception e)
 			{
 				e.printStackTrace();
 			}
 			return dto;
 		}
 	}
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{

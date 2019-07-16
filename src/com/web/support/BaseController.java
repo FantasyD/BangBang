@@ -10,12 +10,14 @@ public interface BaseController
 	
 	void setMapDto(Map<String,Object> dto);
 	
-    String execute()throws Exception;
+	String execute()throws Exception;
     
-    Map<String,Object> getAttribute();
+	Map<String,Object> getAttribute();
     
-    default Map<String,Object> getSession_attribute()
-    {
-    	return null;
-    }
+	Map<String, Object> getResponseAttribute();
+    
+	default Map<String,Object> getSession_attribute()
+	{
+		return null;
+	}
 }

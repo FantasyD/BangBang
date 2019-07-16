@@ -5,6 +5,7 @@
 <%String path=request.getContextPath(); %>
 <html>
 <head>
+<link href="css/bootstrap.min.css" rel="stylesheet">
 <title>我的帖子</title>
 	<script>
 		var count = 0;
@@ -29,21 +30,39 @@
 			vform.action="<%=path%>/tiezi_findByIdToModifyTiezi.html?aac101="+vaac101;
 			vform.submit();
 		} 
+		
+		function onTop(vaac101)
+		{
+			var vform = document.getElementById("myform");
+			vform.action="<%=path%>/placement_addPlacement.html?aac101=" + vaac101;
+			vform.submit();
+			alert("帖子置顶申请已发送");
+		} 
 	</script>
 </head>
 <body>
-${msg }
 <br>
 <br>
 <form id = "myform" action="<%=path%>/tiezi_queryTiezi.html" method="post">	
+	
+	<table border="1" width="95%" align="center" class="table">
+	  <caption align="center">
+	               我的帖子
+	    <hr width="160">
+	  </caption>
+	</table>
+	
+
+
 	<!-- 数据迭代区 -->
-	<table border="1" width="95%" align="center">
+	<table border="1" width="95%" align="center" class="table table-striped">
 		<tr>
 		    <td>序号</td>
 		    <td>帖子标题</td>
 		    <td>发帖人</td>
 		    <td>帖子类型</td>
 		    <td>价格</td>
+		    <td></td>
 		    <td></td>
 		    <td></td>
 	  	</tr>
@@ -66,12 +85,14 @@ ${msg }
 						<td>无</td>
 					</c:if>
 			      	<td>
-				      <a href="#" onclick="onModify('${ins.aac101}')">修改</a>
+				      	<a href="#" onclick="onModify('${ins.aac101}')">修改</a>
 				    </td>
 					 <td>
-				      <a href="#" onclick="onDel('${ins.aac101}')">删除</a>
+				      	<a href="#" onclick="onDel('${ins.aac101}')">删除</a>
 				    </td>
-
+					<td>
+						<a href = "#" onclick = "onTop('${ins.aac101}')">申请置顶</a>
+					</td>
 				  </tr>
 		      </c:forEach>
 	     </c:when>
@@ -79,12 +100,12 @@ ${msg }
 	</table>
 	
 	<!-- 功能按钮区 -->
-	<table border="1" width="95%" align="center">
+	<table border="1" width="95%" align="center" class="table table-striped">
 	  <tr>
 	    <td align="center">
-	       <input type="submit" name="next" value="发布帖子" 
+	       <input type="submit" name="next" value="发布帖子"   class="btn btn-default"
 	              formaction="<%=path%>/addTiezi.jsp">
-	         <input type = "submit" name = "next" value = "返回"
+	         <input type = "submit" name = "next" value = "返回"    class="btn btn-default"
        			formaction="<%=path%>/index.jsp"
        			formnovalidate="formnovalidate">
 	    </td>

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
 
 import com.services.BaseServices;
+import com.services.impl.Ac01ServicesImpl;
+import com.services.impl.Ac03ServicesImpl;
 
 public abstract class ControllerSupport implements BaseController
 {
@@ -55,6 +57,34 @@ public abstract class ControllerSupport implements BaseController
 			this.saveAttribute("msg", "没有符合条件的数据!");
 		}
 	}
+	
+	protected final void savePageDataPlacement() throws Exception
+	{
+		List<Map<String, String>> rows = new Ac03ServicesImpl().queryPlacement();
+		if (rows.size() > 0)
+		{
+			this.saveAttribute("rows", rows);
+			this.saveAttribute("aab101", this.dto.get("aab101"));
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}
+	}
+	
+	protected final void savePageDataPlacementByState() throws Exception
+	{
+		List<Map<String, String>> rows = new Ac03ServicesImpl().queryPlacementByState();
+		if (rows.size() > 0)
+		{
+			this.saveAttribute("rows", rows);
+			this.saveAttribute("aab101", this.dto.get("aab101"));
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}
+	}
 
 	/**
 	 * 单一实例 查询
@@ -64,7 +94,6 @@ public abstract class ControllerSupport implements BaseController
 	protected final void savePageInstance() throws Exception
 	{
 		Map<String, String> ins = this.services.findById();
-		System.out.println(ins);
 		if (ins != null)
 		{
 			this.saveAttribute("ins", ins);
@@ -72,6 +101,75 @@ public abstract class ControllerSupport implements BaseController
 		{
 			this.saveAttribute("msg", "提示:该数据已删除或禁止访问!");
 		}
+	}
+	
+	/**
+	 * 帖子级联查询
+	 * @throws Exception
+	 */
+	protected final void savePageInstance2() throws Exception
+	{
+		Map<String, String> ins = this.services.findById();
+		if (ins != null)
+		{
+			this.saveAttribute("ins", ins);
+		}
+		else
+		{
+			this.saveAttribute("msg", "提示:该数据已删除或禁止访问!");
+		}
+		List<Map<String, String>> rows = this.services.queryComment();
+		if (rows.size() > 0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+		}
+	}
+	
+	
+	/**
+	 * 通过反射执行查询方法
+	 * @param methodName
+	 * @return
+	 * @throws Exception
+	 */
+	private Map<String, String> executeQueryMethod(String methodName)throws Exception
+	{
+		//1.获取需要调用的方法对象
+		Method method=this.services.getClass().getDeclaredMethod(methodName);
+		method.setAccessible(true);
+		//2.调用方法
+		return  (Map<String, String>)method.invoke(this.services);
+	}
+	
+	/**
+	 * 通过反射执行查询方法，并将数据存入session
+	 * @param utype
+	 * @throws Exception
+	 */
+	protected final void QueryMapToSession(String methodName, String paraName, String sign)throws Exception
+	{
+		Map<String,String> ins=this.executeQueryMethod(methodName);
+		if(ins!=null)
+		{
+			this.saveSession_attribute(paraName, ins);
+			if(sign != null)
+			{
+				this.saveSession_attribute(sign, sign);
+			}
+		}
+		else
+		{
+			this.saveAttribute("msg", "提示:该数据已删除或禁止访问!");
+		}
+	}
+	
+	protected final void QueryMapToSession(String methodName, String paraName)throws Exception
+	{
+		this.QueryMapToSession(methodName, paraName, null);
 	}
 
 	/**
@@ -89,6 +187,7 @@ public abstract class ControllerSupport implements BaseController
 		// 2.调用方法
 		return (boolean) method.invoke(services);
 	}
+	
 
 	/**
 	 * 更新行为的总开关 < 简单消息提示 >
@@ -193,8 +292,18 @@ public abstract class ControllerSupport implements BaseController
 	{
 		return this.attribute;
 	}
-
-
-
-
+	
+	/*****************************************
+	 * 	        数据输出流 向session
+	 *****************************************/
+    private Map<String, Object> session_attribute = new HashMap<>();
+    protected final void saveSession_attribute(String key, Object value)
+    {
+    	this.session_attribute.put(key, value);
+    }
+    
+    public final Map<String, Object> getSession_attribute()
+    {
+    	return this.session_attribute;
+    }
 }

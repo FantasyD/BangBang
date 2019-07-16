@@ -28,7 +28,7 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 		//定义SQL主体
 		StringBuilder sql = new StringBuilder()
 				.append("select x.aac101,b.aab102 cnaab102,x.aac102,a.fvalue cnaac103,x.aac106,")
-				.append("       x.aac105    ")
+				.append("       x.aac105,b.aab101   ")
 				.append("  from syscode a,ac01 x,ab01 b")
 				.append(" where x.aac103 = a.fcode and a.fname = 'aac103'  ")
 				.append("   and x.aab101 = b.aab101 ")
@@ -105,7 +105,7 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 	public Map<String, String> findById() throws Exception
 	{
 		//帖子功能优化(一次上传多张图片采取这种办法)目前没办法做到
-		StringBuilder str = new StringBuilder()
+		/*StringBuilder str = new StringBuilder()
 				.append("select x.aac101,b.aab102 cnaab102,x.aac102,a.fvalue cnaac103,x.aac106, ")
 				.append("       x.aac105,x.aac104,c.aac402 imgPath  ")
 				.append("  from syscode a,ac01 x,ab01 b,ac04 c ")
@@ -113,35 +113,80 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 			    .append("   and x.aab101 = b.a101 and c.aac101 = x.aac101 " )
 			    .append("   and a.fname = 'aac103' and x.aac101 = ? ") 
 				;
-		
+		*/
 		String sql="insert into ag01(aab101,aac101,aag102) values(?,?,CURRENT_TIMESTAMP)";
 		Object idlist[]= {this.get("aab101"),this.get("aac101")};
 		this.executeUpdate(sql, idlist);
-		
-		return this.queryForMap(str.toString(), this.get("aac101"));
-		
+
+		StringBuilder str = new StringBuilder()
+				.append("select x.aac101,b.aab102 cnaab102,x.aac102,a.fvalue cnaac103,x.aac106, ")
+				.append("       x.aac105,x.aac104,x.aac109 imgPath,b.aab101")
+				.append("  from syscode a,ac01 x,ab01 b")
+				.append(" where x.aac103 = a.fcode  ")
+			    .append("   and x.aab101 = b.aab101  " )
+			    .append("   and a.fname = 'aac103' and x.aac101 = ? ") 
+				;
+		return this.queryForMap(str.toString(), this.get("aac101"));	
 	}
 	
 	
 	public boolean modifyTiezi()throws Exception
 	{
-		StringBuilder sql=new StringBuilder()
-				.append("update ac01 a ")
-				.append("   set a.aac102=?,a.aac103=?,a.aac104=?,a.aac105=?,a.aac106=?, ")
-				.append("       a.aac109=?,a.aac108=current_timestamp ")
-				.append(" where a.aac101=? ")
+		if(this.get("imgpath") != null) 
+		{
+			StringBuilder sql=new StringBuilder()
+					.append("update ac01 a ")
+					.append("   set a.aac102=?,a.aac103=?,a.aac104=?,a.aac105=?,a.aac106=?, ")
+					.append("       a.aac109=?,a.aac108=current_timestamp ")
+					.append(" where a.aac101=? ")
+					;
+			Object args[]={
+					this.get("aac102"),
+					this.get("aac103"),
+					this.get("aac104"),
+					this.get("aac105"),
+					this.get("aac106"),
+					this.get("imgpath"),
+					this.get("aac101")
+			};
+			return this.executeUpdate(sql.toString(), args)>0;	
+		}
+		else 
+		{
+			StringBuilder sql=new StringBuilder()
+					.append("update ac01 a ")
+					.append("   set a.aac102=?,a.aac103=?,a.aac104=?,a.aac105=?,a.aac106=?, ")
+					.append("       a.aac108=current_timestamp ")
+					.append(" where a.aac101=? ")
+					;
+			Object args[]={
+					this.get("aac102"),
+					this.get("aac103"),
+					this.get("aac104"),
+					this.get("aac105"),
+					this.get("aac106"),
+					this.get("aac101")
+			};
+			return this.executeUpdate(sql.toString(), args)>0;	
+		}
+		
+
+	}
+	
+	
+	public List<Map<String, String>> queryComment() throws Exception
+	{
+		//定义SQL主体
+		StringBuilder sql = new StringBuilder()
+				.append("select x.aac201,b.aab102 cnaab102,x.aac101,x.aac202,x.aac203 ")
+				.append("  from ac02 x,ab01 b ")
+				.append(" where x.aab101 = b.aab101 and x.is_deleted = 0 and x.aac101 = ?")
 				;
-		Object args[]={
-				this.get("aac102"),
-				this.get("aac103"),
-				this.get("aac104"),
-				this.get("aac105"),
-				this.get("aac106"),
-				this.get("imgpath"),
+		
+		Object args[] = {
 				this.get("aac101")
 		};
-		System.out.println(sql.toString());
-		return this.executeUpdate(sql.toString(), args)>0;
-		    	
+		
+		return this.queryForList(sql.toString(),args);
 	}
 }

@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
@@ -32,7 +33,6 @@ public class BaseServlet extends HttpServlet
 		String toPath = null; // 跳转的目标页面
 		try
 		{
-
 			/************************************************************
 			 * 解析访问路径,获取目标类的名称
 			 ************************************************************/
@@ -71,8 +71,11 @@ public class BaseServlet extends HttpServlet
 			 ***********************************************************/
 			// 解析属性
 			Map<String, Object> rueqestAttribute = controller.getAttribute();
+			Map<String, Object> responseAttribute=controller.getResponseAttribute();
 			// 织入属性处理切片
 			this.parseRueqestAttribute(request, rueqestAttribute);
+			this.parseResponseAttribute(response, responseAttribute);
+			//解析session属性
 		} 
 		catch (Exception ex)
 		{
@@ -80,6 +83,7 @@ public class BaseServlet extends HttpServlet
 			toPath = "Error";
 			ex.printStackTrace();
 		}
+		System.out.println(request.getSession().getAttribute("emailNum"));
 		if(toPath!=null)
 			request.getRequestDispatcher("/" + toPath + ".jsp").forward(request, response);
 	}
@@ -96,6 +100,19 @@ public class BaseServlet extends HttpServlet
 		}
 		// 清除所有的request级属性数据
 		rueqestAttribute.clear();
+	}
+	
+	private void parseResponseAttribute(HttpServletResponse response, Map<String, Object> responseAttribute)throws Exception
+	{
+		// 1.还原所有的键值对,形成集合
+		Set<Map.Entry<String, Object>> entrySet = responseAttribute.entrySet();
+		// 2.循环集合
+		for (Map.Entry<String, Object> entry : entrySet)
+		{
+			response.getWriter().write(entry.getValue().toString());
+		}
+		// 清除所有的request级属性数据
+		responseAttribute.clear();
 	}
 
 	/**
@@ -137,6 +154,7 @@ public class BaseServlet extends HttpServlet
 					dto.put(entry.getKey(), value);
 				}
 			}
+			System.out.println(dto);
 			return dto;
 		}else {
 			Map<String, Object> dto = new HashMap<>();

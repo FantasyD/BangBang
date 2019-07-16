@@ -1,5 +1,6 @@
 package com.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +16,14 @@ public class CheckAh01ServiceImpl extends JdbcServicesSupport
 	{
 		String sql="select aah101 from ah01 where aab101=? and aah106=0";
 		Object id=this.get("aab101");
-		
-		return this.queryForList(sql, id);
+		List<Map<String,String>> map=this.queryForList(sql, id);
+		if(map.size()==Integer.parseInt(this.get("emailNum").toString()))
+		{
+			return new ArrayList<>();
+		}
+		else
+		{
+			return map;
+		}
 	}
 }

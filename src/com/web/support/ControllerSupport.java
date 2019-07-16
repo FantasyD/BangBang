@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
+
 import com.services.BaseServices;
 
 public abstract class ControllerSupport implements BaseController
@@ -167,6 +170,19 @@ public abstract class ControllerSupport implements BaseController
 	 *****************************************/
 	private Map<String, Object> attribute = new HashMap<>();
 
+	private Map<String, Object> responseAttribute=new HashMap<>();
+	
+	protected void setResponseAttribute(String name,String value)
+	{
+		this.responseAttribute.put(name, value);
+	}
+	
+	@Override
+	public Map<String, Object> getResponseAttribute()
+	{
+		return this.responseAttribute;
+	}
+	
 	protected final void saveAttribute(String key, Object value)
 	{
 		this.attribute.put(key, value);
@@ -177,4 +193,8 @@ public abstract class ControllerSupport implements BaseController
 	{
 		return this.attribute;
 	}
+
+
+
+
 }

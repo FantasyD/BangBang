@@ -14,7 +14,7 @@ public class GetAh01ServiceImpl extends JdbcServicesSupport
 	 */
 	public List<Map<String,String>> query()throws Exception
 	{
-		String sql="select aah101,aah102,aah103,aah104,aah106,aah107 from ah01 where aab101=? ";
+		String sql="select aah101,aah102,aah103,aah104,aah106,aah107 from ah01 where aab101=? order by aah105 desc";
 		Object id=this.get("aab101");
 		
 		return this.queryForList(sql, id);

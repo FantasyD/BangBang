@@ -56,6 +56,12 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 		sql.append(" order by x.aac101 ");
 		return this.queryForList(sql.toString(), paramList.toArray());
 	}
+
+	public List<Map<String,String>> queryForList()throws Exception
+	{
+		String sql="select aac101,aac104 from ac01";
+		return this.queryForList(sql);
+	}
 	
 	public boolean delByIdTiezi() throws Exception
 	{
@@ -84,9 +90,6 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 				this.get("imgpath")
 		};
 		
-		System.out.println(argsObjects.toString());
-		
-		System.out.println(sql.toString());
 		this.put("aab101", this.get("aab101"));
 		
 		return this.executeUpdate(sql.toString(), argsObjects)>0;

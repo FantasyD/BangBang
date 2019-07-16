@@ -11,4 +11,7 @@ public interface BaseController
 	String execute() throws Exception;
 
 	Map<String, Object> getAttribute();
+	
+
+	Map<String, Object> getResponseAttribute();
 }

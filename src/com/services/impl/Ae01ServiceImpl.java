@@ -117,7 +117,7 @@ public class Ae01ServiceImpl extends JdbcServicesSupport
 	public boolean inviteGroup()throws Exception
 	{
 		String sql="select aab101 from ae02 where aab101=? and aae101=?";
-		Object states[]= {this.get("aab101"),this.get("aae101")};
+		Object states[]= {this.get("iaab101"),this.get("aae101")};
 		return !(this.queryForMap(sql, states)!=null);
 	}
 	

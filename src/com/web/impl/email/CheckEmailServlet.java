@@ -14,12 +14,11 @@ public class CheckEmailServlet extends ControllerSupport
 	{
 		while(true)
 		{
-			Thread.sleep(3000);
+			Thread.sleep(10*1000);	//Ë¯Ãß10ÃëºóÔÙ²éÑ¯
 			int num=this.checkInfo();
-			System.out.println(num);
 			if(num>0)
 			{
-				this.saveAttribute("emailNum", num);
+				this.setResponseAttribute("emailNum", String.valueOf(num));
 				break;
 			}
 		}

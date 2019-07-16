@@ -1,8 +1,8 @@
 <%@ page language="java" pageEncoding="GBK"%>
 <%@taglib uri="http://org.wangxg/jsp/extl" prefix="e"%>
 <%String path=request.getContextPath(); 
-		session.setAttribute("aab101", "1");
-		session.setAttribute("aab102","ÃÉ¶à");
+		session.setAttribute("userId", "1");
+		session.setAttribute("userName","ÃÉ¶à");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -74,10 +74,10 @@ function CloseDiv(show_div,bg_div)
 	<input id="Button1" type="button" value="µã»÷µ¯³ö²ã"
 		onclick="ShowDiv('MyDiv','fade')" class="btn btn-default" />
 	<form action="<%=path %>/group_findGroup.html" method="post">
-		<input type="submit" name="aae101" value="5" class="btn btn-default" />
+		<input type="submit" name="aae101" value="6" class="btn btn-default" />
 	</form>
 	<form action="<%=path %>/email_getEmail.html" method="post">
-		<input type="submit" name="aab101" value="${aab101 }" class="btn btn-default" />
+		<input type="submit" name="aab101" value="${userId }" class="btn btn-default" />
 	</form>
 	<!--µ¯³ö²ãÊ±±³¾°²ãDIV-->
 	<div id="fade" class="black_overlay"></div>

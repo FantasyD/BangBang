@@ -6,10 +6,8 @@
 <html>
 <head>
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<title>帖子数据查询</title>
+<title>置顶帖子</title>
 	<script>
-		var count = 0;
-
 		function onEdit(vaac101,vaab101)
 		{
 			var vform = document.getElementById("myform");
@@ -21,28 +19,13 @@
 <body>
 <br>
 <br>
-<form id = "myform" action="<%=path%>/tiezi_queryTiezi.html" method="post">
+<form id = "myform" action="" method="post">
 	<!-- 查询条件区 -->
-	<table border="1" width="95%" align="center" class="table">
-	  <caption>
-	               帖子
-	    <hr width="160">
-	  </caption>
-	  <tr>
-	    <td colspan="4">查询条件</td>
-	  </tr>
-	  <tr>
-	    <td>帖子标题</td>
-	    <td>
-	      <e:text name="qaac102"/>
-	    </td>
-	  </tr>
-	  <tr>
-	    <td>帖子类型</td>
-	    <td>
-	      <e:radio name="qaac103" value="求购:01,代取:02,求信息:03,出售:04,求学习资料:05,其他:06,不限定:''" defval=""/>
-	    </td>
-	  </tr>
+	<table border="1" width="95%" align="center">
+		<div align="center">
+		               置顶帖
+		    <hr width="160">
+	    </div>
 	</table>
 	
 	<!-- 数据迭代区 -->

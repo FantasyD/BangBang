@@ -164,10 +164,17 @@ public class BaseServlet extends HttpServlet
 						// 上传文件的控件
 						String RandomName = UUID.randomUUID().toString() + "."
 								+ FilenameUtils.getExtension(item.getName());
-						path = request.getServletContext().getRealPath("/upload/");
-						item.write(new File(path, RandomName)); // 把上传的文件保存到某个文件中
-						path = "upload/" + RandomName;
-						dto.put("imgpath",path);
+						if(FilenameUtils.getExtension(item.getName())==""||FilenameUtils.getExtension(item.getName())==null)
+						{
+							dto.put("imgpath", null);
+						}
+						else
+						{
+							path = request.getServletContext().getRealPath("/upload/");
+							item.write(new File(path, RandomName)); // 把上传的文件保存到某个文件中
+							path = "upload/" + RandomName;
+							dto.put("imgpath",path);
+						}
 					}
 				}
 			} 

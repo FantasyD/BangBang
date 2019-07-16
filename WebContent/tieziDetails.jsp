@@ -6,19 +6,19 @@
 <head>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <title>帖子详情</title>
-	<script>
-		function onDel(vaac101)
-		{
-			var vform = document.getElementById("aform");
-			vform.action="<%=path%>/comment_delByIdComment.html?aac201="+vaac101;
-			vform.submit();
-		} 
-		
-		function goback()
-		{
-			javascript:history.go(-1);
-		}
-	</script>
+<script>
+	function onDel(vaac101)
+	{
+		var vform = document.getElementById("aform");
+		vform.action="<%=path%>/comment_delByIdComment.html?aac201="+vaac101;
+		vform.submit();
+	} 
+	
+	function goback()
+	{
+		javascript:history.go(-1);
+	}
+</script>
 </head>
 <body>
 <div style="text-align:center">
@@ -47,6 +47,8 @@
 	<br><br><br>
 	
 	<form id = "aform" method="post">
+	<input type="hidden" name="aac101" value="${aac101 }">
+	<input type="hidden" name="aab101" value="${aab101 }">
 		<c:if test="${rows!=null }">
 			<!-- 以下为留言区域,展示所有用户对该帖子发表的留言 -->
 			<table border="1" width="95%" align="center" class="table table-striped">
@@ -93,10 +95,8 @@
 	<form action="<%=path %>/index.jsp" method = "post">
 		<input type = "submit" name = "next" class="btn btn-default" value = "返回">
 	</form>
-	
 	<!-- 以下方法采用浏览器自带的回退方法,但是和留言模块有冲突 -->
 	<!--  input type = "submit" name = "next" onclick="goback()" class="btn btn-default" value = "返回"-->
-
 </div>
 <c:set var="aac101" scope="session" value="${ins.aac101 }"></c:set>
 </body>

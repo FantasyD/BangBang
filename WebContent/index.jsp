@@ -21,6 +21,19 @@ ${msg }
 		<input type="hidden" name="aab101" value="2">
 		<input type = "submit" name = "next" value = "我的帖子"   class="btn btn-default"  >
 	</form>
+<br>
+<br>
+	<form action = "<%=path%>/placement_queryPlacement.html" method = "post">
+		<input type="hidden" name="aab101" value="2">
+		<input type = "submit" name = "next" value = "管理员置顶审核页面"   class="btn btn-default"  >
+	</form>
+<br>
+<br>
+	<form action = "<%=path%>/placement_queryPlacementByState.html" method = "post">
+		<input type="hidden" name="aab101" value="2">
+		<input type = "submit" name = "next" value = "置顶帖子页"   class="btn btn-default"  >
+	</form>
+<br>
 </body>
 </div>
 </html>

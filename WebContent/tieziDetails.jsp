@@ -16,11 +16,33 @@
 	
 	function goback()
 	{
-		javascript:history.go(-1);
+		var vtype = document.getElementById("type").value;
+		var vform = document.getElementById("returnForm");
+		if(vtype == 1)
+		{
+			vform.action="<%=path%>/tiezi_queryTiezi.html";
+			vform.submit();
+		}
+		else if(vtype == 2)
+		{
+			vform.action="<%=path%>/tiezi_queryTieziById.html";
+			vform.submit();
+		}
+		else if(vtype == 3)
+		{
+			vform.action="<%=path%>/placement_queryPlacementByState.html";
+			vform.submit();
+		}
+		else if(vtype == 4)
+		{
+			vform.action="<%=path%>/placement_queryPlacement.html";
+			vform.submit();
+		}
 	}
 </script>
 </head>
 <body>
+<input type="hidden" name="type" value="${type }" id = "type">
 <div style="text-align:center">
 	帖子编号:${ins.aac101 }
 	<br>
@@ -88,16 +110,19 @@
 	<c:if test="${rows == null }"> 本帖暂无留言</c:if>
 	
 	<br>
-	<form action="<%=path %>/addComment.jsp" method = "post">
+	<form action="<%=path %>/addComment.jsp?type=${type}" method = "post">
 		<input type = "submit" name = "next" class="btn btn-default" value = "留言">
 	</form>
 	<br>
-	<form action="<%=path %>/index.jsp" method = "post">
-		<input type = "submit" name = "next" class="btn btn-default" value = "返回">
+	<form action="" method = "post" name="returnForm" id = "returnForm">
+		<input type = "submit" name = "next" onclick="goback()" class="btn btn-default" value = "返回" formnovalidate="formnovalidate">
+		<input type="hidden" name="aac101" value="${ins.aac101 }">
+		<input type="hidden" name="aab101" value="${aab101 }">
 	</form>
 	<!-- 以下方法采用浏览器自带的回退方法,但是和留言模块有冲突 -->
-	<!--  input type = "submit" name = "next" onclick="goback()" class="btn btn-default" value = "返回"-->
+	
 </div>
 <c:set var="aac101" scope="session" value="${ins.aac101 }"></c:set>
+<c:set var="type" scope="session" value="${type }"></c:set>
 </body>
 </html>

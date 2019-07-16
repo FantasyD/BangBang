@@ -6,6 +6,11 @@
 <html>
 <head>
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel='stylesheet' href='css/owl.carousel.min.css' type='text/css' media='all' />
+<link rel='stylesheet' href='css/fontello.css' type='text/css' media='all' />
+<link rel='stylesheet' href='css/nicetheme.css' type='text/css' media='all' />
+<link rel='stylesheet' href='css/reset.css' type='text/css' media='all' />
+<link rel='stylesheet' href='css/style.css' type='text/css' media='all' />
 <title>帖子数据查询</title>
 	<script>
 		var count = 0;
@@ -13,7 +18,7 @@
 		function onEdit(vaac101,vaab101)
 		{
 			var vform = document.getElementById("myform");
-			vform.action = "<%=path%>/tiezi_findByIdTiezi.html?aac101=" + vaac101 + "&aab101=" + vaab101;
+			vform.action = "<%=path%>/tiezi_findByIdTiezi.html?type=1&aac101=" + vaac101 + "&aab101=" + vaab101;
 			vform.submit();
 		}
 	</script>
@@ -22,58 +27,47 @@
 <br>
 <br>
 <form id = "myform" action="<%=path%>/tiezi_queryTiezi.html" method="post">
-	<!-- 查询条件区 -->
-	<table border="1" width="95%" align="center" class="table">
-	  <caption>
-	               帖子
-	    <hr width="160">
-	  </caption>
-	  <tr>
-	    <td colspan="4">查询条件</td>
-	  </tr>
-	  <tr>
-	    <td>帖子标题</td>
-	    <td>
-	      <e:text name="qaac102"/>
-	    </td>
-	  </tr>
-	  <tr>
-	    <td>帖子类型</td>
-	    <td>
-	      <e:radio name="qaac103" value="求购:01,代取:02,求信息:03,出售:04,求学习资料:05,其他:06,不限定:''" defval=""/>
-	    </td>
-	  </tr>
-	</table>
-	
-	<!-- 数据迭代区 -->
-	<table border="1" width="95%" align="center" class="table table-striped">
-		<tr>
-		    <td>序号</td>
-		    <td>帖子标题</td>
-		    <td>发帖人</td>
-		    <td>帖子类型</td>
-		    <td>帖子酬劳</td>
-	  	</tr>
-	  	
-		   <c:choose>
-	     <c:when test="${rows!=null }">
-	         <!-- 显示实际查询到的数据 -->
-		     <c:forEach items="${rows }" var="ins" varStatus="vs">
-	    	   	  <tr>
-				    <td>${vs.count }</td>
-				    <td>
-				    	<!--  # 表示空锚 -->
-				    	<a href="#" onclick = "onEdit('${ins.aac101 }','${ins.aab101 }')">${ins.aac102 }</a>
-				    </td>
-				    <td>${ins.cnaab102 }</td>
-				    <td>${ins.cnaac103 }</td>   			    
-					<td>${ins.aac105 }</td>
-				  </tr>
-		      </c:forEach>
-	     </c:when>
-	   </c:choose>
-	</table>
-	
+	<div class="main-content">
+		<div class="container">
+			<div class="row">
+				<div class="article col-xs-12 col-sm-8 col-md-8">
+					<div class="ajax-load-box posts-con">						
+						<c:choose>
+							<c:when test="${rows!=null }">
+								<c:forEach items="${rows }" var="ins" varStatus="vs">
+								<div class="ajax-load-con content wow fadeInUp">
+									<div class="content-box posts-gallery-box">
+									<c:if test="${ins.imgpath!=null }">
+										<div class="posts-gallery-img"> <a href="#" title="帖子图片无法显示"  onclick = "onEdit('${ins.aac101 }','${ins.aab101 }')" > <img class="lazy" src="${ins.imgpath }" width="231" height="173"/> </a> </div>
+									</c:if>	
+									<c:if test="${ins.imgpath==null }">
+										<div class="posts-gallery-img"> <a href="#" title="帖子图片无法显示"  onclick = "onEdit('${ins.aac101 }','${ins.aab101 }')" > <img class="lazy" src="images/20.jpg" width="231" height="173"/> </a> </div>
+									</c:if>				
+									<div class="posts-gallery-content">
+										<h2><a href="#" onclick = "onEdit('${ins.aac101 }','${ins.aab101 }')" title="mawiss WordPress博客杂志的主题">${ins.aac102 }</a></h2>
+										<div class="posts-gallery-text">mawiss–WordPress博客杂志的主题是一种优质的WordPress博客主题，简洁的设计和完全响应式布局。这个主题是有用的许多网页的风格、滑块式、主题选项，自定义侧边栏和更多!&hellip;</div>
+										<div class="posts-default-info posts-gallery-info">
+											<ul>
+											<li class="post-author hidden-xs">
+											<div class="avatar"><img alt='maolai' src="images/wo.jpg" height='96' width='96' /></div>
+											<a href="#" target="_blank">${ins.cnaab102 }</a></li>									
+											<li class="ico-cat"><i class="icon-list-2"></i> <a href="#">${ins.cnaac103 }</a></li>
+											<li class="ico-time"><i class="icon-clock-1"></i> ${ins.aac108 }</li>
+											<li class="ico-eye hidden-xs"><i class="icon-eye-4"></i> ${ins.aac110 }</li>							
+											</ul>
+										</div>
+									</div>		
+									</div>
+								</div>			
+								</c:forEach>
+							</c:when>	
+						</c:choose>							
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- 功能按钮区 -->
 	<table border="1" width="95%" align="center" >
 	  <tr>
@@ -85,5 +79,9 @@
 	  </tr>
 	</table>
 </form>
+<script type='text/javascript' src='js/plugins.min.js'></script> 
+<script type='text/javascript' src='js/lmlblog.js'></script> 
+<script type='text/javascript' src='js/owl.carousel.min.js'></script> 
+<script type='text/javascript' src='js/wow.min.js'></script>
 </body>
 </html>

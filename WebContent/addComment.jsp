@@ -15,6 +15,7 @@
 	<br>
 	<e:textarea rows = "5" cols = "45" required="true" name = "aac203" />
 	<br>
+	<input type="hidden" name = "type" value = "${type }">
 	<input type="submit" name="next" class="btn btn-default" value="Ìí¼ÓÁôÑÔ"
 					formaction= "<%=path%>/comment_addComment.html">
 	<br>

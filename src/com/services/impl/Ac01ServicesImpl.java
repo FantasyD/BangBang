@@ -28,7 +28,7 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 		//定义SQL主体
 		StringBuilder sql = new StringBuilder()
 				.append("select x.aac101,b.aab102 cnaab102,x.aac102,a.fvalue cnaac103,x.aac106,")
-				.append("       x.aac105,b.aab101   ")
+				.append("       x.aac105,b.aab101,x.aac109 imgPath,x.aac108,x.aac110  ")
 				.append("  from syscode a,ac01 x,ab01 b")
 				.append(" where x.aac103 = a.fcode and a.fname = 'aac103'  ")
 				.append("   and x.aab101 = b.aab101 ")
@@ -53,7 +53,7 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 			paramList.add(aab101);
 		}
 		sql.append(" and x.is_deleted = 0 ");
-		sql.append(" order by x.aac101 ");
+		sql.append(" order by x.aac108 desc");
 		return this.queryForList(sql.toString(), paramList.toArray());
 	}
 	
@@ -69,9 +69,9 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 
 		StringBuilder sql = new StringBuilder()
 				.append("insert into ac01(aab101,aac102,aac103,aac104,aac105,")
-    			.append("                 aac106,aac107,aac108,aac109,is_deleted)  ")
+    			.append("                 aac106,aac107,aac108,aac109,is_deleted,aac110)  ")
     			.append("          values(?,?,?,?,?,")
-    			.append("                 ?,current_timestamp,current_timestamp,?,0)")
+    			.append("                 ?,current_timestamp,current_timestamp,?,0,0)")
 				;
 		
 		Object[] argsObjects = {
@@ -111,6 +111,9 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 		String sql="insert into ag01(aab101,aac101,aag102) values(?,?,CURRENT_TIMESTAMP)";
 		Object idlist[]= {this.get("aab101"),this.get("aac101")};
 		this.executeUpdate(sql, idlist);
+		
+		String sql2 = "update ac01 set aac110 = aac110 + 1 where aac101 = ?";
+		this.executeUpdate(sql2, this.getIdList("aac101"));
 
 		StringBuilder str = new StringBuilder()
 				.append("select x.aac101,b.aab102 cnaab102,x.aac102,a.fvalue cnaac103,x.aac106, ")

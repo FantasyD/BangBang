@@ -120,7 +120,7 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 				.append(" from DUAL WHERE not EXISTS")
 				.append("(SELECT ?,? from ag01)")
 				;
-		Object idlist[]= {this.get("aab101"),this.get("aac101")};
+		Object idlist[]= {this.get("aab101"),this.get("aac101"),this.get("aab101"),this.get("aac101")};
 		this.executeUpdate(sb.toString(), idlist);
 
 		StringBuilder str = new StringBuilder()

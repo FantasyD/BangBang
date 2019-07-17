@@ -1,7 +1,8 @@
 package com.system.talk;
 import java.io.IOException;
-
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.websocket.OnClose;
@@ -25,9 +26,10 @@ public class Server
 	private String path = "C:\\talkFile\\";
 	
 	private String chat_id = null;
-	private String lastWord = null;
 	
 	private boolean state = false;
+	
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH��mm");
 	
 	public boolean isOpen()
 	{
@@ -133,17 +135,11 @@ public class Server
 			list.add(message);
 			Users.user.get(this.user).session.getBasicRemote().sendText(message);
 		}
-		lastWord = message;
 	}
 	
-	/**
-	 * 关闭
-	 * @param session
-	 */
 	@OnClose
 	public void close(Session session)
 	{
-		Ad01ServicesImpl service = new Ad01ServicesImpl();
 		try 
 		{
 			List<String> list = Users.usertalk.get(this.user + "_" + this.accept);
@@ -166,11 +162,6 @@ public class Server
 			else
 			{
 				IOBase.setString(path + this.user + "_" + this.accept, list.toArray(new String[0]));
-			}
-			if(!(lastWord == null || lastWord.equals("")))
-			{
-				int index = lastWord.indexOf(":");
-				service.updateChat(chat_id, lastWord.substring(index + 1));
 			}
 		}
 		catch (Exception e) 

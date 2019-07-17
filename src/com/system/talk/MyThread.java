@@ -1,5 +1,6 @@
 package com.system.talk;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -25,17 +26,29 @@ public class MyThread extends HttpServlet implements Runnable{
 			try {
 				map = Users.mailbox;
 				entrySet = map.entrySet();
-				
+				List<String> list = null;
+				List<String> backup_list = null;
 				for(Entry<String, List<String>> li : entrySet)
 				{
-					List<String> list = li.getValue();
+					list = li.getValue();
 					if(list.size() != 0)
 					{
 						//System.out.println(list.toString());
 						if(!(Users.userRecord.get(li.getKey()) == null) && Users.userRecord.get(li.getKey()).isOpen())
 						{
-							Users.userRecord.get(li.getKey()).session.getBasicRemote()
-								.sendText(list.toString().replace("[", "").replace("]", ""));
+							String str = list.toString().replace("[", "").replace("]", "");
+							Users.userRecord.get(li.getKey()).session.getBasicRemote().sendText(str);
+							
+							backup_list = Users.mailbox_backup.get(li.getKey());
+							if(backup_list == null)
+							{
+								Users.mailbox_backup.put(li.getKey(), new ArrayList<String>());
+								backup_list = Users.mailbox_backup.get(li.getKey());
+							}
+							for(String s : list)
+							{
+								backup_list.add(s);
+							}
 							list.clear();
 						}
 					}

@@ -1,5 +1,5 @@
 
-var is_chat_load = false;
+var chat_id;
 var map = new Map();
 //用于进行消息提示
 var span_color = null;
@@ -128,6 +128,11 @@ function onDel(aad101, kind)
         if (http_request.readyState == 4 )
         {
         	loadJSON();
+        	if(aad101 == chat_id)
+        	{
+        		colseChatConnect();
+        		$("#mainbody").empty();
+        	}
         }
     }
     var action = null;
@@ -155,7 +160,7 @@ function chat(aad101)
 	
 	map.delete(aad101 + "_s");
 
-	if(is_chat_load)
+	if(chat_id != null)
 	{
 		colseChatConnect();
 	}
@@ -171,7 +176,7 @@ function chat(aad101)
         {
         	$("#mainbody").empty();
         	$("#mainbody").load(path + "chat.jsp");
-        	is_chat_load = true;
+        	chat_id = aad101;
         	sendMessage_record(aad101);
         }
     }

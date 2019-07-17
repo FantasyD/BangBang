@@ -128,9 +128,9 @@ public class Ae01ServiceImpl extends JdbcServicesSupport
 	{
 		String sql1="delete from ae02 where aae101=?";
 		Object id=this.get("aae101");
-		this.apppendSql(sql1, id);
+		this.appendSql(sql1, id);
 		String sql="delete from ae01 where aae101=?";
-		this.apppendSql(sql, id);
+		this.appendSql(sql, id);
 		return this.executeTransaction();
 	}
 

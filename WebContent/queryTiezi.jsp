@@ -44,7 +44,7 @@
 										<div class="posts-gallery-img"> <a href="#" title="帖子图片无法显示"  onclick = "onEdit('${ins.aac101 }','${ins.aab101 }')" > <img class="lazy" src="images/20.jpg" width="231" height="173"/> </a> </div>
 									</c:if>				
 									<div class="posts-gallery-content">
-										<h2><a href="#" onclick = "onEdit('${ins.aac101 }','${ins.aab101 }')" title="mawiss WordPress博客杂志的主题">${ins.aac102 }</a></h2>
+										<h2><a href="#" onclick = "onEdit('${ins.aac101 }','${aab101 }')" title="mawiss WordPress博客杂志的主题">${ins.aac101}${ins.aac102 }</a></h2>
 										<div class="posts-gallery-text">mawiss–WordPress博客杂志的主题是一种优质的WordPress博客主题，简洁的设计和完全响应式布局。这个主题是有用的许多网页的风格、滑块式、主题选项，自定义侧边栏和更多!&hellip;</div>
 										<div class="posts-default-info posts-gallery-info">
 											<ul>

@@ -1,10 +1,17 @@
 package com.web.impl.tiezi;
 
-public class QueryTieziServlet extends TieziControlletSupport {
+import com.services.impl.Ac04ServicesImpl;
+import com.web.support.ControllerSupport;
 
+public class QueryTieziServlet extends ControllerSupport 
+{	
+	public QueryTieziServlet()
+	{
+		this.setServices(new Ac04ServicesImpl());
+	}
 	@Override
-	public String execute() throws Exception {
-		// TODO Auto-generated method stub
+	public String execute() throws Exception
+	{
 		this.savePageData();
 		return "queryTiezi";
 	}

@@ -14,7 +14,7 @@ public class AddTieziServlet extends ControllerSupport
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
-		//this.update("addTiezi","添加帖子");
+		this.update("addTiezi","添加帖子");
 
 		this.savePageInstance();
 		

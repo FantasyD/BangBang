@@ -1,10 +1,9 @@
 package com.services.impl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-
-import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 
 import com.services.JdbcServicesSupport;
 import com.system.tools.Tools;
@@ -26,6 +25,11 @@ public class Ac05ServicesImpl extends JdbcServicesSupport
 		List<Map<String,String>> list=new ArrayList<>();
 		list.addAll(this.getGroupsId());
 		list.addAll(this.getFollowId());
+		//去除重复用户
+		HashSet<Map<String, String>> h=new HashSet<>(list);
+		list.clear();
+		list.addAll(h);
+		
 		return list;
 	}
 	

@@ -110,19 +110,21 @@
 	<c:if test="${rows == null }"> 本帖暂无留言</c:if>
 	
 	<br>
-	<form action="<%=path %>/addComment.jsp?type=${type}" method = "post">
+	<form action="<%=path %>/addComment.jsp?type=${type}&" method = "post">
 		<input type = "submit" name = "next" class="btn btn-default" value = "留言">
+		<input type="hidden" name="aab101" value="${ins.aab101 }">
 	</form>
 	<br>
 	<form action="" method = "post" name="returnForm" id = "returnForm">
 		<input type = "submit" name = "next" onclick="goback()" class="btn btn-default" value = "返回" formnovalidate="formnovalidate">
 		<input type="hidden" name="aac101" value="${ins.aac101 }">
-		<input type="hidden" name="aab101" value="${aab101 }">
+		<input type="hidden" name="aab101" value="${ins.aab101 }">
 	</form>
 	<!-- 以下方法采用浏览器自带的回退方法,但是和留言模块有冲突 -->
 	
 </div>
 <c:set var="aac101" scope="session" value="${ins.aac101 }"></c:set>
 <c:set var="type" scope="session" value="${type }"></c:set>
+<c:set var="aab101" scope="session" value="${ins.aab101 }"></c:set>
 </body>
 </html>

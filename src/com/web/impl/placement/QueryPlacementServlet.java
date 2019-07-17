@@ -5,7 +5,7 @@ public class QueryPlacementServlet extends PlacementControllerSupport
 	@Override
 	public String execute() throws Exception 
 	{
-		this.savePageDataPlacement();
+		this.savePageData();
 		return "queryPlacement";
 	}
 }

@@ -56,11 +56,21 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 		sql.append(" order by x.aac108 desc");
 		return this.queryForList(sql.toString(), paramList.toArray());
 	}
+
+	public List<Map<String,String>> queryForList()throws Exception
+	{
+		String sql="select aac101,aac104 from ac01";
+		return this.queryForList(sql);
+	}
 	
 	public boolean delByIdTiezi() throws Exception
 	{
 		String sql = "update ac01 set is_deleted = 1 where aac101 = ?";
-		return this.executeUpdate(sql, this.get("aac101"))>0;
+		String sql2 = "update ac02 set is_deleted = 1 where aac101 = ?";
+		Object[] args = {this.get("aac101")};
+		this.batchUpdate(sql2, args);
+		this.batchUpdate(sql, args);
+		return this.executeTransaction();
 	}
 	
 	
@@ -115,11 +125,13 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 				.append("(SELECT ?,? from ag01)")
 				;
 		Object idlist[]= {this.get("aab101"),this.get("aac101"),this.get("aab101"),this.get("aac101")};
-		this.executeUpdate(sb.toString(), idlist);
+		this.batchUpdate(sb.toString(), idlist);
 		
-		String sql2 = "update ac01 set aac110 = aac110 + 1 where aac101 = ?";
-		this.executeUpdate(sql2, this.getIdList("aac101"));
-
+		String sql = "update ac01 set aac110 = aac110 + 1 where aac101 = ?";
+		Object[] args = {this.get("aac101")};
+		this.batchUpdate(sql, args);
+		this.executeTransaction();
+		
 		StringBuilder str = new StringBuilder()
 				.append("select x.aac101,b.aab102 cnaab102,x.aac102,a.fvalue cnaac103,x.aac106, ")
 				.append("       x.aac105,x.aac104,x.aac109 imgPath,b.aab101")
@@ -190,5 +202,20 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 		};
 		
 		return this.queryForList(sql.toString(),args);
+	}
+	
+	
+	public boolean addPlacement() throws Exception
+	{
+		StringBuilder sql = new StringBuilder()
+				.append("insert ignore into ac03(aac101,aac302,aac303,aac304,aac305) ")
+				.append("          values(?,current_timestamp,current_timestamp,1,0) ")
+				;
+		
+		Object[] argsObjects = {
+				this.get("aac101")
+		};
+	
+		return this.executeUpdate(sql.toString(), argsObjects)>0;
 	}
 }

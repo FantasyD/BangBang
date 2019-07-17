@@ -3,6 +3,7 @@ package com.services.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import com.services.BaseServices;
 import com.services.JdbcServicesSupport;
@@ -47,7 +48,6 @@ public class Ah01ServiceImpl extends JdbcServicesSupport
 		this.baseServices=baseServices;
 		this.key=key;
 		this.id=id;
-
 	}
 	
 	/**
@@ -102,6 +102,32 @@ public class Ah01ServiceImpl extends JdbcServicesSupport
 	 * 						以下方法为邮件的插入与查询方法
 	 * 
 	 ***************************************************************************/
+	/**
+	 * @Description: 单一邮件发送入口
+	 * @throws: sql语句执行出错
+	 */
+	public boolean sendEmail()throws Exception
+	{
+		return this.sendEmail(null);
+	}
+	
+	/**
+	 * @Description: 邮件批量插入入口
+	 * @throws: sql语句执行出错
+	 */
+	public boolean bacthSendEmail()throws Exception
+	{
+		List<Map<String,String>> list=this.query();
+		if(list!=null && list.size()!=0) 
+		{
+			for(Map<String,String> map:list)
+			{
+				this.sendEmail(map.get("aab101"));
+			}
+			return true;
+		}
+		return false;
+	}
 	
 	/**
 	 * @Description: 向邮件表中插入邮件记录
@@ -120,9 +146,10 @@ public class Ah01ServiceImpl extends JdbcServicesSupport
 	 * 	通知类邮件主要是给用户展示通知，不需要用户进行任何操作
 	 * 	链接类邮件在向用户展示通知的同时会给予一个链接供用户操作
 	 * 	询问类邮件主要是询问用户的意向，会有接受和拒绝两种选择
-	 * @throws：sql语句执行出错
+	 * @param: 邮件接收人
+	 * @throws: sql语句执行出错
 	 */
-	public boolean sendEmail()throws Exception
+	private boolean sendEmail(Object aab101)throws Exception
 	{
 		StringBuilder sb=new StringBuilder()
 				.append("insert into ah01(aah101,aab101,aah102,aah103,aah104,aah105,")
@@ -130,14 +157,18 @@ public class Ah01ServiceImpl extends JdbcServicesSupport
 				.append("                    values(?,?,?,?,?,CURRENT_TIMESTAMP,0)")
 				;
 		Object state= Tools.getSequence("aah101");
+		if(aab101==null)
+		{
+			aab101=this.get("aab101");
+		}
 		Object idlist[]= {
 				state,
-				this.get("aab101"),
+				aab101,
 				this.get("aah102"),
 				this.get("aah103"),
 				this.get("aah104")
 				};
-		this.apppendSql(sb.toString(), idlist);;
+		this.apppendSql(sb.toString(), idlist);
 		
 		int type=Integer.valueOf(this.get("aah102").toString());
 		if(type==1) 
@@ -155,7 +186,7 @@ public class Ah01ServiceImpl extends JdbcServicesSupport
 		return this.executeTransaction();
 		
 	}
-
+	
 	/**
 	 * @Description: 修改邮件状态
 	 * @throws: sql语句执行出错

@@ -120,19 +120,13 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 		*/
 		StringBuilder sb=new StringBuilder()
 				.append("insert into ag01(aab101,aac101,aag102)") 
-				.append(" SELECT ?,?,CURRENT_TIMESTAMP ")
+				.append("SELECT ?,?,CURRENT_TIMESTAMP ")
 				.append(" from DUAL WHERE not EXISTS")
 				.append("(SELECT ?,? from ag01)")
 				;
-		Object idlist[]= {
-				this.get("aab101"),
-				this.get("aac101"),
-				this.get("aab101"),
-				this.get("aac101")
-				};
-
+		Object idlist[]= {this.get("aab101"),this.get("aac101"),this.get("aab101"),this.get("aac101")};
 		this.batchUpdate(sb.toString(), idlist);
-
+		
 		String sql = "update ac01 set aac110 = aac110 + 1 where aac101 = ?";
 		Object[] args = {this.get("aac101")};
 		this.batchUpdate(sql, args);

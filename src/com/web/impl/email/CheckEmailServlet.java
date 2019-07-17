@@ -1,5 +1,7 @@
 package com.web.impl.email;
 
+import java.sql.Time;
+
 import com.services.impl.CheckAh01ServiceImpl;
 import com.web.support.ControllerSupport;
 
@@ -21,7 +23,6 @@ public class CheckEmailServlet extends ControllerSupport
 		 * 当发现数据更新时返回信息，
 		 * 否则一直持有直到超时
 		 */
-		int i=0;
 		while(true)
 		{
 			int num=this.checkInfo();
@@ -30,8 +31,6 @@ public class CheckEmailServlet extends ControllerSupport
 				this.setResponseAttribute("emailNum", String.valueOf(num));
 				break;
 			}
-			i++;
-			System.out.println(i);
 			Thread.sleep(10*1000);	//睡眠10秒后再查询
 		}
 		return null;

@@ -108,7 +108,6 @@ public class BaseServlet extends HttpServlet
 		rueqestAttribute.clear();
 	}
 
-
 	private void parseResponseAttribute(HttpServletResponse response, Map<String, Object> responseAttribute)throws Exception
 	{
 		// 1.还原所有的键值对,形成集合

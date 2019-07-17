@@ -168,20 +168,20 @@ public class Ah01ServiceImpl extends JdbcServicesSupport
 				this.get("aah103"),
 				this.get("aah104")
 				};
-		this.apppendSql(sb.toString(), idlist);
+		this.appendSql(sb.toString(), idlist);
 		
 		int type=Integer.valueOf(this.get("aah102").toString());
 		if(type==1) 
 		{
 			String sql="insert into ah02(aah101,aah202) values(?,?)";		
 			Object ids[]= {state,this.get("aah202")};
-			this.apppendSql(sql, ids);
+			this.appendSql(sql, ids);
 		}
 		else if(type==2)
 		{
 			String sql="insert into ah02(aah101,aah202,aah203) values(?,?,?)";		
 			Object ids[]= {state,this.get("aah202"),this.get("aah203")};
-			this.apppendSql(sql, ids);
+			this.appendSql(sql, ids);
 		}
 		return this.executeTransaction();
 		

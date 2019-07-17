@@ -90,7 +90,8 @@ public class Ac04ServicesImpl extends JdbcServicesSupport
 				.append("             x.aac105,b.aab101,x.aac108,x.aac108")
 				.append("  from syscode a,ac01 x,ab01 b")
 				.append(" where x.aac103 = a.fcode and a.fname = 'aac103' ")
-				.append("   and x.aab101 = b.aab101 ")
+				.append("   and x.aab101 = b.aab101 ") 
+				.append("  and x.is_deleted = 0 ")
 				.append(" ORDER BY x.aac110")
 				;
 		List<Map<String,String>> showList=this.sequnenceList(this.queryForList(sql.toString()),this.getReadRate());

@@ -58,8 +58,6 @@ public abstract class ControllerSupport implements BaseController
 		}
 	}
 	
-
-
 	/**
 	 * 单一实例 查询
 	 * 
@@ -76,8 +74,6 @@ public abstract class ControllerSupport implements BaseController
 			this.saveAttribute("msg", "提示:该数据已删除或禁止访问!");
 		}
 	}
-	
-
 	
 	/**
 	 * 通过反射执行查询方法
@@ -136,7 +132,6 @@ public abstract class ControllerSupport implements BaseController
 		// 2.调用方法
 		return (boolean) method.invoke(services);
 	}
-	
 
 	/**
 	 * 更新行为的总开关 < 简单消息提示 >

@@ -58,33 +58,7 @@ public abstract class ControllerSupport implements BaseController
 		}
 	}
 	
-	protected final void savePageDataPlacement() throws Exception
-	{
-		List<Map<String, String>> rows = new Ac03ServicesImpl().queryPlacement();
-		if (rows.size() > 0)
-		{
-			this.saveAttribute("rows", rows);
-			this.saveAttribute("aab101", this.dto.get("aab101"));
-		}
-		else
-		{
-			this.saveAttribute("msg", "没有符合条件的数据!");
-		}
-	}
-	
-	protected final void savePageDataPlacementByState() throws Exception
-	{
-		List<Map<String, String>> rows = new Ac03ServicesImpl().queryPlacementByState();
-		if (rows.size() > 0)
-		{
-			this.saveAttribute("rows", rows);
-			this.saveAttribute("aab101", this.dto.get("aab101"));
-		}
-		else
-		{
-			this.saveAttribute("msg", "没有符合条件的数据!");
-		}
-	}
+
 
 	/**
 	 * 单一实例 查询
@@ -103,31 +77,7 @@ public abstract class ControllerSupport implements BaseController
 		}
 	}
 	
-	/**
-	 * 帖子级联查询
-	 * @throws Exception
-	 */
-	protected final void savePageInstance2() throws Exception
-	{
-		Map<String, String> ins = this.services.findById();
-		if (ins != null)
-		{
-			this.saveAttribute("ins", ins);
-		}
-		else
-		{
-			this.saveAttribute("msg", "提示:该数据已删除或禁止访问!");
-		}
-		List<Map<String, String>> rows = this.services.queryComment();
-		if (rows.size() > 0)
-		{
-			this.saveAttribute("rows", rows);
-		}
-		else
-		{
-			this.saveAttribute("msg", "没有符合条件的数据!");
-		}
-	}
+
 	
 	/**
 	 * 通过反射执行查询方法
@@ -261,6 +211,10 @@ public abstract class ControllerSupport implements BaseController
 	protected final void showDto()
 	{
 		System.out.println(this.dto);
+	}
+	
+	protected Object getDtoObject(String key) {
+		return this.dto.get(key);
 	}
 
 	/*****************************************

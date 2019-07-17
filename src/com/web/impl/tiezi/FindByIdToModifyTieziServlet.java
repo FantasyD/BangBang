@@ -8,5 +8,4 @@ public class FindByIdToModifyTieziServlet extends TieziControlletSupport{
 		this.savePageInstance();
 		return "addTiezi";
 	}
-
 }

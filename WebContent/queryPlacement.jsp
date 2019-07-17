@@ -13,7 +13,7 @@
 	function onEdit(vaac101,vaab101)
 	{
 		var vform = document.getElementById("myform");
-		vform.action = "<%=path%>/tiezi_findByIdTiezi.html?aac101=" + vaac101 + "&aab101=" + vaab101;
+		vform.action = "<%=path%>/tiezi_findByIdTiezi.html?type=4&aac101=" + vaac101 + "&aab101=" + vaab101;
 		vform.submit();
 	}
 	

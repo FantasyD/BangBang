@@ -73,7 +73,7 @@ public class Ac03ServicesImpl extends JdbcServicesSupport
 		StringBuilder sql = new StringBuilder()
 				.append("select x.aac301,x.aac101,x.aac302,x.aac305,b.aab102,x.aac303,b.aab101 ")
 				.append("  from ac03 x,ac01 a,ab01 b ")
-				.append(" where x.aac101 = a.aac101 and a.aab101 = b.aab101 and a.is_deleted = 0");
+				.append(" where x.aac101 = a.aac101 and a.aab101 = b.aab101 and a.is_deleted = 0 order by a.aac108 desc ");
 		
 		return this.queryForList(sql.toString());
 	}
@@ -85,7 +85,7 @@ public class Ac03ServicesImpl extends JdbcServicesSupport
 				.append("       x.aac105,b.aab101    ")
 				.append("  from syscode a,ac01 x,ab01 b,ac03 c")
 				.append(" where x.aac103 = a.fcode and a.fname = 'aac103'  ")
-				.append("   and x.aab101 = b.aab101 and c.aac101 = x.aac101 and c.aac305 = 1 and x.is_deleted = 0")
+				.append("   and x.aab101 = b.aab101 and c.aac101 = x.aac101 and c.aac305 = 1 and x.is_deleted = 0 order by x.aac108 desc ")
 				;
 		return this.queryForList(sql.toString());
 	}

@@ -17,6 +17,8 @@ public class Users
 	//保存每组聊天的更新状态
 	public static Map<String, List<String>> mailbox = new HashMap<>();
 	
+	public static Map<String, List<String>> mailbox_backup = new HashMap<>();
+	
 	//保存聊天记录删除状态
 	public static Map<String, String> delState = new HashMap<>();
 }

@@ -34,7 +34,16 @@ public class RecordServer {
 			this.aab101 = str.substring(0, index);
 			this.aab102 = str.substring(index + 1);
 			
-			
+			List<String> mailbox = Users.mailbox.get(this.aab102);
+			List<String> mailbox_backup = Users.mailbox_backup.get(this.aab102);
+			if(mailbox != null && mailbox_backup != null)
+			{
+				for(String s : mailbox_backup)
+				{
+					mailbox.add(s);
+				}
+				mailbox_backup.clear();
+			}
 			Users.userRecord.put(this.aab102, this);
 		}
 		
@@ -42,13 +51,27 @@ public class RecordServer {
 		@OnMessage
 		public void message(String message) throws IOException 
 		{
+			List<String> mailbox_backup = Users.mailbox_backup.get(this.aab102);
+			int index = 0;
+			if(mailbox_backup != null)
+			{
+				while(index < mailbox_backup.size())
+				{
+					if(mailbox_backup.get(index).equals(message))
+					{
+						mailbox_backup.remove(index);
+						continue;
+					}
+					index++;
+				}
+			}
 		}
 		
 		
 		@OnClose
 		public void close(Session session)
 		{
-			System.out.println("close");
+			System.out.println("close_recordServer");
 			this.state = false;
 		}
 		

@@ -19,4 +19,6 @@ public class Ae02ServiceImpl extends JdbcServicesSupport
 		return this.queryForList(sql, name);
 	}
 	
+
+	
 }

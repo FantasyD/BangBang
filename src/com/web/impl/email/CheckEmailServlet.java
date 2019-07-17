@@ -16,6 +16,12 @@ public class CheckEmailServlet extends ControllerSupport
 	@Override
 	public String execute() throws Exception
 	{
+		/**
+		 * 持有浏览器发来的询问，
+		 * 当发现数据更新时返回信息，
+		 * 否则一直持有直到超时
+		 */
+		int i=0;
 		while(true)
 		{
 			int num=this.checkInfo();
@@ -24,6 +30,8 @@ public class CheckEmailServlet extends ControllerSupport
 				this.setResponseAttribute("emailNum", String.valueOf(num));
 				break;
 			}
+			i++;
+			System.out.println(i);
 			Thread.sleep(10*1000);	//睡眠10秒后再查询
 		}
 		return null;

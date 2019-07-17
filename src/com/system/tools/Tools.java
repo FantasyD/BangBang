@@ -328,4 +328,37 @@ public class Tools
 			DBUtils.close(pstm2);
 		}
 	}
+	
+	
+	public static int getSequenceWithoutAdd(String pkname) throws Exception
+	{
+		PreparedStatement pstm1 = null; // 查询序列的当前值
+		PreparedStatement pstm2 = null; // 修改序列的当前值
+		ResultSet rs = null;
+		try
+		{
+			// 定义SQL语句,查询序列的当前值
+			String sql1 = "select a.pkvalue from sequence a where a.pkname=?";
+			// 编译SQL1
+			pstm1 = DBUtils.prepareStatement(sql1);
+			// 参数赋值
+			pstm1.setObject(1, pkname);
+			// 执行查询
+			rs = pstm1.executeQuery();
+
+			// 定义序列当前值
+			int currentVal = 0;
+			if (rs.next())
+			{
+				// 读取数据库当前值,为序列赋值
+				currentVal = rs.getInt(1);
+			}
+			return currentVal;
+		} finally
+		{
+			DBUtils.close(rs);
+			DBUtils.close(pstm1);
+			DBUtils.close(pstm2);
+		}
+	}
 }

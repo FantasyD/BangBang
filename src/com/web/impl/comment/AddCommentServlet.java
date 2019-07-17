@@ -8,7 +8,8 @@ public class AddCommentServlet extends CommentControllerSupport
 	public String execute() throws Exception 
 	{
 		this.update("addComment","¡Ù—‘∑¢≤º");
-		this.savePageInstance2();
+		this.savePageInstance();
+		this.savePageData();
 		return "tieziDetails";
 	}
 }

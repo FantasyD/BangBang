@@ -115,7 +115,7 @@ public class Ah01ServiceImpl extends JdbcServicesSupport
 	 * @Description: 邮件批量插入入口
 	 * @throws: sql语句执行出错
 	 */
-	public boolean bacthSendEmail()throws Exception
+	public boolean batchSendEmail()throws Exception
 	{
 		List<Map<String,String>> list=this.query();
 		if(list!=null && list.size()!=0) 

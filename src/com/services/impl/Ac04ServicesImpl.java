@@ -13,15 +13,24 @@ import com.services.JdbcServicesSupport;
 
 public class Ac04ServicesImpl extends JdbcServicesSupport
 {
+	
+	/**
+	 * @Description: 计算用户浏览过的帖子类型比例
+	 * @param:用户浏览帖子记录
+	 * @return:浏览帖子类型比例
+	 * @throws: sql语句执行出错
+	 */
 	private List<Entry<String, Double>> getRate(List<Map<String,String>> readList)throws Exception
 	{
 		//帖子类型
 		String types[]= {"01","02","03","04","05","06",};
 		int sum=0;
+		//计算浏览总数
 		for(Map<String,String> map:readList)
 		{
 			sum+=Integer.parseInt(map.get("times"));
 		}
+		//添加用户所浏览的帖子类型对应的比例
 		Map<String,Double> likeMap=new HashMap<>();
 		for(Map<String,String> map:readList)
 		{
@@ -48,6 +57,11 @@ public class Ac04ServicesImpl extends JdbcServicesSupport
 		return new ArrayList<>(likeMap.entrySet());
 	}
 	
+	/**
+	 * @Description: 查询数据库获取用户的浏览记录
+	 * @return:用户浏览帖子的类型比例
+	 * @throws: sql语句执行出错
+	 */
 	private List<Entry<String, Double>> getReadRate()throws Exception
 	{
 		StringBuilder sb=new StringBuilder()
@@ -62,6 +76,12 @@ public class Ac04ServicesImpl extends JdbcServicesSupport
 		return this.getRate(this.queryForList(sb.toString(), id));
 	}
 	
+	/**
+	 * @Description: 
+	 * 	查询
+	 * @return:返回结果描述
+	 * @throws:sql语句执行出错
+	 */
 	public List<Map<String,String>> query()throws Exception
 	{
 		// 定义SQL主体

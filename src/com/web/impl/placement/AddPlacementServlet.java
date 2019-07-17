@@ -1,6 +1,8 @@
 package com.web.impl.placement;
 
-public class AddPlacementServlet extends PlacementControllerSupport 
+import com.web.impl.tiezi.TieziControlletSupport;
+
+public class AddPlacementServlet extends TieziControlletSupport 
 {
 	@Override
 	public String execute() throws Exception 

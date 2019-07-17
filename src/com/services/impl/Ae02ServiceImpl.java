@@ -8,7 +8,7 @@ import com.services.JdbcServicesSupport;
 public class Ae02ServiceImpl extends JdbcServicesSupport
 {
 	/**
-	 * @Description: 根据用户输入的数字模糊查询用户
+	 * @Description: 模糊查询
 	 * @throws：sql语句执行出错
 	 */
 	public List<Map<String,String>> query()throws Exception
@@ -18,5 +18,7 @@ public class Ae02ServiceImpl extends JdbcServicesSupport
 		
 		return this.queryForList(sql, name);
 	}
+	
+
 	
 }

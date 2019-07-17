@@ -6,7 +6,7 @@ public class UpdatePlacementServlet extends PlacementControllerSupport
 	public String execute() throws Exception 
 	{
 		this.update("updatePlacementState", "×´Ì¬ÐÞ¸Ä");
-		this.savePageDataPlacement();
+		this.savePageData();
 		return "queryPlacement";
 	}
 }

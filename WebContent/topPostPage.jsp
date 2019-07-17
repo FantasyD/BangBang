@@ -42,6 +42,7 @@
 	     <c:when test="${rows!=null }">
 	         <!-- 显示实际查询到的数据 -->
 		     <c:forEach items="${rows }" var="ins" varStatus="vs">
+		     	<c:if test="${ins.aac305 == 1 }">
 	    	   	  <tr>
 				    <td>${vs.count }</td>
 				    <td>
@@ -52,6 +53,7 @@
 				    <td>${ins.cnaac103 }</td>   			    
 					<td>${ins.aac105 }</td>
 				  </tr>
+			  	</c:if>
 		      </c:forEach>
 	     </c:when>
 	   </c:choose>

@@ -4,8 +4,7 @@ public class QueryPlacementByStateServlet extends PlacementControllerSupport
 {
 	public String execute() throws Exception 
 	{
-		this.savePageDataPlacementByState();
+		this.savePageData();;
 		return "topPostPage";
 	}
-
 }

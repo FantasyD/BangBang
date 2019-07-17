@@ -39,7 +39,7 @@
 			type:"POST",
 			url:'<%=path%>/email_CheckEmail.html',
 			data:{'aab101':'${userId}','emailNum':newNum},
-			timeout:10*60*1000,  //设置10分钟超时
+			timeout:30*60*1000,  //设置10分钟超时
 			success:function(data)
 			{
 				newNum=data;

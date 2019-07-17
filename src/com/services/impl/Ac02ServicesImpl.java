@@ -47,8 +47,6 @@ public class Ac02ServicesImpl extends JdbcServicesSupport
 		return this.queryForList(sql.toString(),args);
 	}
 	
-	
-	
 	public Map<String, String> findById() throws Exception
 	{
 		StringBuilder str = new StringBuilder()

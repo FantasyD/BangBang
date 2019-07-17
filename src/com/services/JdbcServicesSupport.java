@@ -196,6 +196,7 @@ public abstract class JdbcServicesSupport implements BaseServices
 		}
 		this.regPstmObject(pstm);
 	}
+	
 
 	/**
 	 * ÏòÓï¾äÁĞ±í,×¢²áSQLÓï¾ä

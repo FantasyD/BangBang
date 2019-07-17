@@ -1,11 +1,14 @@
 package com.web.impl.tiezi;
 
-public class FindByIdTieziServlet extends TieziControlletSupport
+import com.web.impl.comment.CommentControllerSupport;
+
+public class FindByIdTieziServlet extends CommentControllerSupport
 {
 
 	@Override
 	public String execute() throws Exception {
-		this.savePageInstance2();
+		this.savePageData();
+		this.savePageInstance();
 		return "tieziDetails";
 	}
 

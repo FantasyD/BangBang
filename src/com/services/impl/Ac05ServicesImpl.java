@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.jdt.internal.compiler.ast.ThisReference;
+
 import com.services.JdbcServicesSupport;
+import com.system.tools.Tools;
 
 /**
  * @Description: ·¢²¼Ìû×Ó
@@ -49,7 +52,7 @@ public class Ac05ServicesImpl extends JdbcServicesSupport
 		Object id=this.get("aab101");
 		List<Map<String,String>> groups=this.queryForList(sql, id);
 		List<Map<String,String>> members=new ArrayList<>();
-		for(Map<String,String> member:members)
+		for(Map<String,String> member:groups)
 		{
 			Object ids[]= {id,member.get("aae101")};
 			members.addAll(this.getGroupsMembersId(ids));
@@ -70,4 +73,17 @@ public class Ac05ServicesImpl extends JdbcServicesSupport
 	}
 	
 	
+	public Map<String, String> findById() throws Exception
+	{				
+		StringBuilder str = new StringBuilder()
+				.append("select x.aac101,b.aab102 cnaab102,x.aac102,a.fvalue cnaac103,x.aac106, ")
+				.append("       x.aac105,x.aac104,x.aac109 imgPath,b.aab101")
+				.append("  from syscode a,ac01 x,ab01 b")
+				.append(" where x.aac103 = a.fcode  ")
+			    .append("   and x.aab101 = b.aab101  " )
+			    .append("   and a.fname = 'aac103' and x.aac101 = ? ") 
+				;
+		return this.queryForMap(str.toString(), (Tools.getSequenceWithoutAdd("aac101")));	
+	}
+
 }

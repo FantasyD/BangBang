@@ -116,7 +116,7 @@
 	</form>
 	<br>
 	<form action="" method = "post" name="returnForm" id = "returnForm">
-		<input type = "submit" name = "next" onclick="goback()" class="btn btn-default" value = "·µ»Ø" formnovalidate="formnovalidate">
+		<button onclick="goback()" class="btn btn-default">·µ»Ø</button>
 		<input type="hidden" name="aac101" value="${ins.aac101 }">
 		<input type="hidden" name="aab101" value="${ins.aab101 }">
 	</form>
@@ -124,7 +124,6 @@
 	
 </div>
 <c:set var="aac101" scope="session" value="${ins.aac101 }"></c:set>
-<c:set var="type" scope="session" value="${type }"></c:set>
 <c:set var="aab101" scope="session" value="${ins.aab101 }"></c:set>
 </body>
 </html>

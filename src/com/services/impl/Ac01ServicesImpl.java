@@ -73,7 +73,7 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 		return this.executeTransaction();
 	}
 	
-	
+	/*
 	public boolean addTiezi() throws Exception
 	{
 
@@ -97,7 +97,7 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 		this.put("aab101", this.get("aab101"));
 		
 		return this.executeUpdate(sql.toString(), argsObjects)>0;
-	}
+	}*/
 	
 	public boolean insertImg() throws Exception
 	{
@@ -125,7 +125,6 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 			String sql2="insert into ag01(aab101,aac101,aag102) values(?,?,CURRENT_TIMESTAMP)";
 			this.appendSql(sql2, idlist);
 		}
-		System.out.println(idlist[0]+"==="+idlist[1]);
 		//this.appendSql(sb.toString(), idlist);
 		
 		String sql = "update ac01 set aac110 = aac110 + 1 where aac101 = ?";

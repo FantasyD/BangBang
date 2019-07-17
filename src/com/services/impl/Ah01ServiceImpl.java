@@ -1,5 +1,6 @@
 package com.services.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -89,6 +90,7 @@ public class Ah01ServiceImpl extends JdbcServicesSupport
 		{
 			Map<String,Object> map=new HashMap<>();
 			map.put(id, this.get(key));
+			System.out.println(map);
 			this.baseServices.setMapDto(map);
 			return true;
 		}
@@ -115,9 +117,10 @@ public class Ah01ServiceImpl extends JdbcServicesSupport
 	 * @Description: 邮件批量插入入口
 	 * @throws: sql语句执行出错
 	 */
-	public boolean bacthSendEmail()throws Exception
+	public boolean batchSendEmail()throws Exception
 	{
 		List<Map<String,String>> list=this.query();
+		System.out.println(list);
 		if(list!=null && list.size()!=0) 
 		{
 			for(Map<String,String> map:list)
@@ -151,16 +154,24 @@ public class Ah01ServiceImpl extends JdbcServicesSupport
 	 */
 	private boolean sendEmail(Object aab101)throws Exception
 	{
+		//检测邮件接收方是否存在
+		String str="select aab102 from ab01 where aab101=?";
+		if(aab101==null)
+		{
+			aab101=this.get("aab101");
+		}
+		if(this.queryForList(str, aab101).size()==0)
+		{
+			return false;
+		}
+		
 		StringBuilder sb=new StringBuilder()
 				.append("insert into ah01(aah101,aab101,aah102,aah103,aah104,aah105,")
 				.append("                                    aah106)")
 				.append("                    values(?,?,?,?,?,CURRENT_TIMESTAMP,0)")
 				;
 		Object state= Tools.getSequence("aah101");
-		if(aab101==null)
-		{
-			aab101=this.get("aab101");
-		}
+		
 		Object idlist[]= {
 				state,
 				aab101,
@@ -199,4 +210,30 @@ public class Ah01ServiceImpl extends JdbcServicesSupport
 		return this.executeUpdate(sql, idlist)>0;
 	}
 	
+	
+	public boolean addTiezi() throws Exception
+	{
+
+		StringBuilder sql = new StringBuilder()
+				.append("insert into ac01(aac101,aab101,aac102,aac103,aac104,aac105,")
+    			.append("                 aac106,aac107,aac108,aac109,is_deleted,aac110)  ")
+    			.append("          values(?,?,?,?,?,?,")
+    			.append("                 ?,current_timestamp,current_timestamp,?,0,0)")
+				;
+		
+		Object[] argsObjects = {
+				Tools.getSequence("aac101"),
+				this.get("aab101"),
+				this.get("aac102"),
+				this.get("aac103"),
+				this.get("aac104"),
+				this.get("aac105"),
+				this.get("aac106"),
+				this.get("imgpath")
+		};
+		
+		this.put("aab101", this.get("aab101"));
+		
+		return this.executeUpdate(sql.toString(), argsObjects)>0;
+	}
 }

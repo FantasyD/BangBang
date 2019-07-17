@@ -1,11 +1,27 @@
 package com.web.impl.tiezi;
 
-public class AddTieziServlet extends TieziControlletSupport  {
+import com.services.impl.Ac05ServicesImpl;
+import com.services.impl.Ah01ServiceImpl;
+import com.web.support.ControllerSupport;
+
+public class AddTieziServlet extends ControllerSupport  
+{
+	public AddTieziServlet()
+	{
+		this.setServices(new Ah01ServiceImpl(new Ac05ServicesImpl(),"aab101","aab101"));
+	}
+	
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
-		this.update("addTiezi","添加帖子");
-		this.savePageData();
-		return "myTiezi";
+		//this.update("addTiezi","添加帖子");
+
+		this.savePageInstance();
+		
+		this.update("batchSendEmail", "发送");
+		/*
+		this.setServices(new Ah01ServiceImpl(new Ac05ServicesImpl(),"aab101","aab101"));
+		*/
+		return "tieziDetails";
 	}
 }

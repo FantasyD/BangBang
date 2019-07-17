@@ -31,7 +31,7 @@ public class Ac02ServicesImpl extends JdbcServicesSupport
 	}
 	
 	
-	public List<Map<String, String>> queryComment() throws Exception
+	public List<Map<String, String>> query() throws Exception
 	{
 		//定义SQL主体
 		StringBuilder sql = new StringBuilder()

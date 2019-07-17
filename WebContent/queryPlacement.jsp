@@ -13,7 +13,7 @@
 	function onEdit(vaac101,vaab101)
 	{
 		var vform = document.getElementById("myform");
-		vform.action = "<%=path%>/tiezi_findByIdTiezi.html?type=4&aac101=" + vaac101 + "&aab101=" + vaab101;
+		vform.action = "<%=path%>/tiezi_findByIdTiezi.html?aac101=" + vaac101 + "&aab101=" + vaab101;
 		vform.submit();
 	}
 	
@@ -29,6 +29,7 @@
 <br>
 <br>
 <form id = "myform" action="<%=path%>/tiezi_queryTiezi.html" method="post">
+<c:set var="type" scope="session" value="4"></c:set>
 	<!-- 查询条件区 -->
 	<table border="1" width="95%" align="center">
 	  <caption>
@@ -59,7 +60,7 @@
 				    	<!--  # 表示空锚 -->
 				    	<a href="#" onclick = "onEdit('${ins.aac101 }','${ins.aab101 }')">${ins.aac101 }</a>
 				    </td>
-				    <td>${ins.aab102 }</td>
+				    <td>${ins.cnaab102 }</td>
 				    <td>${ins.aac302 }</td>   			    
 					<td>${ins.aac303 }</td>
 					<c:if test = "${ins.aac305 == 0 }">

@@ -11,7 +11,7 @@
 		function onEdit(vaac101,vaab101)
 		{
 			var vform = document.getElementById("myform");
-			vform.action = "<%=path%>/tiezi_findByIdTiezi.html?type=3&aac101=" + vaac101 + "&aab101=" + vaab101;
+			vform.action = "<%=path%>/tiezi_findByIdTiezi.html?aac101=" + vaac101 + "&aab101=" + vaab101;
 			vform.submit();
 		}
 	</script>
@@ -20,6 +20,7 @@
 <br>
 <br>
 <form id = "myform" action="" method="post">
+<c:set var="type" scope="session" value="3"></c:set>
 	<!-- 查询条件区 -->
 	<table border="1" width="95%" align="center">
 		<div align="center">

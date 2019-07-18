@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="GBK"%>
 <%@taglib uri="http://org.wangxg/jsp/extl" prefix="e"%>
 <%String path=request.getContextPath(); 
-		session.setAttribute("userId", "14");
+		session.setAttribute("userId", "3");
 		session.setAttribute("userName","ци╤Ю");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"

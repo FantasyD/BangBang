@@ -8,12 +8,8 @@ import com.web.support.ControllerSupport;
  * @Description: 邀请其他用户进入群组
  * @author: 宁志豪
  */
-public class InviteToGroupServlet extends ControllerSupport
+public class InviteToGroupServlet extends GroupServlet
 {
-	public InviteToGroupServlet()
-	{
-		 this.setServices(new Ah01ServiceImpl(new Ae01ServiceImpl(),"aah107","aae101"));
-	}
 	@Override
 	public String execute() throws Exception
 	{

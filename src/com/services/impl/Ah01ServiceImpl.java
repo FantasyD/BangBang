@@ -12,96 +12,8 @@ import com.system.tools.Tools;
  * @Description: 实现邮件模块所需的数据库操作支持
  * @author: 宁志豪
  */
-public class Ah01ServiceImpl extends JdbcServicesSupport
+public abstract class Ah01ServiceImpl extends JdbcServicesSupport
 {
-	/************************************************************
-	 * 			以下方法的目的在于抽象findById和query方法
-	 * 			将具体的实现方法交由具体的Service方法实现
-	 *************************************************************/
-	private BaseServices baseServices;
-	private String key;
-	private String id;
-	
-	/**
-	* @Description: 
-	*	无参构造器
-	*	如果不需要进行查询数据，则使用本构造器
-	 */
-	public Ah01ServiceImpl()
-	{
-	}
-	
-	/**
-	* @Description: 
-	* 	构造函数
-	* 	需要进行查询操作时使用本构造器
-	* 	初始化baseServices属性，决定使用的BaseServices实现类
-	* 	创造与查询的dto
-	* @param:
-	* 	baseServices: BaseServices的实现类
-	* 	key: 在当前dto中存放的用于查询的键值对的key
-	* 	id: 具体查询时使用的键值对的key
-	 */
-	public Ah01ServiceImpl(BaseServices baseServices,String key,String id)
-	{
-		this.baseServices=baseServices;
-		this.key=key;
-		this.id=id;
-	}
-	
-	/**
-	 * @Description:单一实例查询，根据主键查询数据，具体实现交由具体类
-	 * @throws: sql语句执行出错
-	 */
-	public Map<String, String> findById()throws Exception
-	{
-		//如果没有初始化baseService属性则不予执行单一实例查询
-		if(this.isExited())
-		{
-			Map<String,String> result=this.baseServices.findById();
-			return result;
-		}
-		else
-			return null;
-	}
-	
-	/**
-	 * @Description: 数据批量查询
-	 * @throws:sql语句执行出错
-	 */
-	public List<Map<String,String>> query()throws Exception
-	{
-		//如果没有初始化baseService属性则不予执行数据批量处理
-		if(this.isExited())
-			return this.baseServices.query();
-		else
-			return null;
-	}
-	
-	/**
-	 * @Description: 检测是否初始化baseServices属性
-	 * @throws: sql语句执行出错
-	 */
-	public boolean isExited()
-	{
-		if(this.baseServices!=null)
-		{
-			Map<String,Object> map=new HashMap<>();
-			map.put(id, this.get(key));
-			System.out.println(map);
-			this.baseServices.setMapDto(map);
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	
-	/***************************************************************************
-	 * 						以下方法为邮件的插入与查询方法
-	 * 
-	 ***************************************************************************/
 	/**
 	 * @Description: 单一邮件发送入口
 	 * @throws: sql语句执行出错
@@ -206,32 +118,5 @@ public class Ah01ServiceImpl extends JdbcServicesSupport
 		Object idlist[]= {this.get("aah106"),this.get("aah101")};
 		
 		return this.executeUpdate(sql, idlist)>0;
-	}
-	
-	
-	public boolean addTiezi() throws Exception
-	{
-
-		StringBuilder sql = new StringBuilder()
-				.append("insert into ac01(aac101,aab101,aac102,aac103,aac104,aac105,")
-    			.append("                 aac106,aac107,aac108,aac109,is_deleted,aac110)  ")
-    			.append("          values(?,?,?,?,?,?,")
-    			.append("                 ?,current_timestamp,current_timestamp,?,0,0)")
-				;
-		
-		Object[] argsObjects = {
-				Tools.getSequence("aac101"),
-				this.get("aab101"),
-				this.get("aac102"),
-				this.get("aac103"),
-				this.get("aac104"),
-				this.get("aac105"),
-				this.get("aac106"),
-				this.get("imgpath")
-		};
-		
-		this.put("aab101", this.get("aab101"));
-		
-		return this.executeUpdate(sql.toString(), argsObjects)>0;
 	}
 }

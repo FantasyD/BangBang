@@ -77,69 +77,25 @@
 														<span>我的帖子</span>
 													</a>
 												</li>
-												<li class="menu-item-has-children">
+												<!-- 查询我的群组 -->
+												<li>
+													<a href="myGroups.jsp">
+														<span>我的群组</span>
+													</a>
+												</li>
+												<li class="wt-notificationicon">
 													<a href="javascript:void(0);">
-														<span>All Jobs</span>
-													</a>
-													<ul class="sub-menu">
-														<li><a href="dashboard-completejobs.html">Completed Jobs</a></li>
-														<li><a href="dashboard-canceljobs.html">Cancelled Jobs</a></li>
-														<li><a href="dashboard-ongoingjob.html">Ongoing Jobs</a></li>
-														<li><a href="dashboard-ongoingsingle.html">Ongoing Single</a></li>
-													</ul>
-												</li>
-												<li>
-													<a href="dashboard-managejobs.html">
-														<span>Manage Jobs</span>
-													</a>
-												</li>
-												<li class="wt-notificationicon menu-item-has-children">
-													<a href="javascript:void(0);">
-														<span>Messages</span>
-													</a>
-													<ul class="sub-menu">
-														<li><a href="dashboard-messages.html">Messages</a></li>
-														<li><a href="dashboard-messages2.html">Messages V 2</a></li>
-													</ul>
-												</li>
-												<li>
-													<a href="dashboard-saveitems.html">
-														<span>My Saved Items</span>
+														<span>我的消息</span>
 													</a>
 												</li>
 												<li>
-													<a href="dashboard-invocies.html">
-														<span>Invoices</span>
-													</a>
-												</li>
-												<li>
-													<a href="dashboard-category.html">
-														<span>Category</span>
-													</a>
-												</li>
-												<li>
-													<a href="dashboard-packages.html">
-														<span>Packages</span>
-													</a>
-												</li>
-												<li>
-													<a href="dashboard-proposals.html">
-														<span>Proposals</span>
-													</a>
-												</li>
-												<li>
-													<a href="dashboard-accountsettings.html">
-														<span>Account Settings</span>
-													</a>
-												</li>
-												<li>
-													<a href="dashboard-helpsupport.html">
-														<span>Help &amp; Support</span>
+													<a href="myEmails.jsp">
+														<span>我的邮件</span>
 													</a>
 												</li>
 												<li>
 													<a href="index.html">
-														<span>Logout</span>
+														<span>退出</span>
 													</a>
 												</li>
 											</ul>

@@ -77,15 +77,11 @@
 						
 						<nav id="wt-navdashboard" class="wt-navdashboard">
 							<ul>
-								<li class="menu-item-has-children">
-									<a href="javascript:void(0);">
-										<i class="ti-dashboard"></i>
-										<span>Insights</span>
+								<li>
+									<a href="userInfo.jsp">
+										<i class="ti-briefcase"></i>
+										<span>ÎÒµÄÖ÷Ò³</span>
 									</a>
-									<ul class="sub-menu">
-										<li><hr><a href="dashboard-insights.html">Insights</a></li>
-										<li><hr><a href="dashboard-insightsuser.html">Insights User</a></li>
-									</ul>
 								</li>
 								<li>
 									<a href="myPost.jsp">

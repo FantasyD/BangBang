@@ -65,14 +65,11 @@
 										</div>
 										<nav class="wt-usernav">
 											<ul>
-												<li class="menu-item-has-children page_item_has_children">
-													<a href="javascript:void(0);">
-														<span>Insights</span>
+											<!-- 查询我的信息 -->
+												<li>
+													<a href="userInfo.jsp">
+														<span>我的主页</span>
 													</a>
-													<ul class="sub-menu children">
-														<li><a href="dashboard-insights.html">Insights</a></li>
-														<li><a href="dashboard-insightsuser.html">Insights User</a></li>
-													</ul>
 												</li>
 												<!-- 查询我的帖子 -->
 												<li>

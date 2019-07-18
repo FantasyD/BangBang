@@ -7,9 +7,12 @@
 <html>
 <head>
 	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/iziToast.min.css">
+	<link rel="stylesheet" href="css/demo.css">
   <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
   <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <script src="js/iziToast.min.js" type="text/javascript"></script>
 </head>
 <body>
 <!-- Header Start -->

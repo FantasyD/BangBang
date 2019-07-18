@@ -231,6 +231,7 @@ public class Ah01ServiceImpl extends JdbcServicesSupport
 		};
 		
 		this.put("aab101", this.get("aab101"));
+		this.put("aah202", "/BangBang/tiezi_findByIdTiezi.html?aac101="+Tools.getSequenceWithoutAdd("aac101"));
 		
 		return this.executeUpdate(sql.toString(), argsObjects)>0;
 	}

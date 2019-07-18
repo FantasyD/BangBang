@@ -17,10 +17,10 @@
 		vform.submit();
 	}
 	
-	function onUpdateState(vaac301,vState)
+	function onUpdateState(vaac301,vState,vaab101)
 	{
 		var vform = document.getElementById("myform");
-		vform.action = "<%=path%>/placement_updatePlacement.html?aac301=" + vaac301 + "&aac305=" + vState;
+		vform.action = "<%=path%>/placement_updatePlacement.html?aac301=" + vaac301 + "&aac305=" + vState +"&aab101=" + vaab101;
 		vform.submit();
 	}
 </script>
@@ -66,29 +66,29 @@
 					<c:if test = "${ins.aac305 == 0 }">
 						<td>待处理</td>
 						<td>
-							<a href="#" onclick = "onUpdateState('${ins.aac301 }',1)">置顶</a>
-							<a href="#" onclick = "onUpdateState('${ins.aac301 }',3)">拒绝</a>
+							<a href="#" onclick = "onUpdateState('${ins.aac301 }',1,'${ins.aab101 }')">置顶</a>
+							<a href="#" onclick = "onUpdateState('${ins.aac301 }',3,'${ins.aab101 }')">拒绝</a>
 						</td>
 					</c:if>
 					
 					<c:if test = "${ins.aac305 == 1 }">
 						<td>已置顶</td>
 						<td>
-							<a href="#" onclick = "onUpdateState('${ins.aac301 }',2)">取消</a>					
+							<a href="#" onclick = "onUpdateState('${ins.aac301 }',2,'${ins.aab101 }')">取消</a>					
 						</td>
 					</c:if>
 					
 					<c:if test = "${ins.aac305 == 2 }">
 						<td>取消置顶</td>
 						<td>
-							<a href="#" onclick = "onUpdateState('${ins.aac301 }',1)">重新置顶</a>		
+							<a href="#" onclick = "onUpdateState('${ins.aac301 }',1,'${ins.aab101 }')">重新置顶</a>		
 						</td>
 					</c:if>
 					
 					<c:if test = "${ins.aac305 == 3 }">
 						<td>拒绝置顶</td>
 						<td>
-							<a href="#" onclick = "onUpdateState('${ins.aac301 }',1)">重新置顶</a>							
+							<a href="#" onclick = "onUpdateState('${ins.aac301 }',1,'${ins.aab101 }')">重新置顶</a>							
 						</td>
 					</c:if>
 				  </tr>
@@ -96,6 +96,9 @@
 	     </c:when>
 	   </c:choose>
 	</table>
+	
+	<input type="hidden" name="aah102" value="0">
+	<input type="hidden" name="aah103" value="置顶帖子审核请求处理">
 	
 	<!-- 功能按钮区 -->
 	<table border="1" width="95%" align="center" >

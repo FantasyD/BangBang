@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.services.JdbcServicesSupport;
+import com.system.tools.Tools;
 
 public class Ac02ServicesImpl extends JdbcServicesSupport
 {
@@ -43,6 +44,8 @@ public class Ac02ServicesImpl extends JdbcServicesSupport
 		Object args[] = {
 				this.get("aac101")
 		};
+		
+		this.put("aah202", "/BangBang/tiezi_findByIdTiezi.html?aac101="+Tools.getSequenceWithoutAdd("aac101"));
 		
 		return this.queryForList(sql.toString(),args);
 	}

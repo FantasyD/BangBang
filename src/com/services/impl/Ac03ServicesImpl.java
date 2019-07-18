@@ -31,6 +31,12 @@ public class Ac03ServicesImpl extends JdbcServicesSupport
 				this.get("aac301")
 		};
 		
+		if((int)this.get("aac305") == 1) {
+			this.put("aah104", "您的帖子已被置顶");
+		}else {
+			this.put("aah104", "您的帖子置顶已被取消");
+		}
+		
 		return this.executeUpdate(sql.toString(), args)>0;
 		
 	}

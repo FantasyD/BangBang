@@ -88,17 +88,11 @@
 										<span>我的帖子</span>
 									</a>
 								</li>
-								<li class="menu-item-has-children wt-active">
-									<a href="javascript:void(0);">
+								<li>
+									<a href="myGroups.jsp">
 										<i class="ti-package"></i>
-										<span>All Jobs</span>
+										<span>我的群组</span>
 									</a>
-									<ul class="sub-menu">
-										<li><hr><a href="dashboard-completejobs.html">Completed Jobs</a></li>
-										<li class="wt-active"><hr><a href="dashboard-canceljobs.html">Cancelled Jobs</a></li>
-										<li><hr><a href="dashboard-ongoingjob.html">Ongoing Jobs</a></li>
-										<li><hr><a href="dashboard-ongoingsingle.html">Ongoing Single</a></li>
-									</ul>
 								</li>
 								<li>
 									<a href="dashboard-managejobs.html">

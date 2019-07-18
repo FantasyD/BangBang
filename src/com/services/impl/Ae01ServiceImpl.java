@@ -13,6 +13,7 @@ import com.system.tools.Tools;
  */
 public class Ae01ServiceImpl extends Ah01ServiceImpl
 {
+	
 	/**
 	 * @Description: 新建群组，将用户在新建群组表中填写的信息写入群组信息表和群组用户表
 	 * @throws：SQL执行出错
@@ -115,9 +116,7 @@ public class Ae01ServiceImpl extends Ah01ServiceImpl
 	 */
 	public boolean inviteGroup()throws Exception
 	{
-		String sql="select aab101 from ae02 where aab101=? and aae101=?";
-		Object states[]= {this.get("iaab101"),this.get("aae101")};
-		return !(this.queryForMap(sql, states)!=null);
+		return this.sendEmail();
 	}
 	
 	/**

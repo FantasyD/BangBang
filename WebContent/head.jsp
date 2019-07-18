@@ -7,9 +7,13 @@
 <html>
 <head>
 	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/iziToast.min.css">
+	<link rel="stylesheet" href="css/demo.css">
   <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
   <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <script src="js/iziToast.min.js" type="text/javascript"></script>
+  
 </head>
 <body>
 	<nav class="navbar navbar-expand-sm bg-info navbar-dark">
@@ -44,7 +48,12 @@
 			{
 				newNum=data;
 				$("#msgNum").text(data)
-				show();
+				iziToast.error({
+	        		title: '提示',
+	        		message: '您有'+data+'条未读提示',
+	       			position: 'bottomRight',
+	        		transitionIn: 'fadeInDown'
+	    		});
 				askEmail(newNum);
 			},
 			error:function()
@@ -54,17 +63,19 @@
 			}
 		});
 	};
-	function show()
-	{
-			document.getElementById("msgRemind").style.display="block";
-			setTimeout(function(){document.getElementById("msgRemind").style.display="none";},2000);
-	}
+
+	iziToast.settings({
+	    timeout: 5000,
+	    pauseOnHover: true,
+	    close: true,
+	    progressBar: true,
+	});
 	
 $(document).ready(function()
 		{
 			var newNum=0;
 			askEmail(newNum);
 		})
-		
 </script>
+</body>
 </html>

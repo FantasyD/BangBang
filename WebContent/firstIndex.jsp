@@ -1,3 +1,4 @@
+
 <%@ page language="java" pageEncoding="GBK"%>
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -108,6 +109,7 @@
 										<div class="wt-widget wt-widgetarticlesholder">
 											<div class="wt-widgettitle">
 												<h2>Popular Articles</h2>
+
 											</div>
 											<div class="wt-widgetcontent">
 												<div class="wt-particlehold">
@@ -152,6 +154,7 @@
 													<a href="javascript:void(0);">00后</a>
 													<a href="javascript:void(0);">背包客</a>
 													<a href="javascript:void(0);">发烧友</a>
+
 												</div>
 											</div>
 										</div>
@@ -250,6 +253,7 @@
 	<script src="js/tipso.js"></script>
 	<script src="js/jRate.js"></script>
 	<script src="js/main.js"></script>
+
 	
 	<script type="text/javascript">
 		/**
@@ -302,5 +306,6 @@
 		  document.getElementById("barcon").innerHTML = tempStr;
 		}
 	</script>
+
 </body>
 </html>

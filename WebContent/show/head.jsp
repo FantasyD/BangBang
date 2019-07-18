@@ -55,57 +55,6 @@
 								</form>
 								
 								<div class="wt-rightarea">
-									<div class="wt-loginarea">
-										<figure class="wt-userimg">
-											<img src="images/user-login.png" alt="img description">
-										</figure>
-										<div class="wt-loginoption">
-											<a href="javascript:void(0);" id="wt-loginbtn" class="wt-loginbtn">Login</a>
-											<div class="wt-loginformhold">
-												<div class="wt-loginheader">
-													<span>Login</span>
-													<a href="javascript:;"><i class="fa fa-times"></i></a>
-												</div>
-												<form class="wt-formtheme wt-loginform do-login-form">
-													<fieldset>
-														<div class="form-group">
-															<input type="text" name="username" class="form-control" placeholder="Username">
-														</div>
-														<div class="form-group">
-															<input type="password" name="password" class="form-control" placeholder="Password">
-														</div>
-														<div class="wt-logininfo">
-															<a href="javascript:;" class="wt-btn do-login-button">Login</a>
-															<span class="wt-checkbox">
-																<input id="wt-login" type="checkbox" name="rememberme">
-																<label for="wt-login">Keep me logged in</label>
-															</span>
-														</div>
-													</fieldset>
-													<div class="wt-loginfooterinfo">
-														<a href="javascript:;" class="wt-forgot-password">Forgot password?</a>
-														<a href="register.html">Create account</a>
-													</div>
-												</form>
-											    <form class="wt-formtheme wt-loginform do-forgot-password-form wt-hide-form">
-											        <fieldset>
-											            <div class="form-group">
-											                <input type="email" name="email" class="form-control get_password" placeholder="Email">
-											            </div>
-											           
-											            <div class="wt-logininfo">
-											                <a href="javascript:;" class="wt-btn do-get-password">Get Pasword</a>
-											            </div>     
-											        </fieldset>
-											        <div class="wt-loginfooterinfo">
-											            <a href="javascript:void(0);" class="wt-show-login">Login</a>
-											            <a href="register.html">Create account</a>
-											        </div>
-											    </form>
-											</div>
-										</div>
-										<a href="register.html" class="wt-btn">Join Now</a>
-									</div>
 									<div class="wt-userlogedin">
 										<figure class="wt-userimg">
 											<img src="images/user-img.jpg" alt="image description">
@@ -116,18 +65,16 @@
 										</div>
 										<nav class="wt-usernav">
 											<ul>
-												<li class="menu-item-has-children page_item_has_children">
-													<a href="javascript:void(0);">
-														<span>Insights</span>
-													</a>
-													<ul class="sub-menu children">
-														<li><a href="dashboard-insights.html">Insights</a></li>
-														<li><a href="dashboard-insightsuser.html">Insights User</a></li>
-													</ul>
-												</li>
+											<!-- 查询我的信息 -->
 												<li>
-													<a href="dashboard-profile.html">
-														<span>My Profile</span>
+													<a href="userInfo.jsp">
+														<span>我的主页</span>
+													</a>
+												</li>
+												<!-- 查询我的帖子 -->
+												<li>
+													<a href="myPost.jsp">
+														<span>我的帖子</span>
 													</a>
 												</li>
 												<li class="menu-item-has-children">

@@ -1,4 +1,8 @@
-<%@ page language="java"  pageEncoding="GBK"%>
+
+<%@ page language="java" pageEncoding="GBK"%>
+<%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!doctype html>
 <!--[if lt IE 7]>		<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>			<html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -28,7 +32,7 @@
 	<link rel="stylesheet" href="css/responsive.css">
 	<script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
-<body class="wt-login">
+<body class="wt-login" onLoad="goPage(1,5);">
 	<!--[if lt IE 8]>
 		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 	<![endif]-->
@@ -52,9 +56,9 @@
 					<div class="row justify-content-md-center">
 						<div class="col-xs-12 col-sm-12 col-md-8 push-md-2 col-lg-6 push-lg-3">
 							<div class="wt-innerbannercontent">
-							<div class="wt-title"><h2>New Articles</h2></div>
+							<div class="wt-title"><h2>Articles</h2></div>
 							<ol class="wt-breadcrumb">
-								<li><a href="index.html">Home</a></li>
+								<li><a href="index.html">Posts</a></li>
 								<li class="wt-active">Articles</li>
 							</ol>
 							</div>
@@ -74,7 +78,7 @@
 									<aside id="wt-sidebar" class="wt-sidebar">
 										<div class="wt-widget wt-startsearch">
 											<div class="wt-widgettitle">
-												<h2>Start Your Search</h2>
+												<h2>搜索</h2>
 											</div>
 											<div class="wt-widgetcontent">
 												<form class="wt-formtheme wt-formsearch">
@@ -89,22 +93,23 @@
 										</div>
 										<div class="wt-widget wt-categoriesholder">
 											<div class="wt-widgettitle">
-												<h2>Categories</h2>
+												<h2>帖子类型</h2>
 											</div>
 											<div class="wt-widgetcontent">
 												<ul class="wt-categoriescontent">
-													<li><a href="javascript:void(0);">PSD Web Template <em>15325</em></a></li>
-													<li><a href="javascript:void(0);">PHP Development <em>562748</em></a></li>
-													<li><a href="javascript:void(0);">HTML Themes <em>3488</em></a></li>
-													<li><a href="javascript:void(0);">Global Networking <em>86452</em></a></li>
-													<li><a href="javascript:void(0);">Online SEO  <em>325</em></a></li>
-													<li><a href="javascript:void(0);">All <em>886548</em></a></li>
+													<li><a href="javascript:void(0);">求购 <em>15325</em></a></li>
+													<li><a href="javascript:void(0);">代取 <em>562748</em></a></li>
+													<li><a href="javascript:void(0);">求信息 <em>3488</em></a></li>
+													<li><a href="javascript:void(0);">出售 <em>86452</em></a></li>
+													<li><a href="javascript:void(0);">求学习资料  <em>325</em></a></li>
+													<li><a href="javascript:void(0);">其他 <em>886548</em></a></li>
 												</ul>
 											</div>
 										</div>
 										<div class="wt-widget wt-widgetarticlesholder">
 											<div class="wt-widgettitle">
-												<h2>Populor Articles</h2>
+												<h2>Popular Articles</h2>
+
 											</div>
 											<div class="wt-widgetcontent">
 												<div class="wt-particlehold">
@@ -138,17 +143,18 @@
 										</div>
 										<div class="wt-widget wt-widgettagshold">
 											<div class="wt-widgettitle">
-												<h2>Frequent Tags</h2>
+												<h2>自定义标签</h2>
 											</div>
 											<div class="wt-widgetcontent">
 												<div class="wt-widgettag">
-													<a href="javascript:void(0);">Electronics</a>
 													<a href="javascript:void(0);">DIY</a>
-													<a href="javascript:void(0);">Superism</a>
-													<a href="javascript:void(0);">Business</a>
-													<a href="javascript:void(0);">Development</a>
-													<a href="javascript:void(0);">Collaboration</a>
-													<a href="javascript:void(0);">Decent</a>
+													<a href="javascript:void(0);">武汉大学</a>
+													<a href="javascript:void(0);">商业</a>
+													<a href="javascript:void(0);">90后</a>
+													<a href="javascript:void(0);">00后</a>
+													<a href="javascript:void(0);">背包客</a>
+													<a href="javascript:void(0);">发烧友</a>
+
 												</div>
 											</div>
 										</div>
@@ -158,122 +164,67 @@
 									<div class="wt-classicaricle-holder">
 										<div class="wt-classicaricle-header">
 											<div class="wt-title">
-												<h2>Our Latest Articles</h2>
+												<h2>The latest posts</h2>
 											</div>
 											<div class="wt-description">
-												<p>Consectetur adipisicing elit sed dotem eiusmod tempor incunetion labore etdolore maigna aliqua enim poskina ilukita ylokem lokateise ination.</p>
+												<p>我们为您准备了一些您可能感兴趣的帖子</p>
 											</div>
 										</div>
 										<div class="wt-article-holder">
-											<div class="wt-article">
-												<figure>
-													<img src="images/article/classic/img-01.jpg" alt="img description">
-												</figure>
-												<div class="wt-articlecontent">
-													<div class="wt-title">
-														<h2>Who Else Wants To Be Successful With Business</h2>
-													</div>
-													<ul class="wt-postarticlemeta">
-														<li>
-															<a href="javascript:void(0);">
-																<i class="lnr lnr-clock"></i>
-																<span>June 27, 2018</span>
-															</a>
-														</li>
-														<li>
-															<a href="javascript:void(0);">
-																<i class="lnr lnr-user"></i>
-																<span>Marina Groth</span>
-															</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-											<div class="wt-article">
-												<figure>
-													<img src="images/article/classic/img-02.jpg" alt="img description">
-												</figure>
-												<div class="wt-articlecontent">
-													<div class="wt-title">
-														<h2>20 Top Tips For Business</h2>
-													</div>
-													<ul class="wt-postarticlemeta">
-														<li>
-															<a href="javascript:void(0);">
-																<i class="lnr lnr-clock"></i>
-																<span>June 27, 2018</span>
-															</a>
-														</li>
-														<li>
-															<a href="javascript:void(0);">
-																<i class="lnr lnr-user"></i>
-																<span>Louanne Mattioli</span>
-															</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-											<div class="wt-article">
-												<figure>
-													<img src="images/article/classic/img-03.jpg" alt="img description">
-												</figure>
-												<div class="wt-articlecontent">
-													<div class="wt-title">
-														<h2>Clear And Unbiased Facts About Business (Without All the Hype)</h2>
-													</div>
-													<ul class="wt-postarticlemeta">
-														<li>
-															<a href="javascript:void(0);">
-																<i class="lnr lnr-clock"></i>
-																<span>June 27, 2018</span>
-															</a>
-														</li>
-														<li>
-															<a href="javascript:void(0);">
-																<i class="lnr lnr-user"></i>
-																<span>Soraya Roloff</span>
-															</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-											<div class="wt-article">
-												<figure>
-													<img src="images/article/classic/img-04.jpg" alt="img description">
-												</figure>
-												<div class="wt-articlecontent">
-													<div class="wt-title">
-														<h2>7 Ways To Keep Your Business Growing Without Burning The Midnight Oil</h2>
-													</div>
-													<ul class="wt-postarticlemeta">
-														<li>
-															<a href="javascript:void(0);">
-																<i class="lnr lnr-clock"></i>
-																<span>June 27, 2018</span>
-															</a>
-														</li>
-														<li>
-															<a href="javascript:void(0);">
-																<i class="lnr lnr-user"></i>
-																<span>Florentino Norsworthy</span>
-															</a>
-														</li>
-													</ul>
-												</div>
-											</div>
+											
+										<!-- 以下为每个帖子所需要的css样式配件 -->
+											<c:choose>
+												<c:when test="${rows!=null }">
+													
+													<table id="idData">
+														<c:forEach items="${rows }" var="ins" varStatus="vs">
+														<tr>
+														<div id="div${vs.count }">
+															<div class="wt-article">
+																<c:if test="${ins.imgpath!=null }">
+																	<figure>
+																		<img src="${ins.imgpath }" style="height:432px;width:768px" alt="img description">
+																	</figure>
+																</c:if>
+																<c:if test="${ins.imgpath==null }">
+																	<figure>
+																		<img src="images/20.jpg"  style="height:432px;width:768px"  alt="img description">
+																	</figure>
+																</c:if>
+																<div class="wt-articlecontent">
+																	<div class="wt-title">
+																		<h2>${ins.aac102 }</h2>
+																	</div>
+																	<ul class="wt-postarticlemeta">
+																		<li>
+																			<a href="javascript:void(0);">
+																			 	<i class="lnr lnr-clock"></i>
+																				<span>${ins.aac108 }</span>
+																			</a>
+																		</li>
+																		<li>
+																			<a href="javascript:void(0);">
+																				<i class="lnr lnr-user"></i>
+																				<span>${ins.cnaab102 }</span>
+																			</a>
+																		</li>
+																	</ul>
+																</div>
+															</div>		
+														</div>
+														</tr>
+														</c:forEach>
+													</table>
+												</c:when>
+											</c:choose>
+						
+						
+						
 										</div>
-										<nav class="wt-pagination">
-											<ul>
-												<li class="wt-prevpage"><a href="javascrip:void(0);"><i class="lnr lnr-chevron-left"></i></a></li>
-												<li><a href="javascrip:void(0);">1</a></li>
-												<li><a href="javascrip:void(0);">2</a></li>
-												<li><a href="javascrip:void(0);">3</a></li>
-												<li><a href="javascrip:void(0);">4</a></li>
-												<li><a href="javascrip:void(0);">...</a></li>
-												<li><a href="javascrip:void(0);">50</a></li>
-												<li class="wt-nextpage"><a href="javascrip:void(0);"><i class="lnr lnr-chevron-right"></i></a></li>
-											</ul>
-										</nav>
+										
+										<table width="60%" align="right" >
+											<tr><td><div id="barcon" name="barcon"></div></td></tr>
+										</table>
 									</div>
 								</div>
 							</div>
@@ -302,5 +253,59 @@
 	<script src="js/tipso.js"></script>
 	<script src="js/jRate.js"></script>
 	<script src="js/main.js"></script>
+
+	
+	<script type="text/javascript">
+		/**
+		 * 分页函数
+		 * pno--页数
+		 * psize--每页显示记录数
+		 * 分页部分是从真实数据行开始，因而存在加减某个常数，以确定真正的记录数
+		 * 纯js分页实质是数据行全部加载，通过是否显示属性完成分页功能
+		 **/
+		function goPage(pno,psize){
+		  var itable = document.getElementById("idData");
+		  var num = itable.rows.length;//表格所有行数(所有记录数)
+		  console.log(num);
+		  var totalPage = 0;//总页数
+		  var pageSize = psize;//每页显示行数
+		  //总共分几页
+		  if(num/pageSize > parseInt(num/pageSize)){
+		      totalPage=parseInt(num/pageSize)+1;
+		    }else{
+		      totalPage=parseInt(num/pageSize);
+		    }
+		  var currentPage = pno;//当前页数
+		  var startRow = (currentPage - 1) * pageSize+1;//开始显示的行 31
+		    var endRow = currentPage * pageSize;//结束显示的行  40
+		    endRow = (endRow > num)? num : endRow;  //40
+		    console.log(endRow);
+		    //遍历显示数据实现分页
+		  for(var i=1;i<(num+1);i++){
+		    if(i>=startRow && i<=endRow){
+		    	document.getElementById("div"+i).style.display = "block";
+		    }else{
+		    	document.getElementById("div"+i).style.display = "none";
+		    }
+		  }
+		  var tempStr = "共"+num+"条记录 分"+totalPage+"页 当前第"+currentPage+"页";
+		  if(currentPage>1){
+		    tempStr += "<a href=\"#\" onClick=\"goPage("+(1)+","+psize+")\">首页</a>";
+		    tempStr += "<a href=\"#\" onClick=\"goPage("+(currentPage-1)+","+psize+")\"><上一页</a>"
+		  }else{
+		    tempStr += "首页";
+		    tempStr += "<上一页";
+		  }
+		  if(currentPage<totalPage){
+		    tempStr += "<a href=\"#\" onClick=\"goPage("+(currentPage+1)+","+psize+")\">下一页></a>";
+		    tempStr += "<a href=\"#\" onClick=\"goPage("+(totalPage)+","+psize+")\">尾页</a>";
+		  }else{
+		    tempStr += "下一页>";
+		    tempStr += "尾页";
+		  }
+		  document.getElementById("barcon").innerHTML = tempStr;
+		}
+	</script>
+
 </body>
 </html>

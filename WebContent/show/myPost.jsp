@@ -74,12 +74,11 @@
 							</div>
 						</div>
 						
-						
 						<nav id="wt-navdashboard" class="wt-navdashboard">
 							<ul>
 								<li>
 									<a href="userInfo.jsp">
-										<i class="ti-briefcase"></i>
+										<i class="ti-dashboard"></i>
 										<span>ÎÒµÄÖ÷Ò³</span>
 									</a>
 								</li>

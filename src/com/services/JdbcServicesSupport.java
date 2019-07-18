@@ -471,7 +471,6 @@ public abstract class JdbcServicesSupport implements BaseServices
 			{
 				pstm.setObject(index++, param);
 			}
-
 			// 执行SQL--通过语句对象执行SQL语句,然后由结果集对象接受查询结果
 			rs = pstm.executeQuery();
 			// 定义装载数据的容器变量

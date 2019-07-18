@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.services.BaseServices;
 import com.services.impl.Ac01ServicesImpl;
 import com.services.impl.Ac03ServicesImpl;
+import com.system.tools.Tools;
 
 public abstract class ControllerSupport implements BaseController
 {
@@ -58,7 +59,111 @@ public abstract class ControllerSupport implements BaseController
 		}
 	}
 	
+	/*****************************************
+	 * 用户登陆用到的函数
+	 *****************************************/
+	/**
+	 * 
+	 * @Description	自加的
+	 * @return
+	 * @throws Exception
+	 */
+	protected final boolean savaPageData()throws Exception
+	{
+		List<Map<String,String>> rows=this.services.query();
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+			return true;
+		}
+		else
+		{
+			this.saveAttribute("msg", "没有符合条件的数据!");
+			return false;
+		}	
+	}
 
+	/**
+	 * 用于验证账号
+	 * @return
+	 * @throws Exception
+	 */
+	protected final boolean saveUserPageInstance()throws Exception
+	{
+		String aab101 = this.services.check();
+		this.dto.put("aab101", aab101);
+		if(aab101 != null)
+		{
+			this.saveSession_attribute("userID", aab101);
+			return true;
+		}
+		else
+		{
+			this.saveAttribute("msg", "提示:登陆失败，账号或密码异常！");
+			return false;
+		}	
+	}
+	
+	protected final boolean saveAdminPageInstance()throws Exception
+	{
+		Map<String,String> ins=this.services.findById();
+		if(ins!=null)
+		{
+			this.saveAttribute("ins",  ins);
+			this.saveSession_attribute("adminID", ins.get("aab301"));
+			return true;
+		}
+		else
+		{
+			this.saveAttribute("msg", "提示:该数据已删除或禁止访问!");
+			return false;
+		}	
+	}
+	
+	protected final void mail()throws Exception
+	{
+		Tools.setCode((String)this.dto.get("aab108"));
+		this.executeUpdateMethod("sendEmail");
+		this.saveAttribute("msg", "验证码已发送，请注意查收！");
+	}
+	
+	/**
+	 * 
+	 * @Description	注册信息提示
+	 * @param methodName
+	 * @return
+	 * @throws Exception
+	 */
+	protected final boolean update(String methodName,String msgText1,String msgText2)throws Exception
+	{
+		String msg=null;
+		if (this.executeUpdateMethod("receiveEmail")) 
+		{
+			msg=msgText1;
+			this.saveAttribute("msg", msg);
+			return this.executeUpdateMethod(methodName);
+		}
+		msg=msgText2;
+		this.saveAttribute("msg", msg);
+		return false;
+	}
+	
+	protected final boolean CheckEmail(String methodName, String S_msg, String F_msg)throws Exception
+	{
+		
+		if (this.executeUpdateMethod(methodName)) 
+		{
+			this.saveAttribute("msg", S_msg);
+			return true;	
+		}
+		this.saveAttribute("msg", F_msg);
+		return false;
+	}
+	
+	
+	/*****************************************
+	 
+	 *****************************************/
 
 	/**
 	 * 单一实例 查询
@@ -71,7 +176,8 @@ public abstract class ControllerSupport implements BaseController
 		if (ins != null)
 		{
 			this.saveAttribute("ins", ins);
-		} else
+		}
+		else
 		{
 			this.saveAttribute("msg", "提示:该数据已删除或禁止访问!");
 		}

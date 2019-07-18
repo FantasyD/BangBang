@@ -21,5 +21,10 @@ public interface BaseServices
 	{
 		return null;
 	}
+
+	default String check() throws Exception
+	{
+		return null;
+	}
 	
 }

@@ -104,7 +104,7 @@
 										</div>
 										<div class="wt-widget wt-widgetarticlesholder">
 											<div class="wt-widgettitle">
-												<h2>ÖÃ¶¥Ìû</h2>
+												<h2>Popular Article</h2>
 											</div>
 											<div class="wt-widgetcontent">
 												<div class="wt-particlehold">

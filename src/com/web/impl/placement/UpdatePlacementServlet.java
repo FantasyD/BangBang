@@ -8,7 +8,7 @@ public class UpdatePlacementServlet extends ControllerSupport
 {
 	public UpdatePlacementServlet()
 	{
-		this.setServices(new Ah01ServiceImpl(new Ac03ServicesImpl(),"aab101","aab101"));
+		this.setServices(new Ac03ServicesImpl());
 	}
 	
 	@Override
@@ -16,8 +16,7 @@ public class UpdatePlacementServlet extends ControllerSupport
 	{
 		this.update("updatePlacementState", "×´Ì¬ÐÞ¸Ä");
 		this.savePageData();
-		
-		this.update("sendEmail", "·¢ËÍ");
+	
 		return "queryPlacement";
 	}
 }

@@ -5,8 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.services.JdbcServicesSupport;
+import com.system.tools.Tools;
 
-public class Ac03ServicesImpl extends JdbcServicesSupport
+public class Ac03ServicesImpl extends Ah01ServiceImpl
 {
 	public List<Map<String, String>> query() throws Exception
 	{
@@ -31,11 +32,13 @@ public class Ac03ServicesImpl extends JdbcServicesSupport
 				this.get("aac301")
 		};
 		
-		if((int)this.get("aac305") == 1) {
+		if(this.get("aac305").equals("1")) {
 			this.put("aah104", "您的帖子已被置顶");
 		}else {
 			this.put("aah104", "您的帖子置顶已被取消");
 		}
+		this.put("aah202", "/BangBang/tiezi_findByIdTiezi.html?aac101="+this.get("aac101"));
+		this.sendEmail();
 		
 		return this.executeUpdate(sql.toString(), args)>0;
 		

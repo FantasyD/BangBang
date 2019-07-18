@@ -9,7 +9,7 @@ import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 import com.services.JdbcServicesSupport;
 import com.system.tools.Tools;
 
-public class Ac01ServicesImpl extends JdbcServicesSupport
+public class Ac01ServicesImpl extends Ah01ServiceImpl
 {
 	
 	/**
@@ -218,31 +218,5 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 	
 		return this.executeUpdate(sql.toString(), argsObjects)>0;
 	}
-	
-	public boolean addTiezi() throws Exception
-	{
 
-		StringBuilder sql = new StringBuilder()
-				.append("insert into ac01(aac101,aab101,aac102,aac103,aac104,aac105,")
-    			.append("                 aac106,aac107,aac108,aac109,is_deleted,aac110)  ")
-    			.append("          values(?,?,?,?,?,?,")
-    			.append("                 ?,current_timestamp,current_timestamp,?,0,0)")
-				;
-		
-		Object[] argsObjects = {
-				Tools.getSequence("aac101"),
-				this.get("aab101"),
-				this.get("aac102"),
-				this.get("aac103"),
-				this.get("aac104"),
-				this.get("aac105"),
-				this.get("aac106"),
-				this.get("imgpath")
-		};
-		
-		this.put("aab101", this.get("aab101"));
-		this.put("aah202", "/BangBang/tiezi_findByIdTiezi.html?aac101="+Tools.getSequenceWithoutAdd("aac101"));
-		
-		return this.executeUpdate(sql.toString(), argsObjects)>0;
-	}
 }

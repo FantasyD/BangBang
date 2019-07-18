@@ -6,7 +6,7 @@ import java.util.Map;
 import com.services.JdbcServicesSupport;
 import com.system.tools.Tools;
 
-public class Ac02ServicesImpl extends JdbcServicesSupport
+public class Ac02ServicesImpl extends Ah01ServiceImpl
 {
 	public boolean addComment() throws Exception
 	{
@@ -20,6 +20,9 @@ public class Ac02ServicesImpl extends JdbcServicesSupport
 				this.get("aac101"),
 				this.get("aac203")
 		};
+		
+		this.put("aah202", "/BangBang/tiezi_findByIdTiezi.html?aac101="+Tools.getSequenceWithoutAdd("aac101"));
+		this.sendEmail();
 	
 		return this.executeUpdate(sql.toString(), argsObjects)>0;
 	}
@@ -45,7 +48,8 @@ public class Ac02ServicesImpl extends JdbcServicesSupport
 				this.get("aac101")
 		};
 		
-		this.put("aah202", "/BangBang/tiezi_findByIdTiezi.html?aac101="+Tools.getSequenceWithoutAdd("aac101"));
+		
+		
 		
 		return this.queryForList(sql.toString(),args);
 	}

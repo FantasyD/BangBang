@@ -119,4 +119,5 @@ public abstract class Ah01ServiceImpl extends JdbcServicesSupport
 		
 		return this.executeUpdate(sql, idlist)>0;
 	}
+
 }

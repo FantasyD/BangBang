@@ -52,9 +52,9 @@
 					<div class="row justify-content-md-center">
 						<div class="col-xs-12 col-sm-12 col-md-8 push-md-2 col-lg-6 push-lg-3">
 							<div class="wt-innerbannercontent">
-							<div class="wt-title"><h2>New Articles</h2></div>
+							<div class="wt-title"><h2>帖子</h2></div>
 							<ol class="wt-breadcrumb">
-								<li><a href="index.html">Home</a></li>
+								<li><a href="#">Post</a></li>
 								<li class="wt-active">Articles</li>
 							</ol>
 							</div>
@@ -74,7 +74,7 @@
 									<aside id="wt-sidebar" class="wt-sidebar">
 										<div class="wt-widget wt-startsearch">
 											<div class="wt-widgettitle">
-												<h2>Start Your Search</h2>
+												<h2>搜索</h2>
 											</div>
 											<div class="wt-widgetcontent">
 												<form class="wt-formtheme wt-formsearch">
@@ -89,22 +89,22 @@
 										</div>
 										<div class="wt-widget wt-categoriesholder">
 											<div class="wt-widgettitle">
-												<h2>Categories</h2>
+												<h2>帖子类型</h2>
 											</div>
 											<div class="wt-widgetcontent">
 												<ul class="wt-categoriescontent">
-													<li><a href="javascript:void(0);">PSD Web Template <em>15325</em></a></li>
-													<li><a href="javascript:void(0);">PHP Development <em>562748</em></a></li>
-													<li><a href="javascript:void(0);">HTML Themes <em>3488</em></a></li>
-													<li><a href="javascript:void(0);">Global Networking <em>86452</em></a></li>
-													<li><a href="javascript:void(0);">Online SEO  <em>325</em></a></li>
-													<li><a href="javascript:void(0);">All <em>886548</em></a></li>
+													<li><a href="javascript:void(0);">求购 <em>15325</em></a></li>
+													<li><a href="javascript:void(0);">代取 <em>562748</em></a></li>
+													<li><a href="javascript:void(0);">求信息 <em>3488</em></a></li>
+													<li><a href="javascript:void(0);">出售 <em>86452</em></a></li>
+													<li><a href="javascript:void(0);">求学习资料  <em>325</em></a></li>
+													<li><a href="javascript:void(0);">其他 <em>886548</em></a></li>
 												</ul>
 											</div>
 										</div>
 										<div class="wt-widget wt-widgetarticlesholder">
 											<div class="wt-widgettitle">
-												<h2>Populor Articles</h2>
+												<h2>置顶帖</h2>
 											</div>
 											<div class="wt-widgetcontent">
 												<div class="wt-particlehold">
@@ -138,17 +138,17 @@
 										</div>
 										<div class="wt-widget wt-widgettagshold">
 											<div class="wt-widgettitle">
-												<h2>Frequent Tags</h2>
+												<h2>自定义标签</h2>
 											</div>
 											<div class="wt-widgetcontent">
 												<div class="wt-widgettag">
-													<a href="javascript:void(0);">Electronics</a>
 													<a href="javascript:void(0);">DIY</a>
-													<a href="javascript:void(0);">Superism</a>
-													<a href="javascript:void(0);">Business</a>
-													<a href="javascript:void(0);">Development</a>
-													<a href="javascript:void(0);">Collaboration</a>
-													<a href="javascript:void(0);">Decent</a>
+													<a href="javascript:void(0);">武汉大学</a>
+													<a href="javascript:void(0);">商业</a>
+													<a href="javascript:void(0);">90后</a>
+													<a href="javascript:void(0);">00后</a>
+													<a href="javascript:void(0);">背包客</a>
+													<a href="javascript:void(0);">发烧友</a>
 												</div>
 											</div>
 										</div>

@@ -8,7 +8,7 @@ public class AddTieziServlet extends ControllerSupport
 {
 	public AddTieziServlet()
 	{
-		this.setServices(new Ah01ServiceImpl(new Ac05ServicesImpl(),"aab101","aab101"));
+		this.setServices(new Ac05ServicesImpl());
 	}
 	
 	@Override
@@ -17,8 +17,6 @@ public class AddTieziServlet extends ControllerSupport
 		this.update("addTiezi","Ìí¼ÓÌû×Ó");
 
 		this.savePageInstance();
-		
-		this.update("batchSendEmail", "·¢ËÍ");
 		/*
 		this.setServices(new Ah01ServiceImpl(new Ac05ServicesImpl(),"aab101","aab101"));
 		*/

@@ -17,14 +17,8 @@ public interface BaseServices
 		return null;
 	}
 	
-	default List<Map<String, String>> queryComment() throws Exception
-	{
-		return null;
-	}
-
 	default String check() throws Exception
 	{
 		return null;
 	}
-	
 }

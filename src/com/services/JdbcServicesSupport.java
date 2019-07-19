@@ -219,7 +219,7 @@ public abstract class JdbcServicesSupport implements BaseServices
 	 * @param args ---- 参数列表
 	 * @throws Exception
 	 */
-	protected final void apppendSql(final String sql, final Object... args) throws Exception
+	protected final void appendSql(final String sql, final Object... args) throws Exception
 	{
 		// 1.定义JDBC接口变量
 		PreparedStatement pstm = DBUtils.prepareStatement(sql);
@@ -301,7 +301,8 @@ public abstract class JdbcServicesSupport implements BaseServices
 			}
 
 			return this.executeBatchTransaction(pstm);
-		} finally
+		}
+		finally
 		{
 			DBUtils.close(pstm);
 		}

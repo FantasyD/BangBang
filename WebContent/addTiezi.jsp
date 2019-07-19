@@ -86,6 +86,12 @@ ${msg}
 </table>
 <input type="hidden" name="aac101" value="${ins.aac101 }">
 <input type="hidden" name="aab101" value="${aab101 }">
+
+<input type="hidden" name="aah102" value="1">
+<input type="hidden" name="aah103" value="帖子推送">
+<input type="hidden" name="aah104" value="您关注的用户已经发送了帖子">
+
+
 </form>
 </body>
 <script  src="js/jquery-2.1.3.min.js">

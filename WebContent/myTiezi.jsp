@@ -18,7 +18,7 @@
 		function onEdit(vaac101)
 		{
 			var vform = document.getElementById("myform");
-			vform.action = "<%=path%>/tiezi_findByIdTiezi.html?type=2&aac101=" + vaac101;
+			vform.action = "<%=path%>/tiezi_findByIdTiezi.html?aac101=" + vaac101;
 			vform.submit();
 		}
 		
@@ -49,7 +49,7 @@
 <br>
 <br>
 <form id = "myform" action="<%=path%>/tiezi_queryTiezi.html" method="post">	
-	
+<c:set var="type" scope="session" value="2"></c:set>
 	<table border="1" width="95%" align="center" class="table">
 		<caption align="center">
 	              	 ÎÒµÄÌû×Ó

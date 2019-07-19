@@ -13,14 +13,14 @@
 	function onEdit(vaac101,vaab101)
 	{
 		var vform = document.getElementById("myform");
-		vform.action = "<%=path%>/tiezi_findByIdTiezi.html?type=4&aac101=" + vaac101 + "&aab101=" + vaab101;
+		vform.action = "<%=path%>/tiezi_findByIdTiezi.html?aac101=" + vaac101 + "&aab101=" + vaab101;
 		vform.submit();
 	}
 	
-	function onUpdateState(vaac301,vState)
+	function onUpdateState(vaac301,vState,vaab101)
 	{
 		var vform = document.getElementById("myform");
-		vform.action = "<%=path%>/placement_updatePlacement.html?aac301=" + vaac301 + "&aac305=" + vState;
+		vform.action = "<%=path%>/placement_updatePlacement.html?aac301=" + vaac301 + "&aac305=" + vState +"&aab101=" + vaab101;
 		vform.submit();
 	}
 </script>
@@ -29,6 +29,7 @@
 <br>
 <br>
 <form id = "myform" action="<%=path%>/tiezi_queryTiezi.html" method="post">
+<c:set var="type" scope="session" value="4"></c:set>
 	<!-- 查询条件区 -->
 	<table border="1" width="95%" align="center">
 	  <caption>
@@ -59,35 +60,35 @@
 				    	<!--  # 表示空锚 -->
 				    	<a href="#" onclick = "onEdit('${ins.aac101 }','${ins.aab101 }')">${ins.aac101 }</a>
 				    </td>
-				    <td>${ins.aab102 }</td>
+				    <td>${ins.cnaab102 }</td>
 				    <td>${ins.aac302 }</td>   			    
 					<td>${ins.aac303 }</td>
 					<c:if test = "${ins.aac305 == 0 }">
 						<td>待处理</td>
 						<td>
-							<a href="#" onclick = "onUpdateState('${ins.aac301 }',1)">置顶</a>
-							<a href="#" onclick = "onUpdateState('${ins.aac301 }',3)">拒绝</a>
+							<a href="#" onclick = "onUpdateState('${ins.aac301 }',1,'${ins.aab101 }')">置顶</a>
+							<a href="#" onclick = "onUpdateState('${ins.aac301 }',3,'${ins.aab101 }')">拒绝</a>
 						</td>
 					</c:if>
 					
 					<c:if test = "${ins.aac305 == 1 }">
 						<td>已置顶</td>
 						<td>
-							<a href="#" onclick = "onUpdateState('${ins.aac301 }',2)">取消</a>					
+							<a href="#" onclick = "onUpdateState('${ins.aac301 }',2,'${ins.aab101 }')">取消</a>					
 						</td>
 					</c:if>
 					
 					<c:if test = "${ins.aac305 == 2 }">
 						<td>取消置顶</td>
 						<td>
-							<a href="#" onclick = "onUpdateState('${ins.aac301 }',1)">重新置顶</a>		
+							<a href="#" onclick = "onUpdateState('${ins.aac301 }',1,'${ins.aab101 }')">重新置顶</a>		
 						</td>
 					</c:if>
 					
 					<c:if test = "${ins.aac305 == 3 }">
 						<td>拒绝置顶</td>
 						<td>
-							<a href="#" onclick = "onUpdateState('${ins.aac301 }',1)">重新置顶</a>							
+							<a href="#" onclick = "onUpdateState('${ins.aac301 }',1,'${ins.aab101 }')">重新置顶</a>							
 						</td>
 					</c:if>
 				  </tr>
@@ -95,6 +96,9 @@
 	     </c:when>
 	   </c:choose>
 	</table>
+	
+	<input type="hidden" name="aah102" value="0">
+	<input type="hidden" name="aah103" value="置顶帖子审核请求处理">
 	
 	<!-- 功能按钮区 -->
 	<table border="1" width="95%" align="center" >

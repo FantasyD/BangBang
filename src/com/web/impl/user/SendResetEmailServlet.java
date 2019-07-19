@@ -7,7 +7,12 @@ public class SendResetEmailServlet extends Ab01ControllerSupport
 	{
 		if(this.update("isEmailExist", "邮件发送成功！", "该邮箱未注册！"))
 		{
-			this.update("sendEmail", "验证码发送");
+			this.update("SendEmail", "验证码发送");
+			this.setResponseAttribute("result", "true");
+		}
+		else
+		{
+			this.setResponseAttribute("result", "false");
 		}
 		return null;
 	}

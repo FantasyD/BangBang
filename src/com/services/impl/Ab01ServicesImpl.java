@@ -1,5 +1,6 @@
 package com.services.impl;
 
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +16,7 @@ import com.system.tools.Tools;
  * @Description: 对ab01表的操作
  * @author: xzc
  */
-public class Ab01ServicesImpl extends JdbcServicesSupport 
+public class Ab01ServicesImpl extends Ah01ServiceImpl
 {
 	/**
 	 * 
@@ -63,8 +64,19 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 				this.get("aab101"),
 				Tools.getMd5(this.get("aab103"))
 		};
-		return this.executeUpdate(sql.toString(), args)>0;
+		
+		if(this.executeUpdate(sql.toString(), args) > 0)
+		{
+			this.put("aab101", this.get("aab101"));
+			this.put("aah102", "0");
+			this.put("aah103", "密码修改成功通知");
+			this.put("aah104", "您的密码已修改成功！");
+			this.sendEmail();
+			return true;
+		}
+		return false;
 	}
+	
 	/**
 	 *
 	 * @Description: 修改邮箱
@@ -82,7 +94,17 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 				this.get("aab108"),
 				this.get("aab101")
 		};
-		return this.executeUpdate(sql.toString(), args)>0;
+		
+		if(this.executeUpdate(sql.toString(), args) > 0)
+		{
+			this.put("aab101", this.get("aab101"));
+			this.put("aah102", "0");
+			this.put("aah103", "邮箱设置成功通知");
+			this.put("aah104", "您的邮箱已成功重新绑定！");
+			this.sendEmail();
+			return true;
+		}
+		return false;
 	}
 	
 	
@@ -102,7 +124,18 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 			this.get("aab108")
 		};
 		
-		return this.executeUpdate(sql, args)>0;
+		if(this.executeUpdate(sql, args) > 0)
+		{
+			String sql1 = "select aab101 from ab01 where aab108=?";
+			Map<String, String> map = this.queryForMap(sql1, this.get("aab108"));
+			this.put("aab101", map.get("aab101"));
+			this.put("aah102", "0");
+			this.put("aah103", "密码重设成功通知");
+			this.put("aah104", "您的密码已成功重新设置！");
+			this.sendEmail();
+			return true;
+		}
+		return false;
 	}
 	
 	/**
@@ -112,7 +145,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	 */
 	private boolean isEmailExist()throws Exception
 	{
-		String sql="select a.aab108 from ab01 a where a.aab108=?";
+		String sql="select a.aab101 from ab01 a where a.aab108=?";
 		return this.queryForMap(sql, this.get("aab108")) != null;
 	}
 	
@@ -131,17 +164,30 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 				.append("            values(?,?,?,?,?,")
 				.append("					?,?,?)")
 				;
+		String name= URLDecoder.decode((String)this.get("aab110"),"UTF-8");
 		Object args[]= {
-				this.get("aab102"),
-				Tools.getMd5(this.get("aab103")),
-				this.get("aab104"),
-				this.get("aab107"),
-				this.get("aab108"),
-				this.get("aab110"),
+				URLDecoder.decode((String)this.get("aab102"),"UTF-8"),
+				Tools.getMd5(URLDecoder.decode((String)this.get("aab103"),"UTF-8")),
+				URLDecoder.decode((String)this.get("aab104"),"UTF-8"),
+				URLDecoder.decode((String)this.get("aab107"),"UTF-8"),
+				URLDecoder.decode((String)this.get("aab108"),"UTF-8"),
+				URLDecoder.decode((String)this.get("aab110"),"UTF-8"),
 				100,
 				0
 		};
-		return this.executeUpdate(sql.toString(), args)>0;
+		
+		if(this.executeUpdate(sql.toString(), args) > 0)
+		{
+			String sql1 = "select aab101 from ab01 where aab108=?";
+			Map<String, String> map = this.queryForMap(sql1, this.get("aab108"));
+			this.put("aab101", map.get("aab101"));
+			this.put("aah102", "0");
+			this.put("aah103", "注册成功通知");
+			this.put("aah104", "您的账号已成功注册！");
+			this.sendEmail();
+			return true;
+		}
+		return false;
 	}
 	
 	/**
@@ -161,7 +207,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	
 	
 	
-	public boolean sendEmail() throws Exception 
+	public boolean SendEmail() throws Exception 
 	{
 		String Email = (String)this.get("aab108");
 		Tools.setCode(Email);

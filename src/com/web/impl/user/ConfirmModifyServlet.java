@@ -5,8 +5,15 @@ public class ConfirmModifyServlet extends Ab01ControllerSupport
 	@Override
 	public String execute() throws Exception 
 	{
-		this.is_receive("resetPassword", "密码修改成功！", "密码修改失败！");
-		return "userLogin";
+		if(this.is_receive("resetPassword"))
+		{
+			this.setResponseAttribute("result", "true");
+		}
+		else
+		{
+			this.setResponseAttribute("result", "false");
+		}
+		return null;
 	}
 
 }

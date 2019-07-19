@@ -15,7 +15,7 @@ public class UpdateGroupServlet extends GroupServlet
 		this.update("updateGroup", "ÐÞ¸Ä");
 		this.savePageInstance();
 		this.savePageData();
-		return "group";
+		return "groupDetail";
 	}
 
 }

@@ -34,7 +34,7 @@ public class BaseServlet extends HttpServlet
 		try
 		{
 			/************************************************************
-			 * 解析访问路径,获取目标类的名称
+			 * 			解析访问路径,获取目标类的名称
 			 ************************************************************/
 			// 拦截请求的访问路径
 			String uri = request.getRequestURI();
@@ -174,7 +174,7 @@ public class BaseServlet extends HttpServlet
 					dto.put(entry.getKey(), value);
 				}
 			}
-			//System.out.println(dto);
+			System.out.println(dto);
 			return dto;
 		} else
 		{

@@ -20,6 +20,7 @@
 					<input type="password" class="password" name="password" placeholder="Password" required="">
 					<input type="password" class="password" name="confirm password" placeholder="Confirm Password" required="">
 					<input type="text" class="email" name="email" placeholder="Email" required="">
+					<input type="text" class="email" name="email" placeholder="Email" required="">
 					<input type="text" class="location" name="location" placeholder="Your Location" required="">
 					<input type="submit" value="Sign Up">
 				</form>
@@ -46,8 +47,8 @@
 							<label for="brand1"><span></span>Remember me</label>
 						</li>
 					</ul>
-					<input type="submit" value="Sign In">
-					<div class="clear"></div>
+						<input type="submit" value="Sign In">
+						<div class="clear"></div>
 				</form>
 			</div>
 			<h3>Recover Form</h3>

@@ -12,7 +12,7 @@ public class InviteToGroupServlet extends GroupServlet
 		this.update("inviteGroup", "ÑûÇë");
 		this.savePageInstance();
 		this.savePageData();
-		return "group";
+		return "groupDetail";
 	}
 
 }

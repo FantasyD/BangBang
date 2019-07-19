@@ -23,7 +23,7 @@ public class GetAh01ServiceImpl extends JdbcServicesSupport
 				;
 		StringBuilder sb2=new StringBuilder()
 				.append("SELECT x.aah101,x.aah102,x.aah103,x.aah104,x.aah106,")
-				.append("			 y.aah202,y.aah203")
+				.append("			 y.aah202 aah202,y.aah203 aah203")
 				.append("  from ah01 x,ah02 y")
 				.append(" where x.aah101=y.aah101 and x.aab101=?")
 				;
@@ -38,16 +38,24 @@ public class GetAh01ServiceImpl extends JdbcServicesSupport
 		{
 			set.add(map.get("aah101"));
 		}
+		System.out.println(set);
 		for(Map<String,String> map:list1)
 		{
 			//如果存在于set，意味着是2,3类邮件
 			if(!set.add(map.get("aah101")))
 			{
-				list1.set(list1.indexOf(map), map);
+				for(Map<String,String> m:list2)
+				{
+					if(m.get("aah101").equals(map.get("aah101")))
+					{
+						System.out.println(m);
+						list1.set(list1.indexOf(map), m);
+						break;
+					}
+				}
 			}
 		}
-		
-		
+		System.out.println(list1);
 		return list1;
 	}
 	

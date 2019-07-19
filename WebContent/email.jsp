@@ -46,6 +46,7 @@ ${userId }
 						style="color:${row.aah106==0?'#ff0000':'#777' }"
 						onclick="updateEmail('${row.aah101}')" id="${row.aah101 }a">
 						${row.aah103 } </a>
+						${row.aah202 }
 				</h4>
 			</div>
 			<div id="${row.aah101 }" class="collapse navbar-collapse">

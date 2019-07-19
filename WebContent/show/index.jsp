@@ -1,13 +1,13 @@
 <%@ page language="java"  pageEncoding="GBK"%>
+<%String path=request.getContextPath(); %>
 <!doctype html>
 <!--[if lt IE 7]>		<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>			<html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>			<html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!-->	<html class="no-js" lang=""> <!--<![endif]-->
 <head>
-	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>BootStrap HTML5 CSS3 Theme</title>
+	<title>校园互助平台</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -28,6 +28,30 @@
 	<link rel="stylesheet" href="css/transitions.css">
 	<link rel="stylesheet" href="css/responsive.css">
 	<script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+	
+	<script type="text/javascript">
+		function s() 
+		{
+			var form1=document.getElementById("form1");
+			var value=$('#type input[name="searchtype"]:checked').val();
+			if (value=='2') 
+			{
+				form1.action = "<%=path%>/search_search.html";
+				form1.submit();
+			}
+			if (value=='1') {
+				form1.action = "<%=path%>/tiezi_searchTiezi.html";
+				form1.submit();
+			}
+		}
+		
+		function s2() 
+		{
+			var form2=document.getElementById("form2");
+			form2.action = "<%=path%>/tiezi_searchTiezi.html";
+			form2.submit();
+		}
+	</script>
 </head>
 <body class="wt-login">
 	<!--[if lt IE 8]>
@@ -49,29 +73,25 @@
 						<div class="row">
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 								<strong class="wt-logo"><a href="index.html"><img src="images/logo.png" alt="company logo here"></a></strong>
-								<form class="wt-formtheme wt-formbanner wt-formbannervtwo">
+								<form id="form1" class="wt-formtheme wt-formbanner wt-formbannervtwo" method="post">
 									<fieldset>
 										<div class="form-group">
-											<input type="text" name="job" class="form-control" placeholder="I’m looking for">
+											<input type="text" name="message" class="form-control" placeholder="I’m looking for">
 											<div class="wt-formoptions">
 												<div class="wt-dropdown">
-													<span>In: <em class="selected-search-type">Freelancers </em><i class="lnr lnr-chevron-down"></i></span>
+													<span>In: <em class="selected-search-type">帖子 </em><i class="lnr lnr-chevron-down"></i></span>
 												</div>
-												<div class="wt-radioholder">
+												<div class="wt-radioholder" id="type">
 													<span class="wt-radio">
-														<input id="wt-freelancers" data-title="Freelancers" type="radio" name="searchtype" value="freelancer" checked="">
-														<label for="wt-freelancers">Freelancers</label>
+														<input id="wt-freelancers" data-title="帖子" type="radio" name="searchtype" value="1" checked="checked" >
+														<label for="wt-freelancers">帖子</label>
 													</span>
 													<span class="wt-radio">
-														<input id="wt-jobs" data-title="Jobs" type="radio" name="searchtype" value="job">
-														<label for="wt-jobs">Jobs</label>
-													</span>
-													<span class="wt-radio">
-														<input id="wt-companies" data-title="Companies" type="radio" name="searchtype" value="job">
-														<label for="wt-companies">Companies</label>
+														<input id="wt-jobs" data-title="用户" type="radio" name="searchtype" value="2" >
+														<label for="wt-jobs">用户</label>
 													</span>
 												</div>
-												<a href="javascrip:void(0);" class="wt-searchbtn"><i class="lnr lnr-magnifier"></i></a>
+												<a href="#" class="wt-searchbtn" onclick="s()"><i class="lnr lnr-magnifier"></i></a>
 											</div>
 										</div>
 									</fieldset>
@@ -335,11 +355,11 @@
 												<h2>Start Your Search</h2>
 											</div>
 											<div class="wt-widgetcontent">
-												<form class="wt-formtheme wt-formsearch">
+												<form class="wt-formtheme wt-formsearch" id="form2" method="post">
 													<fieldset>
 														<div class="form-group">
-															<input type="text" name="Search" class="form-control" placeholder="Search Company">
-															<a href="javascrip:void(0);" class="wt-searchgbtn"><i class="lnr lnr-magnifier"></i></a>
+															<input type="text" name="message" class="form-control" placeholder="帖子搜索">
+															<a href="#" class="wt-searchgbtn" onclick="s2()"><i class="lnr lnr-magnifier"></i></a>
 														</div>
 													</fieldset>
 												</form>
@@ -495,7 +515,7 @@
 													</ul>
 												</div>
 											</div>
-																						<div class="wt-article">
+											<div class="wt-article">
 												<figure>
 													<img src="images/article/classic/img-04.jpg" alt="img description">
 												</figure>

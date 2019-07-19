@@ -5,7 +5,6 @@
 <html>
 <head>
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<meta charset="ISO-8859-1">
 <title>Ö÷Ò³</title>
 </head>
 <body>

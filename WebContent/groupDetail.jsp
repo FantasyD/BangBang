@@ -71,8 +71,6 @@
 <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
 <body class="wt-login">
-${userId }
-${userName }
 	<!--[if lt IE 8]>
 		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 	<![endif]-->
@@ -107,7 +105,8 @@ ${userName }
 									<div class="wt-userlistingcontent">
 										<div class="wt-contenthead">
 											<div class="wt-title">
-												<i class="fa fa-check-circle"></i> ${ins.aae102 }
+												<img class="img-circle" src="${ins.aae105!=null && ins.aae105!=''?ins.aae105:'upload/index.jpg'}"
+													width="30px" height="30px" alt="头像" />  ${ins.aae102 }
 												<h2>${ins.aae107!=null&& ins.aae107!=''?ins.aae107:'该群组暂时没有描述'}</h2>
 											</div>
 											<ul class="wt-saveitem-breadcrumb wt-userlisting-breadcrumb">
@@ -116,13 +115,15 @@ ${userName }
 												<li><span>${ins.aae103!=null && ins.aae103!=''?ins.aae103:'该群组暂时没有签名'}</span></li>
 											</ul>
 											<form id="quit" method="post">
-													<e:hidden name="aae101" value="${ins.aae101 }" />
-													<e:hidden name="aab101" value="${userId }" />
+												<e:hidden name="aah102" value="0" />
+												<e:hidden name="aah103" value="群组解散提醒" />
+												<e:hidden name="aah104" value="群组: ${ins.aae102 }已被创建者解散!" />
+												<e:hidden name="aae101" value="${ins.aae101 }" />
 											</form>
 											<ul class="wt-saveitem-breadcrumb wt-userlisting-breadcrumb">
 												<c:forEach items="${rows }" var="row" varStatus="vs">
-													<c:if test="${row.ab101==userId }">
-														<li><a herf="#" onclick="updateIsClick()">修改</a></li>
+													<c:if test="${row.aab101==userId }">
+														<li><a href="#" onclick="updateIsClick()">修改</a></li>
 														<li><a href="#" onclick="inviteIsClicked()">邀请</a></li>
 														<c:choose>
 															<c:when test="<%=isCreater%>">
@@ -147,7 +148,7 @@ ${userName }
 
 											<div class="wt-userlistinghold wt-featured wt-proposalitem">
 												<c:choose>
-													<c:when test="${row.ab101==ins.aab101 }">
+													<c:when test="${row.aab101==ins.aab101 }">
 														<span class="wt-featuredtag"> <img
 															src="images/featured.png" alt="img description"
 															data-tipso="Plus Member"
@@ -170,20 +171,20 @@ ${userName }
 												<div class="wt-proposaldetails">
 													<div class="wt-contenthead">
 														<div class="wt-title">
-															<a href="usersingle.html"> ${row.ab102 }</a>
+															<a href="usersingle.html"> ${row.aab102 }</a>
 														</div>
 													</div>
 												</div>
-												<c:if test="${row.ab101!=ins.aab101 }">
+												<c:if test="${row.aab101!=ins.aab101 }">
 													<c:if test="<%=isCreater%>">
 														<div class="wt-rightarea">
 															<div class="wt-btnarea">
-																<a herf="#" onclick="delMember('${row.ab101}')"
+																<a herf="#" onclick="delMember('${row.aab101}')"
 																	class="wt-btn">删除</a>
 															</div>
 															<div class="wt-hireduserstatus">
-																<i class="fa fa-paperclip"></i> <span><a herf="#"
-																	onclick="transfered('${row.ab101}')">转让</a></span>
+																<i class="fa fa-paperclip"></i> <span><a href="#"
+																	onclick="transfered('${row.aab101}')">转让</a></span>
 															</div>
 														</div>
 														<form id="empty" method="post">
@@ -199,7 +200,7 @@ ${userName }
 						</div>
 					</div>
 					<div id="updateInfo">
-						<form method="post">
+						<form method="post" enctype="multipart/form-data">
 							<table border="1" align="center" width="50%">
 								<caption>
 									群组信息
@@ -209,6 +210,10 @@ ${userName }
 									<td>群组名:</td>
 									<td><e:text name="aae102" required="true"
 											defval="${ins.aae102 }" autofocus="true" maxlength="30" /></td>
+								</tr>
+								<tr>
+									<td>头像:</td>
+									<td><input type="file" name="photo" id = "photo"/></td>
 								</tr>
 								<tr>
 									<td>群组签名:</td>
@@ -224,15 +229,17 @@ ${userName }
 								<tr>
 									<td colspan="2" align="center"><input type="submit"
 										name="next" value="修改" class="btn btn-default"
-										formaction="<%=path%>/group_updateGroup.html"> <input
-										type="button" onclick="closeDiv()" value="取消"
-										class="btn btn-default"></td>
+										formaction="<%=path%>/group_updateGroup.html">
+										<input type="button" onclick="closeDiv()" value="取消" class="btn btn-default"></td>
 								</tr>
 							</table>
 						</form>
+
 					</div>
 					<div id="invite">
 						<form id="numberForm" method="post">
+						<tr>
+						<td>
 							请输入你想邀请的用户编号: <input type="text" id="invitedNumber" name="aab101">
 							<e:hidden name="aah202"
 								value="${pageContext.request.contextPath}/group_acceptInviteServlt.html?aae101=${ins.aae101 }" />
@@ -243,9 +250,13 @@ ${userName }
 							<e:hidden name="aah103" value="群组邀请" />
 							<e:hidden name="aah104"
 								value="用户${userName }邀请您加入群组：${ins.aae102 }" />
+							</td>
+							</tr>
+								<tr><td>
 							<input type="button" onclick="inviteConfirm()" value="确定"
-								class="btn btn-default"> <input type="button"
-								onclick="closeInviteDiv()" value="取消" class="btn btn-default">
+								class="btn btn-default"> 
+							<input type="button" onclick="closeInviteDiv()" value="取消" class="btn btn-default">
+							</td></tr>
 						</form>
 					</div>
 				</div>
@@ -316,7 +327,7 @@ ${userName }
   			if(confirm("您确定要退出该群组吗？"))
   			{
   					var quitBtn=document.getElementById("quit");
-	    				quitBtn.action="<%=path%>/group_quitGroup.html";
+	    				quitBtn.action="<%=path%>/group_quitGroup.html?aab101="+${userId };
 						quitBtn.submit();
 				}
 		}
@@ -327,7 +338,8 @@ ${userName }
   			{
   					var delBtn=document.getElementById("quit");
   					delBtn.action="<%=path%>/group_delGroup.html";
-						delBtn.submit();
+					delBtn.submit();
+					alert("解散成功! ")
   			}
   	}
 		//显示隐藏的邀请DIV
@@ -350,7 +362,7 @@ ${userName }
 			var tag=true;
 			var user=document.getElementById("invitedNumber").value;
 		    <c:forEach items="${rows}" var="item" varStatus="status" >  
-	        	if(${item.ab101}==user)	
+	        	if(${item.aab101}==user)	
 	        	{
 	        		 tag=false;
 	        	}

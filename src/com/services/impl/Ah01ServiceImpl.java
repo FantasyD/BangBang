@@ -45,7 +45,7 @@ public abstract class Ah01ServiceImpl extends JdbcServicesSupport
 	/**
 	 * @Description: 向邮件表中插入邮件记录
 	 * 	插入邮件所需的dto:
-	 * 		aab101: 邮件接收人
+	 * 		aab101: 邮件接收人(批量发送时无需填写)
 	 * 		aah102: 邮件类型(0表示通知类，1表示链接类，2表示询问类)
 	 * 		aah103: 邮件标题
 	 * 		aah104: 邮件内容

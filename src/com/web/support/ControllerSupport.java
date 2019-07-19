@@ -50,11 +50,9 @@ public abstract class ControllerSupport implements BaseController
 		List<Map<String, String>> rows = this.services.query();
 		if (rows.size() > 0)
 		{
+			System.out.println(rows);
 			this.saveAttribute("rows", rows);
-<<<<<<< HEAD
 			this.saveAttribute("type", this.dto.get("type"));
-=======
->>>>>>> 614e1804db5bcfea9cc123ec119cd37cf332ba46
 		}
 		else
 		{

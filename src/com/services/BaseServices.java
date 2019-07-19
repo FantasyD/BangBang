@@ -16,5 +16,4 @@ public interface BaseServices
 	{
 		return null;
 	}
-	
 }

@@ -25,6 +25,11 @@
 
 <input type="hidden" name="aac101" value="${aac101 }">
 <input type="hidden" name="aab101" value="${aab101 }">
+
+	
+<input type="hidden" name="aah102" value="1">
+<input type="hidden" name="aah103" value="留言发布">
+<input type="hidden" name="aah104" value="有人回复了您的帖子">
 </form>
 </div>
 </body>

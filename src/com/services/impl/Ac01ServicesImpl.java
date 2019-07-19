@@ -11,7 +11,7 @@ import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 import com.services.JdbcServicesSupport;
 import com.system.tools.Tools;
 
-public class Ac01ServicesImpl extends JdbcServicesSupport
+public class Ac01ServicesImpl extends Ah01ServiceImpl
 {
 	
 	/**
@@ -222,4 +222,5 @@ public class Ac01ServicesImpl extends JdbcServicesSupport
 	
 		return this.executeUpdate(sql.toString(), argsObjects)>0;
 	}
+
 }

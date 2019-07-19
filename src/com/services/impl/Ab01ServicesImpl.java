@@ -164,6 +164,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	public boolean sendEmail() throws Exception 
 	{
 		String Email = (String)this.get("aab108");
+		Tools.setCode(Email);
 		MailUtil.email(Email, Users.verification_code.get(Email));
 		return true;
 	}
@@ -179,7 +180,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	/**
 	 * µÇÂ¼²éÑ¯
 	 */
-	public String check()throws Exception
+	public Map<String, String> check()throws Exception
 	{
 		String sql=null;
 		if(((String)this.get("userID")).contains("@")) 
@@ -195,7 +196,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 		{
 			if(map.get("aab103").equals(Tools.getMd5(this.get("aab103"))))
 			{
-				return map.get("aab101");
+				return map;
 			}
 		}
 		return null;	

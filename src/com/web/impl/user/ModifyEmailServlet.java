@@ -5,7 +5,7 @@ public class ModifyEmailServlet extends Ab01ControllerSupport
 	@Override
 	public String execute() throws Exception 
 	{
-		this.update("modifyEmail", "ÓÊÏäÐÞ¸Ä³É¹¦£¡", "ÓÊÏäÐÞ¸ÄÊ§°Ü£¡");
+		this.is_receive("modifyEmail", "ÓÊÏäÐÞ¸Ä³É¹¦£¡", "ÓÊÏäÐÞ¸ÄÊ§°Ü£¡");
 		this.savePageInstance();
 		return "userCenter";
 	}

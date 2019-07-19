@@ -5,9 +5,9 @@ public class SendEmailServlet extends Ab01ControllerSupport
 	@Override
 	public String execute() throws Exception 
 	{
-		if(!this.CheckEmail("isEmailExist", "邮箱已被注册！", "邮件发送成功！"))
+		if(!this.update("isEmailExist", "邮箱已被注册！", "邮件发送成功！"))
 		{
-			this.mail();
+			this.update("sendEmail", "验证码发送");
 		}
 		return null;
 	}

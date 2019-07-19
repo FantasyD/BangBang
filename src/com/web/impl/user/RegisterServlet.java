@@ -19,7 +19,7 @@ public class RegisterServlet extends Ab01ControllerSupport
 	@Override
 	public String execute() throws Exception 
 	{
-		if(this.update("addUser","注册成功！","验证码错误，请重新输入！")) 
+		if(this.is_receive("addUser","注册成功！","验证码错误，请重新输入！")) 
 		{
 			return "userLogin";
 		}

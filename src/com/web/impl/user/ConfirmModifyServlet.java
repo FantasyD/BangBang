@@ -5,7 +5,7 @@ public class ConfirmModifyServlet extends Ab01ControllerSupport
 	@Override
 	public String execute() throws Exception 
 	{
-		this.update("resetPassword", "ÃÜÂëÐÞ¸Ä³É¹¦£¡", "ÃÜÂëÐÞ¸ÄÊ§°Ü£¡");
+		this.is_receive("resetPassword", "ÃÜÂëÐÞ¸Ä³É¹¦£¡", "ÃÜÂëÐÞ¸ÄÊ§°Ü£¡");
 		return "userLogin";
 	}
 

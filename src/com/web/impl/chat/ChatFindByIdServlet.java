@@ -9,7 +9,7 @@ public class ChatFindByIdServlet extends Ad01ControllerSupport
 	@Override
 	public String execute() throws Exception
 	{
-		this.QueryMapToSession("findById", "chat_ins", "find");;
+		this.QueryMapToSession("findById", "chat_ins");;
 		return "null";
 	}
 }

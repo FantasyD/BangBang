@@ -21,4 +21,8 @@ public class Users
 	
 	//保存聊天记录删除状态
 	public static Map<String, String> delState = new HashMap<>();
+	
+	
+	//保存邮箱与验证码的映射
+	public static Map<String, String> verification_code = new HashMap<>();
 }

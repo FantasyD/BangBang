@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.services.BaseServices;
 import com.services.impl.Ac01ServicesImpl;
 import com.services.impl.Ac03ServicesImpl;
+import com.system.tools.Tools;
 
 public abstract class ControllerSupport implements BaseController
 {
@@ -50,14 +51,69 @@ public abstract class ControllerSupport implements BaseController
 		if (rows.size() > 0)
 		{
 			this.saveAttribute("rows", rows);
-			this.saveAttribute("aab101", this.dto.get("aab101"));
+<<<<<<< HEAD
 			this.saveAttribute("type", this.dto.get("type"));
+=======
+>>>>>>> 614e1804db5bcfea9cc123ec119cd37cf332ba46
 		}
 		else
 		{
 			this.saveAttribute("msg", "没有符合条件的数据!");
 		}
 	}
+	
+	/*****************************************
+	 * 用户登陆用到的函数
+	 *****************************************/
+
+	/**
+	 * 用于验证账号
+	 * @return
+	 * @throws Exception
+	 */
+	protected final boolean saveUserPageInstance()throws Exception
+	{
+		Map<String, String> map = this.executeQueryMethod("check");
+		String aab101 = map.get("aab101");
+		this.dto.put("aab101", aab101);
+		if(aab101 != null)
+		{
+			this.saveSession_attribute("userID", aab101);
+			return true;
+		}
+		else
+		{
+			this.saveAttribute("msg", "提示:登陆失败，账号或密码异常！");
+			return false;
+		}	
+	}
+	
+	
+	/**
+	 * 
+	 * @Description	注册信息提示
+	 * @param methodName
+	 * @return
+	 * @throws Exception
+	 */
+	protected final boolean is_receive(String methodName,String msgText1,String msgText2)throws Exception
+	{
+		if (this.executeUpdateMethod("receiveEmail")) 
+		{
+			this.saveAttribute("msg", msgText1);
+			return this.executeUpdateMethod(methodName);
+		}
+		this.saveAttribute("msg", msgText2);
+		return false;
+	}
+	
+	
+	
+	
+	/*****************************************
+	 
+	 *****************************************/
+	
 	
 	/**
 	 * 单一实例 查询
@@ -70,7 +126,8 @@ public abstract class ControllerSupport implements BaseController
 		if (ins != null)
 		{
 			this.saveAttribute("ins", ins);
-		} else
+		}
+		else
 		{
 			this.saveAttribute("msg", "提示:该数据已删除或禁止访问!");
 		}
@@ -145,6 +202,26 @@ public abstract class ControllerSupport implements BaseController
 	{
 		String msg = this.executeUpdateMethod(methodName) ? "成功!" : "失败!";
 		this.saveAttribute("msg", msgText + msg);
+	}
+	
+	/**
+	 * 返回方法执行结果的update
+	 * @param methodName
+	 * @param S_msg   函数执行成功时存入的信息
+	 * @param F_msg   函数执行失败时存入的信息
+	 * @return
+	 * @throws Exception
+	 */
+	protected final boolean update(String methodName, String S_msg, String F_msg)throws Exception
+	{
+		
+		if (this.executeUpdateMethod(methodName)) 
+		{
+			this.saveAttribute("msg", S_msg);
+			return true;	
+		}
+		this.saveAttribute("msg", F_msg);
+		return false;
 	}
 	
 	/**

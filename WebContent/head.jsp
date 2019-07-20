@@ -80,17 +80,17 @@
 												</li>
 												<!-- 查询我的群组 -->
 												<li>
-													<a href="<%=path %>/group_findMyGroup.html?aab101=${userId}">
+													<a href="#" onclick="myGroups()">
 														<span>我的群组</span>
 													</a>
 												</li>
 												<li class="wt-notificationicon">
-													<a href="javascript:void(0);">
+													<a href="#" onclick="javascript:void(0);">
 														<span>我的消息</span>
 													</a>
 												</li>
 												<li>
-													<a href="myEmails.jsp">
+													<a href="#" onclick="myEmails()">
 														<span>我的邮件</span>
 													</a>
 												</li>
@@ -109,7 +109,28 @@
 				</div>
 			</header>
 						<!--Header End-->
+			<form method="post" id="message">
+					<input type="hidden" name="aab101" value="${userId }"/>
+			</form>			
+			
+						
+						
   <script type="text/javascript">
+  //获取我的群组
+  function myGroups()
+  {
+	  var myForm=$("#message");
+	  myForm.action="<%=path %>/group_findGroup.html";
+	  myForm.submit();
+  }
+  //获取我的邮件
+  function myEmails()
+  {
+	  var myForm=$("#message");
+	  myForm.action="<%=path %>/email_getEmail.html";
+	  myForm.submit();
+  }
+  
   function askEmail(newNum)
   {
 		$.ajax

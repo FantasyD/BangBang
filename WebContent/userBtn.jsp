@@ -48,7 +48,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="<%=path %>/group_findMyGroup.html?aab101=${userId}">
+									<a href="<%=path %>/group_findMyGroup.html" onclick="myGroups()">
 										<i class="ti-package"></i>
 										<span>我的群组</span>
 									</a>
@@ -76,6 +76,10 @@
 					</div>
 				</div>
 				<!--Sidebar Start-->
+				<form method="post">
+					<input type="hidden" name="aab101" value="${userId }"/>
+				</form>
+				
 				
 </body>
 </html>

@@ -27,6 +27,9 @@
 									<h2><a href="javascript:void(0);"> Louanne Mattioli</a></h2>
 									<span>Amento Tech</span>
 								</div>
+								<div class="wt-btnarea">
+									<a href="<%=path%>/addPost.jsp" class="wt-btn">发布帖子</a>
+								</div>
 							</div>
 						</div>
 						
@@ -39,7 +42,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="myPost.jsp">
+									<a href="<%=path%>/tiezi_queryTieziById.html?aab101=${sessionScope.userId}">
 										<i class="ti-briefcase"></i>
 										<span>我的帖子</span>
 									</a>

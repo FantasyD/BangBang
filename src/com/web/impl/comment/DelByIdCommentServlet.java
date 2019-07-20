@@ -6,8 +6,8 @@ public class DelByIdCommentServlet extends CommentControllerSupport
 	public String execute() throws Exception
 	{
 		this.update("delByIdComment","¡Ù—‘…æ≥˝");
-		this.savePageInstance();
 		this.savePageData();
-		return "tieziDetails";
+		this.savePageInstance();
+		return "postDetailsOfMy";
 	}
 }

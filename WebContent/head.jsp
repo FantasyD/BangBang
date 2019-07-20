@@ -74,7 +74,7 @@
 												</li>
 												<!-- 查询我的帖子 -->
 												<li>
-													<a href="myPost.jsp">
+													<a href="<%=path%>/tiezi_queryTieziById.html?aab101=${sessionScope.userId}">
 														<span>我的帖子</span>
 													</a>
 												</li>

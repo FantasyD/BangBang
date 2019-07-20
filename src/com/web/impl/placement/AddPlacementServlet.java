@@ -10,6 +10,6 @@ public class AddPlacementServlet extends TieziControlletSupport
 		// TODO Auto-generated method stub
 		this.update("addPlacement","Ìû×ÓÖÃ¶¥ÉêÇë");
 		this.savePageData();
-		return "myTiezi";
+		return "myPost";
 	}
 }

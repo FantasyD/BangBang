@@ -91,7 +91,7 @@
 															<div class="wt-rightarea">
 																<div class="wt-btnarea">
 																	<a href="#" onclick="onModify('${ins.aac101}')" class="wt-cancelbtn">–ﬁ∏ƒ</a>
-																	<a href="javascript:void(0);" class="wt-cancelbtn">÷√∂•…Í«Î</a>
+																	<a href="#" onclick="onTop('${ins.aac101}')" class="wt-cancelbtn">÷√∂•…Í«Î</a>
 																	<a href="#" onclick="onDel('${ins.aac101}')" class="wt-cancelbtn">…æ≥˝</a>
 																</div>
 															</div>
@@ -142,6 +142,7 @@
 	<form id = "myform">
 		<input type="hidden" name="aac101" id="aac101">
 		<input type="hidden" name="type" value="1">
+		<input type="hidden" name="aab101" id="aab101" value="${sessionScope.userId }">
 	</form>
 	
 	<!--Wrapper End-->
@@ -248,6 +249,14 @@
 		vform.submit();
 	} 
 	
+	function onTop(vaac101)
+	{
+		var vform = document.getElementById("myform");
+		document.getElementById("aac101").value = vaac101;
+		vform.action="<%=path%>/placement_addPlacement.html";
+		vform.submit();
+		alert("Ã˚◊”÷√∂•…Í«Î“—∑¢ÀÕ");
+	} 
 	</script>
 </body>
 </html>

@@ -48,7 +48,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="<%=path %>/group_myGroups.html">
+									<a href="<%=path %>/group_findMyGroup.html?aab101=${userId}">
 										<i class="ti-package"></i>
 										<span>我的群组</span>
 									</a>

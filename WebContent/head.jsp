@@ -80,7 +80,7 @@
 												</li>
 												<!-- 查询我的群组 -->
 												<li>
-													<a href="<%=path %>/group_myGroups.jsp">
+													<a href="<%=path %>/group_findMyGroup.html?aab101=${userId}">
 														<span>我的群组</span>
 													</a>
 												</li>

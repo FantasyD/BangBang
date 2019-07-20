@@ -13,6 +13,6 @@ public class QueryTieziServlet extends ControllerSupport
 	public String execute() throws Exception
 	{
 		this.savePageData();
-		return "firstIndex";
+		return "index";
 	}
 }

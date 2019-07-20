@@ -52,7 +52,6 @@ public abstract class ControllerSupport implements BaseController
 		{
 			System.out.println(rows);
 			this.saveAttribute("rows", rows);
-			this.saveAttribute("type", this.dto.get("type"));
 		}
 		else
 		{

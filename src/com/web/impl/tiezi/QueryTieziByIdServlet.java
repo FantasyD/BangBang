@@ -5,6 +5,6 @@ public class QueryTieziByIdServlet extends TieziControlletSupport  {
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 		this.savePageData();
-		return "myTiezi";
+		return "myPost";
 	}
 }

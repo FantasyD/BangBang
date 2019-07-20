@@ -85,6 +85,16 @@ public class Ac04ServicesImpl extends JdbcServicesSupport
 	public List<Map<String,String>> query()throws Exception
 	{
 		// 定义SQL主体
+		
+		StringBuilder sqlForTop =  new StringBuilder()
+				.append("select x.aac101,x.aac102,x.aac106,x.aac105,x.aac109 imgPath, ")
+				.append("       x.aac108,x.aac110,b.aac305 ")
+				.append("  from ac01 x LEFT JOIN ac03 b ")
+				.append("    on x.aac101=b.aac101 where aac305 = 1 and x.is_deleted = 0 order by x.aac108 desc  ")
+				;
+				
+		List<Map<String,String>> topList=this.queryForList(sqlForTop.toString());
+		
 		StringBuilder sql = new StringBuilder()
 				.append("select x.aac101,b.aab102 cnaab102,x.aac102,x.aac103,a.fvalue cnaac103,x.aac106,")
 				.append("             x.aac105,b.aab101,x.aac108,x.aac108")
@@ -95,6 +105,9 @@ public class Ac04ServicesImpl extends JdbcServicesSupport
 				.append(" ORDER BY x.aac110")
 				;
 		List<Map<String,String>> showList=this.sequnenceList(this.queryForList(sql.toString()),this.getReadRate());
+
+		showList.addAll(topList);
+			
 		return showList;
 	}
 	

@@ -108,36 +108,38 @@
 										</div>
 										<div class="wt-widget wt-widgetarticlesholder">
 											<div class="wt-widgettitle">
-												<h2>流行帖</h2>
+												<h2>置顶帖</h2>
 											</div>
 											<div class="wt-widgetcontent">
-												<div class="wt-particlehold">
-													<figure>
-														<img src="images/thumbnail/img-01.jpg" alt="image description">
-													</figure>
-													<div class="wt-particlecontent">
-														<h3><a href="javascript:void(0);">外交部</a></h3>
-														<span><i class="lnr lnr-clock"></i> Jun 27, 2018</span>
-													</div>
-												</div>
-												<div class="wt-particlehold">
-													<figure>
-														<img src="images/thumbnail/img-02.jpg" alt="image description">
-													</figure>
-													<div class="wt-particlecontent">
-														<h3><a href="javascript:void(0);">国际新闻</a></h3>
-														<span><i class="lnr lnr-clock"></i> Jun 27, 2018</span>
-													</div>
-												</div>
-												<div class="wt-particlehold">
-													<figure>
-														<img src="images/thumbnail/img-03.jpg" alt="image description">
-													</figure>
-													<div class="wt-particlecontent">
-														<h3><a href="javascript:void(0);">武汉大学</a></h3>
-														<span><i class="lnr lnr-clock"></i> Jun 27, 2018</span>
-													</div>
-												</div>
+												
+												<c:choose>
+													<c:when test="${rows!=null }">												
+														<c:forEach items="${rows }" var="ins" varStatus="vs">
+															<c:if test="${ins.aac305==1 }">
+																<div class="wt-particlehold">
+																	<figure>
+																	<c:if test="${ins.imgpath==null }">
+																		<a href="#" onclick = "onEdit('${ins.aac101 }')">
+																			<img src="images/thumbnail/img-01.jpg" alt="image description">
+																		</a>
+																	</c:if>
+																	<c:if test="${ins.imgpath!=null }">
+																		<a href="#" onclick = "onEdit('${ins.aac101 }')">
+																			<img src="${ins.imgpath }" alt="image description">
+																		</a>
+																	</c:if>
+																	</figure>
+																	<div class="wt-particlecontent">
+																		<h3><a href="#" onclick = "onEdit('${ins.aac101 }')">${ins.aac102 }</a></h3>
+																		<span><i class="lnr lnr-clock"></i> ${ins.aac108 }</span>
+																	</div>
+																</div>
+															</c:if>
+														</c:forEach>
+													</c:when>
+												</c:choose>
+												
+												
 											</div>
 										</div>
 										<div class="wt-widget wt-widgettagshold">
@@ -175,6 +177,7 @@
 													
 													<table id="idData">
 														<c:forEach items="${rows }" var="ins" varStatus="vs">
+														<c:if test="${ins.aac305!=1 }">
 														<tr>													
 															<div class="wt-article" id="div${vs.count }">
 																<c:if test="${ins.imgpath!=null }">
@@ -212,6 +215,7 @@
 																</div>
 															</div>					
 														</tr>
+														</c:if>
 														</c:forEach>
 													</table>
 												</c:when>

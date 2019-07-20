@@ -56,6 +56,7 @@ public class Ac01ServicesImpl extends Ah01ServiceImpl
 		}
 		sql.append(" and x.is_deleted = 0 ");
 		sql.append(" order by x.aac108 desc");
+		
 		return this.queryForList(sql.toString(), paramList.toArray());
 	}
 

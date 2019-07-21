@@ -7,7 +7,12 @@ public class SendEmailServlet extends Ab01ControllerSupport
 	{
 		if(!this.update("isEmailExist", "邮箱已被注册！", "邮件发送成功！"))
 		{
-			this.update("sendEmail", "验证码发送");
+			this.update("SendEmail", "验证码发送");
+			this.setResponseAttribute("result", "true");
+		}
+		else
+		{
+			this.setResponseAttribute("result", "false");
 		}
 		return null;
 	}

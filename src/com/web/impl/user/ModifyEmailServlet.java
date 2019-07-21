@@ -5,8 +5,14 @@ public class ModifyEmailServlet extends Ab01ControllerSupport
 	@Override
 	public String execute() throws Exception 
 	{
-		this.is_receive("modifyEmail", "” œ‰–ﬁ∏ƒ≥…π¶£°", "” œ‰–ﬁ∏ƒ ß∞‹£°");
-		this.savePageInstance();
-		return "userCenter";
+		if(this.is_receive("modifyEmail"))
+		{
+			this.setResponseAttribute("result", "true");
+		}
+		else
+		{
+			this.setResponseAttribute("result", "false");
+		}
+		return null;
 	}
 }

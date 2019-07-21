@@ -12,9 +12,14 @@ public class ModifyUserServlet extends Ab01ControllerSupport
 	@Override
 	public String execute() throws Exception 
 	{
-		this.update("modifyUser", "修改");
-		this.savePageInstance();
-		return "userCenter";
+		if(this.update("modifyUser", "修改成功", "修改失败"))
+		{
+			this.setResponseAttribute("result", "true");
+		}
+		else
+		{
+			this.setResponseAttribute("result", "false");
+		}
+		return null;
 	}
-
 }

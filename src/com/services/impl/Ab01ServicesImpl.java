@@ -1,11 +1,16 @@
 package com.services.impl;
 
+import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.services.JdbcServicesSupport;
-import com.sun.xml.internal.bind.v2.runtime.ElementBeanInfoImpl;
 import com.system.mail.MailUtil;
 import com.system.talk.Users;
 import com.system.tools.Tools;
@@ -15,7 +20,7 @@ import com.system.tools.Tools;
  * @Description: 对ab01表的操作
  * @author: xzc
  */
-public class Ab01ServicesImpl extends JdbcServicesSupport 
+public class Ab01ServicesImpl extends Ah01ServiceImpl
 {
 	/**
 	 * 
@@ -26,22 +31,73 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	private boolean modifyUser()throws Exception
 	{
 		StringBuilder sql=new StringBuilder()
-				.append("update ab01 a")
-				.append("   set a.aab102=?,a.aab105=?,a.aab109=?,a.aab111=?,a.aab112=?,")
-				.append("       a.aab114=?,a.aab115=?")
-				.append(" where a.aab101=?")
+				.append("update ab01 set ")
 				;
-		Object args[]= {
-				this.get("aab102"),
-				this.get("aab105"),
-				this.get("aab109"),
-				this.get("aab111"),
-				this.get("aab112"),
-				this.get("aab114"),
-				this.get("aab115"),
-				this.get("aab101")
-		};
-		return this.executeUpdate(sql.toString(), args)>0;
+  		Object aab102 = this.get("aab102");
+  		Object aab104 = this.get("aab104");
+  		Object aab105 = this.get("aab105");
+  		Object aab107 = this.get("aab107");
+  		Object aab109 = this.get("aab109");
+  		Object aab110 = this.get("aab110");
+  		Object aab111 = this.get("aab111");
+  		Object aab112 = this.get("aab112");
+  		Object aab114 = this.get("aab114");
+  		
+  		//参数列表
+  		List<Object> paramList=new ArrayList<>();
+  		//逐一判断查询条件是否录入,拼接AND条件
+  		
+  		if(this.isNotNull(aab102))
+  		{
+  			sql.append(" aab102=?,");
+  			paramList.add(URLDecoder.decode((String)aab102,"UTF-8"));
+  		}
+  		if(this.isNotNull(aab104))
+  		{
+  			sql.append(" aab104=?,");
+  			paramList.add(URLDecoder.decode((String)aab104,"UTF-8"));
+  		}
+  		if(this.isNotNull(aab105))
+  		{
+  			sql.append(" aab105=?,");
+  			paramList.add(URLDecoder.decode((String)aab105,"UTF-8"));
+  		}
+  		if(this.isNotNull(aab107))
+  		{
+  			sql.append(" aab107=?,");
+  			paramList.add(URLDecoder.decode((String)aab107,"UTF-8"));
+  		}
+  		if(this.isNotNull(aab109))
+  		{
+  			sql.append(" aab109=?,");
+  			paramList.add(URLDecoder.decode((String)aab109,"UTF-8"));
+  		}
+  		if(this.isNotNull(aab110))
+  		{
+  			sql.append(" aab110=?,");
+  			paramList.add(URLDecoder.decode((String)aab110,"UTF-8"));
+  		}
+  		if(this.isNotNull(aab111))
+  		{
+  			sql.append(" aab111=?,");
+  			paramList.add(URLDecoder.decode((String)aab111,"UTF-8"));
+  		}
+  		if(this.isNotNull(aab112))
+  		{
+  			sql.append(" aab112=?,");
+  			paramList.add(URLDecoder.decode((String)aab112,"UTF-8"));
+  		}
+  		if(this.isNotNull(aab114))
+  		{
+  			sql.append(" aab114=?,");
+  			paramList.add(URLDecoder.decode((String)aab114,"UTF-8"));
+  		}
+  		sql.append(" where aab101 = ?");
+  		paramList.add(this.get("aab101"));
+  		String str = sql.toString();
+  		str = str.substring(0, str.lastIndexOf(",")) + str.substring(str.lastIndexOf(",") + 1);
+		
+		return this.executeUpdate(str, paramList.toArray())>0;
 	}
 	
 	/**
@@ -63,8 +119,19 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 				this.get("aab101"),
 				Tools.getMd5(this.get("aab103"))
 		};
-		return this.executeUpdate(sql.toString(), args)>0;
+		
+		if(this.executeUpdate(sql.toString(), args) > 0)
+		{
+			this.put("aab101", this.get("aab101"));
+			this.put("aah102", "0");
+			this.put("aah103", "密码修改成功通知");
+			this.put("aah104", "您的密码已修改成功！");
+			this.sendEmail();
+			return true;
+		}
+		return false;
 	}
+	
 	/**
 	 *
 	 * @Description: 修改邮箱
@@ -82,7 +149,17 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 				this.get("aab108"),
 				this.get("aab101")
 		};
-		return this.executeUpdate(sql.toString(), args)>0;
+		
+		if(this.executeUpdate(sql.toString(), args) > 0)
+		{
+			this.put("aab101", this.get("aab101"));
+			this.put("aah102", "0");
+			this.put("aah103", "邮箱设置成功通知");
+			this.put("aah104", "您的邮箱已成功重新绑定！");
+			this.sendEmail();
+			return true;
+		}
+		return false;
 	}
 	
 	
@@ -102,7 +179,18 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 			this.get("aab108")
 		};
 		
-		return this.executeUpdate(sql, args)>0;
+		if(this.executeUpdate(sql, args) > 0)
+		{
+			String sql1 = "select aab101 from ab01 where aab108=?";
+			Map<String, String> map = this.queryForMap(sql1, this.get("aab108"));
+			this.put("aab101", map.get("aab101"));
+			this.put("aah102", "0");
+			this.put("aah103", "密码重设成功通知");
+			this.put("aah104", "您的密码已成功重新设置！");
+			this.sendEmail();
+			return true;
+		}
+		return false;
 	}
 	
 	/**
@@ -112,7 +200,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	 */
 	private boolean isEmailExist()throws Exception
 	{
-		String sql="select a.aab108 from ab01 a where a.aab108=?";
+		String sql="select a.aab101 from ab01 a where a.aab108=?";
 		return this.queryForMap(sql, this.get("aab108")) != null;
 	}
 	
@@ -131,17 +219,31 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 				.append("            values(?,?,?,?,?,")
 				.append("					?,?,?)")
 				;
+		
+		String name= URLDecoder.decode((String)this.get("aab110"),"UTF-8");
 		Object args[]= {
-				this.get("aab102"),
-				Tools.getMd5(this.get("aab103")),
-				this.get("aab104"),
-				this.get("aab107"),
-				this.get("aab108"),
-				this.get("aab110"),
+				URLDecoder.decode((String)this.get("aab102"),"UTF-8"),
+				Tools.getMd5(URLDecoder.decode((String)this.get("aab103"),"UTF-8")),
+				URLDecoder.decode((String)this.get("aab104"),"UTF-8"),
+				URLDecoder.decode((String)this.get("aab107"),"UTF-8"),
+				URLDecoder.decode((String)this.get("aab108"),"UTF-8"),
+				URLDecoder.decode((String)this.get("aab110"),"UTF-8"),
 				100,
 				0
 		};
-		return this.executeUpdate(sql.toString(), args)>0;
+		
+		if(this.executeUpdate(sql.toString(), args) > 0)
+		{
+			String sql1 = "select aab101 from ab01 where aab108=?";
+			Map<String, String> map = this.queryForMap(sql1, this.get("aab108"));
+			this.put("aab101", map.get("aab101"));
+			this.put("aah102", "0");
+			this.put("aah103", "注册成功通知");
+			this.put("aah104", "您的账号已成功注册！");
+			this.sendEmail();
+			return true;
+		}
+		return false;
 	}
 	
 	/**
@@ -150,10 +252,10 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	public Map<String, String> findById() throws Exception 
 	{
 		StringBuilder sql=new StringBuilder()
-				.append("select a.aab102,a.aab103,a.aab104,a.aab105,a.aab107,")
+				.append("select a.aab102,a.aab103,a.aab104,b.fvalue cnaab105,a.aab107,")
 				.append("       a.aab108,a.aab109,a.aab110,a.aab111,a.aab112,")
 				.append("       a.aab113,a.aab114,a.aab115,a.is_onLine")
-				.append("   from ab01 a")
+				.append("   from ab01 a,syscode b")
 				.append("  where a.aab101=?");
 		
 		return this.queryForMap(sql.toString(), this.get("aab101"));
@@ -161,7 +263,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	
 	
 	
-	public boolean sendEmail() throws Exception 
+	public boolean SendEmail() throws Exception 
 	{
 		String Email = (String)this.get("aab108");
 		Tools.setCode(Email);
@@ -201,4 +303,194 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 		}
 		return null;	
 	}
+	
+	
+	
+	
+	/**
+	 * 	按用户名查询
+	 * @param str
+	 * @return
+	 * @throws Exception
+	 */
+	private List<Map<String, String>> queryForUsername(String str)throws Exception
+	{
+		StringBuilder sql=new StringBuilder()
+				.append("select a.aab101,a.aab102,a.aab104,b.fvalue cnaab105,a.aab107,")
+				.append("		a.aab108,a.aab109,a.aab110,a.aab111,a.aab112,")
+				.append("		a.aab113,a.aab114,a.aab115,a.is_online")
+				.append("  from ab01 a,syscode b ")
+				.append(" where a.aab105 = b.fcode and b.fname = 'aab105' ")
+				;
+		List<Object> paramList=new ArrayList<>();
+		if (this.isNotNull(str)) {
+			sql.append("	and a.aab102 like ? ");
+			paramList.add("%" +str+ "%");
+		}
+		return queryForList(sql.toString(), paramList.toArray());
+	}
+	
+	/**
+	 * 按姓名查询
+	 * @param str
+	 * @return
+	 * @throws Exception
+	 */
+	private List<Map<String, String>> queryForName(String str)throws Exception
+	{
+		StringBuilder sql=new StringBuilder()
+				.append("select a.aab101,a.aab102,a.aab104,b.fvalue cnaab105,a.aab107,")
+				.append("		a.aab108,a.aab109,a.aab110,a.aab111,a.aab112,")
+				.append("		a.aab113,a.aab114,a.aab115,a.is_online")
+				.append("  from ab01 a,syscode b ")
+				.append(" where a.aab105 = b.fcode and b.fname = 'aab105' ")
+				;
+		List<Object> paramList=new ArrayList<>();
+		if (this.isNotNull(str)) {
+			sql.append("	and a.aab104 = ? ");
+			paramList.add(str);
+		}
+		return queryForList(sql.toString(), paramList.toArray());
+	}
+	
+	/**
+	 * 按学号查询
+	 * @param str
+	 * @return
+	 * @throws Exception
+	 */
+	private List<Map<String, String>> queryForSID(String str)throws Exception
+	{
+		StringBuilder sql=new StringBuilder()
+				.append("select a.aab101,a.aab102,a.aab104,b.fvalue cnaab105,a.aab107,")
+				.append("		a.aab108,a.aab109,a.aab110,a.aab111,a.aab112,")
+				.append("		a.aab113,a.aab114,a.aab115,a.is_online")
+				.append("  from ab01 a,syscode b ")
+				.append(" where a.aab105 = b.fcode and b.fname = 'aab105' ")
+				;
+		List<Object> paramList=new ArrayList<>();
+		if (this.isNotNull(str)) {
+			sql.append("	and a.aab107 = ? ");
+			paramList.add(str);
+		}
+		return queryForList(sql.toString(), paramList.toArray());
+	}
+
+	
+	/**
+	 * 	查询用户
+	 */
+	public List<Map<String, String>> query()throws Exception
+	{
+		Object aab102=this.get("message");	//用户名	模糊查询
+		Object aab104=this.get("message");	//姓名
+		Object aab107=this.get("message");	//学号
+		
+		String str1=(String)aab102;
+		String []str2=str1.trim().split("\\s+|\\^|&|\\+|,|，");
+		
+		List<Map<String, String>> list=new ArrayList<>();
+		for(String str:str2)
+		{
+			list.addAll(this.queryForUsername(str));
+			list.addAll(this.queryForName(str));
+			list.addAll(this.queryForSID(str));
+		}
+		
+		Map<Map<String,String>,Integer> map=new HashMap<>();
+
+		Set<Map<String,String>> set=new HashSet<>(list);
+
+		for(Map<String,String> mp:set)
+		{
+			for(Map<String,String> mp1:list)
+			{
+				if(mp.equals(mp1))
+				{
+					if(map.containsKey(mp))
+					{
+						Integer count=map.get(mp);
+						count++;
+						map.put(mp,count);
+					}
+					else
+					{
+						map.put(mp,1);
+					}
+				}
+			}
+		}
+
+		List<Map<String,String>> list1=sortMapByValue(map);
+		return list1;
+		
+
+		
+		
+		
+//		StringBuilder sql1=new StringBuilder()
+//				.append("select a.aab101,a.aab102,a.aab104,b.fvalue cnaab105,a.aab107,")
+//				.append("		a.aab108,a.aab109,a.aab110,a.aab111,a.aab112,")
+//				.append("		a.aab113,a.aab114,a.aab115,a.is_online")
+//				.append("  from ab01 a,syscode b ")
+//				.append(" where a.aab105 = b.fcode and b.fname = 'aab105' ")
+//				;
+//		StringBuilder sql2=new StringBuilder()
+//				.append("select a.aab101,a.aab102,a.aab104,b.fvalue cnaab105,a.aab107,")
+//				.append("		a.aab108,a.aab109,a.aab110,a.aab111,a.aab112,")
+//				.append("		a.aab113,a.aab114,a.aab115,a.is_online")
+//				.append("  from ab01 a,syscode b ")
+//				.append(" where a.aab105 = b.fcode and b.fname = 'aab105' ")
+//				;
+//		StringBuilder sql3=new StringBuilder()
+//				.append("select a.aab101,a.aab102,a.aab104,b.fvalue cnaab105,a.aab107,")
+//				.append("		a.aab108,a.aab109,a.aab110,a.aab111,a.aab112,")
+//				.append("		a.aab113,a.aab114,a.aab115,a.is_online")
+//				.append("  from ab01 a,syscode b ")
+//				.append(" where a.aab105 = b.fcode and b.fname = 'aab105' ")
+//				;
+//		List<Object> paramList1=new ArrayList<>();
+//		List<Object> paramList2=new ArrayList<>();
+//		List<Object> paramList3=new ArrayList<>();
+//		if (this.isNotNull("aab102")) 
+//		{
+//			sql1.append("	and a.aab102 like ? ");
+//			paramList1.add("%" +aab102+ "%");
+//		}
+//		if (this.isNotNull("aab104")) 
+//		{
+//			sql2.append("	and a.aab104 = ? ");
+//			paramList2.add(aab104);
+//		}
+//		if (this.isNotNull("aab107")) 
+//		{
+//			sql3.append("	and a.aab107 = ? ");
+//			paramList3.add(aab107);
+//		}
+//		List<Map<String, String>> list1=this.queryForList(sql1.toString(),paramList1.toArray());
+//		List<Map<String, String>> list2=this.queryForList(sql2.toString(),paramList2.toArray());
+//		List<Map<String, String>> list3=this.queryForList(sql3.toString(),paramList3.toArray());
+//		list3.addAll(list1);
+//		list3.addAll(list2);
+//		Set<Map<String, String>> set=new HashSet<>(list3);
+//		List<Map<String, String>> list4=new ArrayList<>(set);
+//		
+//		list4.sort((Map<String,String> m1,Map<String,String> m2) -> m1.get("aab101").compareTo(m2.get("aab101")));
+//
+//		return list4;
+	}
+
+	private static List<Map<String,String>> sortMapByValue(Map<Map<String,String>,Integer> map)throws Exception
+	{
+		int size=map.size();
+		
+		List<Map.Entry<Map<String, String>, Integer>> list=new ArrayList<>(size);
+		list.addAll(map.entrySet());
+		List<Map<String, String>> keys=list.stream().sorted(Comparator.comparing(Map.Entry<Map<String, String>,Integer>::getValue).reversed())
+				.map(Map.Entry<Map<String, String>,Integer>::getKey).collect(Collectors.toList());
+		
+		return keys;		
+	}
+
+	
 }

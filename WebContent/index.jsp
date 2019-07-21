@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%String path = request.getContextPath(); %>
+
 <!doctype html>
 <!--[if lt IE 7]>		<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>			<html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -32,7 +33,9 @@
 	<link rel="stylesheet" href="css/responsive.css">
 	<script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
+
 <body class="wt-login" onLoad="goPage(1,5);">
+
 	<!--[if lt IE 8]>
 		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 	<![endif]-->
@@ -84,7 +87,9 @@
 												<form class="wt-formtheme wt-formsearch">
 													<fieldset>
 														<div class="form-group">
+
 															<input type="text" name="Search" class="form-control" placeholder="输入帖子关键词">
+
 															<a href="javascrip:void(0);" class="wt-searchgbtn"><i class="lnr lnr-magnifier"></i></a>
 														</div>
 													</fieldset>
@@ -140,6 +145,7 @@
 												</c:choose>
 												
 												
+
 											</div>
 										</div>
 										<div class="wt-widget wt-widgettagshold">
@@ -224,7 +230,15 @@
 													</table>
 												</c:when>
 											</c:choose>
-										</div>								
+
+						
+										</div>
+										
+										<table width="60%" align="right" >
+											<tr><td><div id="barcon" name="barcon"></div></td></tr>
+										</table>
+										
+
 									</div>
 								</div>
 							</div>
@@ -237,6 +251,7 @@
 		</div>
 		<!--Content Wrapper End-->
 	</div>
+
 	
 	<!-- 以下用来存放需要传递给后台的数据 -->
 	<form id = "myform">
@@ -245,6 +260,7 @@
 	</form>
 	
 	
+
 	<!--Wrapper End-->
 	<script src="js/vendor/jquery-3.3.1.js"></script>
 	<script src="js/vendor/jquery-library.js"></script>
@@ -261,7 +277,7 @@
 	<script src="js/tipso.js"></script>
 	<script src="js/jRate.js"></script>
 	<script src="js/main.js"></script>
-	
+
 		<script type="text/javascript">
 		/**
 		 * 分页函数
@@ -321,5 +337,6 @@
 			vform.submit();
 		}
 	</script>
+
 </body>
 </html>

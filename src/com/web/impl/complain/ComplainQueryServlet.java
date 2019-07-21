@@ -6,6 +6,6 @@ public class ComplainQueryServlet extends Af01ControllerSupport
 	public String execute() throws Exception 
 	{
 		this.savePageData();
-		return "manageComplain";
+		return "adminComplain";
 	}
 }

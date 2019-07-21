@@ -63,7 +63,65 @@
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9 float-right">
 							<div class="wt-dashboardbox wt-dashboardinvocies">
 								<div class="wt-dashboardboxtitle wt-titlewithsearch">
-									<h2>置顶申请</h2>
+									<h2>对用户的举报</h2>
+									<form class="wt-formtheme wt-formsearch">
+										<fieldset>
+											<div class="form-group">			
+											</div>
+										</fieldset>
+									</form>
+								</div>
+								<div class="wt-dashboardboxcontent wt-categoriescontentholder wt-categoriesholder">
+									<table class="wt-tablecategories">
+										<thead>
+											<tr>
+												<th>序号</th>
+												<th>举报人姓名</th>
+												<th>被举报人姓名</th>
+												<th>举报类型</th>
+												<th>处理状态</th>
+												<th>举报时间</th>
+												<th>处理时间</th>
+												<th>操作</th>		
+											</tr>
+										</thead>
+										<tbody>
+											<c:choose>
+												<c:when test="${rows!=null }">
+													<c:forEach items="${rows }" var="ins" varStatus="vs">
+														<c:if test="${ins.aaf103 == '1'}">
+														<tr>
+															<td>${vs.count }        </td>
+														    <td>${ins.complainer }  </td>
+														    <td>${ins.caller }      </td>
+														    <td>${ins.reason }      </td>
+														    <td>${ins.hstatus }     </td>
+														    <td>${ins.aaf109 }      </td>
+														    <td>${ins.aaf108 }      </td>
+															<td>
+													        	<a href="#" onclick="onHandleUser('${ins.aaf101}')">处理</a>
+														    </td>	
+														</tr>	
+														</c:if>												
+													</c:forEach>
+												</c:when>
+											</c:choose>
+										</tbody>
+									</table>
+									
+									
+								</div>
+							</div>
+						</div>
+						</div>
+						
+						<br>
+						
+						<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9 float-right">
+							<div class="wt-dashboardbox wt-dashboardinvocies">
+								<div class="wt-dashboardboxtitle wt-titlewithsearch">
+									<h2>对帖子的举报</h2>
 									<form class="wt-formtheme wt-formsearch">
 										<fieldset>
 											<div class="form-group">
@@ -77,69 +135,43 @@
 										<thead>
 											<tr>
 												<th>序号</th>
+												<th>举报人姓名</th>
 												<th>帖子标题</th>
-												<th>发帖人</th>
-												<th>帖子置顶申请日期</th>
-												<th>申请审核日期</th>
-												<th>帖子审核状态</th>
-												<th>操作</th>
+												<th>举报类型</th>
+												<th>处理状态</th>
+												<th>举报时间</th>
+												<th>处理时间</th>
+												<th>操作</th>							
 											</tr>
 										</thead>
 										<tbody>
 											<c:choose>
 												<c:when test="${rows!=null }">
 													<c:forEach items="${rows }" var="ins" varStatus="vs">
+													<c:if test="${ins.aaf103 == '2'}">
 														<tr>
-															<td>${vs.count }</td>
-															<td>
-														    	<a href="#" onclick = "onEdit('${ins.aac101 }','${ins.aab101 }')">${ins.aac102 }</a>
-														    </td>
-															<td>${ins.cnaab102 }</td>
-															<td>${ins.aac302 }</td>   			    
-															<td>${ins.aac303 }</td>
-															<c:if test = "${ins.aac305 == 0 }">
-																<td>待处理</td>
-																<td>
-																<div class="wt-actionbtn">
-																	<a href="#"  class="wt-addinfo wt-skillsaddinfo"  onclick = "onUpdateState('${ins.aac301 }',1,'${ins.aab101 }')">置顶</a>
-																	<a href="#"  class="wt-deleteinfo"  onclick = "onUpdateState('${ins.aac301 }',3,'${ins.aab101 }')">拒绝</a>
-																</div>
-																</td>
-															</c:if>
-															
-															<c:if test = "${ins.aac305 == 1 }">
-																<td>已置顶</td>
-																<td>
-																<div class="wt-actionbtn">
-																	<a href="#"  class="wt-addinfo wt-skillsaddinfo"  onclick = "onUpdateState('${ins.aac301 }',2,'${ins.aab101 }')">取消</a>					
-																</div>
-																</td>
-															</c:if>
-															
-															<c:if test = "${ins.aac305 == 2 }">
-																<td>取消置顶</td>
-																<td>
-																<div class="wt-actionbtn">
-																	<a href="#"  class="wt-addinfo wt-skillsaddinfo"  onclick = "onUpdateState('${ins.aac301 }',1,'${ins.aab101 }')">重新置顶</a>		
-																</div>
-																</td>
-															</c:if>
-															
-															<c:if test = "${ins.aac305 == 3 }">
-																<td>拒绝置顶</td>
-																<td>
-																	<div class="wt-actionbtn">
-																	<a href="#" class="wt-addinfo wt-skillsaddinfo"  onclick = "onUpdateState('${ins.aac301 }',1,'${ins.aab101 }')">重新置顶</a>							
-																	</div>
-																</td>
-															</c:if>
-															
-														</tr>													
+															<td>${vs.count }        </td>
+														    <td>${ins.complainer }  </td>
+														    <td>${ins.title }      </td>
+														    <td>${ins.reason }      </td>
+														    <td>${ins.hstatus }     </td>
+														    <td>${ins.aaf109 }      </td>
+														    <td>${ins.aaf108 }      </td>
+														    <c:if test="${ins.hstatus eq '未处理' }">
+														    	<td>
+														   			<a href="#" onclick="onHandleTie('${ins.aaf101}')">处理</a>
+														    	</td>
+														    </c:if>
+														    <c:if test="${ins.hstatus eq '已处理' }">
+														    	<td>
+														   			<a href="#" onclick="onHandleTie('${ins.aaf101}')">查看记录</a>
+														    	</td>
+														    </c:if>														    
+														</tr>	
+													</c:if>												
 													</c:forEach>
 												</c:when>
 											</c:choose>
-											
-										
 										
 										</tbody>
 									</table>
@@ -147,29 +179,77 @@
 									
 								</div>
 							</div>
+						</div>				
 						</div>
 						
 						
+						<br>
 						
-						
-						
-						
-						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-3">
-							<aside id="wt-sidebar" class="wt-sidebar wt-dashboardsave">
-								<div class="wt-proposalsr">
-									<div class="wt-proposalsrcontent">
-										<figure>
-											<img src="images/thumbnail/img-17.png" alt="image">
-										</figure>
-										<div class="wt-title">
-											<h3>${fn:length(rows)}</h3>
-											<span>置顶帖子申请总数</span>
-										</div>
-									</div> 
-								</div>																			
-							</aside>					
+						<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9 float-right">
+							<div class="wt-dashboardbox wt-dashboardinvocies">
+								<div class="wt-dashboardboxtitle wt-titlewithsearch">
+									<h2>对留言的举报</h2>
+									<form class="wt-formtheme wt-formsearch">
+										<fieldset>
+											<div class="form-group">
+												
+											</div>
+										</fieldset>
+									</form>
+								</div>
+								<div class="wt-dashboardboxcontent wt-categoriescontentholder wt-categoriesholder">
+									<table class="wt-tablecategories">
+										<thead>
+											<tr>
+												<th>序号</th>
+												<th>举报人姓名</th>
+												<th>留言内容</th>
+												<th>举报类型</th>											
+												<th>处理状态</th>
+												<th>举报时间</th>
+												<th>处理时间</th>
+												<th>操作</th>							
+											</tr>
+										</thead>
+										<tbody>
+											<c:choose>
+												<c:when test="${rows!=null }">
+													<c:forEach items="${rows }" var="ins" varStatus="vs">
+													<c:if test="${ins.aaf103 == '3'}">
+														<tr>
+															<td>${vs.count }        </td>
+														    <td>${ins.complainer }  </td>
+														    <td>${ins.comment }      </td>
+														    <td>${ins.reason }      </td>	 
+														    <td>${ins.hstatus }     </td>
+														    <td>${ins.aaf109 }      </td>
+														    <td>${ins.aaf108 }      </td>														    
+														     <c:if test="${ins.hstatus eq '未处理' }">
+														    	<td>
+														   			<a href="#" onclick="onHandleComment('${ins.aaf101}')">处理</a>
+														    	</td>
+														    </c:if>
+														    <c:if test="${ins.hstatus eq '已处理' }">
+														    	<td>
+														   			<a href="#" onclick="onHandleComment('${ins.aaf101}')">查看记录</a>
+														    	</td>
+														    </c:if>	
+														</tr>	
+													</c:if>												
+													</c:forEach>
+												</c:when>
+											</c:choose>
+										
+										</tbody>
+									</table>
+									
+									
+								</div>
+							</div>
+						</div>				
 						</div>
-					</div>
+					
 				</section>
 				<!--Register Form End-->
 			</main>
@@ -213,18 +293,23 @@
 		    breakpoint: 767,
 		});
 	     
-	   
-		function onEdit(vaac101,vaab101)
+	     
+		function onHandleUser(aaf101)
 		{
 			var vform = document.getElementById("myform");
-			vform.action = "<%=path%>/tiezi_findByIdTiezi.html?aac101=" + vaac101 + "&aab101=" + vaab101;
+			vform.action="<%=path%>/complain_HandleUser.html?aaf101="+aaf101;
 			vform.submit();
 		}
-		
-		function onUpdateState(vaac301,vState,vaab101)
+		function onHandleTie(aaf101)
 		{
 			var vform = document.getElementById("myform");
-			vform.action = "<%=path%>/placement_updatePlacement.html?aac301=" + vaac301 + "&aac305=" + vState +"&aab101=" + vaab101;
+			vform.action="<%=path%>/complain_HandleTie.html?aaf101="+aaf101;
+			vform.submit();
+		}
+		function onHandleComment(aaf101)
+		{
+			var vform = document.getElementById("myform");
+			vform.action="<%=path%>/complain_HandleComment.html?aaf101="+aaf101;
 			vform.submit();
 		}
 	</script>

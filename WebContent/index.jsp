@@ -1,12 +1,9 @@
-<<<<<<< HEAD
-<%@ page language="java"  pageEncoding="GBK"%>
-=======
 <%@ page language="java" pageEncoding="GBK"%>
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%String path = request.getContextPath(); %>
->>>>>>> a424cf57ea74c1196bdebd94dd70079c98614e63
+
 <!doctype html>
 <!--[if lt IE 7]>		<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>			<html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -36,11 +33,9 @@
 	<link rel="stylesheet" href="css/responsive.css">
 	<script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
-<<<<<<< HEAD
-<body class="wt-login">
-=======
+
 <body class="wt-login" onLoad="goPage(1,5);">
->>>>>>> a424cf57ea74c1196bdebd94dd70079c98614e63
+
 	<!--[if lt IE 8]>
 		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 	<![endif]-->
@@ -66,13 +61,8 @@
 							<div class="wt-innerbannercontent">
 							<div class="wt-title"><h2>帖子</h2></div>
 							<ol class="wt-breadcrumb">
-<<<<<<< HEAD
-								<li><a href="#">Post</a></li>
-								<li class="wt-active">Articles</li>
-=======
 								<li><a href="#">主页</a></li>
 								<li class="wt-active">帖子</li>
->>>>>>> a424cf57ea74c1196bdebd94dd70079c98614e63
 							</ol>
 							</div>
 						</div>
@@ -97,11 +87,9 @@
 												<form class="wt-formtheme wt-formsearch">
 													<fieldset>
 														<div class="form-group">
-<<<<<<< HEAD
-															<input type="text" name="Search" class="form-control" placeholder="Search Company">
-=======
+
 															<input type="text" name="Search" class="form-control" placeholder="输入帖子关键词">
->>>>>>> a424cf57ea74c1196bdebd94dd70079c98614e63
+
 															<a href="javascrip:void(0);" class="wt-searchgbtn"><i class="lnr lnr-magnifier"></i></a>
 														</div>
 													</fieldset>
@@ -125,38 +113,6 @@
 										</div>
 										<div class="wt-widget wt-widgetarticlesholder">
 											<div class="wt-widgettitle">
-<<<<<<< HEAD
-												<h2>Popular Article</h2>
-											</div>
-											<div class="wt-widgetcontent">
-												<div class="wt-particlehold">
-													<figure>
-														<img src="images/thumbnail/img-01.jpg" alt="image description">
-													</figure>
-													<div class="wt-particlecontent">
-														<h3><a href="javascript:void(0);">10 Mesmerizing Examples Of Business</a></h3>
-														<span><i class="lnr lnr-clock"></i> Jun 27, 2018</span>
-													</div>
-												</div>
-												<div class="wt-particlehold">
-													<figure>
-														<img src="images/thumbnail/img-02.jpg" alt="image description">
-													</figure>
-													<div class="wt-particlecontent">
-														<h3><a href="javascript:void(0);">Introducing The Simple Way To Business</a></h3>
-														<span><i class="lnr lnr-clock"></i> Jun 27, 2018</span>
-													</div>
-												</div>
-												<div class="wt-particlehold">
-													<figure>
-														<img src="images/thumbnail/img-03.jpg" alt="image description">
-													</figure>
-													<div class="wt-particlecontent">
-														<h3><a href="javascript:void(0);">7 Practical Tactics to Turn Business Into a Sales Hub</a></h3>
-														<span><i class="lnr lnr-clock"></i> Jun 27, 2018</span>
-													</div>
-												</div>
-=======
 												<h2>置顶帖</h2>
 											</div>
 											<div class="wt-widgetcontent">
@@ -189,7 +145,7 @@
 												</c:choose>
 												
 												
->>>>>>> a424cf57ea74c1196bdebd94dd70079c98614e63
+
 											</div>
 										</div>
 										<div class="wt-widget wt-widgettagshold">
@@ -214,124 +170,6 @@
 									<div class="wt-classicaricle-holder">
 										<div class="wt-classicaricle-header">
 											<div class="wt-title">
-<<<<<<< HEAD
-												<h2>Our Latest Articles</h2>
-											</div>
-											<div class="wt-description">
-												<p>Consectetur adipisicing elit sed dotem eiusmod tempor incunetion labore etdolore maigna aliqua enim poskina ilukita ylokem lokateise ination.</p>
-											</div>
-										</div>
-										<div class="wt-article-holder">
-											<div class="wt-article">
-												<figure>
-													<img src="images/article/classic/img-01.jpg" alt="img description">
-												</figure>
-												<div class="wt-articlecontent">
-													<div class="wt-title">
-														<h2>Who Else Wants To Be Successful With Business</h2>
-													</div>
-													<ul class="wt-postarticlemeta">
-														<li>
-															<a href="javascript:void(0);">
-																<i class="lnr lnr-clock"></i>
-																<span>June 27, 2018</span>
-															</a>
-														</li>
-														<li>
-															<a href="javascript:void(0);">
-																<i class="lnr lnr-user"></i>
-																<span>Marina Groth</span>
-															</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-											<div class="wt-article">
-												<figure>
-													<img src="images/article/classic/img-02.jpg" alt="img description">
-												</figure>
-												<div class="wt-articlecontent">
-													<div class="wt-title">
-														<h2>20 Top Tips For Business</h2>
-													</div>
-													<ul class="wt-postarticlemeta">
-														<li>
-															<a href="javascript:void(0);">
-																<i class="lnr lnr-clock"></i>
-																<span>June 27, 2018</span>
-															</a>
-														</li>
-														<li>
-															<a href="javascript:void(0);">
-																<i class="lnr lnr-user"></i>
-																<span>Louanne Mattioli</span>
-															</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-											<div class="wt-article">
-												<figure>
-													<img src="images/article/classic/img-03.jpg" alt="img description">
-												</figure>
-												<div class="wt-articlecontent">
-													<div class="wt-title">
-														<h2>Clear And Unbiased Facts About Business (Without All the Hype)</h2>
-													</div>
-													<ul class="wt-postarticlemeta">
-														<li>
-															<a href="javascript:void(0);">
-																<i class="lnr lnr-clock"></i>
-																<span>June 27, 2018</span>
-															</a>
-														</li>
-														<li>
-															<a href="javascript:void(0);">
-																<i class="lnr lnr-user"></i>
-																<span>Soraya Roloff</span>
-															</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-											<div class="wt-article">
-												<figure>
-													<img src="images/article/classic/img-04.jpg" alt="img description">
-												</figure>
-												<div class="wt-articlecontent">
-													<div class="wt-title">
-														<h2>7 Ways To Keep Your Business Growing Without Burning The Midnight Oil</h2>
-													</div>
-													<ul class="wt-postarticlemeta">
-														<li>
-															<a href="javascript:void(0);">
-																<i class="lnr lnr-clock"></i>
-																<span>June 27, 2018</span>
-															</a>
-														</li>
-														<li>
-															<a href="javascript:void(0);">
-																<i class="lnr lnr-user"></i>
-																<span>Florentino Norsworthy</span>
-															</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<nav class="wt-pagination">
-											<ul>
-												<li class="wt-prevpage"><a href="javascrip:void(0);"><i class="lnr lnr-chevron-left"></i></a></li>
-												<li><a href="javascrip:void(0);">1</a></li>
-												<li><a href="javascrip:void(0);">2</a></li>
-												<li><a href="javascrip:void(0);">3</a></li>
-												<li><a href="javascrip:void(0);">4</a></li>
-												<li><a href="javascrip:void(0);">...</a></li>
-												<li><a href="javascrip:void(0);">50</a></li>
-												<li class="wt-nextpage"><a href="javascrip:void(0);"><i class="lnr lnr-chevron-right"></i></a></li>
-											</ul>
-										</nav>
-=======
 												<h2>精品帖</h2>
 											</div>
 											<div class="wt-description">
@@ -386,8 +224,13 @@
 														</c:if>
 														</c:forEach>
 													</table>
+													
+													<table width="60%" align="right" >
+														<tr><td><div id="barcon" name="barcon"></div></td></tr>
+													</table>
 												</c:when>
 											</c:choose>
+
 						
 										</div>
 										
@@ -395,7 +238,7 @@
 											<tr><td><div id="barcon" name="barcon"></div></td></tr>
 										</table>
 										
->>>>>>> a424cf57ea74c1196bdebd94dd70079c98614e63
+
 									</div>
 								</div>
 							</div>
@@ -408,8 +251,7 @@
 		</div>
 		<!--Content Wrapper End-->
 	</div>
-<<<<<<< HEAD
-=======
+
 	
 	<!-- 以下用来存放需要传递给后台的数据 -->
 	<form id = "myform">
@@ -418,7 +260,7 @@
 	</form>
 	
 	
->>>>>>> a424cf57ea74c1196bdebd94dd70079c98614e63
+
 	<!--Wrapper End-->
 	<script src="js/vendor/jquery-3.3.1.js"></script>
 	<script src="js/vendor/jquery-library.js"></script>
@@ -435,9 +277,7 @@
 	<script src="js/tipso.js"></script>
 	<script src="js/jRate.js"></script>
 	<script src="js/main.js"></script>
-<<<<<<< HEAD
-=======
-	
+
 		<script type="text/javascript">
 		/**
 		 * 分页函数
@@ -497,6 +337,6 @@
 			vform.submit();
 		}
 	</script>
->>>>>>> a424cf57ea74c1196bdebd94dd70079c98614e63
+
 </body>
 </html>

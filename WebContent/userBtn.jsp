@@ -76,10 +76,5 @@
 					</div>
 				</div>
 				<!--Sidebar Start-->
-				<form method="post">
-					<input type="hidden" name="aab101" value="${userId }"/>
-				</form>
-				
-				
 </body>
 </html>

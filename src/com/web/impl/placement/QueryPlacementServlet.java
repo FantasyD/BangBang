@@ -6,6 +6,6 @@ public class QueryPlacementServlet extends PlacementControllerSupport
 	public String execute() throws Exception 
 	{
 		this.savePageData();
-		return "queryPlacement";
+		return "adminPost";
 	}
 }

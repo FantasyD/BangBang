@@ -24,7 +24,7 @@
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 							
 								<!-- 跳转回主页，页面最左上角的logo -->
-								<strong class="wt-logo"><a href="index.jsp"><img src="images/logo.png" alt="company logo here"></a></strong>
+								<strong class="wt-logo"><a href="<%=path%>/tiezi_queryTiezi.html?aab101=${sessionScope.userId}"><img src="images/logo.png" alt="company logo here"></a></strong>
 								
 								<!-- 搜索框，导航栏的搜索 -->
 								<form class="wt-formtheme wt-formbanner wt-formbannervtwo">

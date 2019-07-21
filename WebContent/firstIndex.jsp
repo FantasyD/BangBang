@@ -112,6 +112,7 @@
 
 											</div>
 											<div class="wt-widgetcontent">
+												${rowsOfTopPost }
 												<div class="wt-particlehold">
 													<figure>
 														<img src="images/thumbnail/img-01.jpg" alt="image description">

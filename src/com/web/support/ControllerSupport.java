@@ -51,6 +51,7 @@ public abstract class ControllerSupport implements BaseController
 		if (rows.size() > 0)
 		{
 			this.saveAttribute("rows", rows);
+			this.saveAttribute("type", this.dto.get("type"));
 		}
 		else
 		{
@@ -83,11 +84,9 @@ public abstract class ControllerSupport implements BaseController
 	protected final boolean saveUserPageInstance()throws Exception
 	{
 		Map<String, String> map = this.executeQueryMethod("check");
-		String aab101 = map.get("aab101");
-		this.dto.put("aab101", aab101);
-		if(aab101 != null)
+		if(map != null)
 		{
-			this.saveSession_attribute("userID", aab101);
+			this.saveSession_attribute("userID", map.get("aab101"));
 			return true;
 		}
 		else
@@ -105,14 +104,12 @@ public abstract class ControllerSupport implements BaseController
 	 * @return
 	 * @throws Exception
 	 */
-	protected final boolean is_receive(String methodName,String msgText1,String msgText2)throws Exception
+	protected final boolean is_receive(String methodName)throws Exception
 	{
 		if (this.executeUpdateMethod("receiveEmail")) 
 		{
-			this.saveAttribute("msg", msgText1);
 			return this.executeUpdateMethod(methodName);
 		}
-		this.saveAttribute("msg", msgText2);
 		return false;
 	}
 	

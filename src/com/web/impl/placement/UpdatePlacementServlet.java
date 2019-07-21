@@ -17,6 +17,6 @@ public class UpdatePlacementServlet extends ControllerSupport
 		this.update("updatePlacementState", "×´Ì¬ÐÞ¸Ä");
 		this.savePageData();
 	
-		return "queryPlacement";
+		return "adminPost";
 	}
 }

@@ -144,6 +144,13 @@
 																	<div class="wt-boxright">																
 																		<a class="wt-btnreply" href="#" onclick="onDel(${comment.aac201})"><span class="wt-clickreply">删除</span><i class="fa fa-mail-reply"></i></a>																	
 																	</div>
+																	
+																	<!-- 这里是举报功能实现模块 -->
+																	<div class="wt-boxright">																
+																		<a class="wt-btnreply" href="#" onclick="onDel(${comment.aac201})"><span class="wt-clickreply">举报</span><i class="fa fa-mail-reply"></i></a>																	
+																	</div>
+																	
+																	
 																</div>
 																<div class="wt-description">
 																	<p>${comment.aac203 }</p>

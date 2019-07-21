@@ -149,6 +149,9 @@
 																			<li class="wt-googleplus"><a href="javascript:void(0);"><i class="fab fa-google"></i></a></li>
 																		</ul>
 																	</div>
+																	<div class="wt-boxright">																
+																		<a class="wt-btnreply" href="#" onclick="onDel(${comment.aac201})"><span class="wt-clickreply">¾Ù±¨</span><i class="fa fa-mail-reply"></i></a>																	
+																	</div>
 																</div>
 																<div class="wt-description">
 																	<p>${comment.aac203 }</p>

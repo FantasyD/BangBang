@@ -218,15 +218,13 @@
 														</c:if>
 														</c:forEach>
 													</table>
+													
+													<table width="60%" align="right" >
+														<tr><td><div id="barcon" name="barcon"></div></td></tr>
+													</table>
 												</c:when>
 											</c:choose>
-						
-										</div>
-										
-										<table width="60%" align="right" >
-											<tr><td><div id="barcon" name="barcon"></div></td></tr>
-										</table>
-										
+										</div>								
 									</div>
 								</div>
 							</div>

@@ -1,4 +1,4 @@
-package com.system.mail;
+package com.system.myMail;
 
 import java.security.GeneralSecurityException;
 import java.util.Properties;

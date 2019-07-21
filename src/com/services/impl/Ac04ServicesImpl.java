@@ -71,7 +71,7 @@ public class Ac04ServicesImpl extends JdbcServicesSupport
 				.append("   and g.aab101=?")
 				.append("group by c.aac103")
 				;
-		Object id=this.get("aab101");
+		Object id = this.get("aab101");
 		
 		return this.getRate(this.queryForList(sb.toString(), id));
 	}

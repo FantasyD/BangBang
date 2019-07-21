@@ -1,8 +1,6 @@
 <%@page import="java.nio.channels.SeekableByteChannel"%>
 <%@ page language="java" pageEncoding="GBK"%>
-<% String path=request.getContextPath(); 
-		session.setAttribute("userId", "1");
-		session.setAttribute("userName", "蒙多");
+<% String path=request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
@@ -61,36 +59,39 @@
 											<img src="images/user-img.jpg" alt="image description">
 										</figure>
 										<div class="wt-username">
-											<h3>Louanne Mattioli</h3>
-											<span>Amento Tech</span>
+											<h3>${sessionScope.userName}</h3>
 										</div>
 										<nav class="wt-usernav">
 											<ul>
 											<!-- 查询我的信息 -->
 												<li>
-													<a href="userInfo.jsp">
+													<a href="<%=path %>/user_userInfo.html?aab101=${sessionScope.userID }">
 														<span>我的主页</span>
 													</a>
 												</li>
 												<!-- 查询我的帖子 -->
 												<li>
+
 													<a href="<%=path%>/tiezi_queryTieziById.html?aab101=${sessionScope.userId}">
 														<span>我的帖子</span>
 													</a>
 												</li>
 												<!-- 查询我的群组 -->
 												<li>
-													<a href="<%=path %>/group_findMyGroup.html?aab101=${userId}">
+
+													<a href="#" onclick="myGroups()">
 														<span>我的群组</span>
 													</a>
 												</li>
 												<li class="wt-notificationicon">
-													<a href="#" onclick="javascript:void(0);">
+
+													<a href="<%=path%>/chatpage.jsp">
 														<span>我的消息</span>
 													</a>
 												</li>
 												<li>
-													<a href="<%=path %>/email_getEmail.html?aab101=${userId}">
+
+													<a href="#" onclick="myEmails()">
 														<span>我的邮件</span>
 													</a>
 												</li>
@@ -116,6 +117,20 @@
 						
 						
   <script type="text/javascript">
+  //获取我的群组
+  function myGroups()
+  {
+	  var myForm=$("#message");
+	  myForm.action="<%=path %>/group_findGroup.html";
+	  myForm.submit();
+  }
+  //获取我的邮件
+  function myEmails()
+  {
+	  var myForm=$("#message");
+	  myForm.action="<%=path %>/email_getEmail.html";
+	  myForm.submit();
+  }
   
   function askEmail(newNum)
   {
@@ -139,6 +154,7 @@
 			},
 			error:function()
 			{
+				alert("运算超时");	
 				askEmail(newNum);
 			}
 		});

@@ -30,6 +30,8 @@ public abstract class ControllerSupport implements BaseController
 	protected void setServices(BaseServices services)
 	{
 		this.services = services;
+		// 同步为Services传递DTO
+		this.services.setMapDto(this.dto);
 	}
 
 	protected BaseServices getServices()
@@ -50,25 +52,13 @@ public abstract class ControllerSupport implements BaseController
 		List<Map<String, String>> rows = this.services.query();
 		if (rows.size() > 0)
 		{
+			System.out.println(rows);
 			this.saveAttribute("rows", rows);
 			this.saveAttribute("type", this.dto.get("type"));
 		}
 		else
 		{
 			this.saveAttribute("msg", "没有符合条件的数据!");
-		}
-	}
-	
-	protected final void savePageDataToSession()throws Exception
-	{
-		List<Map<String, String>> rows = this.services.query();
-		if (rows.size() > 0)
-		{
-			this.saveSession_attribute("cols", rows);
-		}
-		else
-		{
-			this.saveSession_attribute("msg", "没有符合条件的数据!");
 		}
 	}
 	
@@ -87,6 +77,8 @@ public abstract class ControllerSupport implements BaseController
 		if(map != null)
 		{
 			this.saveSession_attribute("userID", map.get("aab101"));
+			this.dto.put("aab101", map.get("aab101"));
+			this.saveSession_attribute("userName", map.get("aab102"));
 			return true;
 		}
 		else
@@ -114,9 +106,12 @@ public abstract class ControllerSupport implements BaseController
 	}
 	
 	
+	
+	
 	/*****************************************
 	 
 	 *****************************************/
+	
 	
 	/**
 	 * 单一实例 查询
@@ -236,14 +231,6 @@ public abstract class ControllerSupport implements BaseController
 		return this.services.query().size();
 	}
 	
-	protected final int checkInfo(String methodName)throws Exception
-	{
-		// 1.获取需要调用的方法对象
-		Method method = this.services.getClass().getDeclaredMethod(methodName);
-		method.setAccessible(true);
-		return (int)method.invoke(services);
-	}
-	
 	/**
 	 * 带有编号的消息提示的更新行为
 	 * 
@@ -337,7 +324,6 @@ public abstract class ControllerSupport implements BaseController
 	 * 	        数据输出流 向session
 	 *****************************************/
     private Map<String, Object> session_attribute = new HashMap<>();
-    
     protected final void saveSession_attribute(String key, Object value)
     {
     	this.session_attribute.put(key, value);

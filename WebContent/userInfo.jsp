@@ -60,38 +60,6 @@
 	<script type="text/javascript" src="js/sendEmail.js"></script>
 	<script type="text/javascript">
 	var path = "<%=path %>";
-	function display(b, id)
-	{
-		if(b.style.color != "blue")
-		{
-			b.style.color = "blue";
-		}
-		else
-		{
-			b.style.color = "red";
-		}
-		
-		var traget=document.getElementById(id);
-		if(traget.style.display=="none")
-		{
-			traget.style.display="";
-		}
-		else
-		{
-			traget.style.display="none";
-		}  
-    }
-	
-	function onMoveIn(x)
-	{
-		x.style.fontSize = "17";
-	}
-
-	function onMoveOut(x)
-	{
-		x.style.fontSize = "15";
-	}
-	
 	</script>
 </head>
 <body class="wt-login">
@@ -136,7 +104,7 @@
 										
 										<div class="wt-widget">
 											<div class="wt-widgettitle">
-												<h2>我的信息</h2>
+												<h1><b>我的信息</b></h1>
 											</div>
 											<div class="wt-userprofile">
 												<figure>
@@ -146,28 +114,23 @@
 												<div class="wt-title">
 													<h3 id="aab102">${ins.aab102 }</h3>
 													<span>
+														<p>------------------------------------------------</p>
 														<ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">
 															<li><p id="aab104">真实姓名：${ins.aab104 }</p></li>
 															<li><p id="aab107">学号：${ins.aab107 }</p></li>
 															<li><p id="aab113">信誉分：${ins.aab113 }</p></li>
 														</ul>
-														<p>------------------------------------------------</p>
 														<ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">
 															<li><p id="aab105">性别：${ins.aab105 }</p></li>
 															<li><p id="aab109">民族：${ins.aab109 }</p></li>
 															<li><p id="aab110">学校：${ins.aab110 }</p></li>
 														</ul>
-														<p>------------------------------------------------</p>
 														<ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">
 															<li><p id="aab111">联系号码：${ins.aab111 }</p></li>
 															<li><p id="aab108">邮箱：${ins.aab108 }</p></li>
 														</ul>
-														<p>------------------------------------------------</p>
 														<ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">
-															<li><p>我的签名</p></li>
-														</ul>
-														<ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">
-															<li><span id="aab114">${ins.aab114 }</span></li>
+															<li><p id="aab114">我的签名:<span font="20">${ins.aab114 }</span></p></li>
 														</ul>
 														<p>------------------------------------------------</p>
 														<ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">

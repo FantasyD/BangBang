@@ -11,7 +11,7 @@ import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 import com.services.JdbcServicesSupport;
 import com.system.tools.Tools;
 
-public class Ac01ServicesImpl extends Ah01ServicesImpl
+public class Ac01ServicesImpl extends Ah01ServiceImpl
 {
 	
 	/**
@@ -60,6 +60,8 @@ public class Ac01ServicesImpl extends Ah01ServicesImpl
 		return this.queryForList(sql.toString(), paramList.toArray());
 	}
 
+	
+	
 	public List<Map<String,String>> queryForList()throws Exception
 	{
 		String sql="select aac101,aac104 from ac01";

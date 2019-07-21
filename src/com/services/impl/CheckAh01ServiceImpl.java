@@ -6,7 +6,7 @@ import java.util.Map;
 
 import com.services.JdbcServicesSupport;
 
-public class CheckAh01ServicesImpl extends JdbcServicesSupport
+public class CheckAh01ServiceImpl extends JdbcServicesSupport
 {
 	/**
 	 * @Description: 确认是否存在未读邮件

@@ -11,7 +11,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.services.JdbcServicesSupport;
-import com.system.mail.MailUtil;
+import com.system.myMail.*;
 import com.system.talk.Users;
 import com.system.tools.Tools;
 
@@ -20,7 +20,7 @@ import com.system.tools.Tools;
  * @Description: 对ab01表的操作
  * @author: xzc
  */
-public class Ab01ServicesImpl extends Ah01ServicesImpl
+public class Ab01ServicesImpl extends Ah01ServiceImpl
 {
 	/**
 	 * 
@@ -42,7 +42,6 @@ public class Ab01ServicesImpl extends Ah01ServicesImpl
   		Object aab111 = this.get("aab111");
   		Object aab112 = this.get("aab112");
   		Object aab114 = this.get("aab114");
-  		
   		//参数列表
   		List<Object> paramList=new ArrayList<>();
   		//逐一判断查询条件是否录入,拼接AND条件
@@ -96,7 +95,6 @@ public class Ab01ServicesImpl extends Ah01ServicesImpl
   		paramList.add(this.get("aab101"));
   		String str = sql.toString();
   		str = str.substring(0, str.lastIndexOf(",")) + str.substring(str.lastIndexOf(",") + 1);
-		
 		return this.executeUpdate(str, paramList.toArray())>0;
 	}
 	
@@ -287,11 +285,11 @@ public class Ab01ServicesImpl extends Ah01ServicesImpl
 		String sql=null;
 		if(((String)this.get("userID")).contains("@")) 
 		{
-			sql="select a.aab101,a.aab103 from ab01 a where a.aab108=?";
+			sql="select a.aab101,a.aab102,a.aab103 from ab01 a where a.aab108=?";
 		}
 		else 
 		{
-			sql="select a.aab101,a.aab103 from ab01 a where a.aab107=?";
+			sql="select a.aab101,a.aab102,a.aab103 from ab01 a where a.aab107=?";
 		}
 		Map<String, String> map = this.queryForMap(sql,this.get("userID"));
 		if(map!=null)
@@ -423,61 +421,6 @@ public class Ab01ServicesImpl extends Ah01ServicesImpl
 
 		List<Map<String,String>> list1=sortMapByValue(map);
 		return list1;
-		
-
-		
-		
-		
-//		StringBuilder sql1=new StringBuilder()
-//				.append("select a.aab101,a.aab102,a.aab104,b.fvalue cnaab105,a.aab107,")
-//				.append("		a.aab108,a.aab109,a.aab110,a.aab111,a.aab112,")
-//				.append("		a.aab113,a.aab114,a.aab115,a.is_online")
-//				.append("  from ab01 a,syscode b ")
-//				.append(" where a.aab105 = b.fcode and b.fname = 'aab105' ")
-//				;
-//		StringBuilder sql2=new StringBuilder()
-//				.append("select a.aab101,a.aab102,a.aab104,b.fvalue cnaab105,a.aab107,")
-//				.append("		a.aab108,a.aab109,a.aab110,a.aab111,a.aab112,")
-//				.append("		a.aab113,a.aab114,a.aab115,a.is_online")
-//				.append("  from ab01 a,syscode b ")
-//				.append(" where a.aab105 = b.fcode and b.fname = 'aab105' ")
-//				;
-//		StringBuilder sql3=new StringBuilder()
-//				.append("select a.aab101,a.aab102,a.aab104,b.fvalue cnaab105,a.aab107,")
-//				.append("		a.aab108,a.aab109,a.aab110,a.aab111,a.aab112,")
-//				.append("		a.aab113,a.aab114,a.aab115,a.is_online")
-//				.append("  from ab01 a,syscode b ")
-//				.append(" where a.aab105 = b.fcode and b.fname = 'aab105' ")
-//				;
-//		List<Object> paramList1=new ArrayList<>();
-//		List<Object> paramList2=new ArrayList<>();
-//		List<Object> paramList3=new ArrayList<>();
-//		if (this.isNotNull("aab102")) 
-//		{
-//			sql1.append("	and a.aab102 like ? ");
-//			paramList1.add("%" +aab102+ "%");
-//		}
-//		if (this.isNotNull("aab104")) 
-//		{
-//			sql2.append("	and a.aab104 = ? ");
-//			paramList2.add(aab104);
-//		}
-//		if (this.isNotNull("aab107")) 
-//		{
-//			sql3.append("	and a.aab107 = ? ");
-//			paramList3.add(aab107);
-//		}
-//		List<Map<String, String>> list1=this.queryForList(sql1.toString(),paramList1.toArray());
-//		List<Map<String, String>> list2=this.queryForList(sql2.toString(),paramList2.toArray());
-//		List<Map<String, String>> list3=this.queryForList(sql3.toString(),paramList3.toArray());
-//		list3.addAll(list1);
-//		list3.addAll(list2);
-//		Set<Map<String, String>> set=new HashSet<>(list3);
-//		List<Map<String, String>> list4=new ArrayList<>(set);
-//		
-//		list4.sort((Map<String,String> m1,Map<String,String> m2) -> m1.get("aab101").compareTo(m2.get("aab101")));
-//
-//		return list4;
 	}
 
 	private static List<Map<String,String>> sortMapByValue(Map<Map<String,String>,Integer> map)throws Exception

@@ -1,3 +1,4 @@
+//获取XMLHttpRequest()
 function getHttp_request()
 {
 	try{
@@ -17,6 +18,8 @@ function getHttp_request()
     }
     return http_request;
 }
+
+//工具函数
 
 function SendEmail(id, sign, path)
 {	
@@ -110,6 +113,40 @@ function checkComfirmPwd(Comfirm_pwd, pwd_id, button_id, alert_id)
 		$("#" + button_id).attr('disabled',true);
 	}
 }
+
+function display(b, id)
+{
+	if(b.style.color != "blue")
+	{
+		b.style.color = "blue";
+	}
+	else
+	{
+		b.style.color = "red";
+	}
+	
+	var traget=document.getElementById(id);
+	if(traget.style.display=="none")
+	{
+		traget.style.display="";
+	}
+	else
+	{
+		traget.style.display="none";
+	}  
+}
+
+function onMoveIn(x)
+{
+	x.style.fontSize = "17";
+}
+
+function onMoveOut(x)
+{
+	x.style.fontSize = "15";
+}
+
+//Ajax动态调用函数
 
 function register_()
 {
@@ -234,47 +271,47 @@ function modifyUser(aab101)
 {
 	var is_all_null = true;
     var form = "aab101=" + aab101;
-    if($("#aab102_").val() != null)
+    if($("#aab102_").val() != "")
     {
     	is_all_null = false;
     	form = form + "&aab102=" + encodeURI(encodeURI($("#aab102_").val()));
     }
-    if($("#aab104_").val() != null)
+    if($("#aab104_").val() != "")
     {
     	is_all_null = false;
     	form = form + "&aab104=" + encodeURI(encodeURI($("#aab104_").val()));
     }
-    if($("#aab105_").val() != null)
+    if($("#aab105_").val() != "")
     {
     	is_all_null = false;
     	form = form + "&aab105=" + encodeURI(encodeURI($("#aab105_").val()));
     }
-    if($("#aab107_").val() != null)
+    if($("#aab107_").val() != "")
     {
     	is_all_null = false;
     	form = form + "&aab107=" + encodeURI(encodeURI($("#aab107_").val()));
     }
-    if($("#aab109_").val() != null)
+    if($("#aab109_").val() != "")
     {
     	is_all_null = false;
     	form = form + "&aab109=" + encodeURI(encodeURI($("#aab109_").val()));
     }
-    if($("#aab110_").val() != null)
+    if($("#aab110_").val() != "")
     {
     	is_all_null = false;
     	form = form + "&aab110=" + encodeURI(encodeURI($("#aab110_").val()));
     }
-    if($("#aab111_").val() != null)
+    if($("#aab111_").val() != "")
     {
     	is_all_null = false;
     	form = form + "&aab111=" + encodeURI(encodeURI($("#aab111_").val()));
     }
-    if($("#aab112_").val() != null)
+    if($("#aab112_").val() != "")
     {
     	is_all_null = false;
     	form = form + "&aab112=" + encodeURI(encodeURI($("#aab112_").val()));
     }
-    if($("#aab114_").val() != null)
+    if($("#aab114_").val() != "")
     {
     	is_all_null = false;
     	form = form + "&aab114=" + encodeURI(encodeURI($("#aab114_").val()));
@@ -284,6 +321,7 @@ function modifyUser(aab101)
     	alert("不能所有更新项均为空!");
     	return null;
     }
+    
 	var http_request = getHttp_request();
     
     http_request.onreadystatechange = function(){
@@ -293,6 +331,7 @@ function modifyUser(aab101)
         	if(result == "true")
         	{
         		alert("更新成功！");
+        		location.reload();
         	}
         	else
         	{

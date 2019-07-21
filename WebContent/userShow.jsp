@@ -37,22 +37,10 @@
 	<link rel="stylesheet" href="css/responsive.css">
 	<link rel="stylesheet" href="css/dbresponsive.css">
 	<style type="text/css">
-	#modifyPwd_submit{
+	#complain_submit{
 		color:orange;
 	}
-	#modifyPwd_submit:hover{
-		color:white;
-	}
-	#modifyEmail_submit{
-		color:orange;
-	}
-	#modifyEmail_submit:hover{
-		color:white;
-	}
-	#modifyUser_submit{
-		color:orange;
-	}
-	#modifyUser_submit:hover{
+	#complain_submit:hover{
 		color:white;
 	}
 	</style>
@@ -60,38 +48,36 @@
 	<script type="text/javascript" src="js/sendEmail.js"></script>
 	<script type="text/javascript">
 	var path = "<%=path %>";
-	function display(b, id)
+	function complainUser(aab101, userID)
 	{
-		if(b.style.color != "blue")
+		if($("#complain_reason").val() == "")
 		{
-			b.style.color = "blue";
+			alert("举报原因不能为空！");
+			return null;
 		}
-		else
-		{
-			b.style.color = "red";
-		}
-		
-		var traget=document.getElementById(id);
-		if(traget.style.display=="none")
-		{
-			traget.style.display="";
-		}
-		else
-		{
-			traget.style.display="none";
-		}  
-    }
-	
-	function onMoveIn(x)
-	{
-		x.style.fontSize = "17";
+		var http_request = getHttp_request();
+	    
+	    http_request.onreadystatechange = function(){
+	        if (http_request.readyState == 4 )
+	        {
+	        	var result = http_request.responseText;
+	        	if(result == "true")
+	        	{
+	        		alert("举报成功！");
+	        	}
+	        	else
+	        	{
+	        		alert("举报失败！");
+	        	}
+	        }
+	    }
+	    var form = "aab108=" + $("#New_mail").val() + 
+				   "&ver=" + $("#sec_code").val() + 
+				   "&aab101=" + aab101;
+	    http_request.open("POST", path + "/user_modifyEmail.html", true);
+	    http_request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	    http_request.send(form);
 	}
-
-	function onMoveOut(x)
-	{
-		x.style.fontSize = "15";
-	}
-	
 	</script>
 </head>
 <body class="wt-login">
@@ -121,10 +107,6 @@
 			<!--Main Start-->
 			<main id="wt-main" class="wt-main wt-haslayout wt-innerbgcolor">
 			<!--Sidebar Start-->
-			
-			
-			
-				<jsp:include page="userBtn.jsp"></jsp:include>
 				<!--Sidebar Start-->
 				<div class="wt-main-section wt-paddingtopnull wt-haslayout">
 					<!-- User Profile Start-->
@@ -136,49 +118,42 @@
 										
 										<div class="wt-widget">
 											<div class="wt-widgettitle">
-												<h2>我的信息</h2>
+												<h1><b>${ins.aab102 }的信息</b></h1>
 											</div>
 											<div class="wt-userprofile">
 												<figure>
 													<img src="images/profile/img-01.jpg" alt="img description">
-													<div class="wt-userdropdown wt-online">
-													</div>
 												</figure>
 												
 												<div class="wt-title">
 													<h3 id="aab102">${ins.aab102 }</h3>
 													<span>
+														<p>------------------------------------------------</p>
 														<ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">
 															<li><p id="aab104">真实姓名：${ins.aab104 }</p></li>
 															<li><p id="aab107">学号：${ins.aab107 }</p></li>
 															<li><p id="aab113">信誉分：${ins.aab113 }</p></li>
 														</ul>
-														<p>------------------------------------------------</p>
 														<ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">
 															<li><p id="aab105">性别：${ins.aab105 }</p></li>
 															<li><p id="aab109">民族：${ins.aab109 }</p></li>
 															<li><p id="aab110">学校：${ins.aab110 }</p></li>
 														</ul>
-														<p>------------------------------------------------</p>
 														<ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">
 															<li><p id="aab111">联系号码：${ins.aab111 }</p></li>
 															<li><p id="aab108">邮箱：${ins.aab108 }</p></li>
 														</ul>
-														<p>------------------------------------------------</p>
 														<ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">
-															<li><p>我的签名</p></li>
-														</ul>
-														<ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">
-															<li><span id="aab114">${ins.aab114 }</span></li>
+															<li><p id="aab114">我的签名:<span font="20">${ins.aab114 }</span></p></li>
 														</ul>
 														<p>------------------------------------------------</p>
 														<ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">
-															<li><b onclick="display(this, 'modifyPwd')" class="wt-reportuser" 
-																	onmousemove="onMoveIn(this)" onmouseout="onMoveOut(this)">修改密码</b></li>
-															<li><b onclick="display(this, 'modifyEmail')" class="wt-reportuser" 
-																	onmousemove="onMoveIn(this)" onmouseout="onMoveOut(this)">重新绑定邮箱</b></li>
-															<li><b onclick="display(this, 'modifyUser')" class="wt-reportuser" 
-																	onmousemove="onMoveIn(this)" onmouseout="onMoveOut(this)">修改我的信息</b></li>
+															<li><b onclick="relationship_(this, '${ins.aab101 }', '${sessionScope.userID }', 1)" class="wt-reportuser" 
+																	onmousemove="onMoveIn(this)" onmouseout="onMoveOut(this)">关注</b></li>
+															<li><b onclick="relationship_(this, '${ins.aab101 }', '${sessionScope.userID }', 2)" class="wt-reportuser" 
+																	onmousemove="onMoveIn(this)" onmouseout="onMoveOut(this)">拉黑</b></li>
+															<li><b onclick="display(this, 'complain_')" class="wt-reportuser" 
+																	onmousemove="onMoveIn(this)" onmouseout="onMoveOut(this)">举报</b></li>
 														</ul>
 													</span>
 												</div>
@@ -190,38 +165,9 @@
 								<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-4 float-left">
 									<aside id="wt-sidebar" class="wt-sidebar">
 										
-										<div class="wt-widget wt-reportjob">
-											<div class="wt-widgettitle">
-												<h2>Report This User</h2>
-											</div>
-											<div class="wt-widgetcontent">
-												<form class="wt-formtheme wt-formreport">
-													<fieldset>
-														<div class="form-group">
-															<span class="wt-select">
-																<select>
-																	<option value="reason">Select Reason</option>
-																	<option value="reason1">Reason1</option>
-																	<option value="reason2">Reason2</option>
-																	<option value="reason3">Reason3</option>
-																	<option value="reason4">Reason4</option>
-																</select>
-															</span>
-														</div>
-														<div class="form-group">
-															<textarea class="form-control" placeholder="Description"></textarea>
-														</div>
-														<div class="form-group wt-btnarea">
-															<input type="button"  class="wt-btn" value="submit"></input>
-														</div>
-													</fieldset>
-												</form>
-											</div>
-										</div>
-										
 										<div class="wt-widget">
 											<div class="wt-widgettitle">
-												<h2>我的标签</h2>
+												<h2>${ins.aab102 }的标签</h2>
 											</div>
 											<div class="wt-widgetcontent">
 												<div class="wt-widgettag wt-widgettagvtwo">
@@ -230,100 +176,35 @@
 											</div>
 										</div>
 										
-										<div id="modifyPwd" class="wt-widget" style="display:none">
+										<div id="complain_" class="wt-widget wt-reportjob" style="display:none">
 											<div class="wt-widgettitle">
-												<h2>修改密码</h2>
-											</div>
-											<div class="wt-widgetcontent">
-												<form class="wt-formtheme wt-formreport" method="post">
-													<fieldset>
-														<div class="form-group">
-															<input type="password" class="form-control" name="aab103" id="Pwd" placeholder="原始密码"
-																   onkeyup="checkPwd(this, 'modifyPwd_submit', 'alert_')"></input>
-														</div>
-														<p id="alert_" align="center"></p>
-														<div class="form-group">
-															<input type="password" class="form-control" name="Naab103" id="newPwd" placeholder="新的密码"
-															       onkeyup="checkPwd(this, 'modifyPwd_submit', 'alert_modify')"></input>
-														</div>
-														<p id="alert_modify" align="center"></p>
-														<div class="form-group">
-															<input type="password" class="form-control" name="Caab103" id="comfirmPwd" placeholder="确认新的密码"
-																   onkeyup="checkComfirmPwd(this, 'newPwd', 'modifyPwd_submit', 'alert_register_comfirm')"></input>
-														</div>
-														<p id="alert_register_comfirm" align="center"></p>
-														<div class="form-group wt-btnarea">
-															<input type="button" onclick="modifyPwd('${sessionScope.userID }')" class="wt-btn" id="modifyPwd_submit" value="提交"></input>
-														</div>
-													</fieldset>
-												</form>
-											</div>
-										</div>
-								
-										<div id="modifyEmail" class="wt-widget" style="display:none">
-											<div class="wt-widgettitle">
-												<h2>重新绑定邮箱</h2>
+												<h2>举报这名用户</h2>
 											</div>
 											<div class="wt-widgetcontent">
 												<form class="wt-formtheme wt-formreport">
 													<fieldset>
 														<div class="form-group">
-															<input type="email" id="New_mail" name="aab108" class="form-control" placeholder="新的邮箱地址"></input>
+															<span class="wt-select">
+																<select id="complain_type" name="aaf105">
+																	<option value="01">存在违反国家法律法规的内容</option>
+																	<option value="02">存在泄露他人隐私信息的内容</option>
+																	<option value="03">存在辱骂、中伤、诽谤他人的内容</option>
+																	<option value="04">存在夸大、过度宣传等内容</option>
+																	<option value="05">存在色情、淫秽、低俗等不适内容</option>
+																</select>
+															</span>
 														</div>
-														<p align="center" id="send_code" onclick="SendEmail('New_mail', 1, '<%=path %>')">发送验证码</p>
 														<div class="form-group">
-															<input type="text" name="ver" id="sec_code" class="form-control" placeholder="输入验证码"></input>
+															<textarea type="text" id="complain_reason" name="aaf106" class="form-control" placeholder="填写举报原因"></textarea>
 														</div>
 														<div class="form-group wt-btnarea">
-															<input type="button" onclick="modifyEmail('${sessionScope.userID }')" class="wt-btn" id="modifyEmail_submit" value="提交"></input>
+															<input type="button" onclick="complainUser('${ins.aab101 }', '${sessionScope.userID }')" class="wt-btn" id="complain_submit" value="提交"></input>
 														</div>
 													</fieldset>
 												</form>
 											</div>
 										</div>
 										
-										<div id="modifyUser" class="wt-widget" style="display:none">
-											<div class="wt-widgettitle">
-												<h2>修改我的信息</h2>
-											</div>
-											<div class="wt-widgetcontent">
-											
-												<form class="wt-formtheme wt-formreport">
-													<fieldset>
-														<div class="form-group">
-															<input class="form-control" id="aab102_" placeholder="您的昵称"></input>
-														</div>
-														<div class="form-group">
-															<input class="form-control" id="aab104_" placeholder="您的真实姓名"></input>
-														</div>
-														<div class="form-group">
-															<input class="form-control" id="aab105_" placeholder="您的性别"></input>
-														</div>
-														<div class="form-group">
-															<input class="form-control" id="aab107_" placeholder="您的学号"></input>
-														</div>
-														<div class="form-group">
-															<input class="form-control" id="aab109_" placeholder="民族"></input>
-														</div>
-														<div class="form-group">
-															<input class="form-control" id="aab110_" placeholder="您的学校"></input>
-														</div>
-														<div class="form-group">
-															<input class="form-control" id="aab111_" placeholder="您的手机号"></input>
-														</div>
-														<div class="form-group">
-															<input class="form-control" id="aab112_" placeholder="您希望展示的标签"></input>
-														</div>
-														<div class="form-group">
-															<input class="form-control" id="aab114_" placeholder="您的签名"></input>
-														</div>
-														<div class="form-group wt-btnarea">
-															<input type="button" onclick="modifyUser('${sessionScope.userID }')" class="wt-btn" id="modifyUser_submit" value="提交"></input>
-														</div>
-													</fieldset>
-												</form>
-											</div>
-										</div>
 									</aside>
 								</div>
 							</div>

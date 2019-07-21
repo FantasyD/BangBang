@@ -8,16 +8,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=GBK">
 <title>Insert title here</title>
-<link href="./css/style1.css" rel="stylesheet">
 <script type="text/javascript" src="https://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
 
+	
+	<link href="css/style1.css" rel="stylesheet">
 <script type="text/javascript">
-var this_aab101 = "<%=request.getParameter("aab101") %>";
-var this_aab102 = "<%=request.getParameter("aab102") %>";
+var this_aab101 = "${sessionScope.userID }";
+var this_aab102 = "${sessionScope.userName }";
 var path = "<%=path%>/";
 </script>
 
-<script type="text/javascript" src="./js/chat_action.js"></script>
+<script type="text/javascript" src="js/chat_action.js"></script>
 </head>
 <body class="box" onload="LoadPage()">
   <div class="centerit">

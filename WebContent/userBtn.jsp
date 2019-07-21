@@ -24,9 +24,9 @@
 							<div class="wt-companysinfo">
 								<figure><img src="images/sidebar/img-02.jpg" alt="img description"></figure>
 								<div class="wt-title">
-									<h2><a href="javascript:void(0);"> Louanne Mattioli</a></h2>
-									<span>Amento Tech</span>
+									<h2><a href="javascript:void(0);">${sessionScope.userName}</a></h2>
 								</div>
+
 								<div class="wt-btnarea">
 									<a href="<%=path%>/addPost.jsp" class="wt-btn">发布帖子</a>
 								</div>
@@ -36,31 +36,33 @@
 						<nav id="wt-navdashboard" class="wt-navdashboard">
 							<ul>
 								<li>
-									<a href="userInfo.jsp">
+									<a href="<%=path %>/user_userInfo.html?aab101=${sessionScope.userID }">
 										<i class="ti-dashboard"></i>
 										<span>我的主页</span>
 									</a>
 								</li>
 								<li>
+
 									<a href="<%=path%>/tiezi_queryTieziById.html?aab101=${sessionScope.userId}">
 										<i class="ti-briefcase"></i>
 										<span>我的帖子</span>
 									</a>
 								</li>
 								<li>
-									<a href="<%=path %>/group_findMyGroup.html?aab101=${userId}">
+
+									<a href="<%=path %>/group_findMyGroup.html" onclick="myGroups()">
 										<i class="ti-package"></i>
 										<span>我的群组</span>
 									</a>
 								</li>
 								<li class="wt-notificationicon">
-									<a href="javascript:void(0);">
+									<a href="<%=path%>/chatpage.jsp">
 										<i class="ti-pencil-alt"></i>
 										<span>我的消息</span>
 									</a>
 								</li>
 								<li>
-									<a href="<%=path %>/email_getEmail.html?aab101=${userId}">
+									<a href="myEmails.jsp">
 										<i class="ti-announcement"></i>
 										<span>我的邮件</span>
 									</a>
@@ -76,5 +78,11 @@
 					</div>
 				</div>
 				<!--Sidebar Start-->
+
+				<form method="post">
+					<input type="hidden" name="aab101" value="${userId }"/>
+				</form>
+				
+				
 </body>
 </html>

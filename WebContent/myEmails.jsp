@@ -35,14 +35,6 @@
 <link rel="stylesheet" href="css/transitions.css">
 <link rel="stylesheet" href="css/responsive.css">
 <link rel="stylesheet" href="css/dbresponsive.css">
-<style type="text/css">
-.faccepted{
-	display:none;
-}
-.srefused{
-	display:none;
-}
-</style>
 <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
 <body class="wt-login">
@@ -77,7 +69,6 @@
 									<div class="wt-addprojectsholder wt-tabsinfo">
 										<div class="wt-tabscontenttitle wt-addnew">
 											<h2>所有邮件</h2>
-											<a href="#" onclick="updateAllEmail()">全部标为已读</a>
 										</div>
 										<ul class="wt-experienceaccordion accordion">
 											<c:forEach items="${rows }" var="row" varStatus="vs">
@@ -87,41 +78,22 @@
 															data-toggle="collapse" data-target="#${row.aah101 }">
 															<a style="color:${row.aah106==0?'#ff0000':'#777' }"
 																onclick="updateEmail('${row.aah101}')"
-																id="${row.aah101 }a"> ${row.aah103 } </a> 
+																id="${row.aah101 }a"> ${row.aah103 } </a> ${row.aah202 }>
 														</div>
 													</div>
 													<div class="wt-collapseexp collapse navbar-collapse"
 														id="${row.aah101 }" aria-labelledby="accordioninnertitle"
 														data-parent="#accordion">
-														<form class="wt-formtheme wt-userform wt-formprojectinfo">
-														<div class="form-group form-group-half">
 														<p>${row.aah104 }</p>
-														</div>
-														<div class="form-group form-group-half">
 														<c:choose>
 															<c:when test="${row.aah102==1 }">
 																<a href="${row.aah202 }">点此查看</a>
 															</c:when>
 															<c:when test="${row.aah102==2 }">
-																<c:if test="${row.aah204==0 }">
-																	<div id="first${row.aah201 }">
-																		<a onclick="accept('${row.aah201 }','${row.aah202 }')" href="#" class="wt-btn">同意</a>
-																		<a onclick="refuse('${row.aah201 }','${row.aah203 }','${userId}')"  href="#" class="wt-btn">拒绝</a>
-																	</div>	
-																	<div id="second${row.aah201 }" class="faccepted"><span>已接受</span></div>
-																	<div id="third${row.aah201 }"  class="srefused"><span>已拒绝</span></div>
-																</c:if>
-																<c:if test="${row.aah204==1 }">
-																	<span>已接受</span>
-																</c:if>
-																<c:if test="${row.aah204==2 }">
-																	<span>已拒绝</span>
-																</c:if>
-																<div></div>
+																<a href="${row.aah202 }" class="wt-btn">同意</a>
+																<a href="${row.aah203 }" class="wt-btn">拒绝</a>
 															</c:when>
 														</c:choose>
-														</div>
-														</form>
 													</div>
 												</li>
 											</c:forEach>
@@ -158,96 +130,29 @@
 	<script src="js/gmap3.js"></script>
 	<script src="js/jRate.js"></script>
 	<script src="js/main.js"></script>
-	<script type="js/jquery-2.1.3.min.js"></script>
 	<script type="text/javascript">
-	//拒绝
-	function refuse(aah201,aah203,aab101)
-	{
-		$.ajax({
-			type: "POST",
-			url: aah203,
-			data : {
-				'aah201' : aah201,
-				'aa' : aab101
-			},
-			success : function(data) {
-				document.getElementById("first"+aah201).style.display="none";
-				document.getElementById("third"+aah201).style.display="block";
-			},
-			error : function(data) {
-			},
-		});
-	}
-	
-	//接受
-	function accept(aah201,aah202)
-	{
-		$.ajax({
-			type: "POST",
-			url: aah202,
-			data : {
-				'aab101' : '14',
-				'aah201' : aah201
-			},
-			success : function(data) {
-					if(data==0)
-					{
-						alert("您已在群组中!");
-					}
-					else if(data==1)
-					{
-						alert("加入成功")	
-					}
-					else if(data==2)
-					{
-						alert("该群组已解散!");
-					}
-					document.getElementById("first"+aah201).style.display="none";
-					document.getElementById("second"+aah201).style.display="block";
-			},
-			error : function(data) {
-			},
-		});
-	}
-	
 	/**
 	*			点击邮件标题后改变邮件的颜色
 	*			点击邮件标题后改变邮件状态为已读
 	*/
-	function updateAllEmail()
-	{
-		 <c:forEach items="${rows}" var="item" varStatus="status" >  
-			 var aLink=document.getElementById(${item.aah101 }+"a");
-			aLink.style="color:#777";
- 		</c:forEach>   
- 		$.ajax({
-		    type: "POST",
-		    url: "<%=path%>/email_updateAllEmail.html",
-		data : {
-			'aab101' : ${userId }
-		},
-		/* dataType: "json", */
-		/* contentType: "application/x-www-form-urlencoded; charset=utf-8", */
-		success : function(data) {
-		},
-		error : function(data) {
-		},
-	});
-	}
-	
 	function updateEmail(aah101)
 	{
 			var aLink=document.getElementById(aah101+"a");
 			aLink.style="color:#777";
 				$.ajax({
 				    type: "POST",
-				    url: "<%=path%>/email_updateEmail.html",
+				    url: "<%=path%>
+		/email_updateEmail.html",
 				data : {
 					'aah101' : aah101
 				},
 				/* dataType: "json", */
 				/* contentType: "application/x-www-form-urlencoded; charset=utf-8", */
 				success : function(data) {
+					$
+					{
+						msg
+					}
 				},
 				error : function(data) {
 				},

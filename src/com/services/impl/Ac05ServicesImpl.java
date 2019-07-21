@@ -11,7 +11,7 @@ import com.system.tools.Tools;
 /**
  * @Description: ·¢²¼Ìû×Ó
  */
-public class Ac05ServicesImpl extends Ah01ServicesImpl
+public class Ac05ServicesImpl extends Ah01ServiceImpl
 {
 	/**
 	 * @Description: 

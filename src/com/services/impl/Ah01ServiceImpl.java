@@ -1,6 +1,5 @@
 package com.services.impl;
 
-import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +12,7 @@ import com.system.tools.Tools;
  * @Description: 实现邮件模块所需的数据库操作支持
  * @author: 宁志豪
  */
-public abstract class Ah01ServicesImpl extends JdbcServicesSupport
+public abstract class Ah01ServiceImpl extends JdbcServicesSupport
 {
 	/**
 	 * @Description: 单一邮件发送入口
@@ -56,12 +55,7 @@ public abstract class Ah01ServicesImpl extends JdbcServicesSupport
 	 * 				  通知类邮件不填
 	 * 		aah203: 第二个链接(存放询问类邮件所需的链接)
 	 * 				   通知类与链接类不填
-	 * 		aah204: 记录用户对询问类邮件的操作
-	 * 				   0表示未曾操作
-	 * 				   1表示同意
-	 * 				   2表示拒绝
-	 * 				   (插入邮件时默认为0,当完成邮件后台操作时需要修改)
-	 * 
+	 * 		
 	 * 	通知类邮件主要是给用户展示通知，不需要用户进行任何操作
 	 * 	链接类邮件在向用户展示通知的同时会给予一个链接供用户操作
 	 * 	询问类邮件主要是询问用户的意向，会有接受和拒绝两种选择
@@ -88,8 +82,6 @@ public abstract class Ah01ServicesImpl extends JdbcServicesSupport
 				;
 		Object state= Tools.getSequence("aah101");
 		
-		
-		
 		Object idlist[]= {
 				state,
 				aab101,
@@ -103,20 +95,13 @@ public abstract class Ah01ServicesImpl extends JdbcServicesSupport
 		if(type==1) 
 		{
 			String sql="insert into ah02(aah101,aah202) values(?,?)";		
-			Object ids[]= {
-					state,
-					this.get("aah202")
-					};
+			Object ids[]= {state,this.get("aah202")};
 			this.appendSql(sql, ids);
 		}
 		else if(type==2)
 		{
-			String sql="insert into ah02(aah101,aah202,aah203,aah204) values(?,?,?,0)";		
-			Object ids[]= {
-					state,
-					this.get("aah202"),
-					this.get("aah203")
-					};
+			String sql="insert into ah02(aah101,aah202,aah203) values(?,?,?)";		
+			Object ids[]= {state,this.get("aah202"),this.get("aah203")};
 			this.appendSql(sql, ids);
 		}
 		return this.executeTransaction();

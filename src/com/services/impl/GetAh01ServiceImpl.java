@@ -7,7 +7,7 @@ import java.util.Set;
 
 import com.services.JdbcServicesSupport;
 
-public class GetAh01ServicesImpl extends JdbcServicesSupport
+public class GetAh01ServiceImpl extends JdbcServicesSupport
 {
 	/**
 	 * @Description: 查询某个用户的所有邮件
@@ -24,7 +24,7 @@ public class GetAh01ServicesImpl extends JdbcServicesSupport
 				;
 		StringBuilder sb2=new StringBuilder()
 				.append("SELECT x.aah101,x.aah102,x.aah103,x.aah104,x.aah106,")
-				.append("			 y.aah201,y.aah202 aah202,y.aah203 aah203,y.aah204")
+				.append("			 y.aah202 aah202,y.aah203 aah203")
 				.append("  from ah01 x,ah02 y")
 				.append(" where x.aah101=y.aah101 and x.aab101=?")
 				.append(" order by x.aah105 desc")
@@ -40,6 +40,7 @@ public class GetAh01ServicesImpl extends JdbcServicesSupport
 		{
 			set.add(map.get("aah101"));
 		}
+		System.out.println(set);
 		for(Map<String,String> map:list1)
 		{
 			//如果存在于set，意味着是2,3类邮件
@@ -49,12 +50,14 @@ public class GetAh01ServicesImpl extends JdbcServicesSupport
 				{
 					if(m.get("aah101").equals(map.get("aah101")))
 					{
+						System.out.println(m);
 						list1.set(list1.indexOf(map), m);
 						break;
 					}
 				}
 			}
 		}
+		System.out.println(list1);
 		return list1;
 	}
 	
@@ -67,13 +70,6 @@ public class GetAh01ServicesImpl extends JdbcServicesSupport
 		String sql="update ah01 set aah106 =? where aah101=?";
 		Object idlist[]= {"1",this.get("aah101")};
 		
-		return this.executeUpdate(sql, idlist)>0;
-	}
-	
-	public boolean updateAllEmail()throws Exception
-	{
-		String sql="update ah01 set aah106=? where aab101=?";
-		Object idlist[]= {"1",this.get("aab101")};
 		return this.executeUpdate(sql, idlist)>0;
 	}
 	

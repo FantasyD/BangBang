@@ -1,6 +1,6 @@
 package com.web.impl.group;
 
-import com.services.impl.Ae03ServicesImpl;
+import com.services.impl.Ae02ServiceImpl;
 import com.web.support.ControllerSupport;
 
 /**
@@ -11,6 +11,6 @@ public abstract class GroupMemberServlet extends ControllerSupport
 {
 	public GroupMemberServlet()
 	{
-		this.setServices(new Ae03ServicesImpl());
+		this.setServices(new Ae02ServiceImpl());
 	}
 }

@@ -149,11 +149,6 @@
 							</div>
 						</div>
 						
-						
-						
-						
-						
-						
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-3">
 							<aside id="wt-sidebar" class="wt-sidebar wt-dashboardsave">
 								<div class="wt-proposalsr">

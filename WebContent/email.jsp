@@ -56,8 +56,8 @@ ${userId }
 						<a href="${row.aah202 }">点此查看</a>
 					</c:when>
 					<c:when test="${row.aah102==2 }">
-						<a href="${row.aah202 }" class="btn btn-default">同意</a>
-						<a href="${row.aah203 }" class="btn btn-default">拒绝</a>
+						<a href="${row.aah202 }" class="wt-btn">同意</a>
+						<a href="${row.aah203 }" class="wt-btn">拒绝</a>
 					</c:when>
 				</c:choose>
 			</div>

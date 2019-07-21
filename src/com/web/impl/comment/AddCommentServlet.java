@@ -9,6 +9,6 @@ public class AddCommentServlet extends CommentControllerSupport
 		this.savePageInstance();
 		this.savePageData();
 		
-		return "tieziDetails";
+		return "postDetails";
 	}
 }

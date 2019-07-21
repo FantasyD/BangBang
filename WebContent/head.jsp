@@ -24,7 +24,7 @@
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 							
 								<!-- 跳转回主页，页面最左上角的logo -->
-								<strong class="wt-logo"><a href="index.jsp"><img src="images/logo.png" alt="company logo here"></a></strong>
+								<strong class="wt-logo"><a href="<%=path%>/tiezi_queryTiezi.html?aab101=${sessionScope.userId}"><img src="images/logo.png" alt="company logo here"></a></strong>
 								
 								<!-- 搜索框，导航栏的搜索 -->
 								<form class="wt-formtheme wt-formbanner wt-formbannervtwo">
@@ -74,23 +74,39 @@
 												</li>
 												<!-- 查询我的帖子 -->
 												<li>
+<<<<<<< HEAD
 													<a href="myPost.jsp">
+=======
+													<a href="<%=path%>/tiezi_queryTieziById.html?aab101=${sessionScope.userId}">
+>>>>>>> a424cf57ea74c1196bdebd94dd70079c98614e63
 														<span>我的帖子</span>
 													</a>
 												</li>
 												<!-- 查询我的群组 -->
 												<li>
+<<<<<<< HEAD
 													<a href="<%=path %>/group_findMyGroup.html?aab101=${userId}">
+=======
+													<a href="#" onclick="myGroups()">
+>>>>>>> a424cf57ea74c1196bdebd94dd70079c98614e63
 														<span>我的群组</span>
 													</a>
 												</li>
 												<li class="wt-notificationicon">
+<<<<<<< HEAD
 													<a href="javascript:void(0);">
+=======
+													<a href="#" onclick="javascript:void(0);">
+>>>>>>> a424cf57ea74c1196bdebd94dd70079c98614e63
 														<span>我的消息</span>
 													</a>
 												</li>
 												<li>
+<<<<<<< HEAD
 													<a href="myEmails.jsp">
+=======
+													<a href="#" onclick="myEmails()">
+>>>>>>> a424cf57ea74c1196bdebd94dd70079c98614e63
 														<span>我的邮件</span>
 													</a>
 												</li>
@@ -109,7 +125,28 @@
 				</div>
 			</header>
 						<!--Header End-->
+			<form method="post" id="message">
+					<input type="hidden" name="aab101" value="${userId }"/>
+			</form>			
+			
+						
+						
   <script type="text/javascript">
+  //获取我的群组
+  function myGroups()
+  {
+	  var myForm=$("#message");
+	  myForm.action="<%=path %>/group_findGroup.html";
+	  myForm.submit();
+  }
+  //获取我的邮件
+  function myEmails()
+  {
+	  var myForm=$("#message");
+	  myForm.action="<%=path %>/email_getEmail.html";
+	  myForm.submit();
+  }
+  
   function askEmail(newNum)
   {
 		$.ajax

@@ -62,7 +62,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="index.html">
+									<a href="index.jsp">
 										<i class="ti-shift-right"></i>
 										<span>ÍË³ö</span>
 									</a>

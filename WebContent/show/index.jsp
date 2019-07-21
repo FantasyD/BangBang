@@ -330,8 +330,11 @@
 		<!-- µ¼Èëµ¼º½À¸ -->
 		<jsp:include page="head.jsp"></jsp:include>
 		
+<<<<<<< HEAD
 		
 >>>>>>> 614e1804db5bcfea9cc123ec119cd37cf332ba46
+=======
+>>>>>>> a424cf57ea74c1196bdebd94dd70079c98614e63
 			<!--Inner Home Banner Start-->
 			<div class="wt-haslayout wt-innerbannerholder">
 				<div class="container">

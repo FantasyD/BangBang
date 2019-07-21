@@ -20,12 +20,14 @@ public class GetAh01ServiceImpl extends JdbcServicesSupport
 				.append("SELECT x.aah101,x.aah102,x.aah103,x.aah104,x.aah106")
 				.append("  from ah01 x")
 				.append(" where x.aab101=?")
+				.append(" order by x.aah105 desc")
 				;
 		StringBuilder sb2=new StringBuilder()
 				.append("SELECT x.aah101,x.aah102,x.aah103,x.aah104,x.aah106,")
 				.append("			 y.aah202 aah202,y.aah203 aah203")
 				.append("  from ah01 x,ah02 y")
 				.append(" where x.aah101=y.aah101 and x.aab101=?")
+				.append(" order by x.aah105 desc")
 				;
 		Object id=this.get("aab101");
 		//获取所有邮件和附有链接信息的邮件

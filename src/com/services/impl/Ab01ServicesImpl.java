@@ -20,7 +20,7 @@ import com.system.tools.Tools;
  * @Description: 对ab01表的操作
  * @author: xzc
  */
-public class Ab01ServicesImpl extends Ah01ServiceImpl
+public class Ab01ServicesImpl extends Ah01ServicesImpl
 {
 	/**
 	 * 

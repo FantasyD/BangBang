@@ -7,7 +7,7 @@ import java.util.Map;
 import com.services.JdbcServicesSupport;
 import com.system.tools.Tools;
 
-public class Ac03ServicesImpl extends Ah01ServiceImpl
+public class Ac03ServicesImpl extends Ah01ServicesImpl
 {
 	public List<Map<String, String>> query() throws Exception
 	{

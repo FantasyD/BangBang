@@ -66,6 +66,19 @@
 	z-index: 1002;
 	overflow: auto;
 }
+
+#result{
+	display: none;
+	position: absolute;
+	top: 10%;
+	left: 10%;
+	width: 80%;
+	height: 80%;
+	border: 16px solid lightblue;
+	background-color: white;
+	z-index: 1002;
+	overflow: auto;
+}
 </style>
 
 <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
@@ -199,13 +212,10 @@
 							</div>
 						</div>
 					</div>
-					<div id="updateInfo">
-						<form method="post" enctype="multipart/form-data">
+					<div id="updateInfo" >
+					<h2 align="center">群组信息</h2>
+						<form method="post" enctype="multipart/form-data" role="form">
 							<table border="1" align="center" width="50%">
-								<caption>
-									群组信息
-									<hr width="160px">
-								</caption>
 								<tr>
 									<td>群组名:</td>
 									<td><e:text name="aae102" required="true"
@@ -238,27 +248,18 @@
 					</div>
 					<div id="invite">
 						<form id="numberForm" method="post">
-						<tr>
-						<td>
-							请输入你想邀请的用户编号: <input type="text" id="invitedNumber" name="aab101">
-							<e:hidden name="aah202"
-								value="${pageContext.request.contextPath}/group_acceptInviteServlt.html?aae101=${ins.aae101 }" />
-							<e:hidden name="aah203"
-								value="${pageContext.request.contextPath}/group_refuseInviteServlet.html" />
-							<e:hidden name="aae101" value="${ins.aae101 }" />
-							<e:hidden name="aah102" value="2" />
-							<e:hidden name="aah103" value="群组邀请" />
-							<e:hidden name="aah104"
-								value="用户${userName }邀请您加入群组：${ins.aae102 }" />
-							</td>
-							</tr>
-								<tr><td>
+						<div class="form-group">
+							请输入你想邀请的用户名: <input type="text" id="invitedNumber" name="aab101">
+							<div class="form-group wt-btnarea">
 							<input type="button" onclick="inviteConfirm()" value="确定"
 								class="btn btn-default"> 
 							<input type="button" onclick="closeInviteDiv()" value="取消" class="btn btn-default">
-							</td></tr>
+							</div>
 						</form>
 					</div>
+					<div id="result" class="modal">
+					</div>
+					
 				</div>
 			</section>
 			<!--Register Form End--> </main>
@@ -285,6 +286,8 @@
 	<script src="js/main.js"></script>
 	<script type="text/javascript">
 
+
+	
 	  //显示隐藏的修改DIV
   	function updateIsClick()
   	{
@@ -339,7 +342,7 @@
   					var delBtn=document.getElementById("quit");
   					delBtn.action="<%=path%>/group_delGroup.html";
 					delBtn.submit();
-					alert("解散成功! ")
+					alert("解散成功! ");
   			}
   	}
 		//显示隐藏的邀请DIV
@@ -359,19 +362,52 @@
 		//邀请用户
 		function inviteConfirm()
 		{
-			var tag=true;
 			var user=document.getElementById("invitedNumber").value;
+				$.ajax({
+					type: "POST",
+					url: "<%=path%>/group_findUserByName.html",
+					data : {
+						'aab102' : encodeURIComponent(user)
+					},
+					success : function(data) {
+						$("#result").load("${pageContext.request.contextPath}/inviteMember.jsp");
+						var info = document.getElementById("result");
+						info.style.display="block";
+					},
+					error : function(data) {
+					},
+				});
+		}
+		
+		function invite(aab101)
+		{
+			var tag=true;
 		    <c:forEach items="${rows}" var="item" varStatus="status" >  
-	        	if(${item.aab101}==user)	
+	        	if(${item.aab101}==aab101)	
 	        	{
 	        		 tag=false;
 	        	}
 	    	</c:forEach>   
-			if(tag)
+	    	if(tag)
 			{
-				var infoForm=document.getElementById("numberForm");
-				infoForm.action="<%=path%>/group_inviteToGroup.html";
-				infoForm.submit();
+	    		$.ajax({
+					type: "POST",
+					url: "<%=path%>/group_inviteToGroup.html",
+					data : {
+						'aab101' : aab101,
+						'aah202' : '${pageContext.request.contextPath}/group_acceptInvite.html?aae101=${ins.aae101 }',
+						'aah203' : '${pageContext.request.contextPath}/group_refuseInvite.html?aab101=${userId }',
+						'aae101' : '${ins.aae101 }',
+						'aah102' : '2',
+						'aah103' : encodeURIComponent('群组邀请'),
+						'aah104' : encodeURIComponent('用户${userName }邀请您加入群组：${ins.aae102 }')
+					},
+					success : function(data) {
+						alert("邀请成功")
+					},
+					error : function(data) {
+					},
+				});
 			}
 			else
 			{
@@ -381,7 +417,8 @@
 	</script>
 	<script>
 		const menu_icon = document.querySelector('.menu-icon');
-		function addClassFunThree() {
+		function addClassFunThree() 
+		{
 	        this.classList.toggle("click-menu-icon");
 	    }
 	    menu_icon.addEventListener('click', addClassFunThree);

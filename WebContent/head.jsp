@@ -74,39 +74,23 @@
 												</li>
 												<!-- 查询我的帖子 -->
 												<li>
-<<<<<<< HEAD
-													<a href="myPost.jsp">
-=======
 													<a href="<%=path%>/tiezi_queryTieziById.html?aab101=${sessionScope.userId}">
->>>>>>> a424cf57ea74c1196bdebd94dd70079c98614e63
 														<span>我的帖子</span>
 													</a>
 												</li>
 												<!-- 查询我的群组 -->
 												<li>
-<<<<<<< HEAD
 													<a href="<%=path %>/group_findMyGroup.html?aab101=${userId}">
-=======
-													<a href="#" onclick="myGroups()">
->>>>>>> a424cf57ea74c1196bdebd94dd70079c98614e63
 														<span>我的群组</span>
 													</a>
 												</li>
 												<li class="wt-notificationicon">
-<<<<<<< HEAD
-													<a href="javascript:void(0);">
-=======
 													<a href="#" onclick="javascript:void(0);">
->>>>>>> a424cf57ea74c1196bdebd94dd70079c98614e63
 														<span>我的消息</span>
 													</a>
 												</li>
 												<li>
-<<<<<<< HEAD
-													<a href="myEmails.jsp">
-=======
-													<a href="#" onclick="myEmails()">
->>>>>>> a424cf57ea74c1196bdebd94dd70079c98614e63
+													<a href="<%=path %>/email_getEmail.html?aab101=${userId}">
 														<span>我的邮件</span>
 													</a>
 												</li>
@@ -132,20 +116,6 @@
 						
 						
   <script type="text/javascript">
-  //获取我的群组
-  function myGroups()
-  {
-	  var myForm=$("#message");
-	  myForm.action="<%=path %>/group_findGroup.html";
-	  myForm.submit();
-  }
-  //获取我的邮件
-  function myEmails()
-  {
-	  var myForm=$("#message");
-	  myForm.action="<%=path %>/email_getEmail.html";
-	  myForm.submit();
-  }
   
   function askEmail(newNum)
   {
@@ -169,7 +139,6 @@
 			},
 			error:function()
 			{
-				alert("运算超时");	
 				askEmail(newNum);
 			}
 		});

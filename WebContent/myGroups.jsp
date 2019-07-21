@@ -66,8 +66,7 @@
 									<h2>创建新群组</h2>
 								</div>
 								<div class="wt-dashboardboxcontent">
-									<form class="wt-formtheme wt-formprojectinfo wt-formcategory"  action="<%=path %>/group_newGroup.html" method="post"
-												  enctype="multipart/form-data">
+									<form class="wt-formtheme wt-formprojectinfo wt-formcategory"  action="<%=path %>/group_newGroup.html" method="post">
 										<fieldset>
 											<div class="form-group">
 												<input type="text" name="aae102" class="form-control" placeholder="群组名"  required="required" maxlength="30">

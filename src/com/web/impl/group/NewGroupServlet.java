@@ -15,6 +15,6 @@ public class NewGroupServlet extends GroupServlet
 		this.update("addGroup", "´´½¨");
 		this.savePageInstance();
 		this.savePageData();
-		return "group";
+		return "groupDetail";
 	}
 }

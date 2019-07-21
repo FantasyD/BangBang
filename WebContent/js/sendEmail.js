@@ -160,11 +160,147 @@ function findPwd_()
         	}
         }
     }
-    
     var form = "&aab108=" + encodeURI(encodeURI($("#mail_findPwd").val())) + 
 			   "&aab103=" + encodeURI(encodeURI($("#password_findPwd").val())) + 
 			   "&ver=" + $("#num_findPwd").val();
     http_request.open("POST", path + "/user_confirmModify.html", true);
+    http_request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    http_request.send(form);
+}
+
+function modifyPwd(aab101)
+{
+	if($("#Pwd").val() == "" || $("#newPwd").val() == "" || $("#comfirmPwd").val() == "")
+	{
+		alert("密码不能为空！");
+		return null;
+	}
+	var http_request = getHttp_request();
+    
+    http_request.onreadystatechange = function(){
+        if (http_request.readyState == 4 )
+        {
+        	var result = http_request.responseText;
+        	if(result == "true")
+        	{
+        		alert("修改成功！");
+        	}
+        	else
+        	{
+        		alert("修改失败！");
+        	}
+        }
+    }
+    var form = "aab103=" + $("#Pwd").val() + 
+			   "&Naab103=" + $("#newPwd").val() + 
+			   "&aab101=" + aab101;
+    http_request.open("POST", path + "/user_modifyPwd.html", true);
+    http_request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    http_request.send(form);
+}
+
+function modifyEmail(aab101)
+{
+	if($("#New_mail").val() == "" || $("#sec_code").val() == "")
+	{
+		alert("邮箱不能为空！");
+		return null;
+	}
+	var http_request = getHttp_request();
+    
+    http_request.onreadystatechange = function(){
+        if (http_request.readyState == 4 )
+        {
+        	var result = http_request.responseText;
+        	if(result == "true")
+        	{
+        		alert("绑定成功！");
+        	}
+        	else
+        	{
+        		alert("绑定失败！");
+        	}
+        }
+    }
+    var form = "aab108=" + $("#New_mail").val() + 
+			   "&ver=" + $("#sec_code").val() + 
+			   "&aab101=" + aab101;
+    http_request.open("POST", path + "/user_modifyEmail.html", true);
+    http_request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    http_request.send(form);
+}
+
+function modifyUser(aab101)
+{
+	var is_all_null = true;
+    var form = "aab101=" + aab101;
+    if($("#aab102_").val() != null)
+    {
+    	is_all_null = false;
+    	form = form + "&aab102=" + encodeURI(encodeURI($("#aab102_").val()));
+    }
+    if($("#aab104_").val() != null)
+    {
+    	is_all_null = false;
+    	form = form + "&aab104=" + encodeURI(encodeURI($("#aab104_").val()));
+    }
+    if($("#aab105_").val() != null)
+    {
+    	is_all_null = false;
+    	form = form + "&aab105=" + encodeURI(encodeURI($("#aab105_").val()));
+    }
+    if($("#aab107_").val() != null)
+    {
+    	is_all_null = false;
+    	form = form + "&aab107=" + encodeURI(encodeURI($("#aab107_").val()));
+    }
+    if($("#aab109_").val() != null)
+    {
+    	is_all_null = false;
+    	form = form + "&aab109=" + encodeURI(encodeURI($("#aab109_").val()));
+    }
+    if($("#aab110_").val() != null)
+    {
+    	is_all_null = false;
+    	form = form + "&aab110=" + encodeURI(encodeURI($("#aab110_").val()));
+    }
+    if($("#aab111_").val() != null)
+    {
+    	is_all_null = false;
+    	form = form + "&aab111=" + encodeURI(encodeURI($("#aab111_").val()));
+    }
+    if($("#aab112_").val() != null)
+    {
+    	is_all_null = false;
+    	form = form + "&aab112=" + encodeURI(encodeURI($("#aab112_").val()));
+    }
+    if($("#aab114_").val() != null)
+    {
+    	is_all_null = false;
+    	form = form + "&aab114=" + encodeURI(encodeURI($("#aab114_").val()));
+    }
+    if(is_all_null)
+    {
+    	alert("不能所有更新项均为空!");
+    	return null;
+    }
+	var http_request = getHttp_request();
+    
+    http_request.onreadystatechange = function(){
+        if (http_request.readyState == 4 )
+        {
+        	var result = http_request.responseText;
+        	if(result == "true")
+        	{
+        		alert("更新成功！");
+        	}
+        	else
+        	{
+        		alert("更新失败！");
+        	}
+        }
+    }
+    http_request.open("POST", path + "/user_modifyUser.html", true);
     http_request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     http_request.send(form);
 }

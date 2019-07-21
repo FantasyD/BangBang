@@ -5,9 +5,8 @@
 <!--[if IE 8]>			<html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!-->	<html class="no-js" lang=""> <!--<![endif]-->
 <head>
-	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>BootStrap HTML5 CSS3 Theme</title>
+	<title>${ins.aae102 }的主页</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -59,7 +58,7 @@
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9">
 							<div class="wt-dashboardbox">
 								<div class="wt-dashboardboxtitle">
-									<h2>Manage Jobs</h2>
+									<h2>${ins.aae101 }</h2>
 								</div>
 								<div class="wt-dashboardboxcontent wt-rcvproposala">
 									<div class="wt-userlistinghold wt-featured wt-userlistingvtwo">
@@ -67,13 +66,14 @@
 										<div class="wt-userlistingcontent">
 											<div class="wt-contenthead">
 												<div class="wt-title">
-													<a href="usersingle.html"><i class="fa fa-check-circle"></i> Terrence Tynan
-													</a>
-													<h2>Change temp to Arabic and install on wordpress</h2>
+													<i class="fa fa-check-circle"></i> ${ins.aae102 }
+													<h2>${ins.aae107!=null&& ins.aae107!=''?ins.aae107:'该群组暂时没有描述'}</h2>
 												</div>
 												<ul class="wt-saveitem-breadcrumb wt-userlisting-breadcrumb">
-													<li><span class="wt-dashboraddoller"><i class="fa fa-dollar-sign"></i> Professional</span></li>
-													<li><span><img src="images/flag/img-04.png" alt="img description" class="mCS_img_loaded"> England</span></li>
+													<li><span class="wt-dashboraddoller"><i class="fa fa-dollar-sign"></i> ${ins.aae104}</span></li>
+													<li><span>${ins.aae103!=null && ins.aae103!=''?ins.aae103:'该群组暂时没有签名'}</span></li>
+												</ul>
+												<ul>
 													<li><a href="javascript:void(0);" class="wt-clicksavefolder"><i class="far fa-folder"></i> Type: Per Fixed</a></li>
 													<li><span class="wt-dashboradclock"><i class="far fa-clock"></i> Duration: 15 Days</span></li>
 												</ul>
@@ -295,47 +295,6 @@
 										<li class="wt-nextpage"><a href="javascrip:void(0);"><i class="lnr lnr-chevron-right"></i></a></li>
 									</ul>
 								</nav>								
-							</div>
-						</div>
-						<div class="col-xs-12 col-sm-12 col-md-8 col-lg-5 col-xl-3">
-							<aside id="wt-sidebar" class="wt-sidebar wt-dashboardsave">
-								<div class="wt-proposalsr">
-									<div class="wt-proposalsrcontent">
-										<figure>
-											<img src="images/thumbnail/img-17.png" alt="image">
-										</figure>
-										<div class="wt-title">
-											<h3>150</h3>
-											<span>Total Ongoing Jobs</span>
-										</div>
-									</div> 
-								</div>
-								<div class="wt-proposalsr">
-									<div class="wt-proposalsrcontent wt-componyfolow">
-										<figure>
-											<img src="images/thumbnail/img-16.png" alt="image">
-										</figure>
-										<div class="wt-title">
-											<h3>1406</h3>
-											<span>Total Completed Jobs</span>
-										</div>
-									</div> 
-								</div>								
-								<div class="wt-proposalsr">
-									<div class="wt-proposalsrcontent  wt-freelancelike">
-										<figure>
-											<img src="images/thumbnail/img-15.png" alt="image">
-										</figure>
-										<div class="wt-title">
-											<h3>2075</h3>
-											<span>Total Cancelled Jobs</span>
-										</div>
-									</div> 
-								</div>								
-							</aside>
-							<div class="wt-companyad">
-								<figure class="wt-companyadimg"><img src="images/add-img.jpg" alt="img description"></figure>
-								<span>Advertisement  255px X 255px</span>
 							</div>
 						</div>
 					</div>

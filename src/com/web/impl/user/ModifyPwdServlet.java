@@ -4,8 +4,14 @@ public class ModifyPwdServlet extends Ab01ControllerSupport
 {
 	@Override
 	public String execute() throws Exception {
-		this.update("modifyPassword", "修改");
-		this.savePageInstance();
-		return "userCenter";
+		if(this.update("modifyPassword", "修改成功", "修改失败"))
+		{
+			this.setResponseAttribute("result", "true");
+		}
+		else
+		{
+			this.setResponseAttribute("result", "false");
+		}
+		return null;
 	}
 }

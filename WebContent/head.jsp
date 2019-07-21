@@ -1,7 +1,8 @@
 <%@page import="java.nio.channels.SeekableByteChannel"%>
 <%@ page language="java" pageEncoding="GBK"%>
 <% String path=request.getContextPath(); 
-		session.setAttribute("userId", "3");
+		session.setAttribute("userId", "1");
+		session.setAttribute("userName", "蒙多");
 %>
 <!DOCTYPE html>
 <html>
@@ -55,57 +56,6 @@
 								</form>
 								
 								<div class="wt-rightarea">
-									<div class="wt-loginarea">
-										<figure class="wt-userimg">
-											<img src="images/user-login.png" alt="img description">
-										</figure>
-										<div class="wt-loginoption">
-											<a href="javascript:void(0);" id="wt-loginbtn" class="wt-loginbtn">Login</a>
-											<div class="wt-loginformhold">
-												<div class="wt-loginheader">
-													<span>Login</span>
-													<a href="javascript:;"><i class="fa fa-times"></i></a>
-												</div>
-												<form class="wt-formtheme wt-loginform do-login-form">
-													<fieldset>
-														<div class="form-group">
-															<input type="text" name="username" class="form-control" placeholder="Username">
-														</div>
-														<div class="form-group">
-															<input type="password" name="password" class="form-control" placeholder="Password">
-														</div>
-														<div class="wt-logininfo">
-															<a href="javascript:;" class="wt-btn do-login-button">Login</a>
-															<span class="wt-checkbox">
-																<input id="wt-login" type="checkbox" name="rememberme">
-																<label for="wt-login">Keep me logged in</label>
-															</span>
-														</div>
-													</fieldset>
-													<div class="wt-loginfooterinfo">
-														<a href="javascript:;" class="wt-forgot-password">Forgot password?</a>
-														<a href="register.html">Create account</a>
-													</div>
-												</form>
-											    <form class="wt-formtheme wt-loginform do-forgot-password-form wt-hide-form">
-											        <fieldset>
-											            <div class="form-group">
-											                <input type="email" name="email" class="form-control get_password" placeholder="Email">
-											            </div>
-											           
-											            <div class="wt-logininfo">
-											                <a href="javascript:;" class="wt-btn do-get-password">Get Pasword</a>
-											            </div>     
-											        </fieldset>
-											        <div class="wt-loginfooterinfo">
-											            <a href="javascript:void(0);" class="wt-show-login">Login</a>
-											            <a href="register.html">Create account</a>
-											        </div>
-											    </form>
-											</div>
-										</div>
-										<a href="register.html" class="wt-btn">Join Now</a>
-									</div>
 									<div class="wt-userlogedin">
 										<figure class="wt-userimg">
 											<img src="images/user-img.jpg" alt="image description">
@@ -116,83 +66,37 @@
 										</div>
 										<nav class="wt-usernav">
 											<ul>
-												<li class="menu-item-has-children page_item_has_children">
+											<!-- 查询我的信息 -->
+												<li>
+													<a href="userInfo.jsp">
+														<span>我的主页</span>
+													</a>
+												</li>
+												<!-- 查询我的帖子 -->
+												<li>
+													<a href="myPost.jsp">
+														<span>我的帖子</span>
+													</a>
+												</li>
+												<!-- 查询我的群组 -->
+												<li>
+													<a href="<%=path %>/group_findMyGroup.html?aab101=${userId}">
+														<span>我的群组</span>
+													</a>
+												</li>
+												<li class="wt-notificationicon">
 													<a href="javascript:void(0);">
-														<span>Insights</span>
-													</a>
-													<ul class="sub-menu children">
-														<li><a href="dashboard-insights.html">Insights</a></li>
-														<li><a href="dashboard-insightsuser.html">Insights User</a></li>
-													</ul>
-												</li>
-												<li>
-													<a href="dashboard-profile.html">
-														<span>My Profile</span>
-													</a>
-												</li>
-												<li class="menu-item-has-children">
-													<a href="javascript:void(0);">
-														<span>All Jobs</span>
-													</a>
-													<ul class="sub-menu">
-														<li><a href="dashboard-completejobs.html">Completed Jobs</a></li>
-														<li><a href="dashboard-canceljobs.html">Cancelled Jobs</a></li>
-														<li><a href="dashboard-ongoingjob.html">Ongoing Jobs</a></li>
-														<li><a href="dashboard-ongoingsingle.html">Ongoing Single</a></li>
-													</ul>
-												</li>
-												<li>
-													<a href="dashboard-managejobs.html">
-														<span>Manage Jobs</span>
-													</a>
-												</li>
-												<li class="wt-notificationicon menu-item-has-children">
-													<a href="javascript:void(0);">
-														<span>Messages</span>
-													</a>
-													<ul class="sub-menu">
-														<li><a href="dashboard-messages.html">Messages</a></li>
-														<li><a href="dashboard-messages2.html">Messages V 2</a></li>
-													</ul>
-												</li>
-												<li>
-													<a href="dashboard-saveitems.html">
-														<span>My Saved Items</span>
+														<span>我的消息</span>
 													</a>
 												</li>
 												<li>
-													<a href="dashboard-invocies.html">
-														<span>Invoices</span>
-													</a>
-												</li>
-												<li>
-													<a href="dashboard-category.html">
-														<span>Category</span>
-													</a>
-												</li>
-												<li>
-													<a href="dashboard-packages.html">
-														<span>Packages</span>
-													</a>
-												</li>
-												<li>
-													<a href="dashboard-proposals.html">
-														<span>Proposals</span>
-													</a>
-												</li>
-												<li>
-													<a href="dashboard-accountsettings.html">
-														<span>Account Settings</span>
-													</a>
-												</li>
-												<li>
-													<a href="dashboard-helpsupport.html">
-														<span>Help &amp; Support</span>
+													<a href="myEmails.jsp">
+														<span>我的邮件</span>
 													</a>
 												</li>
 												<li>
 													<a href="index.html">
-														<span>Logout</span>
+														<span>退出</span>
 													</a>
 												</li>
 											</ul>
@@ -213,7 +117,7 @@
 			type:"POST",
 			url:'<%=path%>/email_CheckEmail.html',
 			data:{'aab101':'${userId}','emailNum':newNum},
-			timeout:30*60*1000,  //设置10分钟超时
+			timeout:30*60*1000,  //设置30分钟超时
 			success:function(data)
 			{
 				newNum=data;

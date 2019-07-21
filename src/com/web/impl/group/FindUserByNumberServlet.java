@@ -6,7 +6,7 @@ public class FindUserByNumberServlet extends GroupMemberServlet
 	public String execute() throws Exception
 	{
 		this.savePageData();
-		return "group";
+		return "groupDtail";
 	}
 
 }

@@ -51,6 +51,7 @@ public abstract class ControllerSupport implements BaseController
 		if (rows.size() > 0)
 		{
 			this.saveAttribute("rows", rows);
+			this.saveAttribute("type", this.dto.get("type"));
 		}
 		else
 		{

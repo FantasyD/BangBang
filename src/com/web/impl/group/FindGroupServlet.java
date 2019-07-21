@@ -14,7 +14,7 @@ public class FindGroupServlet extends GroupServlet
 	{
 		this.savePageInstance();
 		this.savePageData();
-		return "group";
+		return "groupDetail";
 	}
 
 }

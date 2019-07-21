@@ -27,13 +27,12 @@ public class Ae01ServiceImpl extends Ah01ServiceImpl
 				;
 		Object state[]= {Tools.getSequence("aae101")};
 		this.put("aae101", state[0]);
-		Object idlist[]= {state[0],"1",this.get("aae102"),this.get("aae103"),Tools.getEmpNumber("group")};
+		Object idlist[]= {state[0],this.get("aab101"),this.get("aae102"),this.get("aae103"),Tools.getEmpNumber("group")};
 		Object id=this.get("aae107");
 		this.appendBatch(sb.toString(),idlist, id);
 		
 		String sql="insert into ae02(aae101,aab101,aae202) values(?,?,CURRENT_DATE)";		
-		id="1";
-		this.appendBatch(sql, state, id);
+		this.appendBatch(sql, state, this.get("aab101"));
 		return this.executeTransaction();
 	}
 
@@ -54,7 +53,7 @@ public class Ae01ServiceImpl extends Ah01ServiceImpl
 	 */
 	public List<Map<String,String>> query()throws Exception
 	{
-		String sql="select b.aab101 ab101,b.aab102 ab102 from ab01 b,ae02 e where b.aab101=e.aab101 and aae101=?";
+		String sql="select b.aab101,b.aab102,b.aab115 from ab01 b,ae02 e where b.aab101=e.aab101 and aae101=?";
 		Object id=this.get("aae101");		
 		return this.queryForList(sql, id);
 	}
@@ -65,14 +64,29 @@ public class Ae01ServiceImpl extends Ah01ServiceImpl
 	 */
 	public boolean  updateGroup()throws Exception
 	{
-		String sql="update ae01 set aae102=?,aae103=?,aae107=? where aae101=?";
+		if(this.get("imgpath")!=null) {
+		String sql="update ae01 set aae102=?,aae103=?,aae105=?,aae107=? where aae101=?";
 		Object para[]= {
 				this.get("aae102"),
 				this.get("aae103"),
+				this.get("imgpath"),
 				this.get("aae107"),
 				this.get("aae101")
 				};
 		return this.executeUpdate(sql, para)>0;
+		}
+		else
+		{
+			String sql="update ae01 set aae102=?,aae103=?,aae107=? where aae101=?";
+			Object para[]= {
+					this.get("aae102"),
+					this.get("aae103"),
+					this.get("aae107"),
+					this.get("aae101")
+					};
+			return this.executeUpdate(sql, para)>0;
+		}
+		
 	}
 	
 	/**
@@ -111,7 +125,7 @@ public class Ae01ServiceImpl extends Ah01ServiceImpl
 	}
 	
 	/**
-	 * @Description: 检测被邀请用户是否已经在群组内
+	 * @Description: 邀请用户进入用户
 	 * @throws: sql语句执行出错
 	 */
 	public boolean inviteGroup()throws Exception
@@ -125,6 +139,10 @@ public class Ae01ServiceImpl extends Ah01ServiceImpl
 	 */
 	public boolean delGroup()throws Exception
 	{
+		if(!this.batchSendEmail())
+		{
+			return false;
+		}
 		String sql1="delete from ae02 where aae101=?";
 		Object id=this.get("aae101");
 		this.appendSql(sql1, id);

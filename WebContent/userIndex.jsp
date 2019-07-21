@@ -15,7 +15,7 @@
     </div>
     <div>
         <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="<%=path %>/user_userCenter.html?aab101=${sessionScope.userID }">个人中心</a></li>          
+            <li class="active"><a href="<%=path %>/user_userInfo.html?aab101=${sessionScope.userID }">个人中心</a></li>          
         </ul>
     </div>
     </div>

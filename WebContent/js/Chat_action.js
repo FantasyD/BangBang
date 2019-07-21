@@ -106,9 +106,6 @@ function loadJSON(data, name)
                     	var div = document.getElementById(i.aad101 + "_s");
                     	div.style.background = "#669933";
                     	
-                    	//var time = map.get(i.aad101 + "_s");
-                    	//var index = time.indexOf(" ");
-                    	//$("#" + i.aad101 + "_time").html(time.substring(index + 1));
                    	}
                 }
             }

@@ -1,5 +1,6 @@
 package com.services.impl;
 
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -19,7 +20,7 @@ import com.system.tools.Tools;
  * @Description: 对ab01表的操作
  * @author: xzc
  */
-public class Ab01ServicesImpl extends JdbcServicesSupport 
+public class Ab01ServicesImpl extends Ah01ServiceImpl
 {
 	/**
 	 * 
@@ -30,22 +31,73 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	private boolean modifyUser()throws Exception
 	{
 		StringBuilder sql=new StringBuilder()
-				.append("update ab01 a")
-				.append("   set a.aab102=?,a.aab105=?,a.aab109=?,a.aab111=?,a.aab112=?,")
-				.append("       a.aab114=?,a.aab115=?")
-				.append(" where a.aab101=?")
+				.append("update ab01 set ")
 				;
-		Object args[]= {
-				this.get("aab102"),
-				this.get("aab105"),
-				this.get("aab109"),
-				this.get("aab111"),
-				this.get("aab112"),
-				this.get("aab114"),
-				this.get("aab115"),
-				this.get("aab101")
-		};
-		return this.executeUpdate(sql.toString(), args)>0;
+  		Object aab102 = this.get("aab102");
+  		Object aab104 = this.get("aab104");
+  		Object aab105 = this.get("aab105");
+  		Object aab107 = this.get("aab107");
+  		Object aab109 = this.get("aab109");
+  		Object aab110 = this.get("aab110");
+  		Object aab111 = this.get("aab111");
+  		Object aab112 = this.get("aab112");
+  		Object aab114 = this.get("aab114");
+  		
+  		//参数列表
+  		List<Object> paramList=new ArrayList<>();
+  		//逐一判断查询条件是否录入,拼接AND条件
+  		
+  		if(this.isNotNull(aab102))
+  		{
+  			sql.append(" aab102=?,");
+  			paramList.add(URLDecoder.decode((String)aab102,"UTF-8"));
+  		}
+  		if(this.isNotNull(aab104))
+  		{
+  			sql.append(" aab104=?,");
+  			paramList.add(URLDecoder.decode((String)aab104,"UTF-8"));
+  		}
+  		if(this.isNotNull(aab105))
+  		{
+  			sql.append(" aab105=?,");
+  			paramList.add(URLDecoder.decode((String)aab105,"UTF-8"));
+  		}
+  		if(this.isNotNull(aab107))
+  		{
+  			sql.append(" aab107=?,");
+  			paramList.add(URLDecoder.decode((String)aab107,"UTF-8"));
+  		}
+  		if(this.isNotNull(aab109))
+  		{
+  			sql.append(" aab109=?,");
+  			paramList.add(URLDecoder.decode((String)aab109,"UTF-8"));
+  		}
+  		if(this.isNotNull(aab110))
+  		{
+  			sql.append(" aab110=?,");
+  			paramList.add(URLDecoder.decode((String)aab110,"UTF-8"));
+  		}
+  		if(this.isNotNull(aab111))
+  		{
+  			sql.append(" aab111=?,");
+  			paramList.add(URLDecoder.decode((String)aab111,"UTF-8"));
+  		}
+  		if(this.isNotNull(aab112))
+  		{
+  			sql.append(" aab112=?,");
+  			paramList.add(URLDecoder.decode((String)aab112,"UTF-8"));
+  		}
+  		if(this.isNotNull(aab114))
+  		{
+  			sql.append(" aab114=?,");
+  			paramList.add(URLDecoder.decode((String)aab114,"UTF-8"));
+  		}
+  		sql.append(" where aab101 = ?");
+  		paramList.add(this.get("aab101"));
+  		String str = sql.toString();
+  		str = str.substring(0, str.lastIndexOf(",")) + str.substring(str.lastIndexOf(",") + 1);
+		
+		return this.executeUpdate(str, paramList.toArray())>0;
 	}
 	
 	/**
@@ -67,8 +119,19 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 				this.get("aab101"),
 				Tools.getMd5(this.get("aab103"))
 		};
-		return this.executeUpdate(sql.toString(), args)>0;
+		
+		if(this.executeUpdate(sql.toString(), args) > 0)
+		{
+			this.put("aab101", this.get("aab101"));
+			this.put("aah102", "0");
+			this.put("aah103", "密码修改成功通知");
+			this.put("aah104", "您的密码已修改成功！");
+			this.sendEmail();
+			return true;
+		}
+		return false;
 	}
+	
 	/**
 	 *
 	 * @Description: 修改邮箱
@@ -86,7 +149,17 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 				this.get("aab108"),
 				this.get("aab101")
 		};
-		return this.executeUpdate(sql.toString(), args)>0;
+		
+		if(this.executeUpdate(sql.toString(), args) > 0)
+		{
+			this.put("aab101", this.get("aab101"));
+			this.put("aah102", "0");
+			this.put("aah103", "邮箱设置成功通知");
+			this.put("aah104", "您的邮箱已成功重新绑定！");
+			this.sendEmail();
+			return true;
+		}
+		return false;
 	}
 	
 	
@@ -106,7 +179,18 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 			this.get("aab108")
 		};
 		
-		return this.executeUpdate(sql, args)>0;
+		if(this.executeUpdate(sql, args) > 0)
+		{
+			String sql1 = "select aab101 from ab01 where aab108=?";
+			Map<String, String> map = this.queryForMap(sql1, this.get("aab108"));
+			this.put("aab101", map.get("aab101"));
+			this.put("aah102", "0");
+			this.put("aah103", "密码重设成功通知");
+			this.put("aah104", "您的密码已成功重新设置！");
+			this.sendEmail();
+			return true;
+		}
+		return false;
 	}
 	
 	/**
@@ -116,7 +200,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	 */
 	private boolean isEmailExist()throws Exception
 	{
-		String sql="select a.aab108 from ab01 a where a.aab108=?";
+		String sql="select a.aab101 from ab01 a where a.aab108=?";
 		return this.queryForMap(sql, this.get("aab108")) != null;
 	}
 	
@@ -135,17 +219,31 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 				.append("            values(?,?,?,?,?,")
 				.append("					?,?,?)")
 				;
+		
+		String name= URLDecoder.decode((String)this.get("aab110"),"UTF-8");
 		Object args[]= {
-				this.get("aab102"),
-				Tools.getMd5(this.get("aab103")),
-				this.get("aab104"),
-				this.get("aab107"),
-				this.get("aab108"),
-				this.get("aab110"),
+				URLDecoder.decode((String)this.get("aab102"),"UTF-8"),
+				Tools.getMd5(URLDecoder.decode((String)this.get("aab103"),"UTF-8")),
+				URLDecoder.decode((String)this.get("aab104"),"UTF-8"),
+				URLDecoder.decode((String)this.get("aab107"),"UTF-8"),
+				URLDecoder.decode((String)this.get("aab108"),"UTF-8"),
+				URLDecoder.decode((String)this.get("aab110"),"UTF-8"),
 				100,
 				0
 		};
-		return this.executeUpdate(sql.toString(), args)>0;
+		
+		if(this.executeUpdate(sql.toString(), args) > 0)
+		{
+			String sql1 = "select aab101 from ab01 where aab108=?";
+			Map<String, String> map = this.queryForMap(sql1, this.get("aab108"));
+			this.put("aab101", map.get("aab101"));
+			this.put("aah102", "0");
+			this.put("aah103", "注册成功通知");
+			this.put("aah104", "您的账号已成功注册！");
+			this.sendEmail();
+			return true;
+		}
+		return false;
 	}
 	
 	/**
@@ -165,7 +263,7 @@ public class Ab01ServicesImpl extends JdbcServicesSupport
 	
 	
 	
-	public boolean sendEmail() throws Exception 
+	public boolean SendEmail() throws Exception 
 	{
 		String Email = (String)this.get("aab108");
 		Tools.setCode(Email);

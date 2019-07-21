@@ -7,6 +7,6 @@ public class ModifyTieziServlet extends TieziControlletSupport
 	{
 		this.update("modifyTiezi","Ìû×ÓÐÞ¸Ä");
 		this.savePageData();
-		return "myTiezi";
+		return "myPost";
 	}
 }

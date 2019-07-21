@@ -8,6 +8,6 @@ public class QuitGroupServlet extends GroupServlet
 		this.update("quitGroup", "ÍË³ö");
 		this.savePageInstance();
 		this.savePageDataForDelete();
-		return "group";
+		return "groupDetail";
 	}
 }

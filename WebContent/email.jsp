@@ -46,6 +46,7 @@ ${userId }
 						style="color:${row.aah106==0?'#ff0000':'#777' }"
 						onclick="updateEmail('${row.aah101}')" id="${row.aah101 }a">
 						${row.aah103 } </a>
+						${row.aah202 }
 				</h4>
 			</div>
 			<div id="${row.aah101 }" class="collapse navbar-collapse">
@@ -55,8 +56,8 @@ ${userId }
 						<a href="${row.aah202 }">点此查看</a>
 					</c:when>
 					<c:when test="${row.aah102==2 }">
-						<a href="${row.aah202 }" class="btn btn-default">同意</a>
-						<a href="${row.aah203 }" class="btn btn-default">拒绝</a>
+						<a href="${row.aah202 }" class="wt-btn">同意</a>
+						<a href="${row.aah203 }" class="wt-btn">拒绝</a>
 					</c:when>
 				</c:choose>
 			</div>

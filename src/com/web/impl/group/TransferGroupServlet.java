@@ -12,7 +12,7 @@ public class TransferGroupServlet extends GroupServlet
 		this.update("transferGroup", "×ªÈÃ");
 		this.savePageInstance();
 		this.savePageData();
-		return "group";
+		return "groupDetail";
 	}
 	
 }

@@ -20,6 +20,6 @@ public class AddTieziServlet extends ControllerSupport
 		/*
 		this.setServices(new Ah01ServiceImpl(new Ac05ServicesImpl(),"aab101","aab101"));
 		*/
-		return "tieziDetails";
+		return "postDetails";
 	}
 }

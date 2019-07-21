@@ -9,7 +9,7 @@ public class FindByIdTieziServlet extends CommentControllerSupport
 	public String execute() throws Exception {
 		this.savePageData();
 		this.savePageInstance();
-		return "tieziDetails";
+		return "postDetails";
 	}
 
 }

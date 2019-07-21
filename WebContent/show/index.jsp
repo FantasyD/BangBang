@@ -53,7 +53,17 @@
 		<div class="wt-contentwrapper">
 		<!-- µ¼Èëµ¼º½À¸ -->
 		<jsp:include page="head.jsp"></jsp:include>
+<<<<<<< HEAD
 		<!--Inner Home Banner Start-->
+=======
+		
+<<<<<<< HEAD
+		
+>>>>>>> 614e1804db5bcfea9cc123ec119cd37cf332ba46
+=======
+>>>>>>> a424cf57ea74c1196bdebd94dd70079c98614e63
+			<!--Inner Home Banner Start-->
+>>>>>>> 719e3bb2422bf5e25f035dd2d6a81d66fb2a57cf
 			<div class="wt-haslayout wt-innerbannerholder">
 				<div class="container">
 					<div class="row justify-content-md-center">

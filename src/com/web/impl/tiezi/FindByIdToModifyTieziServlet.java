@@ -6,6 +6,6 @@ public class FindByIdToModifyTieziServlet extends TieziControlletSupport{
 	public String execute() throws Exception 
 	{
 		this.savePageInstance();
-		return "addTiezi";
+		return "addPost";
 	}
 }

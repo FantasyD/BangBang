@@ -12,6 +12,6 @@ public class DelGroupMemberServlet extends GroupServlet
 		this.update("quitGroup", "É¾³ý");
 		this.savePageInstance();
 		this.savePageDataForDelete();
-		return "group";
+		return "groupDetail";
 	}
 }

@@ -13,6 +13,23 @@
   <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
   <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
   <script src="js/iziToast.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+		function s() 
+		{
+			var form1=document.getElementById("form1");
+			var value=$('#type input[name="searchtype"]:checked').val();
+			if (value=='2') 
+			{
+				form1.action = "<%=path%>/user_searchUser.html";
+				form1.submit();
+			}
+			if (value=='1') {
+				form1.action = "<%=path%>/tiezi_searchTiezi.html";
+				form1.submit();
+			}
+		}
+	</script>
+  
 </head>
 <body>
 <!-- Header Start -->
@@ -26,29 +43,25 @@
 								<strong class="wt-logo"><a href="index.jsp"><img src="images/logo.png" alt="company logo here"></a></strong>
 								
 								<!-- 搜索框，导航栏的搜索 -->
-								<form class="wt-formtheme wt-formbanner wt-formbannervtwo">
+								<form id="form1" class="wt-formtheme wt-formbanner wt-formbannervtwo" method="post">
 									<fieldset>
 										<div class="form-group">
-											<input type="text" name="job" class="form-control" placeholder="I’m looking for">
+											<input type="text"  name="message" class="form-control" placeholder="I’m looking for">
 											<div class="wt-formoptions">
 												<div class="wt-dropdown">
 													<span>搜: <em class="selected-search-type">帖子 </em><i class="lnr lnr-chevron-down"></i></span>
 												</div>
-												<div class="wt-radioholder">
+												<div class="wt-radioholder" id="type">
 													<span class="wt-radio">
-														<input id="wt-freelancers" data-title="帖子" type="radio" name="searchtype" value="freelancer" checked="">
+														<input id="wt-freelancers" data-title="帖子" type="radio" name="searchtype" value="1" checked="checked">
 														<label for="wt-freelancers">帖子</label>
 													</span>
 													<span class="wt-radio">
-														<input id="wt-jobs" data-title="用户" type="radio" name="searchtype" value="job">
+														<input id="wt-jobs" data-title="用户" type="radio" name="searchtype" value="2">
 														<label for="wt-jobs">用户</label>
 													</span>
-													<span class="wt-radio">
-														<input id="wt-companies" data-title="群组" type="radio" name="searchtype" value="job">
-														<label for="wt-companies">群组</label>
-													</span>
 												</div>
-												<a href="javascrip:void(0);" class="wt-searchbtn"><i class="lnr lnr-magnifier"></i></a>
+												<a href="#" class="wt-searchbtn" onclick="s()"><i class="lnr lnr-magnifier"></i></a>
 											</div>
 										</div>
 									</fieldset>

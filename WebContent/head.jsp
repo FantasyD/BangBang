@@ -80,7 +80,7 @@
 												</li>
 												<!-- 查询我的群组 -->
 												<li>
-													<a href="#" onclick="myGroups()">
+													<a href="<%=path %>/group_findMyGroup.html?aab101=${userId}">
 														<span>我的群组</span>
 													</a>
 												</li>
@@ -90,7 +90,7 @@
 													</a>
 												</li>
 												<li>
-													<a href="#" onclick="myEmails()">
+													<a href="<%=path %>/email_getEmail.html?aab101=${userId}">
 														<span>我的邮件</span>
 													</a>
 												</li>
@@ -116,20 +116,6 @@
 						
 						
   <script type="text/javascript">
-  //获取我的群组
-  function myGroups()
-  {
-	  var myForm=$("#message");
-	  myForm.action="<%=path %>/group_findGroup.html";
-	  myForm.submit();
-  }
-  //获取我的邮件
-  function myEmails()
-  {
-	  var myForm=$("#message");
-	  myForm.action="<%=path %>/email_getEmail.html";
-	  myForm.submit();
-  }
   
   function askEmail(newNum)
   {
@@ -153,7 +139,6 @@
 			},
 			error:function()
 			{
-				alert("运算超时");	
 				askEmail(newNum);
 			}
 		});

@@ -48,7 +48,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="<%=path %>/group_findMyGroup.html" onclick="myGroups()">
+									<a href="<%=path %>/group_findMyGroup.html?aab101=${userId}">
 										<i class="ti-package"></i>
 										<span>我的群组</span>
 									</a>
@@ -60,7 +60,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="myEmails.jsp">
+									<a href="<%=path %>/email_getEmail.html?aab101=${userId}">
 										<i class="ti-announcement"></i>
 										<span>我的邮件</span>
 									</a>

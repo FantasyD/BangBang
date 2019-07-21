@@ -6,7 +6,7 @@ import java.util.Map;
 import com.services.JdbcServicesSupport;
 import com.system.tools.Tools;
 
-public class Ac02ServicesImpl extends Ah01ServiceImpl
+public class Ac02ServicesImpl extends Ah01ServicesImpl
 {
 	public boolean addComment() throws Exception
 	{

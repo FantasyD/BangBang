@@ -174,7 +174,6 @@ public class BaseServlet extends HttpServlet
 					dto.put(entry.getKey(), value);
 				}
 			}
-			System.out.println(dto);
 			return dto;
 		} else
 		{

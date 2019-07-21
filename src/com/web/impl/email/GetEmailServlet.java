@@ -1,6 +1,6 @@
 package com.web.impl.email;
 
-import com.services.impl.GetAh01ServiceImpl;
+import com.services.impl.GetAh01ServicesImpl;
 import com.web.support.ControllerSupport;
 
 public class GetEmailServlet extends EmailServlet
@@ -9,7 +9,7 @@ public class GetEmailServlet extends EmailServlet
 	public String execute() throws Exception
 	{
 		this.savePageData();
-		return "email";
+		return "myEmails";
 	}
 
 }

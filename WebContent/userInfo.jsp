@@ -133,7 +133,7 @@
 															<li><p id="aab113">信誉分：${ins.aab113 }</p></li>
 														</ul>
 														<ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">
-															<li><p id="aab105">性别：${ins.aab105 }</p></li>
+															<li><p id="aab105">性别：${ins.cnaab105 }</p></li>
 															<li><p id="aab109">民族：${ins.aab109 }</p></li>
 															<li><p id="aab110">学校：${ins.aab110 }</p></li>
 														</ul>
@@ -241,7 +241,13 @@
 															<input class="form-control" id="aab104_" placeholder="您的真实姓名"></input>
 														</div>
 														<div class="form-group">
-															<input class="form-control" id="aab105_" placeholder="您的性别"></input>
+															<span class="wt-select">
+																<select id="aab105_">
+																	<option value="1">我是男的</option>
+																	<option value="2">我是女的</option>
+																	<option value="3">我不确定</option>
+																</select>
+															</span>
 														</div>
 														<div class="form-group">
 															<input class="form-control" id="aab107_" placeholder="您的学号"></input>

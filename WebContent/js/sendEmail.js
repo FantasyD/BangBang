@@ -284,7 +284,7 @@ function modifyUser(aab101)
     if($("#aab105_").val() != "")
     {
     	is_all_null = false;
-    	form = form + "&aab105=" + encodeURI(encodeURI($("#aab105_").val()));
+    	form = form + "&aab105=" + encodeURI(encodeURI($("#aab105_ option:selected").val()));
     }
     if($("#aab107_").val() != "")
     {

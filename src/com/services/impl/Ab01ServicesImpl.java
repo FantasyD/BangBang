@@ -215,9 +215,9 @@ public class Ab01ServicesImpl extends Ah01ServicesImpl
 		//зЂВс
 		StringBuilder sql=new StringBuilder()
 				.append("insert into ab01(aab102,aab103,aab104,aab107,aab108,")
-				.append("				  aab110,aab113,is_onLine)")
+				.append("				  aab110,aab113,is_onLine,aab105)")
 				.append("            values(?,?,?,?,?,")
-				.append("					?,?,?)")
+				.append("					?,?,?,'3')")
 				;
 		
 		String name= URLDecoder.decode((String)this.get("aab110"),"UTF-8");

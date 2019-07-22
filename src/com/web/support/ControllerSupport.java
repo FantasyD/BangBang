@@ -52,7 +52,6 @@ public abstract class ControllerSupport implements BaseController
 		List<Map<String, String>> rows = this.services.query();
 		if (rows.size() > 0)
 		{
-			System.out.println(rows);
 			this.saveAttribute("rows", rows);
 			this.saveAttribute("type", this.dto.get("type"));
 		}

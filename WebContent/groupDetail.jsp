@@ -214,6 +214,7 @@
 							</div>
 						</div>
 					</div>
+										
 					<div id="updateInfo">
 						<h2 align="center">群组信息</h2>
 						<form method="post" enctype="multipart/form-data" role="form">
@@ -263,7 +264,7 @@
 					<div id="result" class="modal">
 						<div class="modal-header">
 							<h4 class="modal-title" id="myModalLabel">请选择邀请用户</h4>
-							<a href="<%=path %>/group_findGroup.html?aae101=${ins.aae101}" class="close">&times;</a>
+							<a href="<%=path %>/group_findGroup.html?aae101=${ins.aae101}">x</a>
 						</div>
 						 <div class="modal-body" id="results">
 						</div>
@@ -279,6 +280,7 @@
 	<!--Wrapper End-->
 
 	<script src="js/vendor/jquery-3.3.1.js"></script>
+	<script src="js/jquery.min.js"></script>
 	<script src="js/vendor/jquery-library.js"></script>
 	<script src="js/vendor/bootstrap.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
@@ -294,7 +296,6 @@
 	<script src="js/jRate.js"></script>
 	<script src="js/main.js"></script>
 	<script type="text/javascript">
-	
 	  //显示隐藏的修改DIV
   	function updateIsClick()
   	{

@@ -6,6 +6,7 @@
 <head>
 </head>
 <body>
+
 <!--Sidebar Start-->
 				<div id="wt-sidebarwrapper" class="wt-sidebarwrapper">
 					<div id="wt-btnmenutoggle" class="wt-btnmenutoggle">
@@ -62,7 +63,6 @@
 									</a>
 								</li>
 								<li>
-
 									<a href="<%=path %>/group_findMyGroup.html?aab101=${userId}">
 										<i class="ti-package"></i>
 										<span>我的群组</span>
@@ -74,7 +74,7 @@
 										<span>我的消息</span>
 									</a>
 								</li>
-								<li>
+								<li class="${emailNum>0?'wt-notificationicon':'' }">
 									<a href="<%=path %>/email_getEmail.html?aab101=${userId}">
 										<i class="ti-announcement"></i>
 										<span>我的邮件</span>

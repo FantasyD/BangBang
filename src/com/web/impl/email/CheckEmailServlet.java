@@ -28,7 +28,10 @@ public class CheckEmailServlet extends ControllerSupport
 			int num=this.checkInfo();
 			if(num>0)
 			{
+				//控制浮动显示
 				this.setResponseAttribute("emailNum", String.valueOf(num));
+				//控制链接提示
+				this.saveSession_attribute("emailNum", String.valueOf(num));
 				break;
 			}
 			Thread.sleep(10*1000);	//睡眠10秒后再查询

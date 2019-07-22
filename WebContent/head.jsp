@@ -98,7 +98,7 @@
 														<span>我的消息</span>
 													</a>
 												</li>
-												<li>
+												<li class="${emailNum>0?'wt-notificationicon':'' }">
 													<a href="<%=path %>/email_getEmail.html?aab101=${userId}">
 														<span>我的邮件</span>
 													</a>
@@ -137,7 +137,7 @@
 			success:function(data)
 			{
 				newNum=data;
-				$("#msgNum").text(data)
+				$("#msgNum").text(data);
 				iziToast.error({
 	        		title: '提示',
 	        		message: '您有'+data+'条未读提示',
@@ -148,7 +148,6 @@
 			},
 			error:function()
 			{
-				alert("运算超时");	
 				askEmail(newNum);
 			}
 		});

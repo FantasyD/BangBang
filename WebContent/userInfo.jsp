@@ -108,7 +108,19 @@
 											</div>
 											<div class="wt-userprofile">
 												<figure>
-													<img src="images/profile/img-01.jpg" alt="img description">
+													<form action="user_uploadUserImage.html" name="userForm" id="userForm" method = "post" enctype="multipart/form-data">
+														<label for="photo">
+															<c:if test="${ins.imgpath == null }">
+																<img src="images/profile/img-01.jpg" alt="img description" id="preview">
+															</c:if>
+															<c:if test="${ins.imgpath != null }">
+																<img src="${ins.imgpath }" alt="img description" id="preview">
+															</c:if>																									
+												      		<input style="display: none;" type="file" name="photo" id = "photo"/><br/>
+												      		<input type="hidden" name="aab101" value="${sessionScope.userId }"> 
+													      	
+														</label>
+													</form>
 												</figure>
 												
 												<div class="wt-title">
@@ -285,5 +297,28 @@
 	<script src="js/tipso.js"></script>
 	<script src="js/jRate.js"></script>
 	<script src="js/main.js"></script>
+	
+	<script type="text/javascript">
+		var file=$("#photo");
+		file.change(function () {
+		    $("#preview").attr("src",getObjectURL(file[0].files[0]));
+		    var vform = document.getElementById("userForm");
+		    vform.submit();
+		});
+		
+		function getObjectURL(file) {
+		    var url = null;
+		   	/* window.URL = window.URL || window.webkitURL;*/
+		    if (window.createObjcectURL != undefined) {
+		        url = window.createOjcectURL(file);
+		    } else if (window.URL != undefined) {
+		        url = window.URL.createObjectURL(file);
+		    } else if (window.webkitURL != undefined) {
+		        url = window.webkitURL.createObjectURL(file);
+		    }
+		    return url;
+		}
+	</script>
+	
 </body>
 </html>

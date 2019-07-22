@@ -8,7 +8,6 @@ public class UserLoginServlet extends Ab01ControllerSupport
 	@Override
 	public String execute() throws Exception
 	{
-		
 		if(this.saveUserPageInstance())
 		{
 			this.setServices(new Ac04ServicesImpl());

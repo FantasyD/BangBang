@@ -32,6 +32,65 @@
 	<link rel="stylesheet" href="css/transitions.css">
 	<link rel="stylesheet" href="css/responsive.css">
 	<script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+	<script type="text/javascript" src="js/sendEmail.js"></script>
+	<script type="text/javascript">
+	var path = "<%=path %>";
+	function complainPost()
+	{
+		var http_request = getHttp_request();
+	    
+	    http_request.onreadystatechange = function(){
+	        if (http_request.readyState == 4 )
+	        {
+	        	var result = http_request.responseText;
+	        	if(result == "true")
+	        	{
+	        		alert("举报成功！");
+	        	}
+	        	else
+	        	{
+	        		alert("举报失败！");
+	        	}
+	        }
+	    }
+	    var aab101 = "${userId }";
+	    var aaf103 = "2";
+	    var aaf104 = "${ins.aac101 }";
+	    var aaf105 = $("#sel option:selected").val();
+	    var aaf106 = encodeURI(encodeURI($("#complain_reason").val()));
+	    http_request.open("POST", path + "/complain_ComplainAdd.html", true);
+	    http_request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	    http_request.send("aab101=" + aab101 + "&aaf103=" + aaf103 + "&aaf104=" + aaf104 + "&aaf105=" + aaf105 + "&aaf106=" + aaf106);
+	}
+	
+	function complainComment(aac201)
+	{
+		var http_request = getHttp_request();
+	    
+	    http_request.onreadystatechange = function(){
+	        if (http_request.readyState == 4 )
+	        {
+	        	var result = http_request.responseText;
+	        	if(result == "true")
+	        	{
+	        		alert("举报成功！");
+	        	}
+	        	else
+	        	{
+	        		alert("举报失败！");
+	        	}
+	        }
+	    }
+	    var aab101 = "${userId }";
+	    var aaf103 = "3";
+	    var aaf104 = aac201;
+	    var aaf105 = $("#sel_comment option:selected").val();
+	    var aaf106 = encodeURI(encodeURI($("#complain_reason_C").val()));
+	    http_request.open("POST", path + "/complain_ComplainAdd.html", true);
+	    http_request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	    http_request.send("aab101=" + aab101 + "&aaf103=" + aaf103 + "&aaf104=" + aaf104 + "&aaf105=" + aaf105 + "&aaf106=" + aaf106);
+	}
+	</script>
 </head>
 <body class="wt-login">
 	<!--[if lt IE 8]>
@@ -124,6 +183,40 @@
 												<input type="hidden" name="aac101" value="${ins.aac101 }"/></td>
 												<input type="submit" class="wt-btn"  value="私聊"></td>
 											</form>
+											
+											<ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">
+												<li><b onclick="display(this, 'complain_')" class="wt-reportuser" 
+														onmousemove="onMoveIn(this)" onmouseout="onMoveOut(this)">举报</b></li>
+											</ul>
+										</div>
+										
+										<div id="complain_" class="wt-widget wt-reportjob" style="display:none">
+											<div class="wt-widgettitle">
+												<h2>举报这个帖子</h2>
+											</div>
+											<div class="wt-widgetcontent">
+												<form class="wt-formtheme wt-formreport">
+													<fieldset>
+														<div class="form-group">
+															<span class="wt-select">
+																<select id="sel">
+																	<option value="01">存在违反国家法律法规的内容</option>
+																	<option value="02">存在泄露他人隐私信息的内容</option>
+																	<option value="03">存在辱骂、中伤、诽谤他人的内容</option>
+																	<option value="04">存在夸大、过度宣传等内容</option>
+																	<option value="05">存在色情、淫秽、低俗等不适内容</option>
+																</select>
+															</span>
+														</div>
+														<div class="form-group">
+															<textarea type="text" id="complain_reason" class="form-control" placeholder="填写举报原因"></textarea>
+														</div>
+														<div class="form-group wt-btnarea">
+															<input type="button" onclick="complainPost()" class="wt-btn" id="complain_submit" value="提交"></input>
+														</div>
+													</fieldset>
+												</form>
+											</div>
 										</div>
 										
 										<c:choose>
@@ -141,16 +234,45 @@
 																		<span><i class="lnr lnr-clock"></i> 日期: ${comment.aac202 }</span>
 																	</div>
 																	<div class="wt-boxright">
-																		<ul class="wt-socialiconssimple">
-																			<li class="wt-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook-f"></i></a></li>
-																			<li class="wt-twitter"><a href="javascript:void(0);"><i class="fab fa-twitter"></i></a></li>
-																			<li class="wt-linkedin"><a href="javascript:void(0);"><i class="fab fa-linkedin-in"></i></a></li>
-																			<li class="wt-googleplus"><a href="javascript:void(0);"><i class="fab fa-google"></i></a></li>
+																		<ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">
+																			<li><b onclick="display(this, 'complain_comment')" class="wt-reportuser" 
+																					onmousemove="onMoveIn(this)" onmouseout="onMoveOut(this)">举报</b></li>
 																		</ul>
 																	</div>
 																</div>
+																
+																
 																<div class="wt-description">
 																	<p>${comment.aac203 }</p>
+																</div>
+																
+																<div id="complain_comment" class="wt-widget wt-reportjob" style="display:none">
+																	<div class="wt-widgettitle">
+																		<h2>举报这条留言</h2>
+																	</div>
+																	<div class="wt-widgetcontent">
+																		<form class="wt-formtheme wt-formreport">
+																			<fieldset>
+																				<div class="form-group">
+																					<span class="wt-select">
+																						<select id="sel_comment">
+																							<option value="01">存在违反国家法律法规的内容</option>
+																							<option value="02">存在泄露他人隐私信息的内容</option>
+																							<option value="03">存在辱骂、中伤、诽谤他人的内容</option>
+																							<option value="04">存在夸大、过度宣传等内容</option>
+																							<option value="05">存在色情、淫秽、低俗等不适内容</option>
+																						</select>
+																					</span>
+																				</div>
+																				<div class="form-group">
+																					<textarea type="text" id="complain_reason_C" class="form-control" placeholder="填写举报原因"></textarea>
+																				</div>
+																				<div class="form-group wt-btnarea">
+																					<input type="button" onclick="complainComment('${comment.aac201 }')" class="wt-btn" id="complain_submit" value="提交"></input>
+																				</div>
+																			</fieldset>
+																		</form>
+																	</div>
 																</div>
 															</div>
 														</div>

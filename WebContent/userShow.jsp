@@ -48,6 +48,34 @@
 	<script type="text/javascript" src="js/sendEmail.js"></script>
 	<script type="text/javascript">
 	var path = "<%=path %>";
+	function complainUser()
+	{
+		var http_request = getHttp_request();
+	    
+	    http_request.onreadystatechange = function(){
+	        if (http_request.readyState == 4 )
+	        {
+	        	var result = http_request.responseText;
+	        	if(result == "true")
+	        	{
+	        		alert("举报成功！");
+	        	}
+	        	else
+	        	{
+	        		alert("举报失败！");
+	        	}
+	        }
+	    }
+	    var aab101 = "${userId }";
+	    var aaf103 = "1";
+	    var aaf104 = "${ins.aab101 }";
+	    var aaf105 = $("#sel option:selected").val();
+	    var aaf106 = encodeURI(encodeURI($("#complain_reason").val()));
+	    http_request.open("POST", path + "/complain_ComplainAdd.html", true);
+	    http_request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	    http_request.send("aab101=" + aab101 + "&aaf103=" + aaf103 + "&aaf104=" + aaf104 + "&aaf105=" + aaf105 + "&aaf106=" + aaf106);
+	}
+	
 	
 	</script>
 </head>
@@ -158,12 +186,12 @@
 													<fieldset>
 														<div class="form-group">
 															<span class="wt-select">
-																<select>
-																	<option value="reason1">Reason1</option>
-																	<option value="reason2">Reason2</option>
-																	<option value="reason3">Reason3</option>
-																	<option value="reason4">Reason4</option>
-																	<option value="reason5">Reason5</option>
+																<select id="sel">
+																	<option value="01">存在违反国家法律法规的内容</option>
+																	<option value="02">存在泄露他人隐私信息的内容</option>
+																	<option value="03">存在辱骂、中伤、诽谤他人的内容</option>
+																	<option value="04">存在夸大、过度宣传等内容</option>
+																	<option value="05">存在色情、淫秽、低俗等不适内容</option>
 																</select>
 															</span>
 														</div>
@@ -171,7 +199,7 @@
 															<textarea type="text" id="complain_reason" class="form-control" placeholder="填写举报原因"></textarea>
 														</div>
 														<div class="form-group wt-btnarea">
-															<input type="button" class="wt-btn" id="complain_submit" value="提交"></input>
+															<input type="button" onclick="complainUser()" class="wt-btn" id="complain_submit" value="提交"></input>
 														</div>
 													</fieldset>
 												</form>

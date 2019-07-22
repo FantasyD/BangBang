@@ -252,7 +252,7 @@ public class Ab01ServicesImpl extends Ah01ServicesImpl
 	public Map<String, String> findById() throws Exception 
 	{
 		StringBuilder sql=new StringBuilder()
-				.append("select a.aab102,a.aab103,a.aab104,b.fvalue cnaab105,a.aab107,")
+				.append("select a.aab101,a.aab102,a.aab103,a.aab104,b.fvalue cnaab105,a.aab107,")
 				.append("       a.aab108,a.aab109,a.aab110,a.aab111,a.aab112,")
 				.append("       a.aab113,a.aab114,a.aab115 imgpath,a.is_onLine")
 				.append("   from ab01 a,syscode b")

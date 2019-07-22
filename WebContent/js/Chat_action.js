@@ -7,6 +7,12 @@ var span_color = null;
 //向WebSocket服务器的连接
 var webSocket_record = null;
 
+//用户的头像
+var sender_path = user_img;
+
+//聊天接收者的头像
+var accept_path = null;
+
 function getHttp_request()
 {
 	try{
@@ -69,14 +75,11 @@ function loadJSON(data, name)
                 {
                     if(i.sign == "1")
                    	{
-                        
-                        
-                        
                     	$("#record1").append("<div class='thread' id = '" + i.aad101 + "_s' " + 
                     						 "onmousemove='onMoveIn(this)' onmouseout='onMoveOut(this)'>" + 
                     						 "<div class='details' onclick='chat(" + i.aad101 + ")'>" + 
-                    						 "<div class='user-head online'><img src='img/1.png'></div>" + 
-                    	                     "<div class='user-name'>" + i.aad101 + i.aab102 +  "</div>" + 
+                    						 "<div class='user-head online'><img id='" + i.aad101 + "_img' src='"+ i.aab115 +"'></div>" + 
+                    	                     "<div class='user-name'>" + i.aab102 +  "</div>" + 
                     	                     "<div class='last-message'><span><font size='3'>" + 
                     	                     "<b>帖子标题：</b></font>" + i.aac102 + "</span></div></div>" + 
                     	                     "<div class='last'>" + 
@@ -89,8 +92,8 @@ function loadJSON(data, name)
                     	$("#record2").append("<div class='thread' id = '" + i.aad101 + "_s' " + 
                     						 "onmousemove='onMoveIn(this)' onmouseout='onMoveOut(this)'>" + 
                     						 "<div class='details' onclick='chat(" + i.aad101 + ")'>" + 
-				       						 "<div class='user-head online'><img src='img/1.png'></div>" + 
-				    	                     "<div class='user-name'>" + i.aad101 + i.aab102 +  "</div>" + 
+				       						 "<div class='user-head online'><img id='" + i.aad101 + "_img' src='"+ i.aab115 +"'></div>" + 
+				    	                     "<div class='user-name'>" + i.aab102 +  "</div>" + 
 				    	                     "<div class='last-message'><span><font size='3'>" +
 				    	                     "<b>帖子标题：</b></font>" + i.aac102 + "</span></div></div>" + 
 				    	                     "<div class='last'>" + 
@@ -165,16 +168,14 @@ function chat(aad101)
     var http_request = getHttp_request();
     
     http_request.onreadystatechange = function(){
-    	if(http_request.status == 404)
-   		{
-        	//alert(http_request.status);
-   		}
+    	
         if (http_request.readyState == 4 )
         {
         	$("#mainbody").empty();
         	$("#mainbody").load(path + "chat.jsp");
         	chat_id = aad101;
         	sendMessage_record(aad101);
+        	accept_path = $("#" + aad101 + "_img")[0].src;
         }
     }
     http_request.open("POST", path + "chat_ChatFindById.html", true);

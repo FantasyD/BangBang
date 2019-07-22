@@ -11,6 +11,7 @@
 			var id_1 = "${chat_ins.maab101 }";
 			var tie_id = "${chat_ins.aac101 }";
 			var chat_id = "${chat_ins.aad101 }";
+        	$("#accept_img").attr("src", accept_path);
 			if(id == id_1)
 			{
 				var sender = "${chat_ins.maab102 }" + "." + tie_id;
@@ -64,13 +65,13 @@
 					if(name == sender)
 					{
 						$("#allMsg").append("<div class='date-split'>" + time + "</div>" + 
-											"<div class='message fromme'><div class='user-head'><img src='img/1.png'></div>" +
+											"<div class='message fromme'><div class='user-head'><img src='" + sender_path + "'></div>" +
 											"<div class='content'>" + msg + "</div></div>");
 					}
 					else
 					{
 						$("#allMsg").append("<div class='date-split'>" + time + "</div>" + 
-											"<div class='message'><div class='user-head'><img src='img/2.png'></div>" +
+											"<div class='message'><div class='user-head'><img src='" + accept_path + "'></div>" +
 											"<div class='content'>" + msg + "</div></div>");
 					}
 					var div = document.getElementById('allMsg');
@@ -127,7 +128,7 @@
     <div class="top-bar">
         <div class="user-info">
           <div class="user-head">
-            <img src="img/1.png">
+          	<img id="accept_img" src="">
           </div>
           <span class="name" id = "accept"></span>
         </div>

@@ -1,6 +1,7 @@
 package com.web.support;
 
 import java.lang.reflect.Method;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -251,6 +252,20 @@ public abstract class ControllerSupport implements BaseController
 			return true;	
 		}
 		this.saveAttribute("msg", F_msg);
+		return false;
+	}
+	
+	protected final boolean update(String methodName)throws Exception
+	{
+		
+		if (this.executeUpdateMethod(methodName)) 
+		{
+			if(this.dto.get("aab102") != null)
+			{
+				this.saveSession_attribute("userName", URLDecoder.decode((String)this.dto.get("aab102"),"UTF-8"));
+			}
+			return true;	
+		}
 		return false;
 	}
 	

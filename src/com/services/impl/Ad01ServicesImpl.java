@@ -181,7 +181,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
 	public List<Map<String,String>> findByUserId(String aab101) throws Exception
 	{
 		StringBuilder str = new StringBuilder()
-				.append("select d.aad101, d.aac101, d.aad105, b.aab102, 1 as 'sign', c.aac102")
+				.append("select d.aad101, d.aab101, d.aac101, d.aad105, b.aab102, b.aab115, 1 as 'sign', c.aac102")
 				.append("  from ab01 b, ad01 d, ac01 c")
 				.append(" where c.aab101 = b.aab101")
 				.append("   and d.aac101 = c.aac101")
@@ -200,7 +200,7 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
 	{
 		//定义SQL主体
 		StringBuilder sql = new StringBuilder()
-				.append("select d.aad101, d.aab101, d.aac101, d.aad105, 2 as 'sign', c.aac102, ")
+				.append("select d.aad101, b1.aab101, d.aac101, d.aad105, b1.aab115, 2 as 'sign', c.aac102, ")
 				.append("       b1.aab102")
 				.append("  from ab01 b, ac01 c, ad01 d, ab01 b1")
 				.append(" where d.aab101 = b1.aab101")

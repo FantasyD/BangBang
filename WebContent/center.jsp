@@ -16,6 +16,7 @@
 var this_aab101 = "${sessionScope.userId }";
 var this_aab102 = "${sessionScope.userName }";
 var path = "<%=path%>/";
+var user_img = "${sessionScope.userPhoto }";
 </script>
 
 <script type="text/javascript" src="js/chat_action.js"></script>

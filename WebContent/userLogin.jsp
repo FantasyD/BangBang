@@ -12,6 +12,17 @@
 <script type="text/javascript" src="js/sendEmail.js"></script>
 <script type="text/javascript">
 	var path = "<%=path %>";
+	function onMoveIn(x)
+	{
+		x.style.fontSize = "17";
+		x.style.color = "blue";
+	}
+
+	function onMoveOut(x)
+	{
+		x.style.fontSize = "15";
+		x.style.color = "black";
+	}
 </script>
 </head>
 <body>
@@ -32,12 +43,9 @@
                     <span id="alert"></span>
                     <a href="#" class="fa fa-question-circle"></a>
                 </div>
-                <div class="form-group">                   
-                    <div class="main-checkbox">
-                        <input type="checkbox" value="None" id="checkbox1" name="check"/>
-                    <label for="checkbox1"></label>
-                    </div>                 
-                    <span class="text">Remember me</span>
+                <div class="form-group">
+                    <span class="text" data-toggle="modal" data-target="#myModal_admin"
+                          onmousemove="onMoveIn(this)" onmouseout="onMoveOut(this)">管理员登陆</span>
                     <div class="forget" data-toggle="modal" data-target="#myModal_findPwd">忘记密码</div>
                     <button type="submit" class="btn btn-default" id="login" formaction="<%=path %>/user_userLogin.html">登录</button>
                 </div>
@@ -182,6 +190,35 @@
 		            	<input class="btn btn-primary" type="button" name="next" value="发送验证码" onclick="SendEmail('mail_findPwd', 2, '<%=path %>')" formnovalidate="formnovalidate">
 		            </div>
 	            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal_admin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">管理员登陆</h4>
+            </div>
+            <div class="modal-body">
+
+            <form class="form-horizontal" id="myform_login" role="form" method="post">
+                <div class="form-group">
+                    <input type="text" name="adminId" class="form-control" placeholder="管理员账号"  required="required">
+                    <i class="fa fa-user"></i>
+                </div>
+                <div class="form-group help">
+                    <input id="pwd" type="password" class="form-control" name="aab303" placeholder="密  码" required="required" onkeyup="checkPwd(this, 'login', 'alert')">
+                    <i class="fa fa-lock"></i>
+                    <span id="alert"></span>
+                    <a href="#" class="fa fa-question-circle"></a>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default" id="login" formaction="<%=path %>/user_adminLogin.html">登录</button>
+                </div>
+            </form>
             </div>
         </div>
     </div>

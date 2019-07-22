@@ -49,7 +49,7 @@
 		<!-- Content Wrapper Start -->
 		<div class="wt-contentwrapper">
 			<!-- Header Start -->
-			<jsp:include page="show/head.jsp"></jsp:include>
+			<jsp:include page="head.jsp"></jsp:include>
 			<!--Header End-->
 			<!--Main Start-->
 			<main id="wt-main" class="wt-main wt-haslayout">

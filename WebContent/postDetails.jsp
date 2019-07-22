@@ -164,9 +164,9 @@
 												<q>${ins.cnaac103 }Ìû</q>
 											</blockquote>
 											<p>${ins.aac104 }</p>
-											<c:if test="${ins.imgpath!=null }">
+											<c:if test="${ins.postimgpath!=null }">
 												<figure class="wt-blogdetailimgvtwo wt-articlessingleone">
-													<img src="${ins.imgpath }" class="test" alt="image description">
+													<img src="${ins.postimgpath }" class="test" alt="image description">
 													<figcaption><span>Ìû×ÓÍ¼Æ¬</span></figcaption>
 												</figure>
 											</c:if>
@@ -225,7 +225,12 @@
 													<div class="wt-author">
 														<div class="wt-authordetails">
 															<figure>
-																<a href="javascript:void(0);"><img src="images/author/img-01.jpg" alt="image description"></a>
+																<c:if test="${comment.imgpath==null }">
+																	<a href="javascript:void(0);"><img src="images/author/img-01.jpg" alt="image description"></a>
+																</c:if>
+																<c:if test="${comment.imgpath!=null }">
+																	<a href="javascript:void(0);"><img src="${comment.imgpath }" style="width:60px;height:60px;" alt="image description"></a>
+																</c:if>							
 															</figure>
 															<div class="wt-authorcontent">
 																<div class="wt-authorhead">

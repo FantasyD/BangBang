@@ -287,11 +287,11 @@ public class Ab01ServicesImpl extends Ah01ServicesImpl
 		String sql=null;
 		if(((String)this.get("userId")).contains("@")) 
 		{
-			sql="select a.aab101,a.aab102,a.aab103 from ab01 a where a.aab108=?";
+			sql="select a.aab101,a.aab102,a.aab103,a.aab115 from ab01 a where a.aab108=?";
 		}
 		else 
 		{
-			sql="select a.aab101,a.aab102,a.aab103 from ab01 a where a.aab107=?";
+			sql="select a.aab101,a.aab102,a.aab103,a.aab115 from ab01 a where a.aab107=?";
 		}
 		Map<String, String> map = this.queryForMap(sql,this.get("userId"));
 		if(map!=null)

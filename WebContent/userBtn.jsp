@@ -1,5 +1,6 @@
 <%@ page language="java"  pageEncoding="GBK"%>
 <%String path=request.getContextPath(); %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,12 +18,24 @@
 					<div id="wt-verticalscrollbar" class="wt-verticalscrollbar">
 						<div class="wt-companysdetails wt-usersidebar">
 							<figure class="wt-companysimg">
-								<img src="images/sidebar/img-01.jpg" alt="img description">
+								<c:if test="${sessionScope.userPhoto!=null }">
+									<img src="${sessionScope.userPhoto }" alt="img description">
+								</c:if>
+								<c:if test="${sessionScope.userPhoto==null }">
+									<img src="images/user-img.jpg" alt="img description">
+								</c:if>
 							</figure>
 							
 							<!-- 用户名 -->
 							<div class="wt-companysinfo">
-								<figure><img src="images/sidebar/img-02.jpg" alt="img description"></figure>
+								<figure>
+									<c:if test="${sessionScope.userPhoto!=null }">
+										<img src="${sessionScope.userPhoto }" alt="img description">
+									</c:if>
+									<c:if test="${sessionScope.userPhoto==null }">
+										<img src="images/user-img.jpg" alt="img description">
+									</c:if>
+								</figure>
 								<div class="wt-title">
 									<h2><a href="javascript:void(0);">${sessionScope.userName}</a></h2>
 								</div>
@@ -68,7 +81,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="<%=path %>/userLogin.jsp">
+									<a href="#" onclick="returnUserLogin()">
 										<i class="ti-shift-right"></i>
 										<span>退出</span>
 									</a>
@@ -82,7 +95,12 @@
 				<form method="post">
 					<input type="hidden" name="aab101" value="${userId }"/>
 				</form>
-				
-				
+		<script type="text/javascript">
+			function returnUserLogin()
+			{
+				sessionStorage.clear();
+				window.location.href="<%=path%>/userLogin.jsp";
+			}
+		</script>
 </body>
 </html>

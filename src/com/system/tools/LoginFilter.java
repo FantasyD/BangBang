@@ -23,8 +23,8 @@ public class LoginFilter extends HttpServlet implements Filter
 		HttpServletRequest req=(HttpServletRequest)request;
 		HttpServletResponse res=(HttpServletResponse)response;
 		HttpSession session=req.getSession();
-		String uID=(String)session.getAttribute("userID");
-		String aID=(String)session.getAttribute("adminID");
+		String uID=(String)session.getAttribute("userId");
+		String aID=(String)session.getAttribute("adminId");
 		if (uID==null&&aID==null) 
 		{
 			req.getRequestDispatcher("userLogin.jsp").forward(req, res);

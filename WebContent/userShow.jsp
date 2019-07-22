@@ -120,16 +120,14 @@
 												<h1><b>${ins.aab102 }µÄÐÅÏ¢</b></h1>
 											</div>
 											<div class="wt-userprofile">
-												<c:if test="${ins.imgpath!=null }">
 												<figure>
+												<c:if test="${ins.imgpath!=null }">
 													<img src="${ins.imgpath }" alt="img description">
-												</figure>
 												</c:if>
 												<c:if test="${ins.imgpath==null }">
-												<figure>
 													<img alt="img description" src="images/profile/img-01.jpg">
-												</figure>
 												</c:if>
+												</figure>
 												<div class="wt-title">
 													<h3 id="aab102">${ins.aab102 }</h3>
 													<span>

@@ -180,13 +180,13 @@
 												</c:choose>
 												<figure class="wt-userlistingimg">
 													<img class="img-circle"
-														src="${row.aab115!=null && row.aab115!=''?row.aab115:'upload/index.jpg'}"
+														src="${row.aab115!=null && row.aab115!=''?row.aab115:'images/wo.jpg'}"
 														width="30px" height="30px" alt="image description" />
 												</figure>
 												<div class="wt-proposaldetails">
 													<div class="wt-contenthead">
 														<div class="wt-title">
-															<a href="usersingle.html"> ${row.aab102 }</a>
+															<a href="user_userDetails.html?aab101=${row.aab101 }"> ${row.aab102 }</a>
 														</div>
 													</div>
 												</div>
@@ -371,6 +371,7 @@
 		function inviteConfirm()
 		{
 			var user=document.getElementById("invitedNumber").value;
+			if(user!=null && user!=""){
 				$.ajax({
 					type: "POST",
 					url: "<%=path%>/group_findUserByName.html",
@@ -385,6 +386,11 @@
 					error : function(data) {
 					},
 				});
+			}
+			else
+			{
+					alert("请输入用户名!");				
+			}
 		}
 		
 		function invite(aab101)

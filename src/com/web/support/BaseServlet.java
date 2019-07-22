@@ -128,6 +128,7 @@ public class BaseServlet extends HttpServlet
 		//2.循环集合
 		for(Map.Entry<String, Object> entry:entrySet)
 		{
+			session.removeAttribute(entry.getKey());
 			//3.将map的每个键值对,转换成request的属性
 			session.setAttribute(entry.getKey(), entry.getValue());
 		}

@@ -10,6 +10,44 @@ import com.system.talk.Users;
 public class Ad01ServicesImpl extends JdbcServicesSupport
 {
 	/**
+	 * 检测聊天记录是否已经插入
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean isChatExist() throws Exception
+	{
+		//编写SQL语句
+		StringBuilder sql = new StringBuilder()
+				.append("select aad101")
+				.append("  from ad01")
+				.append(" where aab101 = ?")
+				.append("   and aac101 = ?")
+				;
+		Object[] argsObjects = {
+				this.get("aab101"),
+				this.get("aac101")
+		};
+		if(this.queryForMap(sql.toString(), argsObjects) != null)
+		{
+			return true;
+		}
+		sql.setLength(0);
+		sql.append("select d.aad101")
+		   .append("  from ad01 d, ac01 c, ab01 b")
+		   .append(" where c.aab101 = b.aab101")
+		   .append("   and d.aac101 = c.aac101")
+		   .append("   and b.aab101 = ?")
+		   .append("   and d.aac101 = ?")
+		   ;
+		if(this.queryForMap(sql.toString(), argsObjects) != null)
+		{
+			return true;
+		}
+		return false;
+	}
+	
+
+	/**
 	 * 插入一条聊天信息      
 	 * aad104  1表示用户已删除聊天记录，0表示用户未删除聊天记录
 	 * @return boolean

@@ -240,7 +240,7 @@
 																	</div>
 																	<div class="wt-boxright">
 																		<ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">
-																			<li><b onclick="display(this, 'complain_comment')" class="wt-reportuser" 
+																			<li><b onclick="display(this, 'complain_comment${comment.aac201 }')" class="wt-reportuser" 
 																					onmousemove="onMoveIn(this)" onmouseout="onMoveOut(this)">举报</b></li>
 																		</ul>
 																	</div>
@@ -251,7 +251,7 @@
 																	<p>${comment.aac203 }</p>
 																</div>
 																
-																<div id="complain_comment" class="wt-widget wt-reportjob" style="display:none">
+																<div id="complain_comment${comment.aac201 }" class="wt-widget wt-reportjob" style="display:none">
 																	<div class="wt-widgettitle">
 																		<h2>举报这条留言</h2>
 																	</div>

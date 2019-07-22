@@ -9,5 +9,4 @@ public class SearchUserServlet extends Ab01ControllerSupport
 		this.savePageData();
 		return "users";
 	}
-
 }

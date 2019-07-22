@@ -226,26 +226,4 @@ public class Ad01ServicesImpl extends JdbcServicesSupport
 		}
 		return result;
 	}
-	/**
-	 * 保存当前聊天的最后一条信息，用于聊天界面显示
-	 * @return boolean
-	 * @throws Exception
-	 */
-	public boolean updateChat(String aad101, String aad102) throws Exception
-	{
-		//1.编写SQL语句
-		StringBuilder sql = new StringBuilder()
-				.append("update ad01 ")
-				.append("   set aad102 = ?, ")
-				.append("       aad105 = current_timestamp")
-				.append(" where aad101 = ?")
-				;
-		
-		Object[] argsObjects = {
-				aad102, 
-				aad101
-		};
-		
-		return this.executeUpdate(sql.toString(), argsObjects)>0;
-	}
 }

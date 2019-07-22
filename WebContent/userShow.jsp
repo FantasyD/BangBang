@@ -120,12 +120,12 @@
 												<h1><b>${ins.aab102 }的信息</b></h1>
 											</div>
 											<div class="wt-userprofile">
-												<c:if test="${ins.aab105!=null }">
+												<c:if test="${ins.imgpath!=null }">
 												<figure>
-													<img src="${ins.aab105 }" alt="img description">
+													<img src="${ins.imgpath }" alt="img description">
 												</figure>
 												</c:if>
-												<c:if test="${ins.aab105==null }">
+												<c:if test="${ins.imgpath==null }">
 												<figure>
 													<img alt="img description" src="images/profile/img-01.jpg">
 												</figure>
@@ -151,11 +151,13 @@
 														<ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">
 															<li><p id="aab114">我的签名:<span font="20">${ins.aab114 }</span></p></li>
 														</ul>
-														<p>------------------------------------------------</p>
+														<c:if test="${sessionScope.userId!=ins.aab101 }">
+															<p>------------------------------------------------</p>
 														<ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">
 															<li><b onclick="display(this, 'complain_')" class="wt-reportuser" 
 																	onmousemove="onMoveIn(this)" onmouseout="onMoveOut(this)">举报</b></li>
 														</ul>
+														</c:if>
 													</span>
 												</div>
 											</div>

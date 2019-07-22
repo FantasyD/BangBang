@@ -35,7 +35,7 @@ var path = "<%=path%>/";
 	      <h3 align="center" class = "sender_h">我回复别人的</h3>
 	      <div id="record1"></div>
 		  
-		  <h3 align="center" class = "accept_h">我回复别人的</h3>
+		  <h3 align="center" class = "accept_h">别人回复我的</h3>
 		  <div id="record2"></div>
 	    </div>
 	

@@ -87,7 +87,7 @@ public class Ac04ServicesImpl extends JdbcServicesSupport
 		// 定义SQL主体
 		
 		StringBuilder sqlForTop =  new StringBuilder()
-				.append("select x.aac101,x.aac102,x.aac106,x.aac105,x.aac109 imgPath, ")
+				.append("select x.aac101,x.aac102,x.aac106,x.aac105,x.aac109, ")
 				.append("       x.aac108,x.aac110,b.aac305 ")
 				.append("  from ac01 x LEFT JOIN ac03 b ")
 				.append("    on x.aac101=b.aac101 where aac305 = 1 and x.is_deleted = 0 order by x.aac108 desc  ")
@@ -97,7 +97,7 @@ public class Ac04ServicesImpl extends JdbcServicesSupport
 		
 		StringBuilder sql = new StringBuilder()
 				.append("select x.aac101,b.aab102 cnaab102,x.aac102,x.aac103,a.fvalue cnaac103,x.aac106,")
-				.append("             x.aac105,b.aab101,x.aac108,x.aac108,x.aac109 imgPath")
+				.append("             x.aac105,b.aab101,x.aac108,x.aac108,x.aac109")
 				.append("  from syscode a,ac01 x,ab01 b")
 				.append(" where x.aac103 = a.fcode and a.fname = 'aac103' ")
 				.append("   and x.aab101 = b.aab101 ") 

@@ -301,7 +301,6 @@
 	<script type="text/javascript">
 		var file=$("#photo");
 		file.change(function () {
-		    $("#preview").attr("src",getObjectURL(file[0].files[0]));
 		    var vform = document.getElementById("userForm");
 		    vform.submit();
 		});

@@ -24,7 +24,7 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 	{
 		StringBuilder sql=new StringBuilder()
 				.append("select a.aac101,b.aab102 cnaab102,a.aac102,s.fvalue cnaac103,a.aac106,")
-				.append("       a.aac105,b.aab101,a.aac109 imgPath,a.aac108,a.aac110,b.aab101  ")
+				.append("       a.aac105,b.aab101,a.aac109,a.aac108,a.aac110,b.aab101  ")
 				.append("  from ac01 a,ab01 b,syscode s")
 				.append(" where a.aac103 = s.fcode and s.fname = 'aac103'  ")
 				.append("   and a.aab101 = b.aab101 ")
@@ -48,7 +48,7 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 	{
 		StringBuilder sql=new StringBuilder()
 				.append("select a.aac101,b.aab102 cnaab102,a.aac102,s.fvalue cnaac103,a.aac106,")
-				.append("       a.aac105,b.aab101,a.aac109 imgPath,a.aac108,a.aac110,b.aab101  ")
+				.append("       a.aac105,b.aab101,a.aac109,a.aac108,a.aac110,b.aab101  ")
 				.append("  from ac01 a,ab01 b,syscode s")
 				.append(" where a.aac103 = s.fcode and s.fname = 'aac103'  ")
 				.append("   and a.aab101 = b.aab101 ")

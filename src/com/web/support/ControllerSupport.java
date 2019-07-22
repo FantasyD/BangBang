@@ -92,6 +92,7 @@ public abstract class ControllerSupport implements BaseController
 			this.saveSession_attribute("userId", map.get("aab101"));
 			this.dto.put("aab101", map.get("aab101"));
 			this.saveSession_attribute("userName", map.get("aab102"));
+			this.saveSession_attribute("userPhoto", map.get("aab115"));
 			return true;
 		}
 		else
@@ -152,6 +153,9 @@ public abstract class ControllerSupport implements BaseController
 		if (ins != null)
 		{
 			this.saveAttribute("ins", ins);
+			if(ins.get("imgpath")!=null) {
+				this.saveSession_attribute("userPhoto", ins.get("imgpath"));
+			}
 		}
 		else
 		{

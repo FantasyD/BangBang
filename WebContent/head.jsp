@@ -1,5 +1,6 @@
 <%@page import="java.nio.channels.SeekableByteChannel"%>
 <%@ page language="java" pageEncoding="GBK"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <% String path=request.getContextPath();%>
 <!DOCTYPE html>
 <html>
@@ -68,7 +69,12 @@
 								<div class="wt-rightarea">
 									<div class="wt-userlogedin">
 										<figure class="wt-userimg">
-											<img src="images/user-img.jpg" alt="image description">
+											<c:if test="${sessionScope.userPhoto==null }">
+												<img src="images/user-img.jpg" alt="image description">	
+											</c:if>
+											<c:if test="${sessionScope.userPhoto!=null }">
+												<img src="${sessionScope.userPhoto }" alt="image description">
+											</c:if>										
 										</figure>
 										<div class="wt-username">
 											<h3>${sessionScope.userName}</h3>
@@ -104,7 +110,7 @@
 													</a>
 												</li>
 												<li>
-													<a href="index.html">
+													<a href="#" onclick="returnUserLogin()">
 														<span>ÍË³ö</span>
 													</a>
 												</li>
@@ -160,11 +166,18 @@
 	    progressBar: true,
 	});
 	
-$(document).ready(function()
+	$(document).ready(function()
 		{
 			var newNum=0;
 			askEmail(newNum);
 		})
+		
+		
+	function returnUserLogin()
+	{
+		sessionStorage.clear();
+		window.location.href="<%=path%>/userLogin.jsp";
+	}
 </script>
 </body>
 </html>	

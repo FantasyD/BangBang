@@ -74,7 +74,7 @@
 												<div class="wt-userlistingcontent">
 													<div class="wt-contenthead">
 														<div class="wt-title">
-															<a href="usersingle.html"><i class="fa fa-check-circle"></i>${ins.aab102 }</a>
+															<i class="fa fa-check-circle"></i>${ins.aab102 }
 															<h2>Ñ§ºÅ£º${ins.aab107 }</h2>
 														</div>
 														<ul class="wt-saveitem-breadcrumb wt-userlisting-breadcrumb">
@@ -92,22 +92,22 @@
 													</div>
 													<div class="wt-rightarea">
 														<div class="wt-btnarea">
-															<a href="userDetails.html?aab101=${ins.aab101 }" class="wt-btn">VIEW DETAILS</a>
+															<a href="user_userDetails.html?aab101=${ins.aab101 }" class="wt-btn">VIEW DETAILS</a>
 														</div>
 														<div class="wt-hireduserstatus">
 															<ul class="wt-hireduserimgs">
 																<li>
 																<c:if test="${ins.aab115!=null }">
 																<figure>
-																<a href="#" onclick="onEdit('${ins.aab101 }')">
+																<a href="user_userDetails.html?aab101=${ins.aab101 }">
 																<img src="${ins.aab115 }" alt="img description">
 																</a>
 																</figure>
 																</c:if>
 																<c:if test="${ins.aab115==null }">
 																<figure>
-																<a href="#" onclick="onEdit('${ins.aab101 }')">
-																<img src="show/images/user/userlisting/img-02.jpg" alt="img description">
+																<a href="user_userDetails.html?aab101=${ins.aab101 }">
+																<img src="images/profile/img-01.jpg" alt="img description">
 																</a>
 																</figure>
 																</c:if>

@@ -12,7 +12,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	
 	<!-- 在这里输入用户名 -->
-	<title>用户主页</title>
+	<title>用户信息</title>
 	
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,36 +48,7 @@
 	<script type="text/javascript" src="js/sendEmail.js"></script>
 	<script type="text/javascript">
 	var path = "<%=path %>";
-	function complainUser(aab101, userID)
-	{
-		if($("#complain_reason").val() == "")
-		{
-			alert("举报原因不能为空！");
-			return null;
-		}
-		var http_request = getHttp_request();
-	    
-	    http_request.onreadystatechange = function(){
-	        if (http_request.readyState == 4 )
-	        {
-	        	var result = http_request.responseText;
-	        	if(result == "true")
-	        	{
-	        		alert("举报成功！");
-	        	}
-	        	else
-	        	{
-	        		alert("举报失败！");
-	        	}
-	        }
-	    }
-	    var form = "aab108=" + $("#New_mail").val() + 
-				   "&ver=" + $("#sec_code").val() + 
-				   "&aab101=" + aab101;
-	    http_request.open("POST", path + "/user_modifyEmail.html", true);
-	    http_request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	    http_request.send(form);
-	}
+	
 	</script>
 </head>
 <body class="wt-login">
@@ -121,10 +92,16 @@
 												<h1><b>${ins.aab102 }的信息</b></h1>
 											</div>
 											<div class="wt-userprofile">
+												<c:if test="${ins.aab105!=null }">
 												<figure>
-													<img src="images/profile/img-01.jpg" alt="img description">
+													<img src="${ins.aab105 }" alt="img description">
 												</figure>
-												
+												</c:if>
+												<c:if test="${ins.aab105==null }">
+												<figure>
+													<img alt="img description" src="images/profile/img-01.jpg">
+												</figure>
+												</c:if>
 												<div class="wt-title">
 													<h3 id="aab102">${ins.aab102 }</h3>
 													<span>
@@ -135,7 +112,7 @@
 															<li><p id="aab113">信誉分：${ins.aab113 }</p></li>
 														</ul>
 														<ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">
-															<li><p id="aab105">性别：${ins.aab105 }</p></li>
+															<li><p id="aab105">性别：${ins.cnaab105 }</p></li>
 															<li><p id="aab109">民族：${ins.aab109 }</p></li>
 															<li><p id="aab110">学校：${ins.aab110 }</p></li>
 														</ul>
@@ -148,10 +125,6 @@
 														</ul>
 														<p>------------------------------------------------</p>
 														<ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">
-															<li><b onclick="relationship_(this, '${ins.aab101 }', '${sessionScope.userID }', 1)" class="wt-reportuser" 
-																	onmousemove="onMoveIn(this)" onmouseout="onMoveOut(this)">关注</b></li>
-															<li><b onclick="relationship_(this, '${ins.aab101 }', '${sessionScope.userID }', 2)" class="wt-reportuser" 
-																	onmousemove="onMoveIn(this)" onmouseout="onMoveOut(this)">拉黑</b></li>
 															<li><b onclick="display(this, 'complain_')" class="wt-reportuser" 
 																	onmousemove="onMoveIn(this)" onmouseout="onMoveOut(this)">举报</b></li>
 														</ul>
@@ -185,20 +158,20 @@
 													<fieldset>
 														<div class="form-group">
 															<span class="wt-select">
-																<select id="complain_type" name="aaf105">
-																	<option value="01">存在违反国家法律法规的内容</option>
-																	<option value="02">存在泄露他人隐私信息的内容</option>
-																	<option value="03">存在辱骂、中伤、诽谤他人的内容</option>
-																	<option value="04">存在夸大、过度宣传等内容</option>
-																	<option value="05">存在色情、淫秽、低俗等不适内容</option>
+																<select>
+																	<option value="reason1">Reason1</option>
+																	<option value="reason2">Reason2</option>
+																	<option value="reason3">Reason3</option>
+																	<option value="reason4">Reason4</option>
+																	<option value="reason5">Reason5</option>
 																</select>
 															</span>
 														</div>
 														<div class="form-group">
-															<textarea type="text" id="complain_reason" name="aaf106" class="form-control" placeholder="填写举报原因"></textarea>
+															<textarea type="text" id="complain_reason" class="form-control" placeholder="填写举报原因"></textarea>
 														</div>
 														<div class="form-group wt-btnarea">
-															<input type="button" onclick="complainUser('${ins.aab101 }', '${sessionScope.userID }')" class="wt-btn" id="complain_submit" value="提交"></input>
+															<input type="button" class="wt-btn" id="complain_submit" value="提交"></input>
 														</div>
 													</fieldset>
 												</form>

@@ -6,6 +6,6 @@ public class ChatAddServlet extends Ad01ControllerSupport
 	public String execute() throws Exception {
 		this.update("addChat", "Ìí¼Ó");
 		this.QueryMapToSession("FindChat", "chat_ins");
-		return "center";
+		return "chatpage";
 	}
 }

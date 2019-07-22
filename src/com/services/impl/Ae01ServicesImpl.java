@@ -1,5 +1,6 @@
 package com.services.impl;
 
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,7 @@ import com.system.tools.Tools;
  * @Description: 对于群组模块所需的数据库操作支持
  * @author: 宁志豪
  */
-public class Ae01ServiceImpl extends Ah01ServicesImpl
+public class Ae01ServicesImpl extends Ah01ServicesImpl
 {
 	
 	/**
@@ -117,11 +118,48 @@ public class Ae01ServiceImpl extends Ah01ServicesImpl
 	 * @Description: 用户接受邀请后将数据插入群组用户表
 	 * @throws：sql语句出错
 	 */
-	public boolean acceptInvite()throws Exception
+	public int acceptInvite()throws Exception
 	{
-		String sql="insert into ae02(aae101,aab101,aae202) values(?,?,CURRENT_DATE)";
+		String sql2="update ah02 set aah204=1 where aah201=?";
+		this.executeUpdate(sql2, this.get("aah201"));
+		String str="select aae201 from ae02 where aae101=? and aab101=?";
 		Object states[]= {this.get("aae101"),this.get("aab101")};
-		return this.executeUpdate(sql, states)>0;
+		if(this.queryForList(str, states).size()>0)
+		{
+			//返回用户已在群组中
+			return 0;
+		}
+		String s="select aae101 from ae01 where aae101=?";
+		if(this.queryForList(s, this.get("aae101")).size()==0)
+		{
+			//返回该群组已被解散
+			return 2;
+		}
+		String sql="insert into ae02(aae101,aab101,aae202) values(?,?,CURRENT_DATE)";
+		//返回成功进入群组
+		return this.executeUpdate(sql, states);
+	}
+	
+	/**
+	 * @Description: 拒绝邀请时向用户发送邮件
+	 * @return:返回结果描述
+	 * @throws: sql语句执行出错
+	 */
+	public boolean refuseInvite()throws Exception
+	{
+		//更新用户对邮件的操作
+		String sql="update ah02 set aah204=2 where aah201=?";
+		if(this.executeUpdate(sql, this.get("aah201"))==0)
+		{
+			return false;
+		};
+		String sql1="select aab102 from ab01 where aab101=?";
+		String name=this.queryForMap(sql1, this.get("aa")).get("aab102");
+		
+		this.put("aah102", "0");
+		this.put("aah103", "邀请通知");
+		this.put("aah104", "用户"+name+"拒绝了您的入群邀请");
+		return this.sendEmail();
 	}
 	
 	/**
@@ -130,25 +168,12 @@ public class Ae01ServiceImpl extends Ah01ServicesImpl
 	 */
 	public boolean inviteGroup()throws Exception
 	{
+		String aah103=URLDecoder.decode((String) this.get("aah103"),"UTF-8");
+		String aah104=URLDecoder.decode((String) this.get("aah104"),"UTF-8");
+		this.put("aah103", aah103);
+		this.put("aah104", aah104);
+		
 		return this.sendEmail();
 	}
 	
-	/**
-	 * @Description: 从群组信息表和群组用户表中删除所有有关该群组的记录
-	 * @throws：sql语句执行出错
-	 */
-	public boolean delGroup()throws Exception
-	{
-		if(!this.batchSendEmail())
-		{
-			return false;
-		}
-		String sql1="delete from ae02 where aae101=?";
-		Object id=this.get("aae101");
-		this.appendSql(sql1, id);
-		String sql="delete from ae01 where aae101=?";
-		this.appendSql(sql, id);
-		return this.executeTransaction();
-	}
-
 }

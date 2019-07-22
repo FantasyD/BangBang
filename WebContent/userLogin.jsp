@@ -23,7 +23,7 @@
             <form class="form-horizontal" id="myform_login" role="form" method="post">
                 <span class="heading">用户登录</span>
                 <div class="form-group">
-                    <input type="text" name="userID" class="form-control" placeholder="学号或电子邮件"  required="required">
+                    <input type="text" name="userId" class="form-control" placeholder="学号或电子邮件"  required="required">
                     <i class="fa fa-user"></i>
                 </div>
                 <div class="form-group help">

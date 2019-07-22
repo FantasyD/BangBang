@@ -1,7 +1,6 @@
 <%@page import="java.nio.channels.SeekableByteChannel"%>
 <%@ page language="java" pageEncoding="GBK"%>
 <% String path=request.getContextPath(); 
-		session.setAttribute("userId", "3");
 %>
 <!DOCTYPE html>
 <html>

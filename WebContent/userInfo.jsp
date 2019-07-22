@@ -185,7 +185,7 @@
 														</div>
 														<p id="alert_register_comfirm" align="center"></p>
 														<div class="form-group wt-btnarea">
-															<input type="button" onclick="modifyPwd('${sessionScope.userID }')" class="wt-btn" id="modifyPwd_submit" value="提交"></input>
+															<input type="button" onclick="modifyPwd('${sessionScope.userId }')" class="wt-btn" id="modifyPwd_submit" value="提交"></input>
 														</div>
 													</fieldset>
 												</form>
@@ -207,7 +207,7 @@
 															<input type="text" name="ver" id="sec_code" class="form-control" placeholder="输入验证码"></input>
 														</div>
 														<div class="form-group wt-btnarea">
-															<input type="button" onclick="modifyEmail('${sessionScope.userID }')" class="wt-btn" id="modifyEmail_submit" value="提交"></input>
+															<input type="button" onclick="modifyEmail('${sessionScope.userId }')" class="wt-btn" id="modifyEmail_submit" value="提交"></input>
 														</div>
 													</fieldset>
 												</form>
@@ -250,7 +250,7 @@
 															<input class="form-control" id="aab114_" placeholder="您的签名"></input>
 														</div>
 														<div class="form-group wt-btnarea">
-															<input type="button" onclick="modifyUser('${sessionScope.userID }')" class="wt-btn" id="modifyUser_submit" value="提交"></input>
+															<input type="button" onclick="modifyUser('${sessionScope.userId }')" class="wt-btn" id="modifyUser_submit" value="提交"></input>
 														</div>
 													</fieldset>
 												</form>

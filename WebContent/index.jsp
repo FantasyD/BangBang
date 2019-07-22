@@ -1,4 +1,3 @@
-
 <%@ page language="java" pageEncoding="GBK"%>
 <%@ taglib uri="http://org.wangxg/jsp/extl"  prefix="e"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -32,8 +31,15 @@
 	<link rel="stylesheet" href="css/transitions.css">
 	<link rel="stylesheet" href="css/responsive.css">
 	<script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+		<script type="text/javascript">	
+		function s2() 
+		{
+			var form2=document.getElementById("form2");
+			form2.action = "<%=path%>/tiezi_searchTiezi.html";
+			form2.submit();
+		}
+	</script>
 </head>
-
 <body class="wt-login" onLoad="goPage(1,5);">
 	<!--[if lt IE 8]>
 		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -60,7 +66,6 @@
 							<div class="wt-innerbannercontent">
 							<div class="wt-title"><h2>帖子</h2></div>
 							<ol class="wt-breadcrumb">
-
 								<li><a href="#">主页</a></li>
 								<li class="wt-active">帖子</li>
 							</ol>
@@ -84,12 +89,11 @@
 												<h2>搜索</h2>
 											</div>
 											<div class="wt-widgetcontent">
-												<form class="wt-formtheme wt-formsearch">
+												<form class="wt-formtheme wt-formsearch" id="form2" method="post">
 													<fieldset>
 														<div class="form-group">
-
-															<input type="text" name="Search" class="form-control" placeholder="输入帖子关键词">
-															<a href="javascrip:void(0);" class="wt-searchgbtn"><i class="lnr lnr-magnifier"></i></a>
+															<input type="text" name="message" class="form-control" placeholder="输入帖子关键词">
+															<a href="#" class="wt-searchgbtn" onclick="s2()"><i class="lnr lnr-magnifier"></i></a>
 														</div>
 													</fieldset>
 												</form>
@@ -112,7 +116,6 @@
 										</div>
 										<div class="wt-widget wt-widgetarticlesholder">
 											<div class="wt-widgettitle">
-
 												<h2>置顶帖</h2>
 											</div>
 											<div class="wt-widgetcontent">
@@ -143,7 +146,6 @@
 														</c:forEach>
 													</c:when>
 												</c:choose>
-
 											</div>
 										</div>
 										<div class="wt-widget wt-widgettagshold">
@@ -168,7 +170,6 @@
 									<div class="wt-classicaricle-holder">
 										<div class="wt-classicaricle-header">
 											<div class="wt-title">
-
 												<h2>精品帖</h2>
 											</div>
 											<div class="wt-description">
@@ -211,7 +212,7 @@
 																			</a>
 																		</li>
 																		<li>
-																			<a href="javascript:void(0);">
+																			<a href="user_userDetails.html?aab101=${ins.aab101 }">
 																				<i class="lnr lnr-user"></i>
 																				<span>${ins.cnaab102 }</span>
 																			</a>
@@ -223,15 +224,20 @@
 														</c:if>
 														</c:forEach>
 													</table>
+													<table width="60%" align="right" >
+														<tr><td><div id="barcon" name="barcon"></div></td></tr>
+													</table>
 												</c:when>
+												<c:otherwise>
+													<div>
+														<div class="alert alert-info">
+															<a class="close" data-dismiss="alert">x</a>
+															<strong>没有符合条件的帖子</strong>
+														</div>
+													</div>
+												</c:otherwise>												
 											</c:choose>
-						
 										</div>
-										
-										<table width="60%" align="right" >
-											<tr><td><div id="barcon" name="barcon"></div></td></tr>
-										</table>
-										
 									</div>
 								</div>
 							</div>
@@ -244,15 +250,11 @@
 		</div>
 		<!--Content Wrapper End-->
 	</div>
-
-	
 	<!-- 以下用来存放需要传递给后台的数据 -->
 	<form id = "myform">
 		<input type="hidden" name="aac101" id="aac101">
 		<input type="hidden" name="type" value="1">
 	</form>
-	
-	
 	<!--Wrapper End-->
 	<script src="js/vendor/jquery-3.3.1.js"></script>
 	<script src="js/vendor/jquery-library.js"></script>
@@ -269,8 +271,6 @@
 	<script src="js/tipso.js"></script>
 	<script src="js/jRate.js"></script>
 	<script src="js/main.js"></script>
-
-	
 		<script type="text/javascript">
 		/**
 		 * 分页函数

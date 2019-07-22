@@ -36,7 +36,7 @@
 						<nav id="wt-navdashboard" class="wt-navdashboard">
 							<ul>
 								<li>
-									<a href="<%=path %>/user_userInfo.html?aab101=${sessionScope.userID }">
+									<a href="<%=path %>/user_userInfo.html?aab101=${sessionScope.userId }">
 										<i class="ti-dashboard"></i>
 										<span>我的主页</span>
 									</a>
@@ -50,7 +50,7 @@
 								</li>
 								<li>
 
-									<a href="<%=path %>/group_findMyGroup.html" onclick="myGroups()">
+									<a href="<%=path %>/group_findMyGroup.html?aab101=${userId}">
 										<i class="ti-package"></i>
 										<span>我的群组</span>
 									</a>
@@ -62,7 +62,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="myEmails.jsp">
+									<a href="<%=path %>/email_getEmail.html?aab101=${userId}">
 										<i class="ti-announcement"></i>
 										<span>我的邮件</span>
 									</a>

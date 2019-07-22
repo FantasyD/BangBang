@@ -2,7 +2,7 @@ package com.web.impl.email;
 
 import java.sql.Time;
 
-import com.services.impl.CheckAh01ServiceImpl;
+import com.services.impl.CheckAh01ServicesImpl;
 import com.web.support.ControllerSupport;
 
 /**
@@ -13,7 +13,7 @@ public class CheckEmailServlet extends ControllerSupport
 {
 	public CheckEmailServlet()
 	{
-		this.setServices(new CheckAh01ServiceImpl());
+		this.setServices(new CheckAh01ServicesImpl());
 	}
 	@Override
 	public String execute() throws Exception

@@ -1,7 +1,6 @@
 <%@page import="java.nio.channels.SeekableByteChannel"%>
 <%@ page language="java" pageEncoding="GBK"%>
-<% String path=request.getContextPath();
-%>
+<% String path=request.getContextPath();%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +11,23 @@
   <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
   <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
   <script src="js/iziToast.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+		function s() 
+		{
+			var form1=document.getElementById("form1");
+			var value=$('#type input[name="searchtype"]:checked').val();
+			if (value=='2') 
+			{
+				form1.action = "<%=path%>/user_searchUser.html";
+				form1.submit();
+			}
+			if (value=='1') {
+				form1.action = "<%=path%>/tiezi_searchTiezi.html";
+				form1.submit();
+			}
+		}
+	</script>
+  
 </head>
 <body>
 <!-- Header Start -->
@@ -25,29 +41,25 @@
 								<strong class="wt-logo"><a href="<%=path%>/tiezi_queryTiezi.html?aab101=${sessionScope.userId}"><img src="images/logo.png" alt="company logo here"></a></strong>
 								
 								<!-- 搜索框，导航栏的搜索 -->
-								<form class="wt-formtheme wt-formbanner wt-formbannervtwo">
+								<form id="form1" class="wt-formtheme wt-formbanner wt-formbannervtwo" method="post">
 									<fieldset>
 										<div class="form-group">
-											<input type="text" name="job" class="form-control" placeholder="I’m looking for">
+											<input type="text"  name="message" class="form-control" placeholder="I’m looking for">
 											<div class="wt-formoptions">
 												<div class="wt-dropdown">
 													<span>搜: <em class="selected-search-type">帖子 </em><i class="lnr lnr-chevron-down"></i></span>
 												</div>
-												<div class="wt-radioholder">
+												<div class="wt-radioholder" id="type">
 													<span class="wt-radio">
-														<input id="wt-freelancers" data-title="帖子" type="radio" name="searchtype" value="freelancer" checked="">
+														<input id="wt-freelancers" data-title="帖子" type="radio" name="searchtype" value="1" checked="checked">
 														<label for="wt-freelancers">帖子</label>
 													</span>
 													<span class="wt-radio">
-														<input id="wt-jobs" data-title="用户" type="radio" name="searchtype" value="job">
+														<input id="wt-jobs" data-title="用户" type="radio" name="searchtype" value="2">
 														<label for="wt-jobs">用户</label>
 													</span>
-													<span class="wt-radio">
-														<input id="wt-companies" data-title="群组" type="radio" name="searchtype" value="job">
-														<label for="wt-companies">群组</label>
-													</span>
 												</div>
-												<a href="javascrip:void(0);" class="wt-searchbtn"><i class="lnr lnr-magnifier"></i></a>
+												<a href="#" class="wt-searchbtn" onclick="s()"><i class="lnr lnr-magnifier"></i></a>
 											</div>
 										</div>
 									</fieldset>
@@ -65,33 +77,29 @@
 											<ul>
 											<!-- 查询我的信息 -->
 												<li>
-													<a href="<%=path %>/user_userInfo.html?aab101=${sessionScope.userID }">
+													<a href="<%=path %>/user_userInfo.html?aab101=${sessionScope.userId }">
 														<span>我的主页</span>
 													</a>
 												</li>
 												<!-- 查询我的帖子 -->
 												<li>
-
 													<a href="<%=path%>/tiezi_queryTieziById.html?aab101=${sessionScope.userId}">
 														<span>我的帖子</span>
 													</a>
 												</li>
 												<!-- 查询我的群组 -->
 												<li>
-
-													<a href="#" onclick="myGroups()">
+													<a href="<%=path %>/group_findMyGroup.html?aab101=${userId}">
 														<span>我的群组</span>
 													</a>
 												</li>
 												<li class="wt-notificationicon">
-
 													<a href="<%=path%>/chatpage.jsp">
 														<span>我的消息</span>
 													</a>
 												</li>
 												<li>
-
-													<a href="#" onclick="myEmails()">
+													<a href="<%=path %>/email_getEmail.html?aab101=${userId}">
 														<span>我的邮件</span>
 													</a>
 												</li>
@@ -117,20 +125,6 @@
 						
 						
   <script type="text/javascript">
-  //获取我的群组
-  function myGroups()
-  {
-	  var myForm=$("#message");
-	  myForm.action="<%=path %>/group_findGroup.html";
-	  myForm.submit();
-  }
-  //获取我的邮件
-  function myEmails()
-  {
-	  var myForm=$("#message");
-	  myForm.action="<%=path %>/email_getEmail.html";
-	  myForm.submit();
-  }
   
   function askEmail(newNum)
   {
@@ -174,4 +168,4 @@ $(document).ready(function()
 		})
 </script>
 </body>
-</html>
+</html>	

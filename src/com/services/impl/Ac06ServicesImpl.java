@@ -24,7 +24,7 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 	{
 		StringBuilder sql=new StringBuilder()
 				.append("select a.aac101,b.aab102 cnaab102,a.aac102,s.fvalue cnaac103,a.aac106,")
-				.append("       a.aac105,b.aab101,a.aac109 imgPath,a.aac108,a.aac110  ")
+				.append("       a.aac105,b.aab101,a.aac109 imgPath,a.aac108,a.aac110,b.aab101  ")
 				.append("  from ac01 a,ab01 b,syscode s")
 				.append(" where a.aac103 = s.fcode and s.fname = 'aac103'  ")
 				.append("   and a.aab101 = b.aab101 ")
@@ -48,7 +48,7 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 	{
 		StringBuilder sql=new StringBuilder()
 				.append("select a.aac101,b.aab102 cnaab102,a.aac102,s.fvalue cnaac103,a.aac106,")
-				.append("       a.aac105,b.aab101,a.aac109 imgPath,a.aac108,a.aac110  ")
+				.append("       a.aac105,b.aab101,a.aac109 imgPath,a.aac108,a.aac110,b.aab101  ")
 				.append("  from ac01 a,ab01 b,syscode s")
 				.append(" where a.aac103 = s.fcode and s.fname = 'aac103'  ")
 				.append("   and a.aab101 = b.aab101 ")
@@ -69,48 +69,50 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 		Object aac104=this.get("message");	//帖子内容  模糊查询
 		//Object aab101 = this.get("aab101");		//用户流水号
 		String str1=(String)aac102;
-		//允许用户以 空格^&+,作为分割符
-		String [] str2 = str1.trim().split("\\s+|\\^|&|\\+|,|，");
 		
-		String str3=(String)aac104;
-		String [] str4 = str3.trim().split("\\s+|\\^|&|\\+|,|，");
+//		String str3=(String)aac104;
+//		String [] str4 = str3.trim().split("\\s+|\\^|&|\\+|,|，");
 		
 		List<Map<String, String>> list1=new ArrayList<>();
-		for(String str:str2)
+		if (str1!=null) 
 		{
-			list1.addAll(this.queryForTitle(str));
-		}
-		for(String str:str4)
-		{
-			list1.addAll(this.queryForContent(str));
-		}
-		
-		Map<Map<String,String>,Integer> map=new HashMap<>();
-
-		Set<Map<String,String>> set=new HashSet<>(list1);
-
-		for(Map<String,String> mp:set)
-		{
-			for(Map<String,String> mp1:list1)
+			//允许用户以 空格^&+,作为分割符
+			String [] str2 = str1.trim().split("\\s+|\\^|&|\\+|,|，");
+			
+			for(String str:str2)
 			{
-				if(mp.equals(mp1))
+				list1.addAll(this.queryForTitle(str));
+				list1.addAll(this.queryForContent(str));
+			}
+			
+			Map<Map<String,String>,Integer> map=new HashMap<>();
+
+			Set<Map<String,String>> set=new HashSet<>(list1);
+
+			for(Map<String,String> mp:set)
+			{
+				for(Map<String,String> mp1:list1)
 				{
-					if(map.containsKey(mp))
+					if(mp.equals(mp1))
 					{
-						Integer count=map.get(mp);
-						count++;
-						map.put(mp,count);
-					}
-					else
-					{
-						map.put(mp,1);
+						if(map.containsKey(mp))
+						{
+							Integer count=map.get(mp);
+							count++;
+							map.put(mp,count);
+						}
+						else
+						{
+							map.put(mp,1);
+						}
 					}
 				}
 			}
-		}
 
-		List<Map<String,String>> list2=sortMapByValue(map);
-		return list2;
+			List<Map<String,String>> list2=sortMapByValue(map);
+			return list2;
+		}
+		return list1;
 		
 	}
 	

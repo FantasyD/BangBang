@@ -13,7 +13,7 @@
 	
 	<link href="css/style1.css" rel="stylesheet">
 <script type="text/javascript">
-var this_aab101 = "${sessionScope.userID }";
+var this_aab101 = "${sessionScope.userId }";
 var this_aab102 = "${sessionScope.userName }";
 var path = "<%=path%>/";
 </script>

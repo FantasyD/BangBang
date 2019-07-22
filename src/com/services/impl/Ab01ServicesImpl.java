@@ -20,7 +20,7 @@ import com.system.tools.Tools;
  * @Description: 对ab01表的操作
  * @author: xzc
  */
-public class Ab01ServicesImpl extends Ah01ServiceImpl
+public class Ab01ServicesImpl extends Ah01ServicesImpl
 {
 	/**
 	 * 
@@ -283,7 +283,7 @@ public class Ab01ServicesImpl extends Ah01ServiceImpl
 	public Map<String, String> check()throws Exception
 	{
 		String sql=null;
-		if(((String)this.get("userID")).contains("@")) 
+		if(((String)this.get("userId")).contains("@")) 
 		{
 			sql="select a.aab101,a.aab102,a.aab103 from ab01 a where a.aab108=?";
 		}
@@ -291,7 +291,7 @@ public class Ab01ServicesImpl extends Ah01ServiceImpl
 		{
 			sql="select a.aab101,a.aab102,a.aab103 from ab01 a where a.aab107=?";
 		}
-		Map<String, String> map = this.queryForMap(sql,this.get("userID"));
+		Map<String, String> map = this.queryForMap(sql,this.get("userId"));
 		if(map!=null)
 		{
 			if(map.get("aab103").equals(Tools.getMd5(this.get("aab103"))))
@@ -305,6 +305,7 @@ public class Ab01ServicesImpl extends Ah01ServiceImpl
 	
 	
 	
+
 	/**
 	 * 	按用户名查询
 	 * @param str
@@ -385,44 +386,55 @@ public class Ab01ServicesImpl extends Ah01ServiceImpl
 		Object aab107=this.get("message");	//学号
 		
 		String str1=(String)aab102;
-		String []str2=str1.trim().split("\\s+|\\^|&|\\+|,|，");
+		
 		
 		List<Map<String, String>> list=new ArrayList<>();
-		for(String str:str2)
+		if (str1!=null) 
 		{
-			list.addAll(this.queryForUsername(str));
-			list.addAll(this.queryForName(str));
-			list.addAll(this.queryForSID(str));
-		}
-		
-		Map<Map<String,String>,Integer> map=new HashMap<>();
-
-		Set<Map<String,String>> set=new HashSet<>(list);
-
-		for(Map<String,String> mp:set)
-		{
-			for(Map<String,String> mp1:list)
+			String []str2=str1.trim().split("\\s+|\\^|&|\\+|,|，");
+			for(String str:str2)
 			{
-				if(mp.equals(mp1))
+				list.addAll(this.queryForUsername(str));
+				list.addAll(this.queryForName(str));
+				list.addAll(this.queryForSID(str));
+			}
+			
+			Map<Map<String,String>,Integer> map=new HashMap<>();
+
+			Set<Map<String,String>> set=new HashSet<>(list);
+
+			for(Map<String,String> mp:set)
+			{
+				for(Map<String,String> mp1:list)
 				{
-					if(map.containsKey(mp))
+					if(mp.equals(mp1))
 					{
-						Integer count=map.get(mp);
-						count++;
-						map.put(mp,count);
-					}
-					else
-					{
-						map.put(mp,1);
+						if(map.containsKey(mp))
+						{
+							Integer count=map.get(mp);
+							count++;
+							map.put(mp,count);
+						}
+						else
+						{
+							map.put(mp,1);
+						}
 					}
 				}
 			}
-		}
 
-		List<Map<String,String>> list1=sortMapByValue(map);
-		return list1;
+			List<Map<String,String>> list1=sortMapByValue(map);
+			return list1;
+		}
+		return list;
 	}
 
+	/**
+	 * 根据value对map排序形成list
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
 	private static List<Map<String,String>> sortMapByValue(Map<Map<String,String>,Integer> map)throws Exception
 	{
 		int size=map.size();

@@ -118,13 +118,12 @@
 												<span>±êÇ©:</span>
 												<a href="javascript:void(0);">${ins.aac106 }</a>
 											</div>
-											<ul class="wt-socialiconssimple wt-blogsocialicons">
-												<li class="wt-sharejob"><span>·ÖÏíÌû×Ó</span></li>
-												<li class="wt-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook-f"></i></a></li>
-												<li class="wt-twitter"><a href="javascript:void(0);"><i class="fab fa-twitter"></i></a></li>
-												<li class="wt-linkedin"><a href="javascript:void(0);"><i class="fab fa-linkedin-in"></i></a></li>
-												<li class="wt-clone"><a href="javascript:void(0);"><i class="far fa-clone"></i></a></li>
-											</ul>
+											
+											<form action="<%=path%>/chat_ChatAdd.html" method="post">
+												<input type="hidden" name="aab101" value="${userId }"/></td>
+												<input type="hidden" name="aac101" value="${ins.aac101 }"/></td>
+												<input type="submit" class="wt-btn"  value="Ë½ÁÄ"></td>
+											</form>
 										</div>
 										
 										<c:choose>

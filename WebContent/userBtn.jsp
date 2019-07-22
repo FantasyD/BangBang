@@ -19,12 +19,9 @@
 					<div id="wt-verticalscrollbar" class="wt-verticalscrollbar">
 						<div class="wt-companysdetails wt-usersidebar">
 							<figure class="wt-companysimg">
-								<c:if test="${sessionScope.userPhoto!=null }">
-									<img src="${sessionScope.userPhoto }" alt="img description">
-								</c:if>
-								<c:if test="${sessionScope.userPhoto==null }">
-									<img src="images/user-img.jpg" alt="img description">
-								</c:if>
+
+								<img src="images/BackImg.jpg" alt="img description">
+	
 							</figure>
 							
 							<!-- ÓÃ»§Ãû -->
@@ -98,6 +95,7 @@
 		<script type="text/javascript">
 			function returnUserLogin()
 			{
+				//session.invalidate();
 				sessionStorage.clear();
 				window.location.href="<%=path%>/userLogin.jsp";
 			}

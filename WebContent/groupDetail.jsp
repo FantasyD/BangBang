@@ -422,6 +422,7 @@
 				alert("该用户已在群组中");
 			}
 		}
+		
 	</script>
 	<script>
 		const menu_icon = document.querySelector('.menu-icon');

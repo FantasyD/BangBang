@@ -31,7 +31,6 @@ public abstract class Ah01ServicesImpl extends JdbcServicesSupport
 	public boolean batchSendEmail()throws Exception
 	{
 		List<Map<String,String>> list=this.query();
-		System.out.println(list);
 		if(list!=null && list.size()!=0) 
 		{
 			for(Map<String,String> map:list)

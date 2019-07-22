@@ -35,6 +35,12 @@
 		<input type = "submit" name = "next" value = "置顶帖子页"   class="btn btn-default"  >
 	</form>
 <br>
+<br>
+	<form action = "<%=path%>/complain_complainQuery.html" method = "post">
+		
+		<input type = "submit" name = "next" value = "管理员处理举报"   class="btn btn-default"  >
+	</form>
+<br>
 </body>
 </div>
 </html>

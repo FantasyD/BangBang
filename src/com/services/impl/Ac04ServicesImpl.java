@@ -97,7 +97,7 @@ public class Ac04ServicesImpl extends JdbcServicesSupport
 		
 		StringBuilder sql = new StringBuilder()
 				.append("select x.aac101,b.aab102 cnaab102,x.aac102,x.aac103,a.fvalue cnaac103,x.aac106,")
-				.append("             x.aac105,b.aab101,x.aac108,x.aac108")
+				.append("             x.aac105,b.aab101,x.aac108,x.aac108,x.aac109 imgPath")
 				.append("  from syscode a,ac01 x,ab01 b")
 				.append(" where x.aac103 = a.fcode and a.fname = 'aac103' ")
 				.append("   and x.aab101 = b.aab101 ") 

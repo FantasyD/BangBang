@@ -50,12 +50,11 @@
 		<!-- Content Wrapper Start -->
 		<div class="wt-contentwrapper">
 			<!-- Header Start -->
-			<jsp:include page="head.jsp"></jsp:include>
 			<!-- Header End -->
 			<!--Main Start-->
 			<main id="wt-main" class="wt-main wt-haslayout">
 				<!--Sidebar Start-->
-				<jsp:include page="userBtn.jsp"></jsp:include>
+				<jsp:include page="adminBtn.jsp"></jsp:include>
 				<!--Sidebar Start-->
 				<!--Register Form Start-->
 				<section class="wt-haslayout wt-dbsectionspace">

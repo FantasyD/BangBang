@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.jdt.internal.compiler.ast.ThisReference;
+
 import com.services.JdbcServicesSupport;
 import com.system.myMail.*;
 import com.system.talk.Users;
@@ -250,9 +252,9 @@ public class Ab01ServicesImpl extends Ah01ServicesImpl
 	public Map<String, String> findById() throws Exception 
 	{
 		StringBuilder sql=new StringBuilder()
-				.append("select a.aab102,a.aab103,a.aab104,b.fvalue cnaab105,a.aab107,")
+				.append("select a.aab101,a.aab102,a.aab103,a.aab104,b.fvalue cnaab105,a.aab107,")
 				.append("       a.aab108,a.aab109,a.aab110,a.aab111,a.aab112,")
-				.append("       a.aab113,a.aab114,a.aab115,a.is_onLine")
+				.append("       a.aab113,a.aab114,a.aab115 imgpath,a.is_onLine")
 				.append("   from ab01 a,syscode b")
 				.append("  where a.aab101=?");
 		
@@ -446,6 +448,19 @@ public class Ab01ServicesImpl extends Ah01ServicesImpl
 		
 		return keys;		
 	}
+	
+	
+	public boolean uploadUserImage() throws Exception 
+	{
+		String sql = "update ab01 set aab115 = ? where aab101 = ?";
+		
+		Object[] args = {
+				this.get("imgpath"),
+				this.get("aab101")
+		};
+		
+		return this.executeUpdate(sql, args)>0;
+ 	}
 
 	
 }

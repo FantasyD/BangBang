@@ -1,5 +1,6 @@
 package com.services.impl;
 
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,7 @@ public class Af01ServicesImpl extends JdbcServicesSupport
 	{
 		//编写SQL语句--向数据库插入一条举报信息
 		StringBuilder sql = new StringBuilder()
-				.append("insert into af01(aab101, aaf103, aaf104, aaf105, aaf106, ")
+				.append("insert ignore into af01(aab101, aaf103, aaf104, aaf105, aaf106, ")
 				.append("                 aaf107, aaf109)")
     			.append("          values(?, ?, ?, ?, ?,")
     			.append("                 '0', current_timestamp)")
@@ -28,7 +29,7 @@ public class Af01ServicesImpl extends JdbcServicesSupport
 				this.get("aaf103"),
 				this.get("aaf104"),
 				this.get("aaf105"),
-				this.get("aaf106")
+				URLDecoder.decode((String)this.get("aaf106"),"UTF-8")
 		};
 		//执行插入SQL语句
 		return this.executeUpdate(sql.toString(), argsObjects)>0;

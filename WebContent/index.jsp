@@ -282,7 +282,6 @@
 		function goPage(pno,psize){
 		  var itable = document.getElementById("idData");
 		  var num = itable.rows.length;//表格所有行数(所有记录数)
-		  console.log(num);
 		  var totalPage = 0;//总页数
 		  var pageSize = psize;//每页显示行数
 		  //总共分几页
@@ -294,8 +293,7 @@
 		  var currentPage = pno;//当前页数
 		  var startRow = (currentPage - 1) * pageSize+1;//开始显示的行 31
 		  var endRow = currentPage * pageSize;//结束显示的行  40
-		    endRow = (endRow > num)? num : endRow;  //40
-		    console.log(endRow);
+		    endRow = (endRow > num)? num : endRow;  //40		  
 		    //遍历显示数据实现分页
 		  for(var i=1;i<(num+1);i++){
 		    if(i>=startRow && i<=endRow){

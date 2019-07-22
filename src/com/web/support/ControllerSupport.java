@@ -101,6 +101,21 @@ public abstract class ControllerSupport implements BaseController
 		}	
 	}
 	
+	protected final boolean saveAdminPageInstance()throws Exception
+	{
+		Map<String, String> map = this.executeQueryMethod("check");
+		if(map != null)
+		{
+			this.saveSession_attribute("adminId", map.get("aab302"));
+			return true;
+		}
+		else
+		{
+			this.saveAttribute("msg", "Ã· æ:µ«¬Ω ß∞‹£¨’À∫≈ªÚ√‹¬Î“Ï≥££°");
+			return false;
+		}	
+	}
+	
 	
 	/**
 	 * 

@@ -30,7 +30,7 @@ public class Ac01ServicesImpl extends Ah01ServicesImpl
 		//定义SQL主体
 		StringBuilder sql = new StringBuilder()
 				.append("select x.aac101,b.aab102 cnaab102,x.aac102,a.fvalue cnaac103,x.aac106,")
-				.append("       x.aac105,b.aab101,x.aac109 imgPath,x.aac108,x.aac110  ")
+				.append("       x.aac105,b.aab101,x.aac109,x.aac108,x.aac110  ")
 				.append("  from syscode a,ac01 x,ab01 b")
 				.append(" where x.aac103 = a.fcode and a.fname = 'aac103'  ")
 				.append("   and x.aab101 = b.aab101 ")
@@ -139,7 +139,7 @@ public class Ac01ServicesImpl extends Ah01ServicesImpl
 		
 		StringBuilder str = new StringBuilder()
 				.append("select x.aac101,b.aab102 cnaab102,x.aac102,a.fvalue cnaac103,x.aac106, ")
-				.append("       x.aac105,x.aac104,x.aac109 imgPath,b.aab101,x.aac103")
+				.append("       x.aac105,x.aac104,x.aac109,b.aab101,x.aac103")
 				.append("  from syscode a,ac01 x,ab01 b")
 				.append(" where x.aac103 = a.fcode  ")
 			    .append("   and x.aab101 = b.aab101  " )

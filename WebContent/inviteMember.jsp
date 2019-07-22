@@ -10,7 +10,7 @@
 		<div class="wt-freelancerholder">
 			<div class="wt-managejobcontent wt-verticalscrollbar mCustomScrollbar _mCS_1">
 				<c:choose>
-					<c:when test="${cols!=null }">
+					<c:when test="${cols.size()>0 }">
 						<table id="idData">
 							<c:forEach items="${cols }" var="ins" varStatus="vs">
 								<tr>
@@ -63,11 +63,6 @@
 									</div>
 								</tr>
 							</c:forEach>
-						</table>
-						<table width="60%" align="right">
-							<tr>
-								<td><div id="barcon" name="barcon"></div></td>
-							</tr>
 						</table>
 					</c:when>
 					<c:otherwise>

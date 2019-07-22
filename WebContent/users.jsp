@@ -74,7 +74,7 @@
 												<div class="wt-userlistingcontent">
 													<div class="wt-contenthead">
 														<div class="wt-title">
-															<i class="fa fa-check-circle"></i>${ins.aab102 }
+															<a href="user_userDetails.html?aab101=${ins.aab101 }"><i class="fa fa-check-circle"></i>${ins.aab102 }</a>
 															<h2>Ñ§ºÅ£º${ins.aab107 }</h2>
 														</div>
 														<ul class="wt-saveitem-breadcrumb wt-userlisting-breadcrumb">

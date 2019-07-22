@@ -54,7 +54,6 @@ public abstract class ControllerSupport implements BaseController
 		if (rows.size() > 0)
 		{
 			this.saveAttribute("rows", rows);
-			this.saveAttribute("type", this.dto.get("type"));
 		}
 		else
 		{
@@ -65,7 +64,7 @@ public abstract class ControllerSupport implements BaseController
 	protected final void savePageDataToSession()throws Exception
 	{
 		List<Map<String, String>> rows = this.services.query();
-		if (rows.size() > 0)
+		if (rows!=null)
 		{
 			this.saveSession_attribute("cols", rows);
 		}
@@ -134,9 +133,6 @@ public abstract class ControllerSupport implements BaseController
 		}
 		return false;
 	}
-	
-	
-	
 	
 	/*****************************************
 	 
@@ -277,8 +273,12 @@ public abstract class ControllerSupport implements BaseController
 	{
 		return this.services.query().size();
 	}
-	
-	
+
+	/**
+	 * @Description: 返回非query方法的结果集大小
+	 * @return:非query方法的结果集大小
+	 * @throws: sql语句执行出错
+	 */
 	protected final int checkInfo(String methodName)throws Exception
 	{
 		// 1.获取需要调用的方法对象

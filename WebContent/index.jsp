@@ -126,14 +126,14 @@
 															<c:if test="${ins.aac305==1 }">
 																<div class="wt-particlehold">
 																	<figure>
-																	<c:if test="${ins.imgpath==null }">
+																	<c:if test="${ins.aac109==null }">
 																		<a href="#" onclick = "onEdit('${ins.aac101 }')">
 																			<img src="images/thumbnail/img-01.jpg" alt="image description">
 																		</a>
 																	</c:if>
-																	<c:if test="${ins.imgpath!=null }">
+																	<c:if test="${ins.aac109!=null }">
 																		<a href="#" onclick = "onEdit('${ins.aac101 }')">
-																			<img src="${ins.imgpath }" alt="image description">
+																			<img src="${ins.aac109 }" alt="image description">
 																		</a>
 																	</c:if>
 																	</figure>
@@ -186,14 +186,14 @@
 														<c:if test="${ins.aac305!=1 }">
 														<tr>													
 															<div class="wt-article" id="div${vs.count }">
-																<c:if test="${ins.imgpath!=null }">
+																<c:if test="${ins.aac109!=null }">
 																	<figure>
 																		<a href="#" onclick = "onEdit('${ins.aac101 }')">
-																			<img src="${ins.imgpath }"  style="height:432px;width:768px" alt="img description">
+																			<img src="${ins.aac109 }"  style="height:432px;width:768px" alt="img description">
 																		</a>
 																	</figure>
 																</c:if>
-																<c:if test="${ins.imgpath==null }">
+																<c:if test="${ins.aac109==null }">
 																	<figure>
 																		<a href="#" onclick = "onEdit('${ins.aac101 }')">
 																			<img src="images/20.jpg" style="height:432px;width:768px"  alt="img description">

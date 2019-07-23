@@ -107,7 +107,7 @@
 																<c:if test="${ins.aab115==null }">
 																<figure>
 																<a href="user_userDetails.html?aab101=${ins.aab101 }">
-																<img src="images/profile/img-01.jpg" alt="img description">
+																<img src="images/wo.jpg" alt="img description">
 																</a>
 																</figure>
 																</c:if>

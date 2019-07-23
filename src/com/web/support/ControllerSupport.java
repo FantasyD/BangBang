@@ -150,8 +150,10 @@ public abstract class ControllerSupport implements BaseController
 		if (ins != null)
 		{
 			this.saveAttribute("ins", ins);
-			if(ins.get("imgpath")!=null) {
-				this.saveSession_attribute("userPhoto", ins.get("imgpath"));
+			System.out.println(ins.get("aab101").equals(this.getDtoObject("userId")));
+			System.out.println(ins.get("aac115"));
+			if(ins.get("aac115")!=null&&ins.get("aab101").equals(this.getDtoObject("userId"))) {
+				this.saveSession_attribute("userPhoto", ins.get("aac115"));
 			}
 		}
 		else

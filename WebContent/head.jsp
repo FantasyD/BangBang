@@ -70,7 +70,7 @@
 									<div class="wt-userlogedin">
 										<figure class="wt-userimg">
 											<c:if test="${sessionScope.userPhoto==null }">
-												<img src="images/user-img.jpg" alt="image description">	
+												<img src="images/wo.jpg" alt="image description">	
 											</c:if>
 											<c:if test="${sessionScope.userPhoto!=null }">
 												<img src="${sessionScope.userPhoto }" alt="image description">
@@ -175,7 +175,10 @@
 		
 	function returnUserLogin()
 	{
+		sessionStorage.removeItem("userId");
+		sessionStorage.removeItem("userPhoto");
 		sessionStorage.clear();
+		alert('${sessionScope.userId}');
 		window.location.href="<%=path%>/userLogin.jsp";
 	}
 </script>

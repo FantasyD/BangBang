@@ -96,6 +96,8 @@
 			function returnUserLogin()
 			{
 				//session.invalidate();
+				sessionStorage.removeItem("userId");
+				sessionStorage.removeItem("userPhoto");
 				sessionStorage.clear();
 				window.location.href="<%=path%>/userLogin.jsp";
 			}

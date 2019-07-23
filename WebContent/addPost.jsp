@@ -45,6 +45,7 @@
 		<div class="wt-contentwrapper">
 			<!--Header Start-->
 			<jsp:include page="head.jsp"></jsp:include>
+			
 			<!--Header End-->
 			<!--Inner Home Banner Start-->
 			<div class="wt-haslayout wt-innerbannerholder">
@@ -85,7 +86,7 @@
 									<form class="wt-formtheme wt-formproposal"  action="<%=path%>/tiezi_addTiezi.html" name="vform" id="vform" method = "post" enctype="multipart/form-data">
 										<fieldset>
 											<div class="form-group">
-												<input type="text" style="width: 100%" name = "aac102" placeholder="请输入帖子标题" value="${ins.aac102 }" required="required">
+												<input type="text" style="width: 100%" name = "aac102" placeholder="请输入帖子标题(必填)" value="${ins.aac102 }" required="required">
 											</div>
 											<input type="hidden" name="aac103" id="aac103Input" value="${ins.aac103}">									
 											<div class="form-group">
@@ -102,23 +103,23 @@
 											</div>
 											
 											<div class="form-group">
-												<input type="number" style="width: 100%" name = "aac105" placeholder="请输入帖子酬劳" value="${ins.aac105 }">
+												<input type="number" style="width: 100%" name = "aac105" placeholder="请输入帖子酬劳(可选)" value="${ins.aac105 }">
 											</div>	
 											
 											<div class="form-group">
-												<input type="text" style="width: 100%" name = "aac106" placeholder="请输入帖子标签" value="${ins.aac106 }" required="required">
+												<input type="text" style="width: 100%" name = "aac106" placeholder="请输入帖子标签(可选)" value="${ins.aac106 }" required="required">
 											</div>	
 											
 											<div class="form-group">
-												<textarea class="form-control" name = "aac104" id="aac104" placeholder="请输入帖子内容" required="required" ></textarea>
+												<textarea class="form-control" name = "aac104" id="aac104" placeholder="请输入帖子内容(必填)" required="required" ></textarea>
 											</div>
 										</fieldset>
 										<fieldset>
 											<div class="wt-attachments wt-attachmentsvtwo">
 												<div class="wt-title">
-													<h3>Upload File (Optional)</h3>
+													<h3>上传图片 (可选)</h3>
 													<label for="photo">
-														<span><i class="lnr lnr-link"></i> Attach File(s)</span>
+														<span><i class="lnr lnr-link"></i>添加图片</span>
 												      	<input type="file" name="photo" id = "photo" accept="image/png, image/jpeg, image/gif, image/jpg"/><br/> 
 													</label>
 												</div>
@@ -173,14 +174,15 @@
 		});
 		
 		window.onload = function(){
-			document.getElementById("aac103").value="${ins.aac103}";
+			if(${ins.aac103 == null}){
+				document.getElementById("aac103").value="01";	
+			}else{
+				document.getElementById("aac103").value="${ins.aac103}";
+			}		
 			document.getElementById("aac104").value="${ins.aac104}";
 			document.getElementById("aac104").innerHTML="${ins.aac104}";
 	    }
-		
-		
-		
-		
+	
 		function getObjectURL(file) {
 		    var url = null;
 		   	/* window.URL = window.URL || window.webkitURL;*/

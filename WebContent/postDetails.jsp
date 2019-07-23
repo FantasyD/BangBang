@@ -151,10 +151,12 @@
 												</a>
 											</li>
 											<li>
-												<a href="javascript:void(0);">
-													<i class="lnr lnr-tag"></i>
-													<span>${ins.aac106 }</span>
-												</a>
+												<c:if test="${ins.aac106 !=null }">
+													<a href="javascript:void(0);">
+														<i class="lnr lnr-tag"></i>
+														<span>${ins.aac106 }</span>
+													</a>
+												</c:if>	
 											</li>
 											<li>
 												<a href="javascript:void(0);">
@@ -165,8 +167,9 @@
 										</ul>
 										<div class="wt-description">
 											
-
-											<p>${ins.aac104 }</p>
+											<font size="100" color="black">									
+											    ${ins.aac104 }
+											</font>
 											<c:if test="${ins.aac109!=null }">
 												<figure class="wt-blogdetailimgvtwo wt-articlessingleone">
 													<img src="${ins.aac109 }" class="test" alt="image description">
@@ -177,8 +180,10 @@
 										</div>
 										<div class="wt-tagsshare">
 											<div class="wt-tag wt-widgettag">
-												<span>±Í«©:</span>
-												<a href="javascript:void(0);">${ins.aac106 }</a>
+												<span>≥Í¿Õ:</span>
+											
+												<a href="javascript:void(0);">${ins.aac105 }</a>
+											
 											</div>
 											
 											<form action="<%=path%>/chat_ChatAdd.html" method="post">

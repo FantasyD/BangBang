@@ -102,13 +102,20 @@ public class Ac05ServicesImpl extends Ah01ServicesImpl
     			.append("                 ?,current_timestamp,current_timestamp,?,0,0)")
 				;
 		
+		Object aac105;
+		if(this.get("aac105").equals(null)||this.get("aac105").equals("")) {
+			aac105 = 0;
+		}else {
+			aac105 = this.get("aac105");
+		}
+		
 		Object[] argsObjects = {
 				Tools.getSequence("aac101"),
 				this.get("aab101"),
 				this.get("aac102"),
 				this.get("aac103"),
 				this.get("aac104"),
-				this.get("aac105"),
+				aac105,
 				this.get("aac106"),
 				this.get("imgpath")
 		};

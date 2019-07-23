@@ -176,7 +176,7 @@
 	function returnUserLogin()
 	{
 		sessionStorage.clear();
-		window.location.href="<%=path%>/userLogin.jsp";
+		window.location.href="<%=path%>/user_userLogOut.html";
 	}
 </script>
 </body>

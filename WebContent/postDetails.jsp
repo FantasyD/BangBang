@@ -181,16 +181,20 @@
 												<a href="javascript:void(0);">${ins.aac106 }</a>
 											</div>
 											
+											
+											
+											<c:if test="${sessionScope.userId!=ins.aab101 }">
 											<form action="<%=path%>/chat_ChatAdd.html" method="post">
 												<input type="hidden" name="aab101" value="${userId }"/></td>
 												<input type="hidden" name="aac101" value="${ins.aac101 }"/></td>
 												<input type="submit" class="wt-btn"  value="私聊"></td>
 											</form>
-											
 											<ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">
 												<li><b onclick="display(this, 'complain_')" class="wt-reportuser" 
 														onmousemove="onMoveIn(this)" onmouseout="onMoveOut(this)">举报</b></li>
 											</ul>
+											</c:if>
+											
 										</div>
 										
 										<div id="complain_" class="wt-widget wt-reportjob" style="display:none">
@@ -242,10 +246,13 @@
 																		<span><i class="lnr lnr-clock"></i> 日期: ${comment.aac202 }</span>
 																	</div>
 																	<div class="wt-boxright">
+																		<c:if test="${sessionScope.userId!=comment.aab101 }">
 																		<ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">
 																			<li><b onclick="display(this, 'complain_comment${comment.aac201 }')" class="wt-reportuser" 
 																					onmousemove="onMoveIn(this)" onmouseout="onMoveOut(this)">举报</b></li>
 																		</ul>
+																		</c:if>
+																		
 																	</div>
 																</div>
 																

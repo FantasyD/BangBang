@@ -110,15 +110,15 @@
 												<figure>
 													<form action="user_uploadUserImage.html" name="userForm" id="userForm" method = "post" enctype="multipart/form-data">
 														<label for="photo">
-															<c:if test="${ins.imgpath == null }">
-																<img src="images/profile/img-01.jpg" alt="img description" id="preview">
+															<c:if test="${ins.aab115 == null }">
+																<img src="images/wo.jpg" alt="img description" id="preview">
 															</c:if>
-															<c:if test="${ins.imgpath != null }">
-																<img src="${ins.imgpath }" alt="img description" id="preview">
+															<c:if test="${ins.aab115 != null }">
+																<img src="${ins.aab115 }" alt="img description" id="preview">
 															</c:if>																									
 												      		<input style="display: none;" type="file" name="photo" id = "photo" accept="image/png, image/jpeg, image/gif, image/jpg"/><br/>
 												      		<input type="hidden" name="aab101" value="${sessionScope.userId }"> 
-													      	
+													      	<input type="hidden" name="userId" value="${sessionScope.userId }"> 
 														</label>
 													</form>
 												</figure>

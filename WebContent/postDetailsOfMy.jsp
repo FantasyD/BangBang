@@ -92,10 +92,12 @@
 												</a>
 											</li>
 											<li>
-												<a href="javascript:void(0);">
-													<i class="lnr lnr-tag"></i>
-													<span>${ins.aac106 }</span>
-												</a>
+												<c:if test="${ins.aac106 !=null }">
+													<a href="javascript:void(0);">
+														<i class="lnr lnr-tag"></i>
+														<span>${ins.aac106 }</span>
+													</a>
+												</c:if>											
 											</li>
 											<li>
 												<a href="javascript:void(0);">
@@ -104,8 +106,10 @@
 												</a>
 											</li>
 										</ul>
-										<div class="wt-description">										
-											<p>${ins.aac104 }</p>
+										<div class="wt-description">	
+											<font size="100" color="black">									
+											    ${ins.aac104 }
+											</font>
 											<c:if test="${ins.aac109!=null }">
 												<figure class="wt-blogdetailimgvtwo wt-articlessingleone">
 													<img src="${ins.aac109 }" class="test" alt="image description">
@@ -116,8 +120,10 @@
 										</div>
 										<div class="wt-tagsshare">
 											<div class="wt-tag wt-widgettag">
-												<span>标签:</span>
-												<a href="javascript:void(0);">${ins.aac106 }</a>
+												<span>酬劳:</span>
+												
+													<a href="javascript:void(0);">${ins.aac105 }</a>
+												
 											</div>
 											<ul class="wt-socialiconssimple wt-blogsocialicons">
 												<li class="wt-sharejob"><span>分享帖子</span></li>

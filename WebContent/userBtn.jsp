@@ -93,11 +93,13 @@
 					<input type="hidden" name="aab101" value="${userId }"/>
 				</form>
 		<script type="text/javascript">
+
 		function returnUserLogin()
 		{
 			sessionStorage.clear();
 			window.location.href="<%=path%>/user_userLogOut.html";
 		}
+
 		</script>
 </body>
 </html>

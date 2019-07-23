@@ -254,7 +254,7 @@ public class Ab01ServicesImpl extends Ah01ServicesImpl
 		StringBuilder sql=new StringBuilder()
 				.append("select a.aab101,a.aab102,a.aab103,a.aab104,b.fvalue cnaab105,a.aab107,")
 				.append("       a.aab108,a.aab109,a.aab110,a.aab111,a.aab112,")
-				.append("       a.aab113,a.aab114,a.aab115 imgpath,a.is_onLine")
+				.append("       a.aab113,a.aab114,a.aab115,a.is_onLine")
 				.append("  from ab01 a,syscode b")
 				.append(" where a.aab105 = b.fcode and b.fname = 'aab105' ")
 				.append("   and a.aab101=?");

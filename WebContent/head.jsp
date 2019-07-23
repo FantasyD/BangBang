@@ -99,7 +99,7 @@
 														<span>我的群组</span>
 													</a>
 												</li>
-												<li class="wt-notificationicon">
+												<li>
 													<a href="<%=path%>/chatpage.jsp">
 														<span>我的消息</span>
 													</a>
@@ -178,8 +178,9 @@
 		sessionStorage.removeItem("userId");
 		sessionStorage.removeItem("userPhoto");
 		sessionStorage.clear();
-		alert('${sessionScope.userId}');
-		window.location.href="<%=path%>/userLogin.jsp";
+
+		window.location.href="<%=path%>/user_userLogOut.html";
+
 	}
 </script>
 </body>

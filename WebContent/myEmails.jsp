@@ -186,7 +186,7 @@
 			type: "POST",
 			url: aah202,
 			data : {
-				'aab101' : '14',
+				'aab101' : ${userId },
 				'aah201' : aah201
 			},
 			success : function(data) {

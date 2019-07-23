@@ -103,11 +103,13 @@
 											</div>
 											
 											<div class="form-group">
+
 												<input type="number" style="width: 100%" name = "aac105" placeholder="请输入帖子酬劳(可选)" value="${ins.aac105 }">
 											</div>	
 											
 											<div class="form-group">
 												<input type="text" style="width: 100%" name = "aac106" placeholder="请输入帖子标签(可选)" value="${ins.aac106 }" required="required">
+
 											</div>	
 											
 											<div class="form-group">

@@ -12,6 +12,15 @@
 <script type="text/javascript" src="js/sendEmail.js"></script>
 <script type="text/javascript">
 	var path = "<%=path %>";
+	var msg = "${msg }";
+	if(msg != "")
+		alert(msg);
+
+	var userId = "${sessionScope.userId }";
+	var userName = "${sessionScope.userName }";
+	alert("userId=" + userId + "|||||userName=" + userName);
+	
+	
 	function onMoveIn(x)
 	{
 		x.style.fontSize = "17";

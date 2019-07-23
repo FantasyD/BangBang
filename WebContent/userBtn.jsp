@@ -65,7 +65,7 @@
 										<span>我的群组</span>
 									</a>
 								</li>
-								<li class="wt-notificationicon">
+								<li>
 									<a href="<%=path%>/chatpage.jsp">
 										<i class="ti-pencil-alt"></i>
 										<span>我的消息</span>

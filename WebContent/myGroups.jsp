@@ -109,7 +109,7 @@
 												<tr>
 													<td>${vs.count }</td>
 													<td>	<img class="img-circle" 	src="${row.aae105!=null && row.aae105!=''?row.aae105:'upload/index.jpg'}"
-														width="30px" height="30px" alt="头像" /> </td>
+														width="30px" height="30px"/> </td>
 													<td><a href="<%=path %>/group_findGroup.html?aae101=${row.aae101}">${row.aae102 }</a></td>
 													<td>${row.aae103!=null && row.aae103!=''?row.aae103:'该群组暂时没有签名'}</td>
 												</tr>

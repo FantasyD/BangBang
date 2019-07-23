@@ -102,11 +102,11 @@
 											</div>
 											
 											<div class="form-group">
-												<input type="number" style="width: 100%" name = "aac105" placeholder="请输入帖子酬劳" value="${ins.aac105 }">
+												<input type="number" style="width: 100%" name = "aac105"   placeholder="请输入帖子酬劳"   value="${ins.aac105 }">
 											</div>	
 											
 											<div class="form-group">
-												<input type="text" style="width: 100%" name = "aac106" placeholder="请输入帖子标签" value="${ins.aac106 }" required="required">
+												<input type="text" style="width: 100%" name = "aac106" placeholder="请输入帖子标签"  value="${ins.aac106 }" required="required">
 											</div>	
 											
 											<div class="form-group">

@@ -121,9 +121,11 @@
 												<img class="img-circle"
 													src="${ins.aae105!=null && ins.aae105!=''?ins.aae105:'upload/index.jpg'}"
 													width="30px" height="30px" alt="头像" /> ${ins.aae102 }
-												<h2>${ins.aae107!=null&& ins.aae107!=''?ins.aae107:'该群组暂时没有描述'}</h2>
+													<br>
+												<span>${ins.aae107!=null&& ins.aae107!=''?ins.aae107:'该群组暂时没有描述'}</span>
 											</div>
 											<ul class="wt-saveitem-breadcrumb wt-userlisting-breadcrumb">
+												<br>
 												<li><span class="wt-dashboraddoller"><i
 														class="fa fa-dollar-sign"></i> ${ins.aae104}</span></li>
 												<li><span>${ins.aae103!=null && ins.aae103!=''?ins.aae103:'该群组暂时没有签名'}</span></li>
@@ -145,7 +147,7 @@
 																<li><a href="#" onclick="delGroupIsClick()">解散</a></li>
 															</c:when>
 															<c:otherwise>
-																<li><a href="#" onclick="quitIsClick()">退出</a></li>
+																<li><a href="#" onclick="quitIsClick('${userId }')">退出</a></li>
 															</c:otherwise>
 														</c:choose>
 													</c:if>
@@ -332,12 +334,12 @@
   			}
   	}
   	//退出该群组
-  	function quitIsClick()
+  	function quitIsClick(aab101)
   	{
   			if(confirm("您确定要退出该群组吗？"))
   			{
   					var quitBtn=document.getElementById("quit");
-	    				quitBtn.action="<%=path%>/group_quitGroup.html?aab101="+${userId };
+	    				quitBtn.action="<%=path%>/group_quitGroup.html?aa="+aab101;
 						quitBtn.submit();
 				}
 		}

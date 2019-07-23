@@ -92,14 +92,13 @@ public class Ae01ServicesImpl extends Ah01ServicesImpl
 	
 	/**
 	 * @Description: 从群组成员表中删除该退出或被剔除组员信息
-	 * @throws：sql执行出错
+	 * @throws：sql语句执行出错
 	 */
 	public boolean quitGroup()throws Exception
 	{
 		String sql="delete from ae02 where aae101=? and aab101=?";
-		Object idlist[]= {this.get("aae101"),this.get("aab101")};
-		boolean tag=this.executeUpdate(sql, idlist)>0;
-		return tag;
+		Object idlist[]= {this.get("aae101"),this.get("aa")};
+		return this.executeUpdate(sql, idlist)>0;
 	}
 	
 	/**

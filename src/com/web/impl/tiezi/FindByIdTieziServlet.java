@@ -6,7 +6,8 @@ public class FindByIdTieziServlet extends CommentControllerSupport
 {
 
 	@Override
-	public String execute() throws Exception {
+	public String execute() throws Exception
+	{
 		this.savePageData();
 		this.savePageInstance();
 		return "postDetails";

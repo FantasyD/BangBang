@@ -134,6 +134,13 @@ public abstract class ControllerSupport implements BaseController
 		return false;
 	}
 	
+	protected final void logOut() throws Exception
+	{
+		this.saveSession_attribute("userId", null);
+		this.saveSession_attribute("userName", null);
+		this.saveSession_attribute("userPhoto", null);
+	}
+	
 	/*****************************************
 	 
 	 *****************************************/

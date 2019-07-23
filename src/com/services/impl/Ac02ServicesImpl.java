@@ -39,7 +39,7 @@ public class Ac02ServicesImpl extends Ah01ServicesImpl
 	{
 		//定义SQL主体
 		StringBuilder sql = new StringBuilder()
-				.append("select x.aac201,b.aab101, b.aab102 cnaab102,x.aac101,x.aac202,x.aac203,b.aab115")
+				.append("select x.aac201,b.aab102 cnaab102,x.aac101,x.aac202,x.aac203,b.aab115,b.aab101")
 				.append("  from ac02 x,ab01 b ")
 				.append(" where x.aab101 = b.aab101 and x.is_deleted = 0 and x.aac101 = ?")
 				;

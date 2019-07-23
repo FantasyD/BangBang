@@ -116,7 +116,7 @@
 															<c:if test="${ins.imgpath != null }">
 																<img src="${ins.imgpath }" alt="img description" id="preview">
 															</c:if>																									
-												      		<input style="display: none;" type="file" name="photo" id = "photo"/><br/>
+												      		<input style="display: none;" type="file" name="photo" id = "photo" accept="image/png, image/jpeg, image/gif, image/jpg"/><br/>
 												      		<input type="hidden" name="aab101" value="${sessionScope.userId }"> 
 													      	
 														</label>

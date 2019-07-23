@@ -119,7 +119,7 @@
 													<h3>Upload File (Optional)</h3>
 													<label for="photo">
 														<span><i class="lnr lnr-link"></i> Attach File(s)</span>
-												      	<input type="file" name="photo" id = "photo"/><br/> 
+												      	<input type="file" name="photo" id = "photo" accept="image/png, image/jpeg, image/gif, image/jpg"/><br/> 
 													</label>
 												</div>
 												<img id="preview" src="" style = "width:192px;height:108px"/>

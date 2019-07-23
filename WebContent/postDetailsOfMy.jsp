@@ -97,13 +97,14 @@
 													<span>${ins.aac106 }</span>
 												</a>
 											</li>
+											<li>
+												<a href="javascript:void(0);">
+													<i class="lnr lnr-tag"></i>
+													<span>${ins.cnaac103 }Ìû</span>
+												</a>
+											</li>
 										</ul>
-										<div class="wt-description">
-											
-											<blockquote class="wt-blockquotevone">
-												<span><i class="lnr lnr-bookmark"></i></span>
-												<q>${ins.cnaac103 }Ìû</q>
-											</blockquote>
+										<div class="wt-description">										
 											<p>${ins.aac104 }</p>
 											<c:if test="${ins.aac109!=null }">
 												<figure class="wt-blogdetailimgvtwo wt-articlessingleone">
@@ -134,16 +135,16 @@
 														<div class="wt-authordetails">
 															<figure>
 																<c:if test="${comment.aab115==null }">
-																	<a href="javascript:void(0);"><img src="images/author/img-01.jpg" alt="image description"></a>
+																	<a href="user_userDetails.html?aab101=${comment.aab101 }"><img src="images/author/img-01.jpg"  style="width:60px;height:60px;" alt="image description"></a>
 																</c:if>
 																<c:if test="${comment.aab115!=null }">
-																	<a href="javascript:void(0);"><img src="${comment.aab115 }" style="width:60px;height:60px;" alt="image description"></a>
+																	<a href="user_userDetails.html?aab101=${comment.aab101 }"><img src="${comment.aab115 }" style="width:60px;height:60px;" alt="image description"></a>
 																</c:if>		
 															</figure>
 															<div class="wt-authorcontent">
 																<div class="wt-authorhead">
 																	<div class="wt-boxleft">
-																		<h3><a href="javascript:void(0);">${comment.cnaab102}</a></h3>
+																		<h3><a href="user_userDetails.html?aab101=${comment.aab101 }">${comment.cnaab102}</a></h3>
 																		<span><i class="lnr lnr-clock"></i> ÈÕÆÚ: ${comment.aac202 }</span>
 																	</div>
 																	<div class="wt-boxright">																

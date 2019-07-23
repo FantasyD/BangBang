@@ -57,7 +57,6 @@
 	<div id="wt-wrapper" class="wt-wrapper wt-haslayout">
 		<!-- Content Wrapper Start -->
 		<div class="wt-contentwrapper">
-			<jsp:include page="head.jsp"></jsp:include>
 			<!--Inner Home Banner Start-->
 			<div class="wt-haslayout wt-innerbannerholder wt-innerbannerholdervtwo">
 				<div class="container">

@@ -97,9 +97,16 @@
 														    <td>${ins.hstatus }     </td>
 														    <td>${ins.aaf109 }      </td>
 														    <td>${ins.aaf108 }      </td>
-															<td>
-													        	<a href="#" onclick="onHandleUser('${ins.aaf101}')">处理</a>
-														    </td>	
+															 <c:if test="${ins.hstatus eq '未处理' }">
+														    	<td>
+														   			<a href="#" onclick="onHandleUser('${ins.aaf101}')">处理</a>
+														    	</td>
+														    </c:if>
+														    <c:if test="${ins.hstatus eq '已处理' }">
+														    	<td>
+														   			<a href="#" onclick="onHandleUser('${ins.aaf101}')">查看记录</a>
+														    	</td>
+														    </c:if>		
 														</tr>	
 														</c:if>												
 													</c:forEach>

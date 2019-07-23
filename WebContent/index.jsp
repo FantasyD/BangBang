@@ -99,21 +99,7 @@
 												</form>
 											</div>
 										</div>
-										<div class="wt-widget wt-categoriesholder">
-											<div class="wt-widgettitle">
-												<h2>帖子类型</h2>
-											</div>
-											<div class="wt-widgetcontent">
-												<ul class="wt-categoriescontent">
-													<li><a href="javascript:void(0);">求购 <em>15325</em></a></li>
-													<li><a href="javascript:void(0);">代取 <em>562748</em></a></li>
-													<li><a href="javascript:void(0);">求信息 <em>3488</em></a></li>
-													<li><a href="javascript:void(0);">出售 <em>86452</em></a></li>
-													<li><a href="javascript:void(0);">求学习资料  <em>325</em></a></li>
-													<li><a href="javascript:void(0);">其他 <em>886548</em></a></li>
-												</ul>
-											</div>
-										</div>
+							
 										<div class="wt-widget wt-widgetarticlesholder">
 											<div class="wt-widgettitle">
 												<h2>置顶帖</h2>

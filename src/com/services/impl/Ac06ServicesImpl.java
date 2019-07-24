@@ -73,6 +73,15 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 //		String str3=(String)aac104;
 //		String [] str4 = str3.trim().split("\\s+|\\^|&|\\+|,|£¬");
 		
+		StringBuilder sqlForTop =  new StringBuilder()
+				.append("select x.aac101,x.aac102,x.aac106,x.aac105,x.aac109, ")
+				.append("       x.aac108,x.aac110,b.aac305 ")
+				.append("  from ac01 x LEFT JOIN ac03 b ")
+				.append("    on x.aac101=b.aac101 where aac305 = 1 and x.is_deleted = 0 order by x.aac108 desc  ")
+				;
+				
+		List<Map<String,String>> topList=this.queryForList(sqlForTop.toString());
+		
 		List<Map<String, String>> list1=new ArrayList<>();
 		if (str1!=null) 
 		{
@@ -109,9 +118,13 @@ public class Ac06ServicesImpl extends JdbcServicesSupport
 				}
 			}
 
+
+			
 			List<Map<String,String>> list2=sortMapByValue(map);
+			list2.addAll(topList);
 			return list2;
 		}
+		list1.addAll(topList);
 		return list1;
 		
 	}

@@ -125,12 +125,12 @@
 												</table>
 											</c:when>
 											<c:otherwise>
-												<div>
-													<div class="alert alert-info">
-														<a class="close" data-dismiss="alert">x</a>
-														<strong>没有符合条件的用户</strong>
+													<div class="wt-jobalerts">
+														<div class="alert alert-primary alert-dismissible fade show">
+															<em>Message:</em> <span> 没有符合条件的用户</span>
+															<a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="Close"><i class="fa fa-close"></i></a>
+														</div>
 													</div>
-												</div>
 											</c:otherwise>
 										</c:choose>
 										</div>

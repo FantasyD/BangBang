@@ -8,5 +8,4 @@ public class FindMyGroupServlet extends MyGroupsServlet
 		this.savePageData();
 		return "myGroups";
 	}
-
 }

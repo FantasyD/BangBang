@@ -74,7 +74,6 @@ public abstract class ControllerSupport implements BaseController
 		}
 	}
 	
-	
 	/*****************************************
 	 * 用户登陆用到的函数
 	 *****************************************/
@@ -117,7 +116,6 @@ public abstract class ControllerSupport implements BaseController
 		}	
 	}
 	
-	
 	/**
 	 * 
 	 * @Description	注册信息提示
@@ -144,7 +142,6 @@ public abstract class ControllerSupport implements BaseController
 	/*****************************************
 	 
 	 *****************************************/
-	
 	
 	/**
 	 * 单一实例 查询
@@ -382,18 +379,19 @@ public abstract class ControllerSupport implements BaseController
 	{
 		return this.attribute;
 	}
-	
+
 	/*****************************************
-	 * 	        数据输出流 向session
+	 * 数据输出流 向session
 	 *****************************************/
-    private Map<String, Object> session_attribute = new HashMap<>();
-    protected final void saveSession_attribute(String key, Object value)
-    {
-    	this.session_attribute.put(key, value);
-    }
-    
-    public final Map<String, Object> getSession_attribute()
-    {
-    	return this.session_attribute;
-    }
+	private Map<String, Object> session_attribute = new HashMap<>();
+
+	protected final void saveSession_attribute(String key, Object value)
+	{
+		this.session_attribute.put(key, value);
+	}
+
+	public final Map<String, Object> getSession_attribute()
+	{
+		return this.session_attribute;
+	}
 }

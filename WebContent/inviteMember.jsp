@@ -38,7 +38,7 @@
 											</div>
 											<div class="wt-rightarea">
 												<div class="wt-btnarea">
-													<a href="#" class="wt-btn" onclick="invite('${ins.aab101}')">ÑûÇë</a>
+													<a href="#" class="wt-btn" onclick="isExist('2','${ins.aab101}')">ÑûÇë</a>
 												</div>
 												<div class="wt-hireduserstatus">
 													<ul class="wt-hireduserimgs">

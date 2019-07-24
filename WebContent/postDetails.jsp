@@ -115,7 +115,7 @@
 							<div class="wt-innerbannercontent">
 								<div class="wt-title"><h2>帖子详情</h2></div>
 								<ol class="wt-breadcrumb">
-									<li><a href="index2.jsp">主页</a></li>
+									<li>主页</li>
 									<li><a href="#" onclick="returnQueryPost()">帖子</a></li>
 									<li class="wt-active">帖子详情</li>
 								</ol>
@@ -167,13 +167,19 @@
 										</ul>
 										<div class="wt-description">
 											
-											<font size="100" color="black">									
+											<div style="font-size: 23px;">							
 											    ${ins.aac104 }
-											</font>
+											</div>
+											
+											<br>
+											<br>
 											<c:if test="${ins.aac109!=null }">
 												<figure class="wt-blogdetailimgvtwo wt-articlessingleone">
-													<img src="${ins.aac109 }" class="test" alt="image description">
-													<figcaption><span>帖子图片</span></figcaption>
+													<img src="${ins.aac109 }" id="postImage" class="test" style="width: 30%;" alt="image description">
+													<div id="image-cover-modal" class="image-cover-modal">
+													  <img id="image-cover-image" class="image-cover-modal-content" src="${ins.aac109 }">
+													  <div id="image-cover-caption"></div>
+													</div>
 												</figure>
 											</c:if>
 											
@@ -248,7 +254,7 @@
 																<div class="wt-authorhead">
 																	<div class="wt-boxleft">
 																		<h3><a href="user_userDetails.html?aab101=${comment.aab101 }">${comment.cnaab102}</a></h3>
-																		<font size="100" color="black">${comment.aac203 }</font>
+																		<div style="font-size: 20px;">${comment.aac203 }</div>
 																	</div>
 																	<div class="wt-boxright">
 																		<c:if test="${sessionScope.userId!=comment.aab101 }">
@@ -264,7 +270,7 @@
 																
 																<div class="wt-description">
 																	
-																	<span><i class="lnr lnr-clock"></i> <font size="50" color="grey">日期: ${comment.aac202 }</font></span>
+																	<span><i class="lnr lnr-clock"></i> <font size="1" color="grey">日期: ${comment.aac202 }</font></span>
 																</div>
 																
 																<div id="complain_comment${comment.aac201 }" class="wt-widget wt-reportjob" style="display:none">
@@ -365,6 +371,78 @@
 			vform.action = "<%=path%>/tiezi_queryTiezi.html";
 			vform.submit();
 		}
+		
+		
+		// Get the DOM
+		var modal = document.getElementById('image-cover-modal');
+		var modalImg = document.getElementById("image-cover-image");
+		var captionText = document.getElementById("image-cover-caption");
+		var span = document.getElementsByClassName("image-cover-close")[0];
+
+		// When the user clicks on <span> (x), close the modal
+		modal.onclick = function() {
+		    this.classList.remove("model-shown");
+		}
+
+	    var img = document.getElementById("postImage");
+
+	    img.onclick = function(){
+	        modal.classList.add("model-shown");
+	        modalImg.src = this.src;
+	        captionText.innerHTML = this.alt;
+	    }
+		
 	</script>
+	
+	<style type='text/css'>
+		.image-cover-modal {
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		    opacity: 0;
+		    position: fixed;
+		    z-index: 30;
+		    left: 0;
+		    top: 0;
+		    width: 100%;
+		    height: 100%;
+		    overflow: auto;
+		    background-color: rgb(0,0,0);
+		    background-color: rgba(0,0,0,0.9);
+		    transition: opacity ease 0.3s;
+		    pointer-events: none;
+		}
+		
+		.model-shown {
+		    pointer-events: all;
+		    opacity: 1;
+		}
+		
+		.image-cover-modal-content {
+		    display: block;
+		    max-width: 80%;
+		    max-height: 80%;
+		}
+		
+		#image-cover-caption {
+		    display: block;
+		    position: absolute;
+		    width: 100%;
+		    height: 3rem;
+		    bottom: 0;
+		    line-height: 3rem;
+		    text-align: center;
+		    color: #fff;
+		    background: rgba(255, 255, 255, 0.33);
+		}
+		
+		@media only screen and (max-width: 45rem){
+		    .image-cover-modal-content {
+		        max-width: 100%;
+		        max-height: 100%;
+		    }
+		}
+				
+	</style>
 </body>
 </html>

@@ -30,4 +30,15 @@ public class Ae02ServicesImpl extends Ah01ServicesImpl
 		return this.executeTransaction();
 	}
 	
+	/**
+	 * @Description: 查询用户操作的群组是否被删除
+	 * @return:1表示群组存在，0表示群组已被删除
+	 * @throws: sql语句执行出错
+	 */
+	public int isExist()throws Exception
+	{
+		String sql="select aae101 from ae01 where aae101=?";
+		return this.queryForList(sql, this.getIdList("aae101")).size();
+	}
+	
 }

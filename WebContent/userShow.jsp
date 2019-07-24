@@ -122,7 +122,7 @@
 											<div class="wt-userprofile">
 												<figure>
 												<c:if test="${ins.aab115!=null }">
-													<img src="${ins.aab115 }" alt="img description">
+													<img src="${ins.aab115 }" style="width:50%;margin: auto;" alt="img description">
 												</c:if>
 												<c:if test="${ins.aab115==null }">
 													<img alt="img description" src="images/wo.jpg">

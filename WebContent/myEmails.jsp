@@ -42,6 +42,9 @@
 .srefused{
 	display:none;
 }
+.isDel{
+	display:none;
+}
 </style>
 <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
@@ -110,6 +113,7 @@
 																	</div>	
 																	<div id="second${row.aah201 }" class="faccepted"><span>已接受</span></div>
 																	<div id="third${row.aah201 }"  class="srefused"><span>已拒绝</span></div>
+																	<div id="forth${row.aah201 }"  class="isDel"><span>已解散</span></div>
 																</c:if>
 																<c:if test="${row.aah204==1 }">
 																	<span>已接受</span>
@@ -193,17 +197,21 @@
 					if(data==0)
 					{
 						alert("您已在群组中!");
+						document.getElementById("first"+aah201).style.display="none";
+						document.getElementById("second"+aah201).style.display="block";
 					}
 					else if(data==1)
 					{
-						alert("加入成功")	
+						alert("加入成功");
+						document.getElementById("first"+aah201).style.display="none";
+						document.getElementById("second"+aah201).style.display="block";
 					}
 					else if(data==2)
 					{
 						alert("该群组已解散!");
+						document.getElementById("first"+aah201).style.display="none";
+						document.getElementById("forth"+aah201).style.display="block";
 					}
-					document.getElementById("first"+aah201).style.display="none";
-					document.getElementById("second"+aah201).style.display="block";
 			},
 			error : function(data) {
 			},

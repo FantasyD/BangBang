@@ -146,7 +146,7 @@
 																<li><a href="#" onclick="delGroupIsClick()">½âÉ¢</a></li>
 															</c:when>
 															<c:otherwise>
-																<li><a href="#" onclick="isExist('1','${userId }')">ÍË³ö</a></li>
+																<li><a href="#" onclick="isExist('3','${userId }')">ÍË³ö</a></li>
 															</c:otherwise>
 														</c:choose>
 													</c:if>

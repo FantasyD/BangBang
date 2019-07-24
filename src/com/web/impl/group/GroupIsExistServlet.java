@@ -7,7 +7,6 @@ public class GroupIsExistServlet extends MyGroupsServlet
 	{
 		boolean tag=this.checkInfo("isExist")>0;
 		this.setResponseAttribute("isExist", String.valueOf(tag));
-		System.out.println(tag);
 		return null;
 	}
 

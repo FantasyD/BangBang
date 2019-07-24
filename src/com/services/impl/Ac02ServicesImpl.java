@@ -2,6 +2,7 @@ package com.services.impl;
 
 import java.util.List;
 import java.util.Map;
+import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 
 import com.services.JdbcServicesSupport;
 import com.system.tools.Tools;
@@ -21,8 +22,10 @@ public class Ac02ServicesImpl extends Ah01ServicesImpl
 				this.get("aac203")
 		};
 		
-		this.put("aah202", "/BangBang/tiezi_findByIdTiezi.html?aac101="+Tools.getSequenceWithoutAdd("aac101"));
+		this.put("aab101", this.get("postaab101"));
+		this.put("aah202", "/BangBang/tiezi_findByIdTiezi.html?aac101="+this.get("aac101"));
 		this.sendEmail();
+		this.put("aab101", this.get("aab101"));
 	
 		return this.executeUpdate(sql.toString(), argsObjects)>0;
 	}

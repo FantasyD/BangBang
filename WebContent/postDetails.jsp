@@ -149,14 +149,16 @@
 													<span>${ins.cnaab102 }</span>
 												</a>
 											</li>
-											<li>
-												<c:if test="${ins.aac106 !=null }">
+											
+											<c:if test="${not empty ins.aac106}">
+												<li>
 													<a href="javascript:void(0);">
-														<i class="lnr lnr-tag"></i>
-														<span>${ins.aac106 }</span>
+														<i class="lnr lnr-tag"></i>													
+														<span>${ins.aac106 }</span>																								
 													</a>
-												</c:if>	
-											</li>
+												</li>
+											</c:if>	
+											
 											<li>
 												<a href="javascript:void(0);">
 													<i class="lnr lnr-tag"></i>
@@ -313,7 +315,7 @@
 											<form class="wt-formtheme wt-formleavecomment" action="<%=path%>/comment_addComment.html" method="post">
 												<fieldset>
 													<div class="form-group">
-														<textarea name="aac203" class="form-control" placeholder="在这里输入您的留言"></textarea>
+														<input name="aac203" class="form-control" placeholder="在这里输入您的留言"></input>
 													</div>
 													<div class="form-group">
 														<button class="wt-btn" type="submit">发布</button>

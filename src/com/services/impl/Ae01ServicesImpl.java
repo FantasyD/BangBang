@@ -52,29 +52,30 @@ public class Ae01ServicesImpl extends Ah01ServicesImpl
 	 * @Description: 根据群组流水号查询该组内的所有组员
 	 * @throws：sql语句执行出错
 	 */
-	public List<Map<String,String>> query()throws Exception
+	public List<Map<String, String>> query() throws Exception
 	{
-		String sql="select b.aab101,b.aab102,b.aab115 from ab01 b,ae02 e where b.aab101=e.aab101 and aae101=?";
-		Object id=this.get("aae101");		
+		String sql = "select b.aab101,b.aab102,b.aab115 from ab01 b,ae02 e where b.aab101=e.aab101 and aae101=?";
+		Object id = this.get("aae101");
 		return this.queryForList(sql, id);
 	}
-	
+
 	/**
 	 * @Description: 更新群组信息表
 	 * @throws：sql语句执行出错
 	 */
 	public boolean  updateGroup()throws Exception
 	{
-		if(this.get("imgpath")!=null) {
-		String sql="update ae01 set aae102=?,aae103=?,aae105=?,aae107=? where aae101=?";
-		Object para[]= {
-				this.get("aae102"),
-				this.get("aae103"),
-				this.get("imgpath"),
-				this.get("aae107"),
-				this.get("aae101")
-				};
-		return this.executeUpdate(sql, para)>0;
+		if(this.get("imgpath")!=null) 
+		{
+			String sql="update ae01 set aae102=?,aae103=?,aae105=?,aae107=? where aae101=?";
+			Object para[]= {
+					this.get("aae102"),
+					this.get("aae103"),
+					this.get("imgpath"),
+					this.get("aae107"),
+					this.get("aae101")
+					};
+			return this.executeUpdate(sql, para)>0;
 		}
 		else
 		{

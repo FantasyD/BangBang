@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="GBK"%>
-<%@ taglib uri="http://org.wangxg/jsp/extl" prefix="e" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://org.wangxg/jsp/extl" prefix="e"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%
 	String path = request.getContextPath();
 	Map<String, String> ins = (Map<String, String>) request.getAttribute("ins");
@@ -67,7 +67,7 @@
 	overflow: auto;
 }
 
-#result{
+#result {
 	display: none;
 	position: absolute;
 	top: 10%;
@@ -120,8 +120,7 @@
 											<div class="wt-title">
 												<img class="img-circle"
 													src="${ins.aae105!=null && ins.aae105!=''?ins.aae105:'upload/index.jpg'}"
-													width="30px" height="30px" alt="头像" /> ${ins.aae102 }
-													<br>
+													width="30px" height="30px" alt="头像" /> ${ins.aae102 } <br>
 												<span>${ins.aae107!=null&& ins.aae107!=''?ins.aae107:'该群组暂时没有描述'}</span>
 											</div>
 											<ul class="wt-saveitem-breadcrumb wt-userlisting-breadcrumb">
@@ -135,7 +134,7 @@
 												<e:hidden name="aah103" value="群组解散提醒" />
 												<e:hidden name="aah104" value="群组: ${ins.aae102 }已被创建者解散!" />
 												<e:hidden name="aae101" value="${ins.aae101 }" />
-												<e:hidden name="aab101" value="${userId }"/>
+												<e:hidden name="aab101" value="${userId }" />
 											</form>
 											<ul class="wt-saveitem-breadcrumb wt-userlisting-breadcrumb">
 												<c:forEach items="${rows }" var="row" varStatus="vs">
@@ -147,7 +146,7 @@
 																<li><a href="#" onclick="delGroupIsClick()">解散</a></li>
 															</c:when>
 															<c:otherwise>
-																<li><a href="#" onclick="quitIsClick('${userId }')">退出</a></li>
+																<li><a href="#" onclick="isExist('1','${userId }')">退出</a></li>
 															</c:otherwise>
 														</c:choose>
 													</c:if>
@@ -188,7 +187,8 @@
 												<div class="wt-proposaldetails">
 													<div class="wt-contenthead">
 														<div class="wt-title">
-															<a href="user_userDetails.html?aab101=${row.aab101 }"> ${row.aab102 }</a>
+															<a href="user_userDetails.html?aab101=${row.aab101 }">
+																${row.aab102 }</a>
 														</div>
 													</div>
 												</div>
@@ -216,10 +216,11 @@
 							</div>
 						</div>
 					</div>
-										
+
 					<div id="updateInfo">
 						<h2 align="center">群组信息</h2>
-						<form method="post" enctype="multipart/form-data" role="form">
+						<form method="post" enctype="multipart/form-data" role="form"
+							id="updateForm">
 							<table border="1" align="center" width="50%">
 								<tr>
 									<td>群组名:</td>
@@ -242,16 +243,14 @@
 									<e:hidden name="aae101" value="${ins.aae101 }" />
 								</tr>
 								<tr>
-									<td colspan="2" align="center"><input type="submit"
-										name="next" value="修改" class="btn btn-default"
-										formaction="<%=path%>/group_updateGroup.html"> <input
-										type="button" onclick="closeDiv()" value="取消"
-										class="btn btn-default"></td>
+									<td colspan="2" align="center">
+										<input type="submit" name="next" value="修改" class="btn btn-default" onclick="isExist('1','${userId }')">
+										<input type="button" onclick="closeDiv()" value="取消" class="btn btn-default"></td>
 								</tr>
 							</table>
 						</form>
-
 					</div>
+
 					<div id="invite">
 						<form id="numberForm" method="post">
 							<div class="form-group">
@@ -268,11 +267,14 @@
 							<h4 class="modal-title" id="myModalLabel">请选择邀请用户</h4>
 							<a href="<%=path %>/group_findGroup.html?aae101=${ins.aae101}">x</a>
 						</div>
-						 <div class="modal-body" id="results">
-						</div>
+						<div class="modal-body" id="results"></div>
 					</div>
-
 				</div>
+				
+				<form id="isDel">
+					<e:hidden name="aab101" value="${userId }"/>
+					<e:hidden name="aae101"  value=""/>
+				</form>
 			</section>
 			<!--Register Form End--> </main>
 			<!--Main End-->
@@ -298,6 +300,48 @@
 	<script src="js/jRate.js"></script>
 	<script src="js/main.js"></script>
 	<script type="text/javascript">
+	function isExist(id,aab101)
+	{
+		$.ajax({
+			type: "POST",
+			url: "<%=path%>/group_groupIsExist.html",
+			data : {
+				'aae101' : ${ins.aae101 }
+			},
+			success : function(data) {
+				if(data=="true")
+				{
+					if(id==1)
+					{
+						update();	
+					}
+					if(id==2)
+					{
+						invite(aab101);	
+					}
+					if(id==3)
+					{
+						quitIsClick(aab101);	
+					}
+				}
+				else
+				{
+					alert("该群组已解散！");
+					back();
+				}
+			},
+			error : function(data) {
+			},
+		});
+	}
+	
+	function back()
+	{
+			var vForm=document.getElementById("isDel");
+			vForm.action="<%=path %>/group_findMyGroup.html";
+			vForm.submit();
+	}
+	
 	  //显示隐藏的修改DIV
   	function updateIsClick()
   	{
@@ -309,10 +353,18 @@
   	}
   	//隐藏修改DIV
   	function closeDiv()
-		{
+	{
   			var infoForm=document.getElementById("updateInfo");
 			infoForm.style.display="none";
-		}
+	}
+  	//修改
+  	function update()
+  	{
+  			var upForm=document.getElementById("updateForm");
+  			upForm.action="<%=path%>/group_updateGroup.html";
+  			upForm.submit();
+
+  	}
   	//转让创建者身份
   	function transfered(aab101)
   	{
@@ -329,20 +381,20 @@
 	    		if(confirm("确定要删除该组员吗？"))
   			{
   					var dels=document.getElementById("empty");
-  					dels.action="<%=path%>/group_delGroupMember.html?aab101="+aab101;
+  					dels.action="<%=path%>/group_delGroupMember.html?aa="+aab101;
   					dels.submit();
   			}
   	}
   	//退出该群组
   	function quitIsClick(aab101)
   	{
-  			if(confirm("您确定要退出该群组吗？"))
-  			{
-  					var quitBtn=document.getElementById("quit");
-	    				quitBtn.action="<%=path%>/group_quitGroup.html?aa="+aab101;
+	  			if(confirm("您确定要退出该群组吗？"))
+	  			{
+	  					var quitBtn=document.getElementById("quit");
+		    			quitBtn.action="<%=path%>/group_quitGroup.html?aa="+aab101;
 						quitBtn.submit();
 				}
-		}
+  	}
   	
   	//解散该群组
   	function delGroupIsClick()
@@ -369,7 +421,7 @@
 			infoForm.style.display = "none";
 		}
 		
-		//邀请用户
+		//邀请时的搜索用户
 		function inviteConfirm()
 		{
 			var user=document.getElementById("invitedNumber").value;
@@ -395,40 +447,41 @@
 			}
 		}
 		
+		//邀请用户
 		function invite(aab101)
 		{
-			var tag=true;
-		    <c:forEach items="${rows}" var="item" varStatus="status" >  
-	        	if(${item.aab101}==aab101)	
-	        	{
-	        		 tag=false;
-	        	}
-	    	</c:forEach>   
-	    	if(tag)
-			{
-	    		$.ajax({
-					type: "POST",
-					url: "<%=path%>/group_inviteToGroup.html",
-					data : {
-						'aab101' : aab101,
-						'aah202' : '${pageContext.request.contextPath}/group_acceptInvite.html?aae101=${ins.aae101 }',
-						'aah203' : '${pageContext.request.contextPath}/group_refuseInvite.html?aab101=${userId }',
-						'aae101' : '${ins.aae101 }',
-						'aah102' : '2',
-						'aah103' : encodeURIComponent('群组邀请'),
-						'aah104' : encodeURIComponent('用户${userName }邀请您加入群组：${ins.aae102 }')
-					},
-					success : function(data) {
-						alert("邀请成功")
-					},
-					error : function(data) {
-					},
-				});
-			}
-			else
-			{
-				alert("该用户已在群组中");
-			}
+				var tag=true;
+			    <c:forEach items="${rows}" var="item" varStatus="status" >  
+		        	if(${item.aab101}==aab101)	
+		        	{
+		        		 tag=false;
+		        	}
+		    	</c:forEach>   
+		    	if(tag)
+				{
+		    		$.ajax({
+						type: "POST",
+						url: "<%=path%>/group_inviteToGroup.html",
+						data : {
+							'aab101' : aab101,
+							'aah202' : '${pageContext.request.contextPath}/group_acceptInvite.html?aae101=${ins.aae101 }',
+							'aah203' : '${pageContext.request.contextPath}/group_refuseInvite.html?aab101=${userId }',
+							'aae101' : '${ins.aae101 }',
+							'aah102' : '2',
+							'aah103' : encodeURIComponent('群组邀请'),
+							'aah104' : encodeURIComponent('用户${userName }邀请您加入群组：${ins.aae102 }')
+						},
+						success : function(data) {
+							alert("邀请成功")
+						},
+						error : function(data) {
+						},
+					});
+				}
+				else
+				{
+					alert("该用户已在群组中");
+				}
 		}
 		
 	</script>

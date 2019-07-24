@@ -151,14 +151,14 @@
 																<div class="wt-authorhead">
 																	<div class="wt-boxleft">
 																		<h3><a href="user_userDetails.html?aab101=${comment.aab101 }">${comment.cnaab102}</a></h3>
-																		<span><i class="lnr lnr-clock"></i> 日期: ${comment.aac202 }</span>
+																		<font size="100" color="black">${comment.aac203 }</font>
 																	</div>
 																	<div class="wt-boxright">																
 																		<a class="wt-btnreply" href="#" onclick="onDel(${comment.aac201})"><span class="wt-clickreply">删除</span><i class="fa fa-mail-reply"></i></a>																	
 																	</div>
 																</div>
 																<div class="wt-description">
-																	<p>${comment.aac203 }</p>
+																	<span><i class="lnr lnr-clock"></i> <font size="50" color="grey">日期: ${comment.aac202 }</font></span>
 																</div>
 															</div>
 														</div>

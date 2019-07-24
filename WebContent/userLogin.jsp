@@ -30,8 +30,7 @@
 </script>
 </head>
 <body>
-<br>	
-<br>
+<canvas id="canvas"></canvas>
 <div class="container">
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
@@ -228,6 +227,7 @@
     </div>
 </div>
 
+<script src="js/index.js"></script>
 </body>
 
 </html>

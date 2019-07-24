@@ -94,6 +94,7 @@
 											
 											<p> 举报人昵称:${ins.complainer } </p>
 											<p> 举报类型:${ins.reason }  </p>
+											<p> 举报理由:${ins.aaf106 }  </p>
 											<p> 处理状态:${ins.hstatus }  </p>
 											<p> 举报时间:${ins.aaf109 }</p>
 										

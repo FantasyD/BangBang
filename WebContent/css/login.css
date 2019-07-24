@@ -1,5 +1,11 @@
 html{height: 100%}
 
+canvas{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
 body{
     margin: 0;
     height: 100%;
@@ -19,7 +25,7 @@ body{
 
 .container{
     height: 50%;
-    margin-top:200px;
+    margin-top:-650px;
     margin-bottom: auto;
 }
 

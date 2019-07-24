@@ -66,7 +66,6 @@
 							<div class="wt-innerbannercontent">
 							<div class="wt-title"><h2>Ьћзг</h2></div>
 							<ol class="wt-breadcrumb">
-								<li><a href="#">жївГ</a></li>
 								<li class="wt-active">Ьћзг</li>
 							</ol>
 							</div>

@@ -11,7 +11,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	
 	<!-- 在这里输入帖子名 -->
-	<title>帖子详情</title>
+	<title>我的帖子详情</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -54,11 +54,8 @@
 					<div class="row justify-content-md-center">
 						<div class="col-xs-12 col-sm-12 col-md-8 push-md-2 col-lg-6 push-lg-3">
 							<div class="wt-innerbannercontent">
-								<div class="wt-title"><h2>帖子详情</h2></div>
+								<div class="wt-title"><h2>我的帖子详情</h2></div>
 								<ol class="wt-breadcrumb">
-									<li>主页</li>
-									<li><a href="#" onclick="returnQueryPost()">帖子</a></li>
-									<li class="wt-active">帖子详情</li>
 								</ol>
 							</div>
 						</div>

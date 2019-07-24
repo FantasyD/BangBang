@@ -115,7 +115,6 @@
 							<div class="wt-innerbannercontent">
 								<div class="wt-title"><h2>帖子详情</h2></div>
 								<ol class="wt-breadcrumb">
-									<li>主页</li>
 									<li><a href="#" onclick="returnQueryPost()">帖子</a></li>
 									<li class="wt-active">帖子详情</li>
 								</ol>
@@ -343,7 +342,7 @@
 	</div>
 	
 	<form action = "<%=path%>/tiezi_queryTiezi.html" method = "post" id="myForm">
-		<e:hidden name="aab101" value="2"/>
+		<e:hidden name="aab101" value="${sessionScope.userId }"/>
 		<e:hidden name="pageNum" value="1"/>
 	</form>	
 	

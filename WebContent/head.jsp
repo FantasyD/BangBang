@@ -104,7 +104,7 @@
 														<span>我的消息</span>
 													</a>
 												</li>
-												<li class="${emailNum>0?'wt-notificationicon':'' }">
+												<li id="myEmails">
 													<a href="<%=path %>/email_getEmail.html?aab101=${userId}">
 														<span>我的邮件</span>
 													</a>
@@ -131,7 +131,7 @@
 						
 						
   <script type="text/javascript">
-  
+  //长轮询获取是否有新邮件
   function askEmail(newNum)
   {
 		$.ajax
@@ -142,14 +142,25 @@
 			timeout:30*60*1000,  //设置30分钟超时
 			success:function(data)
 			{
+				//当未读邮件数大于当前邮件数时表明有人发送了新邮件
+				if(newNum<data){
+					$("#msgNum").text(data);
+					iziToast.error({
+		        		title: '提示',
+		        		message: '您有'+data+'条未读提示',
+		       			position: 'bottomRight',
+		        		transitionIn: 'fadeInDown'
+		    		});
+				}
+				if(data==0)
+				{
+					document.getElementById("myEmails").className="";				
+				}
+				else
+				{
+					document.getElementById("myEmails").className="wt-notificationicon";
+				}
 				newNum=data;
-				$("#msgNum").text(data);
-				iziToast.error({
-	        		title: '提示',
-	        		message: '您有'+data+'条未读提示',
-	       			position: 'bottomRight',
-	        		transitionIn: 'fadeInDown'
-	    		});
 				askEmail(newNum);
 			},
 			error:function()

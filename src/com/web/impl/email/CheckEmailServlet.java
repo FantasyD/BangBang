@@ -25,8 +25,8 @@ public class CheckEmailServlet extends ControllerSupport
 		 */
 		while(true)
 		{
-			int num=this.checkInfo();
-			if(num>0)
+			int num=this.checkInfo("checkEmail");
+			if(num>=0)
 			{
 				//¿ØÖÆ¸¡¶¯ÏÔÊ¾
 				this.setResponseAttribute("emailNum", String.valueOf(num));

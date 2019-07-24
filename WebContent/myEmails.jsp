@@ -85,17 +85,17 @@
 										<ul class="wt-experienceaccordion accordion">
 											<c:forEach items="${rows }" var="row" varStatus="vs">
 												<li>
-													<div class="wt-accordioninnertitle accordion-heading">
-														<div class="wt-projecttitle accordion-toggle"
+													<div class="wt-accordioninnertitle">
+														<div class="wt-projecttitl collapsed"
 															data-toggle="collapse" data-target="#${row.aah101 }">
 															<a style="color:${row.aah106==0?'#ff0000':'#777' }"
 																onclick="updateEmail('${row.aah101}')"
 																id="${row.aah101 }a"> ${row.aah103 } </a> 
 														</div>
 													</div>
-													<div class="wt-collapseexp collapse navbar-collapse"
-														id="${row.aah101 }" aria-labelledby="accordioninnertitle"
-														data-parent="#accordion">
+													<div class="wt-collapseexp collapse"
+														 id="${row.aah101 }" aria-labelledby="accordioninnertitle"
+														 data-parent="#accordion">
 														<form class="wt-formtheme wt-userform wt-formprojectinfo">
 														<div class="form-group form-group-half">
 														<p>${row.aah104 }</p>

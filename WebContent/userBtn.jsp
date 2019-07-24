@@ -71,7 +71,7 @@
 										<span>我的消息</span>
 									</a>
 								</li>
-								<li class="${emailNum>0?'wt-notificationicon':'' }">
+								<li id="myEmails">
 									<a href="<%=path %>/email_getEmail.html?aab101=${userId}">
 										<i class="ti-announcement"></i>
 										<span>我的邮件</span>

@@ -31,7 +31,7 @@
 										<img src="${sessionScope.userPhoto }" alt="img description">
 									</c:if>
 									<c:if test="${sessionScope.userPhoto==null }">
-										<img src="images/user-img.jpg" alt="img description">
+										<img src="images/wo.jpg" alt="img description">
 									</c:if>
 								</figure>
 								<div class="wt-title">

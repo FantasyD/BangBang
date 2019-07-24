@@ -119,7 +119,7 @@
 																	</c:if>
 																	<c:if test="${ins.aac109!=null }">
 																		<a href="#" onclick = "onEdit('${ins.aac101 }')">
-																			<img src="${ins.aac109 }" alt="image description">
+																			<img src="${ins.aac109 }" style="width: 65px;height: 65px;" alt="image description">
 																		</a>
 																	</c:if>
 																	</figure>
@@ -175,15 +175,13 @@
 																<c:if test="${ins.aac109!=null }">
 																	<figure>
 																		<a href="#" onclick = "onEdit('${ins.aac101 }')">
-																			<img src="${ins.aac109 }"  style="height:432px;width:768px" alt="img description">
+																			<img src="${ins.aac109 }"  style="width:100%;height:60%" alt="img description">
 																		</a>
 																	</figure>
 																</c:if>
 																<c:if test="${ins.aac109==null }">
 																	<figure>
-																		<a href="#" onclick = "onEdit('${ins.aac101 }')">
-																			<img src="images/20.jpg" style="height:432px;width:768px"  alt="img description">
-																		</a>
+																		
 																	</figure>
 																</c:if>
 																<div class="wt-articlecontent">

@@ -151,18 +151,30 @@
 										</div>
 									</aside>
 								</div>
+								<c:set var="rowsIsEmpty" value="1" />										
+								<c:forEach items="${rows }" var="ins" varStatus="vs">												
+									<c:if test="${ins.aac305!=1 }">
+										<c:set var="rowsIsEmpty" value="0" />	
+									</c:if>														
+								</c:forEach>
 								<div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-8 float-left">
 									<div class="wt-classicaricle-holder">
 										<div class="wt-classicaricle-header">
 											<div class="wt-title">
-												<h2>精品帖</h2>
+												<c:if test="${rowsIsEmpty == 0}">
+													<h2>精品帖</h2>
+												</c:if>									
 											</div>
 											<div class="wt-description">
-												<p>我们为您准备了一些您可能感兴趣的帖子</p>
+												<c:if test="${rowsIsEmpty == 0}">
+													<p>我们为您准备了一些您可能感兴趣的帖子</p>
+												</c:if>	
+												
 											</div>
 										</div>
 										<div class="wt-article-holder">
 											<!-- 以下为每个帖子所需要的css样式配件 -->
+											
 											<c:choose>
 												<c:when test="${rows!=null }">
 													
@@ -207,19 +219,32 @@
 														</c:if>
 														</c:forEach>
 													</table>
-													<table width="60%" align="right" >
-														<tr><td><div id="barcon" name="barcon"></div></td></tr>
-													</table>
+													
 												</c:when>
-												<c:otherwise>
-													<div>
-														<div class="alert alert-info">
-															<a class="close" data-dismiss="alert">x</a>
-															<strong>没有符合条件的帖子</strong>
-														</div>
-													</div>
-												</c:otherwise>												
+												
+												
+												
+																							
 											</c:choose>
+											
+																						
+											
+													
+											
+											<c:if test="${rowsIsEmpty == 0}">
+												<table width="60%" align="right" >
+													<tr><td><div id="barcon" name="barcon"></div></td></tr>
+												</table>
+											</c:if>													
+																						
+											<c:if test="${rowsIsEmpty == 1 }">															
+												<div class="wt-jobalerts">
+													<div class="alert alert-primary alert-dismissible fade show">
+														<em>Message:</em> <span> 没有符合条件的帖子</span>
+														<a href="javascript:void(0)" class="close" data-dismiss="alert" aria-label="Close"><i class="fa fa-close"></i></a>
+													</div>
+												</div>
+											</c:if>
 										</div>
 									</div>
 								</div>

@@ -1,5 +1,6 @@
 package com.services.impl;
 
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +33,7 @@ public class Af01ServicesImpl extends JdbcServicesSupport
 				this.get("aaf103"),
 				this.get("aaf104"),
 				this.get("aaf105"),
-				this.get("aaf106")
+				URLDecoder.decode((String)this.get("aaf106"),"UTF-8")
 		};
 		//Ö´ÐÐ²åÈëSQLÓï¾ä
 		return this.executeUpdate(sql.toString(), argsObjects)>0;

@@ -1,13 +1,12 @@
 package com.web.impl.group;
 
-public class QuitGroupServlet extends GroupServlet
+public class QuitGroupServlet extends MyGroupsServlet
 {
 	@Override
 	public String execute() throws Exception
 	{
 		this.update("quitGroup", "ÍË³ö");
-		this.savePageInstance();
-		this.savePageDataForDelete();
-		return "groupDetail";
+		this.savePageData();
+		return "myGroups";
 	}
 }

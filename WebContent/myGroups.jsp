@@ -112,7 +112,7 @@
 													<td>	<img class="img-circle" 	src="${row.aae105!=null && row.aae105!=''?row.aae105:'upload/index.jpg'}"
 														width="30px" height="30px"/> </td>
 
-													<td><a href="<%=path %>/group_findGroup.html?aae101=${row.aae101}">${row.aae102 }</a></td>
+													<td><a href="#" onclick="findById('${row.aae101 }')">${row.aae102 }</a></td>
 													<td>${row.aae103!=null && row.aae103!=''?row.aae103:'该群组暂时没有签名'}</td>
 												</tr>
 											</c:forEach>
@@ -122,6 +122,7 @@
 							</div>
 						</div>
 					</div>
+					<form id="findGroup" method="post"></form>
 				</section>
 				<!--Register Form End-->
 			</main>
@@ -149,6 +150,35 @@
 	<script src="js/gmap3.js"></script>
 	<script src="js/jRate.js"></script>
 	<script src="js/main.js"></script>
+	<script type="text/javascript">
+		function findById(aae101)
+		{
+				$.ajax({
+				type: "POST",
+				url: "<%=path%>/group_groupIsExist.html",
+				data : {
+					'aae101' : aae101
+				},
+				success : function(data) {
+					if(data=="true")
+					{
+							var vForm=document.getElementById("findGroup");
+							vForm.action="<%=path%>/group_findGroup.html?aae101="+aae101;
+							vForm.submit();
+					}
+					else
+					{
+						alert("该群组已解散！");
+						var vForm=document.getElementById("findGroup");
+						vForm.action="<%=path%>/group_findMyGroup.html?aab101="+${userId};
+						vForm.submit();
+					}
+				},
+				error : function(data) {
+				},
+			});
+		}
+	</script>
 	<script>
 		const menu_icon = document.querySelector('.menu-icon');
 		function addClassFunThree() {

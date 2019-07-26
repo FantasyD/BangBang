@@ -84,8 +84,8 @@
 	    var aab101 = "${userId }";
 	    var aaf103 = "3";
 	    var aaf104 = aac201;
-	    var aaf105 = $("#sel_comment option:selected").val();
-	    var aaf106 = encodeURI(encodeURI($("#complain_reason_C").val()));
+	    var aaf105 = $("#sel_comment" + aac201 + " option:selected").val();
+	    var aaf106 = encodeURI(encodeURI($("#complain_reason_C" + aac201).val()));
 	    http_request.open("POST", path + "/complain_ComplainAdd.html", true);
 	    http_request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	    http_request.send("aab101=" + aab101 + "&aaf103=" + aaf103 + "&aaf104=" + aaf104 + "&aaf105=" + aaf105 + "&aaf106=" + aaf106);
@@ -283,7 +283,7 @@
 																			<fieldset>
 																				<div class="form-group">
 																					<span class="wt-select">
-																						<select id="sel_comment">
+																						<select id="sel_comment${comment.aac201 }">
 																							<option value="01">存在违反国家法律法规的内容</option>
 																							<option value="02">存在泄露他人隐私信息的内容</option>
 																							<option value="03">存在辱骂、中伤、诽谤他人的内容</option>
@@ -293,7 +293,7 @@
 																					</span>
 																				</div>
 																				<div class="form-group">
-																					<textarea type="text" id="complain_reason_C" class="form-control" placeholder="填写举报原因"></textarea>
+																					<textarea type="text" id="complain_reason_C${comment.aac201 }" class="form-control" placeholder="填写举报原因"></textarea>
 																				</div>
 																				<div class="form-group wt-btnarea">
 																					<input type="button" onclick="complainComment('${comment.aac201 }')" class="wt-btn" id="complain_submit" value="提交"></input>

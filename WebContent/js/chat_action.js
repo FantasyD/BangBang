@@ -1,16 +1,16 @@
 
 var chat_id;
 var map = new Map();
-//ÓÃÓÚ½øĞĞÏûÏ¢ÌáÊ¾
+//ç”¨äºè¿›è¡Œæ¶ˆæ¯æç¤º
 var span_color = null;
 
-//ÏòWebSocket·şÎñÆ÷µÄÁ¬½Ó
+//å‘WebSocketæœåŠ¡å™¨çš„è¿æ¥
 var webSocket_record = null;
 
-//ÓÃ»§µÄÍ·Ïñ
+//ç”¨æˆ·çš„å¤´åƒ
 var sender_path = user_img;
 
-//ÁÄÌì½ÓÊÕÕßµÄÍ·Ïñ
+//èŠå¤©æ¥æ”¶è€…çš„å¤´åƒ
 var accept_path = null;
 
 function getHttp_request()
@@ -19,14 +19,14 @@ function getHttp_request()
         // Opera 8.0+, Firefox, Chrome, Safari
         var http_request = new XMLHttpRequest();
     }catch (e){
-        // IEä¯ÀÀÆ÷´¦Àí
+        // IEæµè§ˆå™¨å¤„ç†
         try{
             http_request = new ActiveXObject("Msxml2.XMLHTTP");
         }catch (e) {
             try{
                 http_request = new ActiveXObject("Microsoft.XMLHTTP");
             }catch (e){
-                //´íÎó´¦Àí
+                //é”™è¯¯å¤„ç†
                 alert("Your browser broke!");
                 return false;
             }
@@ -64,7 +64,7 @@ function loadJSON(data, name)
     http_request.onreadystatechange = function(){
         if (http_request.readyState == 4 )
         {
-            //Ê¹ÓÃJSON.parse½âÎöJSONÊı¾İ
+            //ä½¿ç”¨JSON.parseè§£æJSONæ•°æ®
             var jsonObj = http_request.responseText;
             $("#record1").empty();
             $("#record2").empty();
@@ -81,9 +81,9 @@ function loadJSON(data, name)
                     						 "<div class='user-head online'><img id='" + i.aad101 + "_img' src='"+ i.aab115 +"'></div>" + 
                     	                     "<div class='user-name'>" + i.aab102 +  "</div>" + 
                     	                     "<div class='last-message'><span><font size='3'>" + 
-                    	                     "<b>Ìû×Ó±êÌâ£º</b></font>" + i.aac102 + "</span></div></div>" + 
+                    	                     "<b>PostTitle:</b></font>" + i.aac102 + "</span></div></div>" + 
                     	                     "<div class='last'>" + 
-                    	                     "<font onclick='onDel(" + i.aad101 + ", 1)' class='deleteButton'>É¾³ı</font>" + 
+                    	                     "<font onclick='onDel(" + i.aad101 + ", 1)' class='deleteButton'>X</font>" + 
                     	                     //"<div id = '" + i.aad101 + "_time'></div>" +
                     	                     "</div></div>");
                    	}
@@ -95,9 +95,9 @@ function loadJSON(data, name)
 				       						 "<div class='user-head online'><img id='" + i.aad101 + "_img' src='"+ i.aab115 +"'></div>" + 
 				    	                     "<div class='user-name'>" + i.aab102 +  "</div>" + 
 				    	                     "<div class='last-message'><span><font size='3'>" +
-				    	                     "<b>Ìû×Ó±êÌâ£º</b></font>" + i.aac102 + "</span></div></div>" + 
+				    	                     "<b>PostTitle:</b></font>" + i.aac102 + "</span></div></div>" + 
 				    	                     "<div class='last'>" + 
-				    	                     "<font onclick='onDel(" + i.aad101 + ", 2)' class='deleteButton'>É¾³ı</font>" + 
+				    	                     "<font onclick='onDel(" + i.aad101 + ", 2)' class='deleteButton'>X</font>" + 
 				    	                     //"<div id = '" + i.aad101 + "_time'></div>" +
 				    	                     "</div></div>");
                    	}
@@ -185,7 +185,7 @@ function chat(aad101)
 
 $(function(){
 	if(!window.WebSocket){
-		alert('ÄãµÄä¯ÀÀÆ÷²»Ö§³ÖWebSocket');
+		alert('ä½ çš„æµè§ˆå™¨ä¸æ”¯æŒWebSocket');
 	}else{
 		startConnect_record(this_aab101, this_aab102);
 	}
@@ -212,13 +212,13 @@ function onMessage(event)
 	loadJSON(event.data);
 }
 function onOpen(event) {
-	$("#allMsg1").append("<p>ÒÑÁ¬½ÓÖÁ·şÎñÆ÷</p>");
+	$("#allMsg1").append("<p>å·²è¿æ¥è‡³æœåŠ¡å™¨</p>");
 }
 function onError(event) {
-	$("#allMsg1").append("<p>Á¬½Ó·şÎñÆ÷·¢Éú´íÎó</p>");
+	$("#allMsg1").append("<p>è¿æ¥æœåŠ¡å™¨å‘ç”Ÿé”™è¯¯</p>");
 }
 function onClose(event) {
-	$("#allMsg1").append("<p>·şÎñÆ÷Á¬½ÓÒÑ¹Ø±Õ</p>");
+	$("#allMsg1").append("<p>æœåŠ¡å™¨è¿æ¥å·²å…³é—­</p>");
 }
 
 function sendMessage_record(message){
